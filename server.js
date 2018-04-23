@@ -162,9 +162,7 @@ message.channel.send({embed: { color: 9198799, author: { name: client.user.usern
                               timestamp: new Date(), footer: { icon_url: client.user.avatarURL, text: "© DeathBot" } } });
 }
 	if(command === "bomb"){
-			message.tts ={tts:true};
-		message.channel.send("a bomb");
-	
+			message.channel.send("https://giphy.com/gifs/XDLJpjzyw76Sc");
 	}
   if(command === "ping"){
   const m = await message.channel.send("Ping?");
