@@ -177,7 +177,7 @@ const namaste = [
   ]
  const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
 const randomNamaste = namaste[Math.floor(Math.random() * answers.length)];
- m.edit(`Pong! It took ${m.createdTimestamp - message.createdTimestamp}ms to find ${randomAnswer} in ${randomNamaste} after ${Math.round(client.ping)} counts of felony!!`)
+ m.edit(`Pong! It took ${m.createdTimestamp - message.createdTimestamp}ms to find ${randomNamaste} in ${randomAnswer} after ${Math.round(client.ping)} counts of felony!!`)
 
 }
     if(command === "ss") {
