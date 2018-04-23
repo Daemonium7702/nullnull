@@ -163,7 +163,7 @@ message.channel.send({embed: { color: 9198799, author: { name: client.user.usern
 }
 	if(command === "bomb"){
 			message.tts ={tts:true};
-		message.channel.send("a tts message was successfully sent");
+		message.channel.send("a bomb");
 	
 	}
   if(command === "ping"){
