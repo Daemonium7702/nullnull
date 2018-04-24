@@ -162,15 +162,16 @@ message.channel.send({embed: { color: 9198799, author: { name: client.user.usern
                               timestamp: new Date(), footer: { icon_url: client.user.avatarURL, text: "© DeathBot" } } });
 }
 	if(command === "bomb"){
-			const bomb= [
+			const answers= [
 				"https://giphy.com/gifs/XDLJpjzyw76Sc",
 				"https://giphy.com/gifs/cartoon-explosion-nn2xFuRUFqXNS",
 				"https://media.giphy.com/media/Qw4X3FkHjXDWr9p3bIk/giphy.gif",
 				"https://media3.giphy.com/media/3o85xoHuw9GowpnyUg/giphy.gif",
 				"https://i.gifer.com/298c.gif",
 				]
-			const RandomBomb = bomb[Math.floor(Math.random() * answers.length)];
-		message.channel.send(RandomBomb);
+		  const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
+    message.channel.send(randomAnswer);
+		message.channel.send(randomAnswer);
 				
 	}
   if(command === "ping"){
