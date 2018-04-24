@@ -170,7 +170,6 @@ message.channel.send({embed: { color: 9198799, author: { name: client.user.usern
 				"https://i.gifer.com/298c.gif",
 				]
 		  const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
-    message.channel.send(randomAnswer);
 		message.channel.send(randomAnswer);
 				
 	}
