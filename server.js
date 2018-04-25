@@ -60,11 +60,6 @@ message.delete().catch(O_o=>{});
     const space = z.replace(/ /g, "X");
     message.channel.send(space);
   }
-	if(command === "link"){
-		const message = ("Sexy stuffs");
-		const URL === ("Google.com");
-		message.channel.send("If you want" + URL + "then go to" + URL);
-	}
 		if(command === "space"){
 message.delete().catch(O_o=>{});
  const oldMessage = args.join(" ");
