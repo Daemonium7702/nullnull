@@ -66,23 +66,7 @@ message.delete().catch(O_o=>{});
     }
     message.channel.send(args.join(' ').split('').reverse().join(''));
 };
-	if (command === "bill"){
-	const got = require('got');
-
-exports.run = async (bot, msg) => {
-    await message.edit(':arrows_counterclockwise:');
-    const { body } = await got('http://belikebill.azurewebsites.net/billgen-API.php?default=1', { encoding: null });
-
-    await message.channel.send({
-        file: {
-            attachment: body,
-            name: 'bill.jpg'
-        }
-    });
-
-    msg.delete();
-};
-  }
+	
 	//////////////////////////ASCII///////////////
 	const ascii = `
 \`\`\`
@@ -179,43 +163,19 @@ if(command === "dice"){
       const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
     message.channel.send(randomAnswer); 
   }
-	if(command == "fancy"){
-	const mapping = {
-    ' ': '   ',
-    '0': ':zero:',
-    '1': ':one:',
-    '2': ':two:',
-    '3': ':three:',
-    '4': ':four:',
-    '5': ':five:',
-    '6': ':six:',
-    '7': ':seven:',
-    '8': ':eight:',
-    '9': ':nine:',
-    '!': ':grey_exclamation:',
-    '?': ':grey_question:',
-    '#': ':hash:',
-    '*': ':asterisk:'
-};
-
-'abcdefghijklmnopqrstuvwxyz'.split('').forEach(c => {
-    mapping[c] = mapping[c.toUpperCase()] = ` :regional_indicator_${c}:`;
-});
-
-exports.run = (bot, msg, args) => {
-    if (args.length < 1) {
-        throw 'You must provide some text to fanceh-fy!';
+	 if (command === "shoot"){
+		    if (message.mentions.users.size < 1) {
+        throw '@mention some people to shoot!';
     }
 
-    message.channel.send(
-        args.join(' ')
-            .split('')
-            .map(c => mapping[c] || c)
-            .join('')
-    );
+    let output = message.mentions.users.map(m => `**${m}** :gun:`).join('\n');
+
+    message.delete();
+    message.channel.send({
+        embed: client.utils.embed(`${client.user.username} is on a killing spree!`, output)
+    });
 };
-	
-  }
+
 if(command === "cmdlist"){
 message.channel.send({embed: { color: 9198799, author: { name: client.user.username, icon_url: client.user.avatarURL }
                               , title: "CommandList", description: "Currenly, I only have a few commands, and will get more soon.", 
