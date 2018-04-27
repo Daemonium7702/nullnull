@@ -60,64 +60,96 @@ message.delete().catch(O_o=>{});
     const space = z.replace(/ /g, "X");
     message.channel.send(space);
   }
+	if(command === "reverse"){
+		  if (args.length < 1) {
+        throw 'You must input text to be reversed!';
+    }
+    message.channel.send(args.join(' ').split('').reverse().join(''));
+};
+	//////////////////////////ASCII///////////////
+	const ascii = `
+\`\`\`
+  _______   _________    _________   ,        ,
+ /              |       /            |        |
+|               |      |             |        |
+|               |      |             |        |
+ \\_____,        |      |  _______,   |________|
+        \\       |      |         |   |        |
+         |      |      |         |   |        |
+         |      |      |         |   |        |
+  ______/   ____|____   \\________|   |        |
+\u200b
+\`\`\`
+`;
+
+if(command === "sigh") {
+    message.channel.send(ascii);
+};
+///////////////////ASCII/////////////////////
 		if(command === "space"){
 message.delete().catch(O_o=>{});
- const oldMessage = args.join(" ");
-    const space = oldMessage.replace(/ /g, "   ");
-    const aa = space.replace(/A/g, "A    ");
-const bb = a.replace(/B/g, "B    ");
-const cc = b.replace(/C/g, "C    ");
-const dd = c.replace(/D/g, "D    ");
-const ee = d.replace(/E/g, "E    ");
-const ff = e.replace(/F/g, "F    ");
-const gg = f.replace(/G/g, "G    ");
-const hh = g.replace(/H/g, "H    ");
-const ii = h.replace(/I/g, "I    ");
-const jj = i.replace(/J/g, "J    ");
-const kk = j.replace(/K/g, "K     ");
-const ll = k.replace(/L/g, "L     ");
-const mm = l.replace(/M/g, "M    ");
-const nn = m.replace(/N/g, "N    ");
-const oo = n.replace(/O/g, "O    ");
-const pp = o.replace(/P/g, "P    ");
-const qq = p.replace(/Q/g, "Q    ");
-const rr = q.replace(/R/g, "R    ");
-const ss = r.replace(/S/g, "S    ");
-const tt = s.replace(/T/g, "T    ");
-const uu = t.replace(/U/g, "U    ");
-const vv = u.replace(/V/g, "V    ");
-const ww = v.replace(/W/g, "W    ");
-const xx = w.replace(/X/g, "X    ");
-const yy = x.replace(/Y/g, "Y    ");
-const zz = y.replace(/Z/g, "Z    ");
-const a = zz.replace(/a/g, "A    ");
-const b = a.replace(/b/g, "B    ");
-const c = b.replace(/c/g, "C    ");
-const d = c.replace(/d/g, "D    ");
-const e = d.replace(/e/g, "E    ");
-const f = e.replace(/f/g, "F    ");
-const g = f.replace(/g/g, "G    ");
-const h = g.replace(/h/g, "H    ");
-const i = h.replace(/i/g, "I    ");
-const j = i.replace(/j/g, "J    ");
-const k = j.replace(/k/g, "K     ");
-const l = k.replace(/l/g, "L     ");
-const m = l.replace(/m/g, "M    ");
-const n = m.replace(/n/g, "N    ");
-const o = n.replace(/o/g, "O    ");
-const p = o.replace(/p/g, "P    ");
-const q = p.replace(/q/g, "Q    ");
-const r = q.replace(/r/g, "R    ");
-const s = r.replace(/s/g, "S    ");
-const t = s.replace(/t/g, "T    ");
-const u = t.replace(/u/g, "U    ");
-const v = u.replace(/v/g, "V    ");
-const w = v.replace(/w/g, "W    ");
-const x = w.replace(/x/g, "X    ");
-const y = x.replace(/y/g, "Y    ");
-const z = y.replace(/z/g, "Z    ");
-message.channel.send(z);
-}if(command === "dice"){
+   if (args.length < 1) {
+        throw 'You must provide text to space out!';
+    }
+
+    let amount = 2;
+
+    if (!isNaN(args[0])) {
+        amount = parseInt(args[0]);
+        (amount < 1) && (amount = 1);
+        (amount > 15) && (amount = 15);
+        args = args.slice(1);
+    }
+
+    message.channel.send(args.join(' '.repeat(amount / 2)).split('').join(' '.repeat(amount)));
+};
+	const mappings = (function (object) {
+    let output = [];
+
+    for (let key in object) {
+        output.push({
+            regex: new RegExp(key, 'ig'),
+            replacement: object[key]
+        });
+    }
+
+    return output;
+})({
+    a: '\u1D00',
+    b: '\u0299',
+    c: '\u1D04',
+    d: '\u1D05',
+    e: '\u1D07',
+    f: '\uA730',
+    g: '\u0262',
+    h: '\u029C',
+    i: '\u026A',
+    j: '\u1D0A',
+    k: '\u1D0B',
+    l: '\u029F',
+    m: '\u1D0D',
+    n: '\u0274',
+    o: '\u1D0F',
+    p: '\u1D18',
+    q: '\u0071',
+    r: '\u0280',
+    s: '\uA731',
+    t: '\u1D1B',
+    u: '\u1D1C',
+    v: '\u1D20',
+    w: '\u1D21',
+    x: '\u0078',
+    y: '\u028F',
+    z: '\u1D22'
+});
+
+    let output = args.join(' ');
+    mappings.forEach(replacer => output = output.replace(replacer.regex, replacer.replacement));
+
+    message.delete();
+    message.channel.send(output);
+};
+if(command === "dice"){
   const  answers = [
 ":dice: you rolled a 1. Ouch. Can you do any worse?",
       ":dice: you rolled a 2... You make me wanna break the dice.",
@@ -151,7 +183,9 @@ message.channel.send({embed: { color: 9198799, author: { name: client.user.usern
                                        {name: "dice", value: "rolls some dice"},
                                        {name: "o", value: "replaces all values in a string with an 'o;"},
                                        {name: "fusrodah", value: "makes a fus ro dah meme"},
-                                        
+				       {name: "sigh", value: "sighs"},
+				       {name: "bomb", value: "Explodes"},
+				       {name: "shrink", value: "makes stuff tiny"},
                                         { name:  "`_ _ _ _ _ _ _ _ _ _`", value: "This is a secret command"}, 
                                        { name: "`_ _ _ _ 1`", value: "This is also a secret command"}],
                               timestamp: new Date(), footer: { icon_url: client.user.avatarURL, text: "© DeathBot" } } });
