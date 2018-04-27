@@ -103,6 +103,7 @@ message.delete().catch(O_o=>{});
 
     message.channel.send(args.join(' '.repeat(amount / 2)).split('').join(' '.repeat(amount)));
 };
+  if(command === "shrink"){
 	const mappings = (function (object) {
     let output = [];
 
@@ -148,7 +149,7 @@ message.delete().catch(O_o=>{});
 
     message.delete();
     message.channel.send(output);
-};
+}
 if(command === "dice"){
   const  answers = [
 ":dice: you rolled a 1. Ouch. Can you do any worse?",
@@ -161,9 +162,6 @@ if(command === "dice"){
       const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
     message.channel.send(randomAnswer); 
   }
-if (command === "tts"){
-messge.channel.send("bomb", tts=true);
-}
 		
 if(command === "cmdlist"){
 message.channel.send({embed: { color: 9198799, author: { name: client.user.username, icon_url: client.user.avatarURL }
@@ -515,3 +513,4 @@ if(command ==="secretcmd"){
 });
 
 client.login(process.env.BOT_TOKEN);
+
