@@ -163,19 +163,17 @@ if(command === "dice"){
       const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
     message.channel.send(randomAnswer); 
   }
-	 if (command === "shoot"){
-		    if (message.mentions.users.size < 1) {
-        throw '@mention some people to shoot!';
+	if(command === "clap"){
+const randomizeCase = word => word.split('').map(c => Math.random() > 0.5 ? c.toUpperCase() : c.toLowerCase()).join('');
+
+exports.run = (client, message, args) => {
+    if (args.length < 1) {
+        throw 'Please provide some text to clapify';
     }
 
-    let output = message.mentions.users.map(m => `**${m}** :gun:`).join('\n');
-
-    message.delete();
-    message.channel.send({
-        embed: client.utils.embed(`${client.user.username} is on a killing spree!`, output)
-    });
+    message.channel.send(args.map(randomizeCase).join(':clap:'));
 };
-
+	}
 if(command === "cmdlist"){
 message.channel.send({embed: { color: 9198799, author: { name: client.user.username, icon_url: client.user.avatarURL }
                               , title: "CommandList", description: "Currenly, I only have a few commands, and will get more soon.", 
@@ -197,8 +195,8 @@ message.channel.send({embed: { color: 9198799, author: { name: client.user.usern
 				       {name: "sigh", value: "sighs"},
 				       {name: "bomb", value: "Explodes"},
 				       {name: "shrink", value: "makes stuff tiny"},
-				       {name: "bill", value: "Be like BILL"},
-				       {name: "fancy", value: "makes the text all fancy like"},
+				       
+				       {name: "clap", value: "claps that text"},
 				       {name: "reverse",value: "it reverses text"},
                                         { name:  "`_ _ _ _ _ _ _ _ _ _`", value: "This is a secret command"}, 
                                        { name: "`_ _ _ _ 1`", value: "This is also a secret command"}],
