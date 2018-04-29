@@ -86,7 +86,8 @@ message.delete().catch(O_o=>{});
   await (rMember.addRole(gRole.id));
 
   try {
-    await rMember.send(`this was designed to make cthulus life easier. `)
+    await rMember.send(`role added `);
+	  await message.channel.send(gRole.id `was added`);
   } catch (e) {
     console.log(e.stack);
 
