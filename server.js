@@ -57,7 +57,17 @@ message.delete().catch(O_o=>{});
     const x = w.replace(/c/g, "/...");
     const y = x.replace(/b/g, "/..");
     const z = y.replace(/a/g, "/.");
-    const space = z.replace(/ /g, "X");
+	 const zero = z.replace(/0/g, ".");
+	  const one = zero.replace(/1/g, "./");
+	  const two = one.replace(/2/g, ".//");
+	  const three = two.replace(/3/g, ".///");
+	  const four = three.replace(/4/g, ".////");
+	  const five = four.replace(/5/g, "../");
+	  const six = five.replace(/6/g, "..//");
+	  const seven = six.replace(/7/g, "..///");
+	  const eight = seven.replace(/8/g, "..////");
+	  const nine = eight.replace(/9/g, "../////");
+    const space = nine.replace(/ /g, "X");
     message.channel.send(space);
   }
          if(command === "role"){
