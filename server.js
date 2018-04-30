@@ -28,6 +28,11 @@ client.on("message", async message => {
      message.channel.send("DETECTED");              
      //so just change those to anything I want and it will work, so long as format is same?
   }
+if(command === "lyonsCipher"){
+
+message.channel.send("Now now. You are fairly close. but you've earned a hint. This cipher is quite the secret but has a portion in it that is a known cipher.");
+	
+}
   if(command == "lyonsmorse") {
 message.delete().catch(O_o=>{}); 
     const oldMessage = args.join(" ");    
