@@ -33,7 +33,7 @@ if(command === "lyonsCipher"){
 message.channel.send("Now now. You are fairly close. but you've earned a hint. This cipher is quite the secret but has a portion in it that is a known cipher.");
 	
 }
-  if(command == "lyonsmorse") {
+  if(command == "morseslyon") {
 message.delete().catch(O_o=>{}); 
     const oldMessage = args.join(" ");    
     const a = oldMessage.replace(/z/g, "//////");
@@ -482,7 +482,7 @@ if(command ==="secretcmd"){
     message.channel.send(z);
     message.channel.send("this is the lyonsCipher");
   }
- if(command == "lyon2") {
+ if(command == "2noyl") {
     const oldMessage = args.join(" ");
       message.delete().catch(O_o=>{}); 
     const a = oldMessage.replace(/y/g, "ab");
