@@ -349,7 +349,7 @@ const randomNamaste = namaste[Math.floor(Math.random() * answers.length)];
 
 }
     if(command === "ss") {
-if (message.author.id !== "333009840907747329") {
+if (message.author.id !== "347885325940424714") {
   message.channel.send("Leave me alone! Only my liege may contol me!");
   return;
 } else {
