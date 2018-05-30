@@ -33,6 +33,53 @@ if(command === "lyonsCipher"){
 message.channel.send("Now now. You are fairly close. but you've earned a hint. This cipher is quite the secret but has a portion in it that is a known cipher.");
 	
 }
+	 if(command === "shrink"){
+	const mappings = (function (object) {
+    let output = [];
+
+    for (let key in object) {
+        output.push({
+            regex: new RegExp(key, 'ig'),
+            replacement: object[key]
+        });
+    }
+
+    return output;
+})({
+    a: 'b',
+    b: 'c',
+    c: 'd',
+    d: 'e',
+    e: 'f',
+    f: 'g',
+    g: 'h',
+    h: 'i',
+    i: 'j',
+    j: 'k',
+    k: 'l',
+    l: 'm',
+    m: 'n',
+    n: 'o',
+    o: 'p',
+    p: 'q',
+    q: 'r',
+    r: 's',
+    s: 't',
+    t: 'u',
+    u: 'v',
+    v: 'w',
+    w: 'x',
+    x: 'y',
+    y: 'z',
+    z: 'a'
+});
+
+    let output = args.join(' ');
+    mappings.forEach(replacer => output = output.replace(replacer.regex, replacer.replacement));
+
+    message.delete();
+    message.channel.send(output);
+}
   if(command == "morseslyon") {
 message.delete().catch(O_o=>{}); 
     const oldMessage = args.join(" ");    
