@@ -33,7 +33,7 @@ if(command === "lyonsCipher"){
 message.channel.send("Now now. You are fairly close. but you've earned a hint. This cipher is quite the secret but has a portion in it that is a known cipher.");
 	
 }
-	 if(command === "caesar"){
+	 if(command === "caesar1"){
 	const mappings = (function (object) {
     let output = [];
 
@@ -46,32 +46,32 @@ message.channel.send("Now now. You are fairly close. but you've earned a hint. T
 
     return output;
 })({
-    a: '/u0042',
-    b: '/u0043',
-    c: '/u0044',
-    d: '/u0045',
-    e: '/u0046',
-    f: '/u0047',
-    g: '/u0048',
-    h: '/u0049',
-    i: '/u004A',
-    j: '/u004B',
-    k: '/u004C',
-    l: '/u004D',
-    m: '/u004E',
-    n: '/u004F',
-    o: '/u0050',
-    p: '/u0051',
-    q: '/u0052',
-    r: '/u0053',
-    s: '/u0054',
-    t: '/u0055',
-    u: '/u0056',
-    v: '/u0057',
-    w: '/u0058',
-    x: '/u0059',
-    y: '/u005A',
-    z: '/u0041'
+    a: '\u0042',
+    b: '\u0043',
+    c: '\u0044',
+    d: '\u0045',
+    e: '\u0046',
+    f: '\u0047',
+    g: '\u0048',
+    h: '\u0049',
+    i: '\u004A',
+    j: '\u004B',
+    k: '\u004C',
+    l: '\u004D',
+    m: '\u004E',
+    n: '\u004F',
+    o: '\u0050',
+    p: '\u0051',
+    q: '\u0052',
+    r: '\u0053',
+    s: '\u0054',
+    t: '\u0055',
+    u: '\u0056',
+    v: '\u0057',
+    w: '\u0058',
+    x: '\u0059',
+    y: '\u005A',
+    z: '\u0041'
 });
 
     let output = args.join(' ');
