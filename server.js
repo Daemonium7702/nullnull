@@ -80,6 +80,9 @@ message.channel.send("Now now. You are fairly close. but you've earned a hint. T
     message.delete();
     message.channel.send(output);
 }
+	if(command == "classdismissed"){
+		message.channel.send("Class Is Over!");
+	}
   if(command == "morseslyon") {
 message.delete().catch(O_o=>{}); 
     const oldMessage = args.join(" ");    
