@@ -149,7 +149,7 @@ message.delete().catch(O_o=>{});
   }
 }
 if(command === "joinclass"){
-		message.channel.replay({embed: { color: 9198799, author: { name: client.user.username, icon_url: client.user.avatarURL }
+		message.channel.reply({embed: { color: 9198799, author: { name: client.user.username, icon_url: client.user.avatarURL }
                               , title: "Thank You!", description: "You have joined the class", 
                               fields: [{ name: "Topic:", value: "Today we will be doing SQL injection." }],
 				        timestamp: new Date(), footer: { icon_url: client.user.avatarURL, text: "© DeathBot" }  } });
