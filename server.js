@@ -257,6 +257,18 @@ if(command === "dice"){
       const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
     message.channel.send(randomAnswer); 
   }
+	if(command === "8ball"){
+  const  answers = [
+"Yes",
+      "Not a Chance!",
+  "No",
+    "Maybe",  
+      "Could Be!",
+      "Yes, but only on Tuesdays",
+  "Ummmm I forgot?",]
+      const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
+    message.channel.send(randomAnswer); 
+  }
 	if(command === "clap"){
 const randomizeCase = word => word.split('').map(c => Math.random() > 0.5 ? c.toUpperCase() : c.toLowerCase()).join('');
 
