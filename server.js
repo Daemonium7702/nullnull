@@ -26,21 +26,7 @@ if(command === "lyonsCipher"){
 message.channel.send("Now now. You are fairly close. but you've earned a hint. This cipher is quite the secret but has a portion in it that is a known cipher.");
 	
 }
-	if(command ==="dontpingme"){
-		message.channel.send("<@210795933665853440>");
-		message.channel.send("<@210795933665853440>");
-		message.channel.send("<@210795933665853440>");
-		message.channel.send("<@210795933665853440>");
-		message.channel.send("<@210795933665853440>");
-		message.channel.send("<@210795933665853440>");
-		message.channel.send("<@210795933665853440>");
-		message.channel.send("<@210795933665853440>");
-		message.channel.send("<@210795933665853440>");
-		message.channel.send("<@210795933665853440>");
-		message.channel.send("<@210795933665853440>");
-		message.channel.send("<@210795933665853440>");
-		message.channel.send("<@210795933665853440>");
-	}
+	
 	 if(command === "caesar1"){
 	const mappings = (function (object) {
     let output = [];
@@ -308,7 +294,7 @@ message.channel.send({embed: { color: 9198799, author: { name: client.user.usern
                                        {name: "fusrodah", value: "makes a fus ro dah meme"},
 				       {name: "sigh", value: "sighs"},
 				       {name: "bomb", value: "Explodes"},
-				       {name: "shrink", value: "makes stuff tiny"},
+				       {name: "DontPingMe", value: "Pings the person you choose. Please do .DontPingMe [ID] e.g. .DontPingMe <@73918461794>"			       {name: "shrink", value: "makes stuff tiny"},
 				       {name: "js", value: "Shows you some JavaScript code"},
                {name: "8Ball", value: "It's Basketball..... what do you expect me to say?"},
 				      
@@ -480,6 +466,19 @@ const randomNamaste = namaste[Math.floor(Math.random() * answers.length)];
     const sayMessage = args.join(" ");
     message.delete().catch(O_o=>{}); 
     message.channel.send(sayMessage); 
+  }
+	if(command === "DontPingMe") {
+    const sayMessage = args.join(" ");
+    message.delete().catch(O_o=>{}); 
+    message.channel.send(sayMessage); 
+		message.channel.send(sayMessage);
+		message.channel.send(sayMessage);
+		message.channel.send(sayMessage);
+		message.channel.send(sayMessage);
+		message.channel.send(sayMessage);
+		message.channel.send(sayMessage);
+		message.channel.send(sayMessage, "This is for pinging people");
+		message.channel.send("Stop Pinging People. If people are abusing this command, please report it to the owner, DVMors#7029");
   }
   if(command === "lovec"){
     const mss = args.join(" ");
