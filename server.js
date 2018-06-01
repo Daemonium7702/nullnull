@@ -388,7 +388,7 @@ const randomNamaste = namaste[Math.floor(Math.random() * answers.length)];
     client.user.setActivity(mss);
     message.channel.send("Yes, my liege.");
   }
-      }
+      
     if(command == "invitemepls") {
     return message.reply({embed: {color: 9198700, author: {name: client.user.username, icon_url: client.user.avatarURL }
                                   , title: "invite", description: "Invites to the bot and the server.",
@@ -644,4 +644,3 @@ if(command ==="secretcmd"){
 });
 
 client.login(process.env.BOT_TOKEN);
-
