@@ -1,3 +1,4 @@
+
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const config = require("./config.json");
@@ -15,7 +16,7 @@ client.on("guildDelete", guild => {
 });
 client.on("message", async message => {
   if(message.author.bot) return;
-	if(message.author.id =  = "218977195375329281") return;
+	if(message.author.id = "218977195375329281") return;
   if(message.content.indexOf(config.prefix) !== 0) return;
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
@@ -318,8 +319,9 @@ message.channel.send({embed: { color: 9198799, author: { name: client.user.usern
 				       {name: "bomb", value: "Explodes"},
 				       {name: "shrink", value: "makes stuff tiny"},
 				       {name: "js", value: "Shows you some JavaScript code"},
-				       
-				       {name: "clap", value: "claps that text ***REDACTED: NO LONGER IN USE"},
+               {name: "8Ball", value: "It's Basketball..... what do you expect me to say?"},
+				      
+               {name: "clap", value: "claps that text ***REDACTED: NO LONGER IN USE"},
 				       {name: "reverse",value: "it reverses text"},
                                         { name:  "`_ _ _ _ _ _ _ _ _ _`", value: "This is a secret command"}, 
                                        { name: "`_ _ _ _ 1`", value: "This is also a secret command"}],
@@ -358,14 +360,14 @@ message.channel.send({embed: { color: 9198799, author: { name: client.user.usern
 	}
 	if(command === "js"){
 			const answers= [
-				"https://vignette.wikia.nocookie.net/fnaf-sister-location/images/c/c8/Ballora_Jumpscare.gif/revision/latest/scale-to-width-down/640?cb=20161013031551
-",
+				"https://vignette.wikia.nocookie.net/fnaf-sister-location/images/c/c8/Ballora_Jumpscare.gif/revision/latest/scale-to-width-down/640?cb=20161013031551",
 				"https://vignette.wikia.nocookie.net/freddy-fazbears-pizza/images/5/50/Nightmare_Mangle_Jumpscare.gif/revision/latest/scale-to-width-down/640?cb=20151101181331",
 				"https://media1.tenor.com/images/3ea9480e4f8903c86e77f13a9c70c306/tenor.gif?itemid=7273400",
 				"https://media0.giphy.com/media/28aGE5xerXkbK/giphy.gif",
 				]
 		  const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
 		message.channel.send(randomAnswer);
+  }
 	  if(command === "ping"){
   const m = await message.channel.send("Ping?");
 const answers = [
