@@ -300,7 +300,7 @@ if(command === "cmdlist"){
 message.channel.send({embed: { color: 9198799, author: { name: client.user.username, icon_url: client.user.avatarURL }
                               , title: "CommandList", description: "Currenly, I only have a few commands, and will get more soon.", 
                               fields: [{ name: "Say", value: "This command is used as such `.say {word}`" }, 
-                                       { name: "invitemepls", value: "This invites you to both the bt, and the server!"},
+                                       { name: "inv", value: "This invites you to both the bt, and the server!"},
                                        { name: "ping", value: "You can ping the server, and return api, and normal latency values. Usage:`.ping`" },
                                        { name: "kick", value: "Kicks a user. usage:`.kick {@mention}`" }, 
                                        { name:  "ban", value: "This will ban a member from your server. Usage:`.ban {@mention}`"},
@@ -401,12 +401,12 @@ const randomNamaste = namaste[Math.floor(Math.random() * answers.length)];
     message.channel.send("Yes, my liege.");
   }
       
-    if(command == "invitemepls") {
+    if(command == "inv") {
     return message.reply({embed: {color: 9198700, author: {name: client.user.username, icon_url: client.user.avatarURL }
                                   , title: "invite", description: "Invites to the bot and the server.",
-                                  fields:[{ name: "To invite me to another server:", value:"https://discordapp.com/api/oauth2/authorize?client_id=436559107680501770&permissions=8&scope=bot" },
-                                            { name: "And to join my creators host server:", value: "https://discord.gg/uauq75w  Have fun! Everyone there likes to work on cryptology!" }],
-                                 timestamp: new Date(), footer: { icon_url: client.user.avatarURL, text: "© DeathBot" } } });
+                                  fields:[{ name: "To invite me to another server:", value:"https://discordapp.com/api/oauth2/authorize?client_id=447588362350755840&permissions=8&scope=bot" },
+                                            { name: "And to join my creators host server:", value: "https://discord.gg/f7Ntjek  Have fun! Everyone there likes to work on cryptology!" }],
+                                 timestamp: new Date(), footer: { icon_url: client.user.avatarURL, text: "©DaeBot" } } });
   }
     if(command === "test"){
      message.channel.send('I promise you, I am working');
