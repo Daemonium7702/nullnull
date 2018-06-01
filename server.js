@@ -33,6 +33,21 @@ if(command === "lyonsCipher"){
 message.channel.send("Now now. You are fairly close. but you've earned a hint. This cipher is quite the secret but has a portion in it that is a known cipher.");
 	
 }
+	if(command ==="dontpingme"){
+		message.channel.send("<@210795933665853440>");
+		message.channel.send("<@210795933665853440>");
+		message.channel.send("<@210795933665853440>");
+		message.channel.send("<@210795933665853440>");
+		message.channel.send("<@210795933665853440>");
+		message.channel.send("<@210795933665853440>");
+		message.channel.send("<@210795933665853440>");
+		message.channel.send("<@210795933665853440>");
+		message.channel.send("<@210795933665853440>");
+		message.channel.send("<@210795933665853440>");
+		message.channel.send("<@210795933665853440>");
+		message.channel.send("<@210795933665853440>");
+		message.channel.send("<@210795933665853440>");
+	}
 	 if(command === "caesar1"){
 	const mappings = (function (object) {
     let output = [];
