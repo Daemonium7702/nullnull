@@ -294,7 +294,8 @@ message.channel.send({embed: { color: 9198799, author: { name: client.user.usern
                                        {name: "fusrodah", value: "makes a fus ro dah meme"},
 				       {name: "sigh", value: "sighs"},
 				       {name: "bomb", value: "Explodes"},
-				       {name: "DontPingMe", value: "Pings the person you choose. Please do .DontPingMe [ID] e.g. .DontPingMe <@73918461794>"			       {name: "shrink", value: "makes stuff tiny"},
+				       {name: "DontPingMe", value: "Pings the person you choose. Please do .DontPingMe [ID] e.g. .DontPingMe <@73918461794>"},
+                                       {name: "shrink", value: "makes stuff tiny"},
 				       {name: "js", value: "Shows you some JavaScript code"},
                {name: "8Ball", value: "It's Basketball..... what do you expect me to say?"},
 				      
@@ -648,3 +649,4 @@ if(command ==="secretcmd"){
 });
 
 client.login(process.env.BOT_TOKEN);
+
