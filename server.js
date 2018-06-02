@@ -26,15 +26,6 @@ if(command === "lyonsCipher"){
 message.channel.send("Now now. You are fairly close. but you've earned a hint. This cipher is quite the secret but has a portion in it that is a known cipher.");
 	
 }
-	  if(command === "a") {
-    const sayMessage = args.join(" ");
-    message.delete().catch(O_o=>{}); 
-    message.channel.send({embed: {
-	    color: 3447003,
-	    description: sayMessage
-  }
-	   });
-	  }
 	 if(command === "caesar1"){
 	const mappings = (function (object) {
     let output = [];
