@@ -28,10 +28,11 @@ message.channel.send("Now now. You are fairly close. but you've earned a hint. T
 }
 	   if(command === "Alert"){
 		const oldMessage = args.join(" ");
-		message.channel.send({embed: { color: 9198799, author: { name: client.user.username, icon_url: client.user.avatarURL }
-                              , title: "ALERT", description: oldMessage, 
-					     }});
-          }
+		message.channel.send({embed: {
+  color: 3447003,
+  description: oldMessage
+}});
+	   }
 	 if(command === "caesar1"){
 	const mappings = (function (object) {
     let output = [];
