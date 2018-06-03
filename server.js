@@ -1,4 +1,3 @@
-
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const config = require("./config.json");
@@ -133,18 +132,18 @@ client.on("message", async message => {
 
   if(command === "botinfo"){
 
-    let bicon = bot.user.displayAvatarURL;
+    let bicon = client.user.displayAvatarURL;
     let botembed = new Discord.RichEmbed()
     .setDescription("Bot Information")
     .setColor("#15f153")
     .setThumbnail(bicon)
-    .addField("Bot Name", bot.user.username)
-    .addField("Created On", bot.user.createdAt);
+    .addField("Bot Name", client.user.username)
+    .addField("Created On", client.user.createdAt);
 
     return message.channel.send(botembed);
   }
 
-});
+
 
 
   
