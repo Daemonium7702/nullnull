@@ -135,7 +135,7 @@ let nicon = client.user.displayAvatarURL;
 	.setDescription("A command requested by eitanwass#0607")
 	.setColor("#340263")
 	.setThumbnail(nicon)
-	.addfield(randomAnswer, "just for" + client.user.username)
+	.addfield(randomAnswer)
 	.addfield("Created on", client.user.createdAt);
   message.channel.send(bottembed);
 }
