@@ -385,8 +385,12 @@ const randomNamaste = namaste[Math.floor(Math.random() * answers.length)];
 
 
     client.user.setActivity(mss);
-    message.channel.send("Yes, my liege.");
+	   if(message.author.id === "347885325940424714"){
+		   message.channel.send("Yes, my ***True Liege***");
+		   return} else{
+    message.channel.send("Yes, my ~~subordinate~~ liege.");
   }
+    }
       if(command === "alert"){
 	      const alerttxt = args.join(" ");
 	      console.log(alerttxt);
@@ -492,7 +496,7 @@ const randomNamaste = namaste[Math.floor(Math.random() * answers.length)];
 		message.channel.send(sayMessage);
 		message.channel.send(sayMessage);
 		message.channel.send(sayMessage);
-		message.channel.send(sayMessage, "This is for pinging people");
+		message.channel.send(sayMessage, + "This is for pinging people");
 		message.channel.send("Stop Pinging People. If people are abusing this command, please report it to the owner, DVMors#7029");
   }
   if(command === "lovec"){
