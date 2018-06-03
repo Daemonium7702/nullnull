@@ -19,9 +19,12 @@ client.on("message", async message => {
   if(message.content.indexOf(config.prefix) !== 0) return;
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
-
+if(client.user.Activity = "Update"){
+	message.channel.send("New command! Alert! Sends a message to the bot owner!!!");
+}
 /////////if(message.author.id === "350693449722232832") return;
-if(command === "lyonsCipher"){
+
+	if(command === "lyonsCipher"){
 
 message.channel.send("Now now. You are fairly close. but you've earned a hint. This cipher is quite the secret but has a portion in it that is a known cipher.");
 	
