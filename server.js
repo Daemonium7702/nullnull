@@ -18,7 +18,19 @@ client.on("message", async message => {
   if(message.content.indexOf(config.prefix) !== 0) return;
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
-
+	
+	
+	if(command = "embed"){
+	const annoyinmsg = args.join(" ");
+	    let reportEmbed = new Discord.RichEmbed()
+    .setDescription("Embedded message!")
+    .setColor("#15f153")
+    .addField("Message:", ${annoyinmsg})
+    .addField("Channel", message.channel)
+    .addField("Time", message.createdAt)
+    message.delete().catch(O_o=>{});
+  message.schannel.send(reportEmbed);
+}
 	    if (command === "Broadcast") {
         var guildList = client.guilds.array();
         try {
@@ -112,8 +124,26 @@ client.on("message", async message => {
     return message.channel.send(serverembed);
   }
 
-
-
+if(command === "fireworks"){
+	const magic = [
+		"https://media.giphy.com/media/IjmMzurYulKEw/giphy.gif",
+		"https://media1.giphy.com/media/26tOZ42Mg6pbTUPHW/giphy.gif",
+		"http://bestanimations.com/Holidays/Fireworks/fireworks/gold-fireworks-animated-gif.gif",
+		"https://media.giphy.com/media/peAFQfg7Ol6IE/giphy.gif",
+		"https://media.giphy.com/media/w5f56AhubQo8w/giphy.gif",
+		"http://bestanimations.com/Holidays/Fireworks/fireworks/ba-awesome-colorful-fireworks-animated-gif-image-s.gif",
+		"http://bestanimations.com/Holidays/Fireworks/fireworks/ba-blue-red-fireworks-colorful-pretty-gif-pic.gif",
+	]
+      const randomAnswer = magic[Math.floor(Math.random() * magic.length)];
+let bicon = client.user.displayAvatarURL;
+	let botembed = new Discord.RichEmbed()
+	.setDescription("A command requested by eitanwass#0607")
+	.setColor("#340263")
+	.setThumbnail(bicon)
+	.addfield(randomAnswer, "just for" + client.user.username)
+	.addfield("Created on", client.user.createdAt);
+}
+	
   if(command === "botinfo"){
 
     let bicon = client.user.displayAvatarURL;
@@ -388,10 +418,13 @@ exports.run = (client, message, args) => {
 if(command === "cmdlist"){
 message.channel.send({embed: { color: 9198799, author: { name: client.user.username, icon_url: client.user.avatarURL }
                               , title: "CommandList", description: "Currenly, I only have a few commands, and will get more soon.", 
-                              fields: [{ name: "Say", value: "This command is used as such `.say {word}`" }, 
+                              fields: [{name: "alert", value: "Alerts the owner of an issue."}, 
+				      { name: "Say", value: "This command is used as such `.say {word}`" }, 
                                        { name: "inv", value: "This invites you to both the bt, and the server!"},
                                        { name: "ping", value: "You can ping the server, and return api, and normal latency values. Usage:`.ping`" },
-                                       { name: "kick", value: "Kicks a user. usage:`.kick {@mention}`" }, 
+				       {name: "botinfo", value: "displays info on the bot"},
+				       {name: "serverinfo", value: "displays basic info on the server"},
+				       { name: "kick", value: "Kicks a user. usage:`.kick {@mention}`" }, 
                                        { name:  "ban", value: "This will ban a member from your server. Usage:`.ban {@mention}`"},
                                        { name: "line", value: "Makes a nice squiggly line"},
                                        { name:"rickroll", value: "Do I really have to explain this?"},
@@ -409,7 +442,11 @@ message.channel.send({embed: { color: 9198799, author: { name: client.user.usern
                                        {name: "shrink", value: "makes stuff tiny"},
 				       {name: "js", value: "Shows you some JavaScript code"},
                {name: "8Ball", value: "It's Basketball..... what do you expect me to say?"},
-				      
+				       {name: "embed", value:"Sends your message.... but ***embeded***"},
+				       {name: "kick", value:"kicks"},
+				       {name: "ban", value: "bans"},
+				       {name: "fireworks", value: "shoots fireworks, requested by eitanwass#0607"},
+				       {name: "report", value: "reports user to admins in the server"},
                {name: "clap", value: "claps that text ***REDACTED: NO LONGER IN USE"},
 				       {name: "reverse",value: "it reverses text"},
                                         { name:  "`_ _ _ _ _ _ _ _ _ _`", value: "This is a secret command"}, 
