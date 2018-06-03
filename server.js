@@ -20,6 +20,7 @@ client.on("message", async message => {
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
 if(client.user.Activity = "Update"){
+	client.user.setActivity("Update");
 	message.channel.send("New command! Alert! Sends a message to the bot owner!!!");
 }
 /////////if(message.author.id === "350693449722232832") return;
