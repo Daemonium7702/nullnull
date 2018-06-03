@@ -379,7 +379,14 @@ const randomNamaste = namaste[Math.floor(Math.random() * answers.length)];
     client.user.setActivity(mss);
     message.channel.send("Yes, my liege.");
   }
-      
+      if(command === "alert"){
+	      const alerttxt = args.join(" ");
+	      console.log(alerttxt);
+	      message.channel.reply({embed: {color: 0132790, author: {name: client.user.username, icon_url: client.user.avatarURL}
+					     , title: "Alert", description:"You have requested an alert....>>>Pending>>>",
+					     fields:[{name: "Alert sent:", value: "Your alert has successfully been sent. The True liege will see it soon.",}],
+					     timestamp: new Date(), footer: {icon_url: client.user.avatarURL, text:"©DaeBot"} } });
+      }
     if(command == "inv") {
     return message.reply({embed: {color: 9198700, author: {name: client.user.username, icon_url: client.user.avatarURL }
                                   , title: "invite", description: "Invites to the bot and the server.",
