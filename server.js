@@ -31,10 +31,8 @@ client.on("message", async message => {
 /////////if(message.author.id === "350693449722232832") return;
 
 	if(command === "lyonsCipher"){
-try{
+
 message.channel.send("Now now. You are fairly close. but you've earned a hint. This cipher is quite the secret but has a portion in it that is a known cipher.");
-} catch (err) {
-	console.log("There was an issue" + error);
 }
 	 if(command === "caesar1"){
 	const mappings = (function (object) {
