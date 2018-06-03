@@ -29,7 +29,7 @@ client.on("message", async message => {
     .addField("Channel", message.channel)
     .addField("Time", message.createdAt)
     message.delete().catch(O_o=>{});
-  message.schannel.send(reportEmbed);
+  message.channel.send(reportEmbed);
 }
 	
 	if(command === "kick"){
