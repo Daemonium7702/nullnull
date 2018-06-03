@@ -147,7 +147,7 @@ client.on("message", async message => {
 });
 
 
-  }
+  
  
 /////////if(message.author.id === "350693449722232832") return;
 
