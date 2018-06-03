@@ -31,14 +31,7 @@ client.on("message", async message => {
     message.delete().catch(O_o=>{});
   message.schannel.send(reportEmbed);
 }
-	    if (command === "Broadcast") {
-        var guildList = client.guilds.array();
-        try {
-            guildList.forEach(guild => guildObj.defaultChannel.send("New command! Alert! Sends a message to the bot owner!!!"));
-        } catch (err) {
-            console.log("Could not send message to " + guild.name);
-        }
-    }
+	
 	if(command === "kick"){
 
     //!kick @daeshan askin for it
