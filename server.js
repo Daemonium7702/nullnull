@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const Discord = require("Discord.js");
 const client = new Discord.Client();
 const config = require("./config.json");
 client.on("ready", () => { 
@@ -20,7 +20,7 @@ client.on("message", async message => {
   const command = args.shift().toLowerCase();
 	
 	
-	if(command = "embed"){
+	if(command = "magicify"){
 	const annoyinmsg = args.join(" ");
 	    let reportEmbed = new Discord.RichEmbed()
     .setDescription("Embedded message!")
@@ -435,7 +435,7 @@ message.channel.send({embed: { color: 9198799, author: { name: client.user.usern
                                        {name: "shrink", value: "makes stuff tiny"},
 				       {name: "js", value: "Shows you some JavaScript code"},
                {name: "8Ball", value: "It's Basketball..... what do you expect me to say?"},
-				       {name: "embed", value:"Sends your message.... but ***embeded***"},
+				       {name: "magicify", value:"Sends your message.... but ***embeded***"},
 				       {name: "kick", value:"kicks"},
 				       {name: "ban", value: "bans"},
 				       {name: "fireworks", value: "shoots fireworks, requested by eitanwass#0607"},
