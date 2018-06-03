@@ -744,7 +744,7 @@ if(command ==="secretcmd"){
     const y = x.replace(/a/g, "cd");
     const z = y.replace(/z/g, "bc");
     message.channel.send(z);
-    message.channel.send("this is the lyonsCipher");
+    message.channel.send("this is the lyonsCipher V2.0");
  }
   
    if(command == "morse") {
