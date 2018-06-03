@@ -25,7 +25,7 @@ client.on("message", async message => {
 	    let reportEmbed = new Discord.RichEmbed()
     .setDescription("Embedded message!")
     .setColor("#15f153")
-    .addField("Message:", ${annoyinmsg})
+    .addField("Message:", annoyinmsg)
     .addField("Channel", message.channel)
     .addField("Time", message.createdAt)
     message.delete().catch(O_o=>{});
