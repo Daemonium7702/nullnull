@@ -87,7 +87,9 @@ client.on("message", async message => {
   if(command === "report"){
 
     //!report @ned this is the reason
-
+if (message.author.id = "350693449722232832"){
+	  message.channel.send("My ***true liege*** anticipated this.... erm thats all I guess?");
+	  return} else {
     let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
     if(!rUser) return message.channel.send("Couldn't find user.");
     let rreason = args.join(" ").slice(22);
@@ -111,7 +113,7 @@ client.on("message", async message => {
     return;
   }
 
-
+  }
 
 
   if(command === "serverinfo"){
