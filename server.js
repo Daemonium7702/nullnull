@@ -19,10 +19,15 @@ client.on("message", async message => {
   if(message.content.indexOf(config.prefix) !== 0) return;
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
-if(client.user.Activity = "Update"){
-	client.user.setActivity("Update");
-	message.channel.send("New command! Alert! Sends a message to the bot owner!!!");
-}
+
+	    if (command === "Broadcast") {
+        var guildList = client.guilds.array();
+        try {
+            guildList.forEach(guild => guild.defaultChannel.send("New command! Alert! Sends a message to the bot owner!!!"));
+        } catch (err) {
+            console.log("Could not send message to " + guild.name);
+        }
+    }
 /////////if(message.author.id === "350693449722232832") return;
 
 	if(command === "lyonsCipher"){
