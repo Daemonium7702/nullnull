@@ -1,3 +1,4 @@
+///bottom///
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const config = require("./config.json");
@@ -20,7 +21,7 @@ client.on("message", async message => {
   const command = args.shift().toLowerCase();
 	
 	
-	if(command = "magicify"){
+	if(command == "magicify"){
     ///change const to let?///
 	const annoyingmsg = args.join(" ");
 	    let reportEmbed = new Discord.RichEmbed()
@@ -798,9 +799,8 @@ if(command ==="secretcmd"){
     message.channel.send(space);
   }
   if(command === "new") {
-    message.channel.send("yes its new")
+    message.channel.send("yes its newww")
   }
 });
 
 client.login(process.env.BOT_TOKEN);
-
