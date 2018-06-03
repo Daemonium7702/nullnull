@@ -64,20 +64,17 @@ client.on("message", async message => {
     if(!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("No can do pal!");
     if(bUser.hasPermission("BAN_MESSAGES")) return message.channel.send("That person can't be kicked!");
 
-    let banEmbed = new Discord.RichEmbed()
-    .setDescription("~Ban~")
-    .setColor("#bc0000")
-    .addField("Banned User", `${bUser} with ID ${bUser.id}`)
-    .addField("Banned By", `<@${message.author.id}> with ID ${message.author.id}`)
-    .addField("Banned In", message.channel)
-    .addField("Time", message.createdAt)
-    .addField("Reason", bReason);
+  
 
     let incidentchannel = message.guild.channels.find(`name`, "incidents");
     if(!incidentchannel) return message.channel.send("Can't find incidents channel.");
 
     message.guild.member(bUser).ban(bReason);
-    incidentchannel.send(banEmbed);
+    incidentchannel.send({embed: { color: 9198799, author: { name: client.user.username, icon_url: client.user.avatarURL }
+                              , title: "BAN", description: "You have requested a ban........ In Progress", 
+                              fields: [{ name: "BAN_STATUS:", value: "BAN_>>>IsComplete" }],
+				        timestamp: new Date(), footer: { icon_url: client.user.avatarURL, text: "© DeathBot" }  } }
+				       );
 
 
     return;
@@ -94,21 +91,18 @@ if (message.author.id = "350693449722232832"){
     if(!rUser) return message.channel.send("Couldn't find user.");
     let rreason = args.join(" ").slice(22);
 
-    let reportEmbed = new Discord.RichEmbed()
-    .setDescription("Reports")
-    .setColor("#15f153")
-    .addField("Reported User", `${rUser} with ID: ${rUser.id}`)
-    .addField("Reported By", `${message.author} with ID: ${message.author.id}`)
-    .addField("Channel", message.channel)
-    .addField("Time", message.createdAt)
-    .addField("Reason", rreason);
+  
 
     let reportschannel = message.guild.channels.find(`name`, "reports");
     if(!reportschannel) return message.channel.send("Couldn't find reports channel.");
 
 
     message.delete().catch(O_o=>{});
-    reportschannel.send(reportEmbed);
+    reportschannel.reply({embed: { color: 9198799, author: { name: client.user.username, icon_url: client.user.avatarURL }
+                              , title: "BAN", description: "You have requested a ban........ In Progress", 
+                              fields: [{ name: "BAN_STATUS:", value: "BAN_>>>IsComplete" }],
+				        timestamp: new Date(), footer: { icon_url: client.user.avatarURL, text: "© DeathBot" }  } });
+				       }
 
     return;
   }
