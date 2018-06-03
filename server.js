@@ -107,8 +107,8 @@ if (message.author.id = "350693449722232832"){
     return;
   }
 
-  }
-
+  
+        
 
   if(command === "serverinfo"){
 
