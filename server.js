@@ -130,14 +130,7 @@ if(command === "fireworks"){
 		"http://bestanimations.com/Holidays/Fireworks/fireworks/ba-blue-red-fireworks-colorful-pretty-gif-pic.gif",
 	]
       const randomAnswer = magic[Math.floor(Math.random() * magic.length)];
-let nicon = client.user.displayAvatarURL;
-	let bottembed = new Discord.RichEmbed()
-	.setDescription("A command requested by eitanwass#0607")
-	.setColor("#340263")
-	.setThumbnail(nicon)
-	.addfield(randomAnswer)
-	.addfield("Created on", client.user.createdAt);
-  message.channel.send(bottembed);
+  message.channel.send(randomAnswer);
 }
 	
   if(command === "botinfo"){
