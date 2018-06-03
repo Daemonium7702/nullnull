@@ -28,15 +28,15 @@ client.on("message", async message => {
             console.log("Could not send message to " + guild.name);
         }
     }
-	 if(command === "kick"){
+	if(command === "kick"){
 
     //!kick @daeshan askin for it
 
     let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
     if(!kUser) return message.channel.send("Can't find user!");
     let kReason = args.join(" ").slice(22);
-    if(!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("No can do pal!");
-    if(kUser.hasPermission("BAN_MEMBERS")) return message.channel.send("That person can't be kicked!");
+    if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("No can do pal!");
+    if(kUser.hasPermission("MANAGE_MESSAGES")) return message.channel.send("That person can't be kicked!");
 
     let kickEmbed = new Discord.RichEmbed()
     .setDescription("~Kick~")
@@ -61,20 +61,23 @@ client.on("message", async message => {
     let bUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
     if(!bUser) return message.channel.send("Can't find user!");
     let bReason = args.join(" ").slice(22);
-    if(!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("No can do pal!");
-    if(bUser.hasPermission("BAN_MESSAGES")) return message.channel.send("That person can't be kicked!");
+    if(!message.member.hasPermission("MANAGE_MEMBERS")) return message.channel.send("No can do pal!");
+    if(bUser.hasPermission("MANAGE_MESSAGES")) return message.channel.send("That person can't be kicked!");
 
-  
+    let banEmbed = new Discord.RichEmbed()
+    .setDescription("~Ban~")
+    .setColor("#bc0000")
+    .addField("Banned User", `${bUser} with ID ${bUser.id}`)
+    .addField("Banned By", `<@${message.author.id}> with ID ${message.author.id}`)
+    .addField("Banned In", message.channel)
+    .addField("Time", message.createdAt)
+    .addField("Reason", bReason);
 
     let incidentchannel = message.guild.channels.find(`name`, "incidents");
     if(!incidentchannel) return message.channel.send("Can't find incidents channel.");
 
     message.guild.member(bUser).ban(bReason);
-    incidentchannel.send({embed: { color: 9198799, author: { name: client.user.username, icon_url: client.user.avatarURL }
-                              , title: "BAN", description: "You have requested a ban........ In Progress", 
-                              fields: [{ name: "BAN_STATUS:", value: "BAN_>>>IsComplete" }],
-				        timestamp: new Date(), footer: { icon_url: client.user.avatarURL, text: "© DeathBot" }  } }
-				       );
+    incidentchannel.send(banEmbed);
 
 
     return;
@@ -84,31 +87,32 @@ client.on("message", async message => {
   if(command === "report"){
 
     //!report @ned this is the reason
-if (message.author.id = "350693449722232832"){
-	  message.channel.send("My ***true liege*** anticipated this.... erm thats all I guess?");
-	  return} else {
+
     let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
     if(!rUser) return message.channel.send("Couldn't find user.");
     let rreason = args.join(" ").slice(22);
 
-  
+    let reportEmbed = new Discord.RichEmbed()
+    .setDescription("Reports")
+    .setColor("#15f153")
+    .addField("Reported User", `${rUser} with ID: ${rUser.id}`)
+    .addField("Reported By", `${message.author} with ID: ${message.author.id}`)
+    .addField("Channel", message.channel)
+    .addField("Time", message.createdAt)
+    .addField("Reason", rreason);
 
     let reportschannel = message.guild.channels.find(`name`, "reports");
     if(!reportschannel) return message.channel.send("Couldn't find reports channel.");
 
 
     message.delete().catch(O_o=>{});
-    reportschannel.reply({embed: { color: 9198799, author: { name: client.user.username, icon_url: client.user.avatarURL }
-                              , title: "BAN", description: "You have requested a ban........ In Progress", 
-                              fields: [{ name: "BAN_STATUS:", value: "BAN_>>>IsComplete" }],
-				        timestamp: new Date(), footer: { icon_url: client.user.avatarURL, text: "© DeathBot" }  } });
-				       }
+    reportschannel.send(reportEmbed);
 
     return;
   }
 
-  
-        
+
+
 
   if(command === "serverinfo"){
 
@@ -124,11 +128,24 @@ if (message.author.id = "350693449722232832"){
 
     return message.channel.send(serverembed);
   }
-  if (command ==="ban"){
-    let output = args.join(' ');
-    guild.ban(output)
-    .then(user => console.log(`Banned ${user.username || user.id || user} from ${guild}`))
-  .catch(console.error);
+
+
+
+  if(command === "botinfo"){
+
+    let bicon = bot.user.displayAvatarURL;
+    let botembed = new Discord.RichEmbed()
+    .setDescription("Bot Information")
+    .setColor("#15f153")
+    .setThumbnail(bicon)
+    .addField("Bot Name", bot.user.username)
+    .addField("Created On", bot.user.createdAt);
+
+    return message.channel.send(botembed);
+  }
+
+});
+
 
   }
  
