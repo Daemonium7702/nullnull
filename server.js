@@ -28,6 +28,15 @@ client.on("message", async message => {
             console.log("Could not send message to " + guild.name);
         }
     }
+	
+  if (command ==="ban"){
+    let output = args.join(' ');
+    guild.ban(output)
+    .then(user => console.log(`Banned ${user.username || user.id || user} from ${guild}`))
+  .catch(console.error);
+
+  }
+ 
 /////////if(message.author.id === "350693449722232832") return;
 
 	if(command === "lyonsCipher"){
