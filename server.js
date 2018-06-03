@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const Discord = require("Discord.js");
 const client = new Discord.Client();
 const config = require("./config.json");
 client.on("ready", () => { 
@@ -21,11 +21,12 @@ client.on("message", async message => {
 	
 	
 	if(command = "magicify"){
-	const annoyinmsg = args.join(" ");
+    ///change const to let?///
+	const annoyingmsg = args.join(" ");
 	    let reportEmbed = new Discord.RichEmbed()
     .setDescription("Embedded message!")
     .setColor("#15f153")
-    .addField("Message:", annoyinmsg)
+    .addField("Message:", annoyingmsg)
     .addField("Channel", message.channel)
     .addField("Time", message.createdAt)
     message.delete().catch(O_o=>{});
@@ -34,7 +35,7 @@ client.on("message", async message => {
 	
 	if(command === "kick"){
 
-    //!kick @daeshan askin for it
+    //!kick @daeshan cuz tht b was askin for it
 
     let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
     if(!kUser) return message.channel.send("Can't find user!");
@@ -52,7 +53,7 @@ client.on("message", async message => {
 
     return;
   }
-
+/*
   if(command === "ban"){
 
     let bUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
@@ -71,7 +72,7 @@ client.on("message", async message => {
 
     return;
   }
-
+*/ //not functional//
 
   if(command === "report"){
 
@@ -128,13 +129,14 @@ if(command === "fireworks"){
 		"http://bestanimations.com/Holidays/Fireworks/fireworks/ba-blue-red-fireworks-colorful-pretty-gif-pic.gif",
 	]
       const randomAnswer = magic[Math.floor(Math.random() * magic.length)];
-let bicon = client.user.displayAvatarURL;
-	let botembed = new Discord.RichEmbed()
+let nicon = client.user.displayAvatarURL;
+	let bottembed = new Discord.RichEmbed()
 	.setDescription("A command requested by eitanwass#0607")
 	.setColor("#340263")
-	.setThumbnail(bicon)
+	.setThumbnail(nicon)
 	.addfield(randomAnswer, "just for" + client.user.username)
 	.addfield("Created on", client.user.createdAt);
+  message.channel.send(bottembed);
 }
 	
   if(command === "botinfo"){
