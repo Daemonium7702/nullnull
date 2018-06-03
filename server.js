@@ -70,6 +70,7 @@ client.on("message", async message => {
 
   if(command === "report"){
 if (message.author.id = "350693449722232832"){
+	message.channel.send("DVMors anticipated this. Not sure what else to say?");
 	return}else{
     //!report @ned this is the reason
 
