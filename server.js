@@ -208,6 +208,7 @@ message.channel.send("Now now. You are fairly close. but you've earned a hint. T
 		message.channel.send("Class Is Over!");
 	}
 	client.on('guildMemberAdd', member => {
+		message.channel.send(member.avatarURL);
   // Send the message to a designated channel on a server:
   const channel = member.guild.channels.find('name', 'general');
   // Do nothing if the channel wasn't found on this server
