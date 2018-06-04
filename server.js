@@ -414,14 +414,18 @@ exports.run = (client, message, args) => {
     message.channel.send(args.map(randomizeCase).join(':clap:'));
 };
 	}
-	    if(command === "embededed"){
-		    const triedembed =({embed: { color: 9198799, author: { name: client.user.username, icon_url: client.user.avatarURL }
-                              , title: "test", description: "test", 
-                              fields: [{name: "test", value: "test"}],}})
-		message.channel.send({embed: { color: 9198799, author: { name: client.user.username, icon_url: client.user.avatarURL }
-                              , title: "CommandList", description: "Currenly, I only have a few commands, and will get more soon.", 
-                              fields: [{name: "alert", value: triedembed}],}})
-    }
+	    if(command ==="rr1"){
+		      const  answers = [
+"Whats his name just died",
+    message.author.id + " is cheating!!!! ***SHOOT HIM***",
+  "*click click*... balsy guy clicked twice",
+    "Pop! goes " + message.author.id + "'s brains,  
+      "you Got lucky...",
+      "Psst! Dont tell" + message.author.id + " but I slipped 2 bullets in there" ,
+  "*click, You lived!",]
+		       const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
+    message.channel.send(randomAnswer); 
+  }
 				       if(command === "cmdlist"){
 message.channel.send({embed: { color: 9198799, author: { name: client.user.username, icon_url: client.user.avatarURL }
                               , title: "CommandList", description: "Currenly, I only have a few commands, and will get more soon.", 
