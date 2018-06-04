@@ -415,9 +415,12 @@ exports.run = (client, message, args) => {
 };
 	}
 	    if(command === "embededed"){
+		    const triedembed =({embed: { color: 9198799, author: { name: client.user.username, icon_url: client.user.avatarURL }
+                              , title: "test", description: "test", 
+                              fields: [{name: "test", value: "test"}],}})
 		message.channel.send({embed: { color: 9198799, author: { name: client.user.username, icon_url: client.user.avatarURL }
                               , title: "CommandList", description: "Currenly, I only have a few commands, and will get more soon.", 
-                              fields: [{name: "alert", value: "Alerts the owner of an issue."}],}})
+                              fields: [{name: "alert", value: triedembed}],}})
     }
 				       if(command === "cmdlist"){
 message.channel.send({embed: { color: 9198799, author: { name: client.user.username, icon_url: client.user.avatarURL }
