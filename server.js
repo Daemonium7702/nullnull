@@ -419,7 +419,7 @@ exports.run = (client, message, args) => {
 "Whats his name just died",
     message.author.id + " is cheating!!!! ***SHOOT HIM***",
   "*click click*... balsy guy clicked twice",
-    "Pop! goes " + message.author.id + "'s brains,  
+    "Pop! goes " + message.author.id + "'s brains",  
       "you Got lucky...",
       "Psst! Dont tell" + message.author.id + " but I slipped 2 bullets in there" ,
   "*click, You lived!",]
