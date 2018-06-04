@@ -417,11 +417,11 @@ exports.run = (client, message, args) => {
 	    if(command ==="rr1"){
 		      const  answers = [
 "Whats his name just died",
-    message.author.id + " is cheating!!!! ***SHOOT HIM***",
+  "<@" + message.author.id + ">" + " is cheating!!!! ***SHOOT HIM***",
   "*click click*... balsy guy clicked twice",
-    "Pop! goes " + message.author.id + "'s brains",  
+    "Pop! goes " +"<@" + message.author.id + ">"+ "'s brains",  
       "you Got lucky...",
-      "Psst! Dont tell" + message.author.id + " but I slipped 2 bullets in there" ,
+      "Psst! Dont tell" + "<@" + message.author.id + ">"  + " but I slipped 2 bullets in there" ,
   "*click, You lived!",]
 		       const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
     message.channel.send(randomAnswer); 
