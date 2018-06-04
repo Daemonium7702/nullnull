@@ -208,11 +208,12 @@ message.channel.send("Now now. You are fairly close. but you've earned a hint. T
 		message.channel.send("Class Is Over!");
 	}
 	client.on('guildMemberAdd', member => {
-		message.channel.send(member.avatarURL);
+		
   // Send the message to a designated channel on a server:
   const channel = member.guild.channels.find('name', 'general');
   // Do nothing if the channel wasn't found on this server
   if (!channel) return;
+		channel.send(member.avatarURL);
   // Send the message, mentioning the member
   channel.send(` ${member}, Has joined the Fray... Poor Person`);
 });
@@ -413,7 +414,12 @@ exports.run = (client, message, args) => {
     message.channel.send(args.map(randomizeCase).join(':clap:'));
 };
 	}
-if(command === "cmdlist"){
+	    if(command === "embededed"){
+		message.channel.send({embed: { color: 9198799, author: { name: client.user.username, icon_url: client.user.avatarURL }
+                              , title: "CommandList", description: "Currenly, I only have a few commands, and will get more soon.", 
+                              fields: [{name: "alert", value: "Alerts the owner of an issue."}],}})
+    }
+				       if(command === "cmdlist"){
 message.channel.send({embed: { color: 9198799, author: { name: client.user.username, icon_url: client.user.avatarURL }
                               , title: "CommandList", description: "Currenly, I only have a few commands, and will get more soon.", 
                               fields: [{name: "alert", value: "Alerts the owner of an issue."}, 
