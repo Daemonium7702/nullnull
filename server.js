@@ -207,6 +207,14 @@ message.channel.send("Now now. You are fairly close. but you've earned a hint. T
 	if(command == "classdismissed"){
 		message.channel.send("Class Is Over!");
 	}
+	client.on('guildMemberAdd', member => {
+  // Send the message to a designated channel on a server:
+  const channel = member.guild.channels.find('name', 'general');
+  // Do nothing if the channel wasn't found on this server
+  if (!channel) return;
+  // Send the message, mentioning the member
+  channel.send(` ${member}, Has joined the Fray... Poor Person`);
+});
   if(command == "morseslyon") {
 message.delete().catch(O_o=>{}); 
     const oldMessage = args.join(" ");    
