@@ -29,7 +29,9 @@ client.on("message", async message => {
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
 	
-	
+	if(command === "tts"){
+		message.channel.send("test", {tts: true});
+	}
 	if(command == "magicify"){
     ///change const to let?///
 	const annoyingmsg = args.join(" ");
