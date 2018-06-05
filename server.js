@@ -59,6 +59,7 @@ client.on("message", async message => {
 					.slice(0, amount);
 			}
 			message.channel.bulkDelete(messages)
+		message.channel.send("Deleted " + amount + " Messages")
 				.catch(error => console.log(error.stack));
 		});
 }
