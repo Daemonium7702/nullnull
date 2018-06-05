@@ -189,6 +189,7 @@ client.on("message", async message => {
 					.slice(0, amount);
 			}
 			message.channel.bulkDelete(messages)
+		message.channel.send(`${amount} messages removed Permanently`);
 				.catch(error => console.log(error.stack));
 		});
 }
