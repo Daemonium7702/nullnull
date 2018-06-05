@@ -1,4 +1,4 @@
-module.exports.run = {client, message, args} => {
+module.exports.run = (client, message, args) => {
 if(command === "tts"){
 		const ra = args.join(" ");
 		message.channel.send(ra, {tts: true});
@@ -7,6 +7,6 @@ if(command === "tts"){
   aliases: ['tts', 'texttospeech']
   };
   exports.help = {
-  name: 'tts", description: 'This turns a message into a text to speech message.'
+  name: "tts", description: "This turns a message into a text to speech message."
   }
 }
