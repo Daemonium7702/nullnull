@@ -63,24 +63,30 @@ client.on("message", async message => {
 }
 
 	//nsfw
-    if(command === "Hentai"){
-	    module.exports.run = async(bot, message, args) => {
-    let {body} = await superagent
-    .get(`https://nekos.life/api/v2/img/Random_hentai_gif`);
-    if (!message.channel.nsfw) return message.reply(" You must be in a N.S.F.W channel to use this command.");
-  
-    let hentaiEmbed = new Discord.RichEmbed()
-    .setColor("RANDOM")
-    .setTitle("Hentai is art.")
-    .setImage(body.url)
-    .setColor("RANDOM")
-    .setFooter("Bot Version: 0.0.3");
+ if (command === "hentai") {
+    if (!message.channel.nsfw) return message.reply("You can use this command only on nsfw channels!");
 
-    message.channel.send(hentaiEmbed);
+    var subreddits = [
+        'HENTAI_GIF',
+      'hentaibondage ',
+      'hentaifemdom'
+     
+      
+    ]
+    var sub = subreddits[Math.round(Math.random() * (subreddits.length - 1))];
 
+    randomPuppy(sub)
+        .then(url => {
+            const embed = new Discord.RichEmbed()
+                .setColor("RANDOM")
+                .setAuthor("4k", client.user.avatarURL)
+                .setFooter("xD")
+                .setImage(url);
+            message.channel.send({
+                embed
+            });
+        })
 }
-}
-
 	if (command === "nsfw") {
     if (!message.channel.nsfw) return message.reply("You can use this command only on nsfw channels!");
 
