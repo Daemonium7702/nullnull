@@ -14,9 +14,6 @@ client.on("guildDelete", guild => {
   console.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
   client.user.setGame(`on Dis Cord`);
 });
-     
-
-
 client.on('guildMemberAdd', member => {
 		
   // Send the message to a designated channel on a server:
@@ -31,43 +28,39 @@ client.on("message", async message => {
   if(message.content.indexOf(config.prefix) !== 0) return;
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
-	module.exports.run = async (client, message, args, level) => {
+	
 	if(command === "tts"){
 		const ra = args.join(" ");
 		message.channel.send(ra, {tts: true});
 	}
-		if(command == "tits"){
-const { get } = require('request-promise-native') // You can also use normal request if you want, you would just lose the ability of using .then(). Or you could just use snekfetch
+  	if(command === "timer"){
+      const ms = require("ms");
+module.exports.run = async (client, message, args, level) => {
 
-module.exports.run = async (client, message) => {
-    if (!message.channel.nsfw) return message.channel.send({embed: {
-        title: `Boobs only in NSFW channels pls`
-    }})
+let Timer = args[0];
 
-    const waitMessage = await message.channel.send({ 
-        title: `Ya boi ${message.author.username} is looking for some boobies...`,
-    })
+if(!args[0]){
+  return message.channel.send("Please enter a period of time, with either `s,m or h` at the end!");
+}
 
-    const options = { // You dont have to make an object, you could do it directly in the get() method if you want, this just looks cleaner
-        url: 'http://api.oboobs.ru/boobs/0/1/random',
-        json: true 
-    }
+if(args[0] <= 0){
+  return message.channel.send("Please enter a period of time, with either `s,m or h` at the end!");
+}
 
-    get(options).then(boobs => { // Pass in the boobs objects fetched from the API 
-        return waitMessage.edit({embed: {
-            title: `:eyes: Boobies`,
-            image: {
-                url: boobs[0].preview
-            },
-        }})
-    }).catch(error => { // If any error occurs while fetching from the API, edit the message to show the error
-        return waitMessage.edit({
-            title: `No boobies for ${message.author.username} today :(`,
-            description: `\`\`\`js\n${error}\`\`\``,
-        })
-    })
+message.channel.send(":white_check_mark: Timer has been set for: " + `${ms(ms(Timer), {long: true})}`)
+
+setTimeout(function(){
+  message.channel.send(`Timer has ended, it lasted: ${ms(ms(Timer), {long: true})}` + message.author.toString())
+
+}, ms(Timer));
+}
+exports.conf = {
+  enabled: true,
+  guildOnly: false,
+  aliases: [],
+  permLevel: "User"
 };
-		}
+	}
  if(command === "purge"){
  const user = message.mentions.users.first();
 	if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send('Sorry, you don\'t have permission to delete or purge messages!')
@@ -132,21 +125,16 @@ module.exports.run = async (client, message) => {
   }
 /*
   if(command === "ban"){
-
     let bUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
     if(!bUser) return message.channel.send("Can't find user!");
     let bReason = args.join(" ").slice(22);
     if(!message.member.hasPermission("MANAGE_MEMBERS")) return message.channel.send("No can do pal!");
     if(bUser.hasPermission("MANAGE_MESSAGES")) return message.channel.send("That person can't be kicked!");
-
   
     let incidentchannel = message.guild.channels.find(`name`, "incidents");
     if(!incidentchannel) return message.channel.send("Can't find incidents channel.");
-
     message.guild.member(bUser).ban(bReason);
     incidentchannel.send("completed");
-
-
     return;
   }
 */ //not functional//
@@ -884,6 +872,6 @@ if(command ==="secretcmd"){
   if(command === "new") {
     message.channel.send("yes its newww")
   }
-	}});
+});
 
 client.login(process.env.BOT_TOKEN);
