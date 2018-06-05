@@ -63,6 +63,31 @@ client.on("message", async message => {
 }
 
 	//nsfw
+	if(command === "ass"){
+       if (!message.channel.nsfw) return message.reply("You can use this command only on nsfw channels!");
+
+    var subreddits = [
+      'facedownassup',
+      'hentaifemdom',
+      'assinthong',
+      'asstastic'
+     
+      
+    ]
+    var sub = subreddits[Math.round(Math.random() * (subreddits.length - 1))];
+
+    randomPuppy(sub)
+        .then(url => {
+            const embed = new Discord.RichEmbed()
+                .setColor("RANDOM")
+                .setAuthor("4k", client.user.avatarURL)
+                .setFooter("xD")
+                .setImage(url);
+            message.channel.send({
+                embed
+            });
+        })
+}
  if (command === "hentai") {
     if (!message.channel.nsfw) return message.reply("You can use this command only on nsfw channels!");
 
@@ -509,6 +534,9 @@ exports.run = (client, message, args) => {
 message.channel.send({embed: { color: 9198799, author: { name: client.user.username, icon_url: client.user.avatarURL }
                               , title: "CommandList", description: "Currenly, I only have a few commands, and will get more soon.", 
                               fields: [{name: "alert", value: "Alerts the owner of an issue."},
+				       {name:"ass", value: "nsfw ass"},
+				       {name:"hentai", value: "nsfw Hentai"},
+				       
 				       {name:"nsfw", value: "Sends NSFW pictures (only in NSFW channels)"},
 				      { name: "Say", value: "This command is used as such `.say {word}`" }, 
                                        { name: "inv", value: "This invites you to both the bt, and the server!"},
