@@ -33,32 +33,36 @@ client.on("message", async message => {
 		const ra = args.join(" ");
 		message.channel.send(ra, {tts: true});
 	}
-  	if(command === "timer"){
-      const ms = require("ms");
-module.exports.run = async (client, message, args, level) => {
+	if(command === "tits"){
+	const { get } = require('request-promise-native') // You can also use normal request if you want, you would just lose the ability of using .then(). Or you could just use snekfetch
 
-let Timer = args[0];
+module.exports.run = async (client, message) => {
+    if (!message.channel.nsfw) return message.channel.send({embed: {
+        title: `Boobs only in NSFW channels pls`
+    }})
 
-if(!args[0]){
-  return message.channel.send("Please enter a period of time, with either `s,m or h` at the end!");
-}
+    const waitMessage = await message.channel.send({ 
+        title: `Ya boi ${message.author.username} is looking for some boobies...`,
+    })
 
-if(args[0] <= 0){
-  return message.channel.send("Please enter a period of time, with either `s,m or h` at the end!");
-}
+    const options = { // You dont have to make an object, you could do it directly in the get() method if you want, this just looks cleaner
+        url: 'http://api.oboobs.ru/boobs/0/1/random',
+        json: true 
+    }
 
-message.channel.send(":white_check_mark: Timer has been set for: " + `${ms(ms(Timer), {long: true})}`)
-
-setTimeout(function(){
-  message.channel.send(`Timer has ended, it lasted: ${ms(ms(Timer), {long: true})}` + message.author.toString())
-
-}, ms(Timer));
-}
-exports.conf = {
-  enabled: true,
-  guildOnly: false,
-  aliases: [],
-  permLevel: "User"
+    get(options).then(boobs => { // Pass in the boobs objects fetched from the API 
+        return waitMessage.edit({embed: {
+            title: `:eyes: Boobies`,
+            image: {
+                url: boobs[0].preview
+            },
+        }})
+    }).catch(error => { // If any error occurs while fetching from the API, edit the message to show the error
+        return waitMessage.edit({
+            title: `No boobies for ${message.author.username} today :(`,
+            description: `\`\`\`js\n${error}\`\`\``,
+        })
+    })
 };
 	}
  if(command === "purge"){
