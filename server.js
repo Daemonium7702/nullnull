@@ -80,7 +80,7 @@ module.exports.run = async (client, message) => {
 		.then(msg => msg.delete({
 			timeout: 10000
 		}));
-	message.channel.messages.fetch({
+	message.channel.fetchMessages({
 			limit: amount
 		, })
 		.then((messages) => {
