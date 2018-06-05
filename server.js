@@ -5,7 +5,7 @@ const config = require("./config.json");
 const randomPuppy = require('random-puppy');
 const superagent = require("superagent");
 const ms = require("ms");
-const Canvas= require("canvas-constructor");
+const { Canvas } = require("canvas-constructor");
 
 client.on("ready", () => { 
   console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`); 
