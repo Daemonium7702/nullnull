@@ -14,7 +14,8 @@
     "express": "^4.16.2",
     "discord.js": "^11.3.0",
     "module.js": "^2.2.4",
-    "random-puppy": "^1.1.0"
+    "random-puppy": "^1.1.0",
+    "ms": "^2.1.1"
   },
   "engines": {
     "node": "8.x"
