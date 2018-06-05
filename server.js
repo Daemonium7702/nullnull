@@ -5,6 +5,7 @@ const config = require("./config.json");
 const randomPuppy = require('random-puppy');
 const superagent = require("superagent");
 const ms = require("ms");
+const fs = require("fs");
 
 
 client.on("ready", () => { 
@@ -28,21 +29,48 @@ client.on('guildMemberAdd', member => {
   // Send the message, mentioning the member
   channel.send(` ${member}, Has joined the Fray... Poor Person`);
 });
+client.commands = new Discord.Collection();
+client.aliases = new Discord.Collection();
+
+fs.readdir('./commands/', (err, files) => {
+	if (err)
+		console.error(err);
+	let jsfiles = files.filter(f => f.split('.')
+		.pop() === 'js');
+	if (jsfiles.length <= 0) {
+		console.log('No commands to load!');
+		return;
+	}
+	console.log(`[Commands]\tLoaded a total amount ${files.length} Commands`);
+	jsfiles.forEach(f => {
+		let props = require(`./commands/${ f }`);
+		props.fileName = f;
+		client.commands.set(props.help.name, props);
+		props.conf.aliases.forEach(alias => {
+			client.aliases.set(alias, props.help.name);
+		});
+	});
+});
 client.on("message", async message => {
   if(message.author.bot) return;
   if(message.content.indexOf(config.prefix) !== 0) return;
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
+	let msg = message.content.toLowerCase() || message.content.toUpperCase();
+	if (message.author.bot) return undefined;
+let cmd;
+	if (client.commands.has(command)) {
+		cmd = client.commands.get(command);
+	} else if (client.aliases.has(command)) {
+		cmd = client.commands.get(client.aliases.get(command));
+	}
+		cmd.run(client, message, args);
 	
-	if(command === "tts"){
-		const ra = args.join(" ");
-		message.channel.send(ra, {tts: true});
-	}
-	if(command ==="testtt"){
-		const sss = args.join(' ');
-		const a = oldMessage.replace(/z|Z/g, "//////");
-		message.channel.send(a);
-	}
+
+  
+  
+  
+	
 	        if(command ==="report"){
             if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("**Sorry, but you do not have valid permissions! If you beleive this is a error, contact an owner.**");
             var rUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
@@ -357,7 +385,7 @@ message.channel.send("Now now. You are fairly close. but you've earned a hint. T
 message.delete().catch(O_o=>{}); 
     const oldMessage = args.join(" ");    
     const a = oldMessage.replace(/z/g, "//////");
-     const b = a.replace(/y|Y/g, "/////.....");
+     const b = a.replace(/y/g, "/////.....");
      const c = b.replace(/x/g, "/////....");
      const  d = c.replace(/w/g, "/////...");
      const  e = d.replace(/v/g, "/////..");
