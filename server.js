@@ -33,38 +33,35 @@ client.on("message", async message => {
 		const ra = args.join(" ");
 		message.channel.send(ra, {tts: true});
 	}
-  if(command === "boobies"){
-  const { get } = require('request-promise-native') // You can also use normal request if you want, you would just lose the ability of using .then(). Or you could just use snekfetch
-
-module.exports.run = async (client, message) => {
-    if (!message.channel.nsfw) return message.channel.send({embed: {
-        title: `Boobs only in NSFW channels pls`
-    }})
-
-    const waitMessage = await message.channel.send({ 
-        title: `Ya boi ${message.author.username} is looking for some boobies...`,
-    })
-
-    const options = { // You dont have to make an object, you could do it directly in the get() method if you want, this just looks cleaner
-        url: 'http://api.oboobs.ru/boobs/0/1/random',
-        json: true 
-    }
-
-    get(options).then(boobs => { // Pass in the boobs objects fetched from the API 
-        return waitMessage.edit({embed: {
-            title: `:eyes: Boobies`,
-            image: {
-                url: boobs[0].preview
-            },
-        }})
-    }).catch(error => { // If any error occurs while fetching from the API, edit the message to show the error
-        return waitMessage.edit({
-            title: `No boobies for ${message.author.username} today :( There was an error...`,
-            description: `\`\`\`js\n${error}\`\`\``,
-        })
-    })
-};
-  }
+ if(command === "purge"){
+ const user = message.mentions.users.first();
+	if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send('Sorry, you don\'t have permission to delete or purge messages!')
+		.then(msg => msg.delete({
+			timeout: 10000
+		}));
+	const amount = !!parseInt(message.content.split(' ')[1]) ? parseInt(message.content.split(' ')[1]) : parseInt(message.content.split(' ')[2])
+	if (!amount) return message.channel.send('Specify an amount of messages to delete or purge!')
+		.then(msg => msg.delete({
+			timeout: 10000
+		}));
+	if (!amount && !user) return message.channel.send('Specify a user and amount, or just an amount, of messages to delete or purge!')
+		.then(msg => msg.delete({
+			timeout: 10000
+		}));
+	message.channel.messages.fetch({
+			limit: amount
+		, })
+		.then((messages) => {
+			if (user) {
+				const filterBy = user ? user.id : client.user.id;
+				messages = messages.filter(m => m.author.id === filterBy)
+					.array()
+					.slice(0, amount);
+			}
+			message.channel.bulkDelete(messages)
+				.catch(error => console.log(error.stack));
+		});
+}
 	if(command == "magicify"){
     ///change const to let?///
 	const annoyingmsg = args.join(" ");
