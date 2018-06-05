@@ -3,6 +3,8 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const config = require("./config.json");
 const randomPuppy = require('random-puppy');
+const superagent = require("superagent");
+const ms = require("ms");
 client.on("ready", () => { 
   console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`); 
   client.user.setActivity(`on ${client.channels.size} servers`);
@@ -50,14 +52,56 @@ client.on("message", async message => {
                 .addField("•Time", message.createdAt)
                 .addField("•Reason", rreason);
 
-            var reportschannel = message.guild.channels.find(`name`, "mod-log");
-            if (!reportschannel) return message.channel.send("**Can't find mod-log channel.**");
+            var reportschannel = message.guild.channels.find(`name`, "reports");
+            if (!reportschannel) return message.channel.send("**Can't find reports channel.**");
 
 
             message.delete().catch(O_o => { });
             reportschannel.send(reportEmbed);
 
 
+}
+	if(command === "timer"){
+	let Timer = args[0];
+
+if(!args[0]){
+  return message.channel.send("Please enter a period of time, with either `s,m or h` at the end!");
+}
+
+if(args[0] <= 0){
+  return message.channel.send("Please enter a period of time, with either `s,m or h` at the end!");
+}
+
+message.channel.send(":white_check_mark: Timer has been set for: " + `${ms(ms(Timer), {long: true})}`)
+
+setTimeout(function(){
+  message.channel.send(`Timer has ended, it lasted: ${ms(ms(Timer), {long: true})}` + message.author.toString())
+
+}, ms(Timer));
+}
+exports.conf = {
+  enabled: true,
+  guildOnly: false,
+  aliases: [],
+  permLevel: "User"
+};
+	  }
+	//nsfw
+    if(command === "Hentai"){
+    let {body} = await superagent
+    .get(`https://nekos.life/api/v2/img/Random_hentai_gif`);
+    if (!message.channel.nsfw) return message.reply(" You must be in a N.S.F.W channel to use this command.");
+  
+    let hentaiEmbed = new Discord.RichEmbed()
+    .setColor("RANDOM")
+    .setTitle("Hentai is art.")
+    .setImage(body.url)
+    .setColor("RANDOM")
+    .setFooter("Bot Version: 0.0.3");
+
+    message.channel.send(hentaiEmbed);
+
+}
 }
 	if (command === "nsfw") {
     if (!message.channel.nsfw) return message.reply("You can use this command only on nsfw channels!");
@@ -83,6 +127,7 @@ client.on("message", async message => {
             });
         })
 }
+//nsfw
  if(command === "purge"){
  const user = message.mentions.users.first();
 	if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send('Sorry, you don\'t have permission to delete or purge messages!')
@@ -161,33 +206,6 @@ client.on("message", async message => {
   }
 */ //not functional//
 
-  if(command === "report"){
-
-    //!report @ned this is the reason
-
-    let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-    if(!rUser) return message.channel.send("Couldn't find user.");
-    let rreason = args.join(" ").slice(22);
-
-    let reportEmbed = new Discord.RichEmbed()
-    .setDescription("Reports")
-    .setColor("#15f153")
-    .addField("Reported User", `${rUser} with ID: ${rUser.id}`)
-    .addField("Reported By", `${message.author} with ID: ${message.author.id}`)
-    .addField("Channel", message.channel)
-    .addField("Time", message.createdAt)
-    .addField("Reason", rreason);
-
-    let reportschannel = message.guild.channels.find(`name`, "reports");
-    if(!reportschannel) return message.channel.send("Couldn't find reports channel.");
-
-
-    message.delete().catch(O_o=>{});
-    reportschannel.send(reportEmbed);
-
-    return;
-
-  }
 
 
   if(command === "serverinfo"){
