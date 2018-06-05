@@ -33,6 +33,38 @@ client.on("message", async message => {
 		const ra = args.join(" ");
 		message.channel.send(ra, {tts: true});
 	}
+  if(command === "boobies"){
+  const { get } = require('request-promise-native') // You can also use normal request if you want, you would just lose the ability of using .then(). Or you could just use snekfetch
+
+module.exports.run = async (client, message) => {
+    if (!message.channel.nsfw) return message.channel.send({embed: {
+        title: `Boobs only in NSFW channels pls`
+    }})
+
+    const waitMessage = await message.channel.send({ 
+        title: `Ya boi ${message.author.username} is looking for some boobies...`,
+    })
+
+    const options = { // You dont have to make an object, you could do it directly in the get() method if you want, this just looks cleaner
+        url: 'http://api.oboobs.ru/boobs/0/1/random',
+        json: true 
+    }
+
+    get(options).then(boobs => { // Pass in the boobs objects fetched from the API 
+        return waitMessage.edit({embed: {
+            title: `:eyes: Boobies`,
+            image: {
+                url: boobs[0].preview
+            },
+        }})
+    }).catch(error => { // If any error occurs while fetching from the API, edit the message to show the error
+        return waitMessage.edit({
+            title: `No boobies for ${message.author.username} today :( There was an error...`,
+            description: `\`\`\`js\n${error}\`\`\``,
+        })
+    })
+};
+  }
 	if(command == "magicify"){
     ///change const to let?///
 	const annoyingmsg = args.join(" ");
@@ -435,6 +467,7 @@ message.channel.send({embed: { color: 9198799, author: { name: client.user.usern
                               fields: [{name: "alert", value: "Alerts the owner of an issue."}, 
 				      { name: "Say", value: "This command is used as such `.say {word}`" }, 
                                        { name: "inv", value: "This invites you to both the bt, and the server!"},
+                                       { name: "tts", value: "sends a text to speech message"},
                                        { name: "ping", value: "You can ping the server, and return api, and normal latency values. Usage:`.ping`" },
 				       {name: "botinfo", value: "displays info on the bot"},
 				       {name: "serverinfo", value: "displays basic info on the server"},
@@ -449,7 +482,9 @@ message.channel.send({embed: { color: 9198799, author: { name: client.user.usern
                                         {name: "lovec", value: "calculates the probability of love between to things. `Usage: .lovec @mention+@mention`"},
                                        {name: "dice", value: "rolls some dice"},
                                        {name: "o", value: "replaces all values in a string with an 'o;"},
-                                       {name: "fusrodah", value: "makes a fus ro dah meme"},
+                                       
+                                       {name:"timer", value: "sets a timer"},
+                                      {name: "fusrodah", value: "makes a fus ro dah meme"},
 				       {name: "sigh", value: "sighs"},
 				       {name: "bomb", value: "Explodes"},
 				       {name: "DontPingMe", value: "Pings the person you choose. Please do .DontPingMe [ID] e.g. .DontPingMe <@73918461794>"},
