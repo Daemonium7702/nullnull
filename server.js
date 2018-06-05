@@ -85,7 +85,7 @@ exports.conf = {
   aliases: [],
   permLevel: "User"
 };
-	  }
+	  })
 	//nsfw
     if(command === "Hentai"){
     let {body} = await superagent
