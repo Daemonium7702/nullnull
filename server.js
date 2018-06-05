@@ -63,6 +63,30 @@ client.on("message", async message => {
 }
 
 	//nsfw
+	if(command === "bond"){
+       if (!message.channel.nsfw) return message.reply("You can use this command only on nsfw channels!");
+
+    var subreddits = [
+      'hentaibondage',
+      'Bondage',
+      'Dominated'
+     
+      
+    ]
+    var sub = subreddits[Math.round(Math.random() * (subreddits.length - 1))];
+
+    randomPuppy(sub)
+        .then(url => {
+            const embed = new Discord.RichEmbed()
+                .setColor("RANDOM")
+                .setAuthor("4k", client.user.avatarURL)
+                .setFooter("xD")
+                .setImage(url);
+            message.channel.send({
+                embed
+            });
+        })
+}
 	if(command === "ass"){
        if (!message.channel.nsfw) return message.reply("You can use this command only on nsfw channels!");
 
