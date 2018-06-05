@@ -64,6 +64,7 @@ client.on("message", async message => {
 
 	//nsfw
     if(command === "Hentai"){
+	    module.exports.run = async(bot, message, args) => {
     let {body} = await superagent
     .get(`https://nekos.life/api/v2/img/Random_hentai_gif`);
     if (!message.channel.nsfw) return message.reply(" You must be in a N.S.F.W channel to use this command.");
@@ -79,6 +80,7 @@ client.on("message", async message => {
 
 }
 }
+
 	if (command === "nsfw") {
     if (!message.channel.nsfw) return message.reply("You can use this command only on nsfw channels!");
 
