@@ -33,6 +33,34 @@ client.on("message", async message => {
 		const ra = args.join(" ");
 		message.channel.send(ra, {tts: true});
 	}
+  	if(command === "timer"){
+      const ms = require("ms");
+module.exports.run = async (client, message, args, level) => {
+
+let Timer = args[0];
+
+if(!args[0]){
+  return message.channel.send("Please enter a period of time, with either `s,m or h` at the end!");
+}
+
+if(args[0] <= 0){
+  return message.channel.send("Please enter a period of time, with either `s,m or h` at the end!");
+}
+
+message.channel.send(":white_check_mark: Timer has been set for: " + `${ms(ms(Timer), {long: true})}`)
+
+setTimeout(function(){
+  message.channel.send(`Timer has ended, it lasted: ${ms(ms(Timer), {long: true})}` + message.author.toString())
+
+}, ms(Timer));
+}
+exports.conf = {
+  enabled: true,
+  guildOnly: false,
+  aliases: [],
+  permLevel: "User"
+};
+	}
  if(command === "purge"){
  const user = message.mentions.users.first();
 	if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send('Sorry, you don\'t have permission to delete or purge messages!')
@@ -480,7 +508,7 @@ message.channel.send({embed: { color: 9198799, author: { name: client.user.usern
                                         {name: "lovec", value: "calculates the probability of love between to things. `Usage: .lovec @mention+@mention`"},
                                        {name: "dice", value: "rolls some dice"},
                                        {name: "o", value: "replaces all values in a string with an 'o;"},
-                                       
+				       {name:"Purge", value: "Deletes a specified number of messages"},
                                        {name:"timer", value: "sets a timer"},
                                       {name: "fusrodah", value: "makes a fus ro dah meme"},
 				       {name: "sigh", value: "sighs"},
