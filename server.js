@@ -426,7 +426,7 @@ exports.run = (client, message, args) => {
 		       const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
     message.channel.send(randomAnswer); 
   }
-				       if(command === "cmdlist"){
+				       if(command === "help"){
 message.channel.send({embed: { color: 9198799, author: { name: client.user.username, icon_url: client.user.avatarURL }
                               , title: "CommandList", description: "Currenly, I only have a few commands, and will get more soon.", 
                               fields: [{name: "alert", value: "Alerts the owner of an issue."}, 
