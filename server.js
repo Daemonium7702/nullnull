@@ -2,6 +2,7 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const config = require("./config.json");
+const ms = require("ms");
 client.on("ready", () => { 
   console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`); 
   client.user.setActivity(`on ${client.channels.size} servers`);
@@ -14,6 +15,9 @@ client.on("guildDelete", guild => {
   console.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
   client.user.setGame(`on Dis Cord`);
 });
+     
+module.exports.run = async (client, message, args, level) => {
+
 client.on('guildMemberAdd', member => {
 		
   // Send the message to a designated channel on a server:
@@ -878,5 +882,5 @@ if(command ==="secretcmd"){
     message.channel.send("yes its newww")
   }
 });
-
+}
 client.login(process.env.BOT_TOKEN);
