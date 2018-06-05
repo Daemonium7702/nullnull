@@ -63,10 +63,19 @@ exports.conf = {
 	}
  if(command === "purge"){
  const user = message.mentions.users.first();
-	if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send('Sorry, you don\'t have permission to delete or purge messages!');
+	if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send('Sorry, you don\'t have permission to delete or purge messages!')
+		.then(msg => msg.delete({
+			timeout: 10000
+		}));
 	const amount = !!parseInt(message.content.split(' ')[1]) ? parseInt(message.content.split(' ')[1]) : parseInt(message.content.split(' ')[2])
-	if (!amount) return message.channel.send('Specify an amount of messages to delete or purge!');
-	if (!amount && !user) return message.channel.send('Specify a user and amount, or just an amount, of messages to delete or purge!');
+	if (!amount) return message.channel.send('Specify an amount of messages to delete or purge!')
+		.then(msg => msg.delete({
+			timeout: 10000
+		}));
+	if (!amount && !user) return message.channel.send('Specify a user and amount, or just an amount, of messages to delete or purge!')
+		.then(msg => msg.delete({
+			timeout: 10000
+		}));
 	message.channel.messages.fetch({
 			limit: amount
 		, })
