@@ -3,7 +3,6 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const config = require("./config.json");
 const randomPuppy = require('random-puppy');
-const ms = require("ms");
 client.on("ready", () => { 
   console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`); 
   client.user.setActivity(`on ${client.channels.size} servers`);
@@ -35,33 +34,6 @@ client.on("message", async message => {
 		const ra = args.join(" ");
 		message.channel.send(ra, {tts: true});
 	}
-	if(command ==="timer"){
-	module.exports.run = async (client, message, args, level) => {
-
-let Timer = args[0];
-
-if(!args[0]){
-  return message.channel.send("Please enter a period of time, with either `s,m or h` at the end!");
-}
-
-if(args[0] <= 0){
-  return message.channel.send("Please enter a period of time, with either `s,m or h` at the end!");
-}
-
-message.channel.send(":white_check_mark: Timer has been set for: " + `${ms(ms(Timer), {long: true})}`)
-
-setTimeout(function(){
-  message.channel.send(`Timer has ended, it lasted: ${ms(ms(Timer), {long: true})}` + message.author.toString())
-
-}, ms(Timer));
-}
-exports.conf = {
-  enabled: true,
-  guildOnly: false,
-  aliases: [],
-  permLevel: "User"
-};
-}
 	if (command === "nsfw") {
     if (!message.channel.nsfw) return message.reply("You can use this command only on nsfw channels!");
 
