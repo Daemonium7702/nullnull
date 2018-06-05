@@ -9,3 +9,4 @@ if(command === "tts"){
   exports.help = {
   name: 'tts", description: 'This turns a message into a text to speech message.'
   }
+}
