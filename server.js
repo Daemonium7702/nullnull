@@ -38,6 +38,11 @@ client.on("message", async message => {
 		const ra = args.join(" ");
 		message.channel.send(ra, {tts: true});
 	}
+	if(command ==="testtt"){
+		const sss = args.join(' ');
+		const a = oldMessage.replace(/z|Z/g, "//////");
+		message.channel.send(a);
+	}
 	        if(command ==="report"){
             if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("**Sorry, but you do not have valid permissions! If you beleive this is a error, contact an owner.**");
             var rUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
@@ -352,7 +357,7 @@ message.channel.send("Now now. You are fairly close. but you've earned a hint. T
 message.delete().catch(O_o=>{}); 
     const oldMessage = args.join(" ");    
     const a = oldMessage.replace(/z/g, "//////");
-     const b = a.replace(/y/g, "/////.....");
+     const b = a.replace(/y|Y/g, "/////.....");
      const c = b.replace(/x/g, "/////....");
      const  d = c.replace(/w/g, "/////...");
      const  e = d.replace(/v/g, "/////..");
