@@ -48,7 +48,7 @@ client.on("message", async message => {
 		.then(msg => msg.delete({
 			timeout: 10000
 		}));
-	message.channel.messages.fetch({
+	message.channel.fetchMessages({
 			limit: amount
 		, })
 		.then((messages) => {
