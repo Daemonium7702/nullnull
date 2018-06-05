@@ -16,7 +16,7 @@ client.on("guildDelete", guild => {
   client.user.setGame(`on Dis Cord`);
 });
      
-module.exports.run = async (client, message, args, level) => {
+
 
 client.on('guildMemberAdd', member => {
 		
@@ -32,7 +32,7 @@ client.on("message", async message => {
   if(message.content.indexOf(config.prefix) !== 0) return;
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
-	
+	module.exports.run = async (client, message, args, level) => {
 	if(command === "tts"){
 		const ra = args.join(" ");
 		message.channel.send(ra, {tts: true});
@@ -881,6 +881,6 @@ if(command ==="secretcmd"){
   if(command === "new") {
     message.channel.send("yes its newww")
   }
-});
-}
+	}});
+
 client.login(process.env.BOT_TOKEN);
