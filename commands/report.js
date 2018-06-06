@@ -1,34 +1,30 @@
+module.exports.run = async (client, message, args) => {
 
-	      module.exports.run = (client, message, args) => {
-
-            if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("**Sorry, but you do not have valid permissions! If you beleive this is a error, contact an owner.**");
-            var rUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-            if (!rUser) return message.channel.send("**Couldn't find user.**");
-            var rreason = args.join(" ").slice(22);
-            if (!message.guild.member(client.user).hasPermission('MANAGE_ROLES_OR_PERMISSIONS')) return message.channel.send('**I do not have the correct permissions.**').catch(console.error)
-
-            var reportEmbed = new Discord.RichEmbed()
-                .setDescription("Reports")
-                .setColor("#ffffff")
-                .addField("•Reported User", `${rUser} with ID: ${rUser.id}`)
-                .addField("•Reported By", `${message.author} with ID: ${message.author.id}`)
-                .addField("•Channel", message.channel)
-                .addField("•Time", message.createdAt)
-                .addField("•Reason", rreason);
-
-            var reportschannel = message.guild.channels.find(`name`, "reports");
-            if (!reportschannel) return message.channel.send("**Can't find reports channel.**");
-
-
-            message.delete().catch(O_o => { });
-            reportschannel.send(reportEmbed);
-
+try {
+   function clean(text) {
+      if (typeof(text) === 'string')
+        return text.replace(/`/g, '`' + String.fromCharCode(8203)).replace(/@/g, '@' + String.fromCharCode(8203));
+      else
+        return text;
+    }
+    const bug = args.join(" ")
+    if (!bug) return message.channel.send('Please specify a bug!')
+    const content = clean(`**${message.author.username}**#${message.author.discriminator} (${message.author.id}) reported a bug:\n${bug}\nServer: **${message.guild.name}**\nID: **${message.guild.id}**`);
+    const id = 'channel_id';
+    new Promise((resolve, reject) => {
+      superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
+        .set('Authorization', `Bot ${client.token}`).send({ content })
+        .end((err, res) => {
+          if (err) {
+            reject(err);
+            message.reply('There was an error while sending your bug report to Frogbot Support. Please try again later.');
+          } else {
+            resolve(res);
+            message.channel.send(`:white_check_mark: **${message.author.username}**, your bug report has successfully been submitted to Frogbot Support for review. Thank you!.`);
+          }
+        });
+    });
+}  catch (err) {
+console.log(err)
 }
-exports.conf = {
- aliases: ['report', 'Report']
- };
-
-exports.help = {
-name: 'Report', description: 'Reports the user mentioned', usage: '.report @user (requires a channel named report)'
-};
-
+}
