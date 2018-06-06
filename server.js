@@ -72,167 +72,15 @@ let cmd;
   
 	
 	//nsfw
-	if(command === "bond"){
-       if (!message.channel.nsfw) return message.reply("You can use this command only on nsfw channels!");
-
-    var subreddits = [
-      'hentaibondage',
-      'Bondage',
-      'Dominated'
-     
-      
-    ]
-    var sub = subreddits[Math.round(Math.random() * (subreddits.length - 1))];
-
-    randomPuppy(sub)
-        .then(url => {
-            const embed = new Discord.RichEmbed()
-                .setColor("RANDOM")
-                .setAuthor("4k", client.user.avatarURL)
-                .setFooter("xD")
-                .setImage(url);
-            message.channel.send({
-                embed
-            });
-        })
-}
-	if(command === "ass"){
-       if (!message.channel.nsfw) return message.reply("You can use this command only on nsfw channels!");
-
-    var subreddits = [
-      'facedownassup',
-      'hentaifemdom',
-      'assinthong',
-      'asstastic'
-     
-      
-    ]
-    var sub = subreddits[Math.round(Math.random() * (subreddits.length - 1))];
-
-    randomPuppy(sub)
-        .then(url => {
-            const embed = new Discord.RichEmbed()
-                .setColor("RANDOM")
-                .setAuthor("4k", client.user.avatarURL)
-                .setFooter("xD")
-                .setImage(url);
-            message.channel.send({
-                embed
-            });
-        })
-}
- if (command === "hentai") {
-    if (!message.channel.nsfw) return message.reply("You can use this command only on nsfw channels!");
-
-    var subreddits = [
-        'HENTAI_GIF',
-      'hentaibondage ',
-      'hentaifemdom'
-     
-      
-    ]
-    var sub = subreddits[Math.round(Math.random() * (subreddits.length - 1))];
-
-    randomPuppy(sub)
-        .then(url => {
-            const embed = new Discord.RichEmbed()
-                .setColor("RANDOM")
-                .setAuthor("4k", client.user.avatarURL)
-                .setFooter("xD")
-                .setImage(url);
-            message.channel.send({
-                embed
-            });
-        })
-}
-	if (command === "nsfw") {
-    if (!message.channel.nsfw) return message.reply("You can use this command only on nsfw channels!");
-
-    var subreddits = [
-        'NSFW_Wallpapers',
-        'SexyWallpapers',
-        'HighResNSFW',
-        'nsfw_hd',
-        'UHDnsfw'
-    ]
-    var sub = subreddits[Math.round(Math.random() * (subreddits.length - 1))];
-
-    randomPuppy(sub)
-        .then(url => {
-            const embed = new Discord.RichEmbed()
-                .setColor("RANDOM")
-                .setAuthor("4k", client.user.avatarURL)
-                .setFooter("xD")
-                .setImage(url);
-            message.channel.send({
-                embed
-            });
-        })
-}
-//nsfw
- if(command === "purge"){
- const user = message.mentions.users.first();
-	if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send('Sorry, you don\'t have permission to delete or purge messages!')
-		.then(msg => msg.delete({
-			timeout: 10000
-		}));
-	const amount = !!parseInt(message.content.split(' ')[1]) ? parseInt(message.content.split(' ')[1]) : parseInt(message.content.split(' ')[2])
-	if (!amount) return message.channel.send('Specify an amount of messages to delete or purge!')
-		.then(msg => msg.delete({
-			timeout: 10000
-		}));
-	if (!amount && !user) return message.channel.send('Specify a user and amount, or just an amount, of messages to delete or purge!')
-		.then(msg => msg.delete({
-			timeout: 10000
-		}));
-	message.channel.fetchMessages({
-			limit: amount
-		, })
-		.then((messages) => {
-			if (user) {
-				const filterBy = user ? user.id : client.user.id;
-				messages = messages.filter(m => m.author.id === filterBy)
-					.array()
-					.slice(0, amount);
-			}
-			message.channel.bulkDelete(messages)
-		message.channel.send(`${amount} messages removed Permanently`)
-				.catch(error => console.log(error.stack));
-		});
-}
-	if(command == "magicify"){
-    ///change const to let?///
-	const annoyingmsg = args.join(" ");
-	    let reportEmbed = new Discord.RichEmbed()
-    .setDescription("Embedded message!")
-    .setColor("#15f153")
-    .addField("Message:", annoyingmsg)
-    .addField("Channel", message.channel)
-    .addField("Time", message.createdAt)
-    message.delete().catch(O_o=>{});
-  message.channel.send(reportEmbed);
-}
 	
-	if(command === "kick"){
+	
 
-    //!kick @daeshan cuz tht b was askin for it
-
-    let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-    if(!kUser) return message.channel.send("Can't find user!");
-    let kReason = args.join(" ").slice(22);
-    if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("No can do pal!");
-    if(kUser.hasPermission("MANAGE_MESSAGES")) return message.channel.send("That person can't be kicked!");
-
+	
+//nsfw
  
-
-    let kickChannel = message.guild.channels.find(`name`, "incidents");
-    if(!kickChannel) return message.channel.send("Can't find incidents channel.");
-
-    message.guild.member(kUser).kick(kReason);
-    kickChannel.send("kicked");
-
-    return;
-  }
+	
+	
+	
 /*
   if(command === "ban"){
     let bUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
@@ -251,48 +99,9 @@ let cmd;
 
 
 
-  if(command === "serverinfo"){
+ 
 
-    let sicon = message.guild.iconURL;
-    let serverembed = new Discord.RichEmbed()
-    .setDescription("Server Information")
-    .setColor("#15f153")
-    .setThumbnail(sicon)
-    .addField("Server Name", message.guild.name)
-    .addField("Created On", message.guild.createdAt)
-    .addField("You Joined", message.member.joinedAt)
-    .addField("Total Members", message.guild.memberCount);
-
-    return message.channel.send(serverembed);
-  }
-
-if(command === "fireworks"){
-	const magic = [
-		"https://media.giphy.com/media/IjmMzurYulKEw/giphy.gif",
-		"https://media1.giphy.com/media/26tOZ42Mg6pbTUPHW/giphy.gif",
-		"http://bestanimations.com/Holidays/Fireworks/fireworks/gold-fireworks-animated-gif.gif",
-		"https://media.giphy.com/media/peAFQfg7Ol6IE/giphy.gif",
-		"https://media.giphy.com/media/w5f56AhubQo8w/giphy.gif",
-		"http://bestanimations.com/Holidays/Fireworks/fireworks/ba-awesome-colorful-fireworks-animated-gif-image-s.gif",
-		"http://bestanimations.com/Holidays/Fireworks/fireworks/ba-blue-red-fireworks-colorful-pretty-gif-pic.gif",
-	]
-      const randomAnswer = magic[Math.floor(Math.random() * magic.length)];
-  message.channel.send(randomAnswer);
-}
-	
-  if(command === "botinfo"){
-
-    let bicon = client.user.displayAvatarURL;
-    let botembed = new Discord.RichEmbed()
-    .setDescription("Bot Information")
-    .setColor("#15f153")
-    .setThumbnail(bicon)
-    .addField("Bot Name", client.user.username)
-    .addField("Created On", client.user.createdAt);
-
-    return message.channel.send(botembed);
-  }
-
+ 
 
 
 
