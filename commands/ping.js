@@ -1,5 +1,5 @@
-module.exports.run = (client, message, args) => {
-  const m = message.channel.send("Ping?");
+module.exports.run = async (client, message, args) => {
+  const m = await message.channel.send("Ping?");
 const answers = [
  "**A porta potty in the Sajara Desert**",
       "**Utopia**",
