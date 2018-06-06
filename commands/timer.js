@@ -1,5 +1,5 @@
-
-module.exports.run = async (client, message, args) => {
+const ms = require("ms");
+module.exports.run = async (client, message, args, levels) => {
 
 let Timer = args[0];
 
