@@ -29,7 +29,7 @@ console.log(err)
 }
 }
 exports.conf = {
-  aliases: ['Report', 'Bug']
+  aliases: ['Report', 'report']
   };
   exports.help = {
   name: "Report", description: "This reports a bug to the developer of the Bot.", usage: ".report text"
