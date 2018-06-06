@@ -18,10 +18,10 @@ try {
         .end((err, res) => {
           if (err) {
             reject(err);
-            message.reply('There was an error while sending your bug report to Frogbot Support. Please try again later.');
+            message.reply('There was an error while sending your bug report to Daebot Support. Please try again later.');
           } else {
             resolve(res);
-            message.channel.send(`:white_check_mark: **${message.author.username}**, your bug report has successfully been submitted to Frogbot Support for review. Thank you!.`);
+            message.channel.send(`:white_check_mark: **${message.author.username}**, your bug report has successfully been submitted to Daebot Support for review. Thank you!.`);
           }
         });
     });
