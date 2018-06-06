@@ -1,8 +1,9 @@
+// This episode will be going over the Urbandictionary command, it also requires 2 packages
 const urban = require('relevant-urban'), // This is for fetching results
   Discord = require('discord.js'); // This is for forming embeds
 
 // We can call our command handler here
-exports.run = async (client, message, args, tools) => {
+module.exports.run = async (client, message, args, tools) => {
 
   // First, we need to verify that they wrote text
   if (!args[0]) return message.channel.send(`***Please specify some text!***`);
@@ -16,13 +17,13 @@ exports.run = async (client, message, args, tools) => {
 
   // Now, we can form the response embed
   const embed = new Discord.RichEmbed()
+    .setColor('RANDOM') // This sets a random color each time the response is sent
+    .setTitle(res.word) // The title now holds the word you fetched
+    .setUrl(res.urbanURL) // The title is now clickable, and leads to the urbandictionary page
     .setDescription(`**Definition:**\n*${res.definition}*\n\n**Example:**\n*${res.example}*`) // The description now holds the main response
-   .setColor('RANDOM') // This sets a random color each time the response is sent
-    .addTitle(res.word) // The title now holds the word you fetched
-     .addField('Author', res.author, true) // This adds an inline(by setting true) field, with the author
+    .addField('Author', res.author, true) // This adds an inline(by setting true) field, with the author
     .addField('Rating', `**\`Upvotes: ${res.thumbsUp} | Downvotes: ${res.thumbsDown}\`**`) // This adds an inline field, with the rating
-.setUrl(res.urbanURL) // The title is now clickable, and leads to the urbandictionary page
-    
+
   // There are also some optional fields(or fields that may be empty with a response)
   if (res.tags.length > 0 && res.tags.join(' ').length < 1024) {
     // This verifies that there are tags, and they dont exceed 1024 characters when joined together
