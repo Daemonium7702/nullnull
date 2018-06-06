@@ -1,5 +1,5 @@
 
-module.exports.run = async (client, message, args, level) => {
+module.exports.run = async (client, message, args) => {
 
 let Timer = args[0];
 
