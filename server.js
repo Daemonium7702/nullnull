@@ -8,6 +8,7 @@ const ms = require("ms");
 const fs = require("fs");
 const hastebin = require('hastebin-gen');
 const urban = require('relevant-urban');
+const math = require('mathjs');
 
 
 client.on("ready", () => { 
@@ -111,165 +112,15 @@ let cmd;
  
 /////////if(message.author.id === "350693449722232832") return;
 
-	if(command === "lyonsCipher"){
-
-message.channel.send("Now now. You are fairly close. but you've earned a hint. This cipher is quite the secret but has a portion in it that is a known cipher.");
-}
-	 if(command === "caesar1"){
-	const mappings = (function (object) {
-    let output = [];
-
-    for (let key in object) {
-        output.push({
-            regex: new RegExp(key, 'ig'),
-            replacement: object[key]
-        });
-    }
-
-    return output;
-})({
-    a: '\u0042',
-    b: '\u0043',
-    c: '\u0044',
-    d: '\u0045',
-    e: '\u0046',
-    f: '\u0047',
-    g: '\u0048',
-    h: '\u0049',
-    i: '\u004A',
-    j: '\u004B',
-    k: '\u004C',
-    l: '\u004D',
-    m: '\u004E',
-    n: '\u004F',
-    o: '\u0050',
-    p: '\u0051',
-    q: '\u0052',
-    r: '\u0053',
-    s: '\u0054',
-    t: '\u0055',
-    u: '\u0056',
-    v: '\u0057',
-    w: '\u0058',
-    x: '\u0059',
-    y: '\u005A',
-    z: '\u0041'
-});
-
-    let output = args.join(' ');
-    mappings.forEach(replacer => output = output.replace(replacer.regex, replacer.replacement));
-
-    message.delete();
-    message.channel.send(output);
-}
-	if(command == "classdismissed"){
-		message.channel.send("Class Is Over!");
-	}
-	
-  if(command == "morseslyon") {
-message.delete().catch(O_o=>{}); 
-    const oldMessage = args.join(" ");    
-    const a = oldMessage.replace(/z/g, "//////");
-     const b = a.replace(/y/g, "/////.....");
-     const c = b.replace(/x/g, "/////....");
-     const  d = c.replace(/w/g, "/////...");
-     const  e = d.replace(/v/g, "/////..");
-     const f = e.replace(/u/g, "/////.");
-     const  g = f.replace(/t/g, "////.....");
-     const  h = g.replace(/s/g, "////....");
-       const i = h.replace(/r/g, "////...");
-     const  j = i.replace(/q/g, "////..");
-     const  k = j.replace(/p/g, "////.");
-     const  l = k.replace(/o/g, "///.....");
-    const m = l.replace(/n/g, "///....");
-    const n = m.replace(/m/g, "///...");
-    const  o = n.replace(/l/g, "///..");
-    const  p = o.replace(/k/g, "///.");
-    const q = p.replace(/j/g, "//.....");
-    const  r = q.replace(/i/g, "//....");
-    const s = r.replace(/h/g, "//...");
-    const  t = s.replace(/g/g, "//..");
-    const  u = t.replace(/f/g, "//.");
-    const  v = u.replace(/e/g, "/.....");
-    const  w = v.replace(/d/g, "/....");
-    const x = w.replace(/c/g, "/...");
-    const y = x.replace(/b/g, "/..");
-    const z = y.replace(/a/g, "/.");
-	 const zero = z.replace(/0/g, ".");
-	  const one = zero.replace(/1/g, "./");
-	  const two = one.replace(/2/g, ".//");
-	  const three = two.replace(/3/g, ".///");
-	  const four = three.replace(/4/g, ".////");
-	  const five = four.replace(/5/g, "../");
-	  const six = five.replace(/6/g, "..//");
-	  const seven = six.replace(/7/g, "..///");
-	  const eight = seven.replace(/8/g, "..////");
-	  const nine = eight.replace(/9/g, "../////");
-    const space = nine.replace(/ /g, "X");
-    message.channel.send(space);
-  }
-         if(command === "role"){
-		 if (args[0] == "help") {
-    message.reply("Usage: !addrole <user> <role>");
-    return;
-  }
-  let rMember = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
-  if (!rMember) return errors.cantfindUser(message.channel);
-  let role = args.join(" ").slice(22);
-  if (!role) return message.reply("Specify a role!");
-  let gRole = message.guild.roles.find(`name`, role);
-  if (!gRole) return message.reply("Couldn't find that role.");
-
-  if (rMember.roles.has(gRole.id)) return message.reply("They already have that role.");
-  await (rMember.addRole(gRole.id));
-
-  try {
-    await rMember.send(`role added `);
-	  await message.channel.send(gRole.id `was added`);
-  } catch (e) {
-    console.log(e.stack);
-
-  }
-}
 if(command === "joinclass"){
 		message.channel.reply({embed: { color: 9198799, author: { name: client.user.username, icon_url: client.user.avatarURL }
                               , title: "Thank You!", description: "You have joined the class", 
                               fields: [{ name: "Topic:", value: "Today we will be doing SQL injection." }],
 				        timestamp: new Date(), footer: { icon_url: client.user.avatarURL, text: "© DeathBot" }  } });
 				       }
-	if(command === "reverse"){
-		  if (args.length < 1) {
-        throw 'You must input text to be reversed!';
-    }
-    message.channel.send(args.join(' ').split('').reverse().join(''));
-};
 	
 	//////////////////////////ASCII///////////////
-	const ascii = `
-\`\`\`
-  _______   _________    _________   ,        ,
- /              |       /            |        |
-|               |      |             |        |
-|               |      |             |        |
- \\_____,        |      |  _______,   |________|
-        \\       |      |         |   |        |
-         |      |      |         |   |        |
-         |      |      |         |   |        |
-  ______/   ____|____   \\________|   |        |
-\u200b
-\`\`\`
-`;
-
-if(command === "sigh") {
-    message.channel.send(ascii);
-};
-///////////////////ASCII/////////////////////
-		if(command === "space"){
-message.delete().catch(O_o=>{});
-   if (args.length < 1) {
-        throw 'You must provide text to space out!';
-    }
-
+	
     let amount = 2;
 
     if (!isNaN(args[0])) {
@@ -375,100 +226,8 @@ exports.run = (client, message, args) => {
 		       const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
     message.channel.send(randomAnswer); 
   }
-				       if(command === "help"){
-message.channel.send({embed: { color: 9198799, author: { name: client.user.username, icon_url: client.user.avatarURL }
-                              , title: "CommandList", description: "Currenly, I only have a few commands, and will get more soon.", 
-                              fields: [{ name:"morse", value: "Converts a string to morse code"},
-				       {name: "o", value: "replaces all values in a string with an 'o;"},
+				 
 
-				       {name: "report", value: "reports user to admins in the server"},
-                                        { name:  "`_ _ _ _ _ _ _ _ _ _`", value: "This is a secret command"}, 
-                                       { name: "`_ _ _ _ 1`", value: "This is also a secret command"}],
-                              timestamp: new Date(), footer: { icon_url: client.user.avatarURL, text: "© DeathBot" } } });
-					       
-					       message.channel.send({embed: { color: 4744744, author: {name: client.user.username, icon_url: client.user.avatarURL }
-                    , title: "Fun!:", description: "Commands",
-                              fields: [{name: "alert", value: "Alerts the owner of an issue."},
-				       { name: "Say", value: "This command is used as such `.say {word}`" }, 
-                                       { name: "tts", value: "sends a text to speech message"},
-                                       { name: "ping", value: "You can ping the server, and return api, and normal latency values. Usage:`.ping`" },
-				       
-				      { name: "line", value: "Makes a nice squiggly line"},
-                                       
-                                       { name:"meme", value: "sends a random meme"},
-                                       { name:"ss", value: "compete with other users in different servers to set my bots Status"},
-                                        {name: "lovec", value: "calculates the probability of love between to things. `Usage: .lovec @mention+@mention`"},
-                                       {name: "dice", value: "rolls some dice"},
-                                       
-                                      {name: "fusrodah", value: "makes a fus ro dah meme"},
-				       {name: "sigh", value: "sighs"},
-				       {name: "shrink", value: "makes stuff tiny"},
-				       {name: "js", value: "Shows you some JavaScript code"},
-                                       {name: "8Ball", value: "It's Basketball..... what do you expect me to say?"},
-				       {name: "magicify", value:"Sends your message.... but ***embeded***"},
-				    
-				       {name: "fireworks", value: "shoots fireworks, requested by eitanwass#0607"}],
-				timestamp: new Date(), footer: { icon_url: client.user.avatarURL, text: "© DeathBot" } } });
-
-					       
-					        message.channel.send({embed: { color: 256744, author: {name: client.user.username, icon_url: client.user.avatarURL }
-                    , title: "Gifs:", description: "Commands",
-                              fields: [{name: "bomb", value: "Explodes"},
-				       {name: "forcecrush", value: "random crush gif"},
-                                       { name:"rickroll", value: "Do I really have to explain this?"},
-                                       ],
-				timestamp: new Date(), footer: { icon_url: client.user.avatarURL, text: "© DeathBot" } } });
-
-				     
-					       message.channel.send({embed: { color: 424344, author: {name: client.user.username, icon_url: client.user.avatarURL }
-                    , title: "Moderation:", description: "Commands",
-                              fields: [{name:"Purge", value: "Deletes a specified number of messages (***UP TO 100***)"},
-				        { name: "kick", value: "Kicks a user. usage:`.kick {@mention}`" }, 
-                                       { name:  "ban", value: "***NOT WORKING ATM*** This will ban a member from your server. Usage:`.ban {@mention}`"},
-                                       {name: "reverse",value: "it reverses text"},
-				       { name: "inv", value: "This invites you to both the bt, and the server!"},
-                                        {name: "botinfo", value: "displays info on the bot"},
-				       {name: "serverinfo", value: "displays basic info on the server"}
-				     
-                                       ],
-				timestamp: new Date(), footer: { icon_url: client.user.avatarURL, text: "© DeathBot" } } });
-
-  message.channel.send({embed: { color: 475744, author: {name: client.user.username, icon_url: client.user.avatarURL }
-                    , title: "NSFW:", description: "Commands",
-                              fields: [{name:"ass", value: "nsfw ass"},
-				       {name:"hentai", value: "nsfw Hentai"},
-				       {name:"nsfw", value: "Sends NSFW pictures (only in NSFW channels)"}],
-				timestamp: new Date(), footer: { icon_url: client.user.avatarURL, text: "© DeathBot" } } });
-
-				       }
-	
-	if(command === "bomb"){
-			const answers= [
-				"https://giphy.com/gifs/XDLJpjzyw76Sc",
-				"https://giphy.com/gifs/cartoon-explosion-nn2xFuRUFqXNS",
-				"https://media.giphy.com/media/Qw4X3FkHjXDWr9p3bIk/giphy.gif",
-				"https://media3.giphy.com/media/3o85xoHuw9GowpnyUg/giphy.gif",
-				"https://i.gifer.com/298c.gif",
-				"https://thumbs.gfycat.com/LoathsomeReliableChicken-size_restricted.gif",
-				"https://media0.giphy.com/media/l3vR1tookIhM8nZJu/giphy.gif",
-				"http://2.bp.blogspot.com/-xCrGhX8sJRQ/VAJPyz0ct3I/AAAAAAAAD7I/rWfaP-o7SUQ/s1600/time%2Bbomb.gif",
-				"https://cdn.dribbble.com/users/149082/screenshots/1041104/bomb-explosion.gif",
-				"https://mir-s3-cdn-cf.behance.net/project_modules/disp/21f78d23126231.5604767a04f53.gif",
-				"https://thumbs.gfycat.com/CheapSeriousAfricanbushviper-max-1mb.gif",
-				"https://i.gifer.com/9pHv.gif",
-				"https://media.giphy.com/media/l0IxYWDltdHEqujnO/giphy.gif",
-				"http://www.zombietime.com/mohammed_image_archive/derivative_works/tb.gif",
-				"https://media3.giphy.com/media/3oEjHKPPlmQlGXfeLK/giphy.gif",
-				"https://i.gifer.com/DzW.gif",
-				"https://media.giphy.com/media/QAHeA9pX29lLi/giphy.gif",
-				"https://media.giphy.com/media/IlNHcvyO6JCYE/giphy.gif",
-				"https://uploads.disquscdn.com/images/230b7c1cf5db1cc3a67729fd545ecec4be5401245f172e3c6a0eefdd67e2bd22.gif",
-				
-				]
-		  const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
-		message.channel.send(randomAnswer);
-				
-	}
 	if(command === "js"){
 			const answers= [
 				"https://vignette.wikia.nocookie.net/fnaf-sister-location/images/c/c8/Ballora_Jumpscare.gif/revision/latest/scale-to-width-down/640?cb=20161013031551",
