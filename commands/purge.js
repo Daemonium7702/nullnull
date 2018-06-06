@@ -24,7 +24,7 @@ module.exports.run = async (client, message, args, level) => {
 					.slice(0, amount);
 			}
 			message.channel.bulkDelete(messages)
-		message.channel.send(`${amount} messages removed Permanently by ${message.author.id}`)
+		message.channel.send(`${amount} messages removed Permanently by <@${message.author.id}>`)
 				.catch(error => console.log(error.stack));
 		});
 }
