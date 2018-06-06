@@ -7,7 +7,7 @@ message.channel.send({embed: { color: 9198799, author: { name: client.user.usern
 				       {name: "report", value: "reports user to admins in the server"},
                                         { name:  "`_ _ _ _ _ _ _ _ _ _`", value: "This is a secret command"}, 
                                        { name: "`_ _ _ _ 1`", value: "This is also a secret command"}],
-                              timestamp: nemodule.exports.run = (client, message, args) => {w Date(), footer: { icon_url: client.user.avatarURL, text: "© DeathBot" } } });
+                              timestamp: new Date(), footer: { icon_url: client.user.avatarURL, text: "© DeathBot" } } });
 					       
 					       message.channel.send({embed: { color: 4744744, author: {name: client.user.username, icon_url: client.user.avatarURL }
                     , title: "Fun!:", description: "Commands",
@@ -64,6 +64,7 @@ message.channel.send({embed: { color: 9198799, author: { name: client.user.usern
 				timestamp: new Date(), footer: { icon_url: client.user.avatarURL, text: "© DeathBot" } } });
 
 				       }
+	
                 exports.conf = {
   aliases: ['Help', 'help']
   };
