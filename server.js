@@ -7,6 +7,7 @@ const superagent = require("superagent");
 const ms = require("ms");
 const fs = require("fs");
 const hastebin = require('hastebin-gen');
+const urban = require('relevant-urban');
 
 
 client.on("ready", () => { 
