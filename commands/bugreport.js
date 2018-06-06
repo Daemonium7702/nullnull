@@ -1,4 +1,4 @@
-onst superagent = require('superagent');
+const superagent = require('superagent');
 module.exports.run = async (client, message, args) => {
 
 try {
