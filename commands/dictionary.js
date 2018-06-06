@@ -1,5 +1,5 @@
 const urban = require('relevant-urban'), // This is for fetching results
-  Discord = require('discord.js'); // This is for forming embeds
+  const Discord = require('discord.js'); // This is for forming embeds
 
 // We can call our command handler here
 exports.run = async (client, message, args, tools) => {
