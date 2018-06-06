@@ -16,12 +16,12 @@ exports.run = async (client, message, args, tools) => {
 
   // Now, we can form the response embed
   const embed = new Discord.RichEmbed()
-    .addDescription(`**Definition:**\n*${res.definition}*\n\n**Example:**\n*${res.example}*`) // The description now holds the main response
-   .addColor('RANDOM') // This sets a random color each time the response is sent
+    .setDescription(`**Definition:**\n*${res.definition}*\n\n**Example:**\n*${res.example}*`) // The description now holds the main response
+   .setColor('RANDOM') // This sets a random color each time the response is sent
     .addTitle(res.word) // The title now holds the word you fetched
      .addField('Author', res.author, true) // This adds an inline(by setting true) field, with the author
     .addField('Rating', `**\`Upvotes: ${res.thumbsUp} | Downvotes: ${res.thumbsDown}\`**`) // This adds an inline field, with the rating
-.addUrl(res.urbanURL) // The title is now clickable, and leads to the urbandictionary page
+.setUrl(res.urbanURL) // The title is now clickable, and leads to the urbandictionary page
     
   // There are also some optional fields(or fields that may be empty with a response)
   if (res.tags.length > 0 && res.tags.join(' ').length < 1024) {
