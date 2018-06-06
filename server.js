@@ -6,6 +6,7 @@ const randomPuppy = require('random-puppy');
 const superagent = require("superagent");
 const ms = require("ms");
 const fs = require("fs");
+const hastebin = require('hastebin-gen');
 
 
 client.on("ready", () => { 
