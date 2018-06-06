@@ -18,11 +18,7 @@ const ascii = `
     message.channel.send(ascii);
 };
 ///////////////////ASCII/////////////////////
-		if(command === "space"){
-message.delete().catch(O_o=>{});
-   if (args.length < 1) {
-        throw 'You must provide text to space out!';
-    }
+		
   exports.conf = {
   aliases: ['Sigh', 'sigh']
   };
