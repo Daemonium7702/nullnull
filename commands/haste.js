@@ -1,4 +1,4 @@
-nst hastebin = require('hastebin-gen');
+const hastebin = require('hastebin-gen');
 const Discord = require('discord.js')
 exports.run = (client, message, args, tools) => {
   hastebin(args.join(' '), "js").then(r => {
