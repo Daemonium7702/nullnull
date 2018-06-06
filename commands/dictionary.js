@@ -15,7 +15,7 @@ exports.run = async (client, message, args, tools) => {
   });
 
   // Now, we can form the response embed
-  const embed = new Discord.MessageEmbed()
+  const embed = new Discord.RichEmbed()
     .setColor('RANDOM') // This sets a random color each time the response is sent
     .setTitle(res.word) // The title now holds the word you fetched
     .setUrl(res.urbanURL) // The title is now clickable, and leads to the urbandictionary page
