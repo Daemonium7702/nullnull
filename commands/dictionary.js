@@ -10,7 +10,7 @@ module.exports.run = async (client, message, args, tools) => {
    const embed = new Discord.RichEmbed()
     .setColor('RANDOM') 
     .setTitle(res.word) 
-    .setUrl(res.urbanURL)
+    .setURL(res.urbanURL)
     .setDescription(`**Definition:**\n*${res.definition}*\n\n**Example:**\n*${res.example}*`)
     .addField('Author', res.author, true)
     .addField('Rating', `**\`Upvotes: ${res.thumbsUp} | Downvotes: ${res.thumbsDown}\`**`) 
