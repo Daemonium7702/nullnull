@@ -21,7 +21,7 @@ exports.run = (bot, message, args, command) => {
     const embed = new Discord.RichEmbed()
         .setThumbnail("https://images-na.ssl-images-amazon.com/images/I/31QYTepQomL.png")
         .setColor('RANDOM')
-        .addField("**Question:**", question, true)
+        .addField("**Question:**", ````${question}````, true)
         .addField("**Answer:**", answer)
 
     message.channel.send({
