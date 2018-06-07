@@ -1,5 +1,6 @@
 module.exports.run = (client, message, args) => {
-message.channel.send({embed: { color: 9198799, author: { name: client.user.username, icon_url: client.user.avatarURL }
+	message.channel.send('I have Private Messaged you with a list of commands.');
+message.author.send({embed: { color: 9198799, author: { name: client.user.username, icon_url: client.user.avatarURL }
                               , title: "CommandList", description: "Currenly, I only have a few commands, and will get more soon.", 
                               fields: [{ name:"morse", value: "Converts a string to morse code"},
 				       {name: "o", value: "replaces all values in a string with an 'o;"},
@@ -61,7 +62,18 @@ message.channel.send({embed: { color: 9198799, author: { name: client.user.usern
 				       {name:"hentai", value: "nsfw Hentai"},
 				       {name:"nsfw", value: "Sends NSFW pictures (only in NSFW channels)"}],
 				timestamp: new Date(), footer: { icon_url: client.user.avatarURL, text: "© DeathBot" } } });
-
+	
+  message.channel.send({embed: { color: 451754, author: {name: client.user.username, icon_url: client.user.avatarURL }
+                    , title: "Music:", description: "Commands",
+                              fields: [{name:"play", value: "Plays Music"},
+				       {name:"skip", value: "skips a song"},
+				       {name:"np", value: "shows the song currently playing"},
+				       {name:"pause", value: "pauses the music."},
+				       {name: "resume", value: "resumes paused music"},
+				       {name: "stop", value: "turns of the music"},
+				       {name: "volume", value: "Displays volume"}
+				      ],
+				timestamp: new Date(), footer: { icon_url: client.user.avatarURL, text: "© DeathBot" } } });
 				       }
 	
                 exports.conf = {
