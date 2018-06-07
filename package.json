@@ -23,7 +23,8 @@
     "mathjs": "^1.0.0",
     "memejs": "^1.0.7",
     "ytdl-core": "^0.20.4",
-    "simple-youtube-api": "^5.0.2"
+    "simple-youtube-api": "^5.0.2",
+    "ffmpeg": "^0.0.4"
   },
   "engines": {
     "node": "8.x"
