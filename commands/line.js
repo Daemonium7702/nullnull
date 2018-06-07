@@ -1,8 +1,9 @@
 
 module.exports.run = async (client, message, args) => {
-
 message.channel.send("`~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`");
-  exports.conf = {
+  
+}
+exports.conf = {
   aliases: ['Line', 'line']
   };
   exports.help = {
