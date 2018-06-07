@@ -9,6 +9,10 @@ const fs = require("fs");
 const hastebin = require('hastebin-gen');
 const urban = require('relevant-urban');
 const math = require('mathjs');
+const cheerio = require('cheerio');
+const snekfetch = require('snekfetch');
+const querystring = require('querystring')
+
 
 
 client.on("ready", () => { 
