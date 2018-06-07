@@ -12,6 +12,7 @@ const math = require('mathjs');
 const cheerio = require('cheerio');
 const snekfetch = require('snekfetch');
 const querystring = require('querystring');
+const translate = require('google-translate-api')
 
 
 
