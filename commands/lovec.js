@@ -1,4 +1,4 @@
-  if(command === "lovec"){
+module.exports.run = async (client, message, args) => {
     const mss = args.join(" ");
     const answers = [
       "10%, no way man",
