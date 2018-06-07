@@ -1,5 +1,6 @@
-if(command === "rickroll"){
-  const answers = [
+
+module.exports.run = async (client, message, args) => {
+   const answers = [
 "https://www.youtube.com/watch?v=bi5pOo_Z2GM",
      "https://www.youtube.com/watch?v=Uj1ykZWtPYI",
      "https://www.youtube.com/watch?v=xfr64zoBTAQ",
