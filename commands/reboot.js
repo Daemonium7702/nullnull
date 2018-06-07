@@ -10,6 +10,8 @@ module.exports.run = async (client, message, args) => {
                     .then(() => client.login("NDQzNzIwMDEyMDk2NzMzMTg0.DfSTnA.EPXnlayZ7CqAqkbQOgdHcXdRZ-c"));
                 message.channel.send("``Ayerety is sucessfully restarted!``")
             }
+}
+}
             exports.conf = {
   aliases: ['2noyl', '2Noyl']
   };
