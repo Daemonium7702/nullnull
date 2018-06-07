@@ -26,7 +26,11 @@
     "simple-youtube-api": "^5.0.2",
     "ffmpeg": "^0.0.4",
     "ffmpeg-wrapper": "^1.0.0",
-    "node-opus": "^0.3.0"
+    "node-opus": "^0.3.0",
+    "cheerio": "^1.0.0-rc.2",
+     "snekfetch": "^4.0.2",
+	"querystring": "^0.2.0"
+
   },
   "engines": {
     "node": "8.x"
