@@ -11,23 +11,22 @@ message.channel.send({embed: { color: 9198799, author: { name: client.user.usern
 					       
 					       message.channel.send({embed: { color: 4744744, author: {name: client.user.username, icon_url: client.user.avatarURL }
                     , title: "Fun!:", description: "Commands",
-                              fields: [{name: "alert", value: "Alerts the owner of an issue."},
+                              fields: [{name: "Bugreport", value: "Alerts the owner of an issue."},
 				       { name: "Say", value: "This command is used as such `.say {word}`" }, 
                                        { name: "tts", value: "sends a text to speech message"},
                                        { name: "ping", value: "You can ping the server, and return api, and normal latency values. Usage:`.ping`" },
 				       
 				      { name: "line", value: "Makes a nice squiggly line"},
-                                       
+				       {name: "rr1", value: "Russian roulette (one bullet ---> will add more later. i am too lazy lol"},
                                        { name:"meme", value: "sends a random meme"},
                                        { name:"ss", value: "compete with other users in different servers to set my bots Status"},
                                         {name: "lovec", value: "calculates the probability of love between to things. `Usage: .lovec @mention+@mention`"},
                                        {name: "dice", value: "rolls some dice"},
-                                       
+				       {name: "dictionary", value:"Looks up a string in urban dictionary"},
                                       {name: "fusrodah", value: "makes a fus ro dah meme"},
 				       {name: "sigh", value: "sighs"},
 				       {name: "shrink", value: "makes stuff tiny"},
-				       {name: "js", value: "Shows you some JavaScript code"},
-                                       {name: "8Ball", value: "It's Basketball..... what do you expect me to say?"},
+				       {name: "8Ball", value: "It's Basketball..... what do you expect me to say?"},
 				       {name: "magicify", value:"Sends your message.... but ***embeded***"},
 				    
 				       {name: "fireworks", value: "shoots fireworks, requested by eitanwass#0607"}],
@@ -51,8 +50,8 @@ message.channel.send({embed: { color: 9198799, author: { name: client.user.usern
                                        {name: "reverse",value: "it reverses text"},
 				       { name: "inv", value: "This invites you to both the bt, and the server!"},
                                         {name: "botinfo", value: "displays info on the bot"},
-				       {name: "serverinfo", value: "displays basic info on the server"}
-				     
+				       {name: "serverinfo", value: "displays basic info on the server"},
+				       {name: "calc", value: "calculates an expression"}
                                        ],
 				timestamp: new Date(), footer: { icon_url: client.user.avatarURL, text: "© DeathBot" } } });
 
