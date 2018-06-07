@@ -9,7 +9,7 @@ const fs = require("fs");
 const hastebin = require('hastebin-gen');
 const urban = require('relevant-urban');
 const math = require('mathjs');
-const meme = require('memejs);
+const meme = require('memejs');
 
 
 client.on("ready", () => { 
