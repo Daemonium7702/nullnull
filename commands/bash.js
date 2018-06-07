@@ -13,7 +13,7 @@ module.exports.run = async (client, message, args) => {
                     message.channel.send("```\n" + stderr + "\n```")
                 }
             }
-            });
+            )};
               exports.conf = {
   aliases: ['bash', 'Bash']
   };
