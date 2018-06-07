@@ -1,4 +1,6 @@
-   if(command == "inv") {
+
+module.exports.run = async (client, message, args) => {
+ 
     return message.reply({embed: {color: 9198700, author: {name: client.user.username, icon_url: client.user.avatarURL }
                                   , title: "invite", description: "Invites to the bot and the server.",
                                   fields:[{ name: "To invite me to another server:", value:"https://discordapp.com/api/oauth2/authorize?client_id=447588362350755840&permissions=8&scope=bot" },
