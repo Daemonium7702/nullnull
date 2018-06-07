@@ -1,4 +1,4 @@
-  if(command === "forcecrush"){
+  module.exports.run = async (client, message, args) => {
    const answers = [
        "https://media.giphy.com/media/fJcYJWdPPPNQI/giphy.gif",
        "https://i.imgur.com/bMBpsmx.gif",
