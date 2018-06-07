@@ -22,7 +22,7 @@
     "relevant-urban": "^2.0.0",
     "mathjs": "^1.0.0",
     "memejs": "^1.0.7",
-    "ytpl": "^0.1.11",
+    "ytdl-core": "^0.20.4",
     "simple-youtube-api": "^5.0.2"
   },
   "engines": {
