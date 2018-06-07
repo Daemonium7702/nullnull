@@ -10,7 +10,7 @@ message.author.send({embed: { color: 9198799, author: { name: client.user.userna
                                        { name: "`_ _ _ _ 1`", value: "This is also a secret command"}],
                               timestamp: new Date(), footer: { icon_url: client.user.avatarURL, text: "© DeathBot" } } });
 					       
-					       message.channel.send({embed: { color: 4744744, author: {name: client.user.username, icon_url: client.user.avatarURL }
+					       message.author.send({embed: { color: 4744744, author: {name: client.user.username, icon_url: client.user.avatarURL }
                     , title: "Fun!:", description: "Commands",
                               fields: [{name: "Bugreport", value: "Alerts the owner of an issue."},
 				       { name: "Say", value: "This command is used as such `.say {word}`" }, 
@@ -34,7 +34,7 @@ message.author.send({embed: { color: 9198799, author: { name: client.user.userna
 				timestamp: new Date(), footer: { icon_url: client.user.avatarURL, text: "© DeathBot" } } });
 
 					       
-					        message.channel.send({embed: { color: 256744, author: {name: client.user.username, icon_url: client.user.avatarURL }
+					        message.author.send({embed: { color: 256744, author: {name: client.user.username, icon_url: client.user.avatarURL }
                     , title: "Gifs:", description: "Commands",
                               fields: [{name: "bomb", value: "Explodes"},
 				       {name: "forcecrush", value: "random crush gif"},
@@ -43,7 +43,7 @@ message.author.send({embed: { color: 9198799, author: { name: client.user.userna
 				timestamp: new Date(), footer: { icon_url: client.user.avatarURL, text: "© DeathBot" } } });
 
 				     
-					       message.channel.send({embed: { color: 424344, author: {name: client.user.username, icon_url: client.user.avatarURL }
+					       message.author.send({embed: { color: 424344, author: {name: client.user.username, icon_url: client.user.avatarURL }
                     , title: "Moderation:", description: "Commands",
                               fields: [{name:"Purge", value: "Deletes a specified number of messages (***UP TO 100***)"},
 				        { name: "kick", value: "Kicks a user. usage:`.kick {@mention}`" }, 
@@ -56,14 +56,14 @@ message.author.send({embed: { color: 9198799, author: { name: client.user.userna
                                        ],
 				timestamp: new Date(), footer: { icon_url: client.user.avatarURL, text: "© DeathBot" } } });
 
-  message.channel.send({embed: { color: 475744, author: {name: client.user.username, icon_url: client.user.avatarURL }
+  message.author.send({embed: { color: 475744, author: {name: client.user.username, icon_url: client.user.avatarURL }
                     , title: "NSFW:", description: "Commands",
                               fields: [{name:"ass", value: "nsfw ass"},
 				       {name:"hentai", value: "nsfw Hentai"},
 				       {name:"nsfw", value: "Sends NSFW pictures (only in NSFW channels)"}],
 				timestamp: new Date(), footer: { icon_url: client.user.avatarURL, text: "© DeathBot" } } });
 	
-  message.channel.send({embed: { color: 451754, author: {name: client.user.username, icon_url: client.user.avatarURL }
+  message.author.send({embed: { color: 451754, author: {name: client.user.username, icon_url: client.user.avatarURL }
                     , title: "Music:", description: "Commands",
                               fields: [{name:"play", value: "Plays Music"},
 				       {name:"skip", value: "skips a song"},
