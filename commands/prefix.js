@@ -12,6 +12,7 @@
 			message2 = "```";
 		}
 	}
+	};
 	message2 += "```";
 	message.channel.send(message2);
   exports.conf = {
