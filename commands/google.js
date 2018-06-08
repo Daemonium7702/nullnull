@@ -1,39 +1,22 @@
-const cheerio = require('cheerio'),
-      snekfetch = require('snekfetch'),
-      querystring = require('querystring');
-
+var GoogleSearch = require('google-search');
 module.exports.run = (client, message, args) => {
-// The modules we are using are cheerio, snekfetch, and querystring.
 
-// Depending on your command framework (or if you use one), it doesn't have to
-// edit messages so you can rework it to fit your needs. Again, this doesn't have
-// to be async if you don't care about message editing.
-async function googleCommand(msg, args) {
+var googleSearch = new GoogleSearch({
+  key: 'AIzaSyAMCG9UowW_qxd5p97KQHarUl5wzAYSFYs',
+  cx: '008530651077224882035:auhfoaqdh-o'
+});
 
-   // These are our two variables. One of them creates a message while we preform a search,
-   // the other generates a URL for our crawler.
-   let searchMessage = await message.reply('Searching... Sec.');
-   let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(msg.content)}`;
-
-   // We will now use snekfetch to crawl Google.com. Snekfetch uses promises so we will
-   // utilize that for our try/catch block.
-   return snekfetch.get(searchUrl).then((result) => {
-
-      // Cheerio lets us parse the HTML on our google result to grab the URL.
-      let $ = cheerio.load(result.text);
-
-      // This is allowing us to grab the URL from within the instance of the page (HTML)
-      let googleData = $('.r').first().find('a').first().attr('href');
-
-      // Now that we have our data from Google, we can send it to the channel.
-      googleData = querystring.parse(googleData.replace('/url?', ''));
-      searchMessage.edit(`Result found!\n${googleData.q}`);
-
-  // If no results are found, we catch it and return 'No results are found!'
-  }).catch((err) => {
-     searchMessage.edit('No results found!');
-  });
-} 
+googleSearch.build({
+  q: "",
+  start: 5,
+  fileType: "pdf",
+  gl: "tr", //geolocation,
+  lr: "lang_tr",
+  num: 10, // Number of search results to return between 1 and 10, inclusive
+  siteSearch: "google.com" // Restricts results to URLs from a specified site
+}, function(error, response) {
+ message.channel.send(response);
+});
 }
   exports.conf = {
   aliases: ['Google', 'google']
