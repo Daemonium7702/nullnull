@@ -1,4 +1,4 @@
-var GoogleSearch = require('google-search');
+const GoogleSearch = require('google-search');
 module.exports.run = (client, message, args) => {
 console.log(' test');
 var googleSearch = new GoogleSearch({
