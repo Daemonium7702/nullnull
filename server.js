@@ -14,7 +14,9 @@ const snekfetch = require('snekfetch');
 const querystring = require('querystring');
 const translate = require('google-translate-api');
 const GoogleSearch = require('google-search');
-const google = require('google')
+const google = require('google');
+const profanities = require('profanities');
+
 
 
 
@@ -41,6 +43,7 @@ client.on('guildMemberAdd', member => {
   // Send the message, mentioning the member
   channel.send(` ${member}, Has joined the Fray... Poor Person`);
 });
+
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 
@@ -64,6 +67,12 @@ fs.readdir('./commands/', (err, files) => {
 	});
 });
 client.on("message", async message => {
+	
+	if(message.content.includes('fuck'||'bitch'||'bastard'||'nigger'||'niggers'||'fuckers'||'shit'||'crap'||'negro'||'dipshit'||'motherfucker'||'snickersnick'||'nikk')){
+		&& if(guild.id = "329921522711920652"){
+			return}
+		if(message.content.toUppercase == ('fuck'||'bitch'||'bastard'||'nigger'||'niggers'||'fuckers'||'shit'||'crap'||'negro'||'dipshit'||'motherfucker'||'snickersnick'||'nikk')){
+	message.delete()
   if(message.author.bot) return;
   if(message.content.indexOf(config.prefix) !== 0) return;
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
