@@ -13,7 +13,9 @@ const cheerio = require('cheerio');
 const snekfetch = require('snekfetch');
 const querystring = require('querystring');
 const translate = require('google-translate-api');
-const GoogleSearch = require('google-search')
+const GoogleSearch = require('google-search');
+const google = require('google')
+
 
 
 
