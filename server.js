@@ -67,7 +67,7 @@ fs.readdir('./commands/', (err, files) => {
 	});
 });
 client.on("message", async message => {
-    if(Guild.id('9999999999')){
+    if(message.guild.id = '9999999999'){
        return;
        }else{
     
