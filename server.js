@@ -67,7 +67,7 @@ fs.readdir('./commands/', (err, files) => {
 	});
 });
 client.on("message", async message => {
-    if(message.guild.id('9999999999')){
+    if(Guild.id('9999999999')){
        return;
        }else{
     
@@ -79,6 +79,8 @@ message.delete()
 }
 }
 });
+
+
 client.on("message", async message => {
   if(message.author.bot) return;
   if(message.content.indexOf(config.prefix) !== 0) return;
