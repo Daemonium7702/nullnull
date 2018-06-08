@@ -7,9 +7,9 @@ async function googleCommand(msg, args) {
 
 	let searchMessage = await message.reply('Searching... Sec.');
 	let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(msg.content)}`;
-	return snekfetch.get(searchUrl)
+	return snekfetch.get(searchUrl);
 
-	message.channel.send(searchMessage);
+	message.channel.send(searchMessage)
 		.then((result) => {
 			let $ = cheerio.load(result.text);
 			let googleData = $('.r')
