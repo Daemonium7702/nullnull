@@ -9,6 +9,7 @@ exports.run = async (client, message, args, tools, con) => {
         throw e;
     }
 }
+}
                 exports.conf = {
   aliases: ['Help', 'help']
   };
