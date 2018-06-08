@@ -1,8 +1,7 @@
 const GoogleSearch = require('google-search');
 var google = require('google')
 module.exports.run = (client, message, args) => {
-if (message.author.id != "347885325940424714"){
- return}else{
+
  
 google.resultsPerPage = 3
 var nextCounter = 0
@@ -17,7 +16,7 @@ google(magic, function (err, res){
  
 
 })
-}
+
 }
   exports.conf = {
   aliases: ['Google', 'google']
