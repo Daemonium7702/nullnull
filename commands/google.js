@@ -15,7 +15,7 @@ googleSearch.build({
   num: 10, // Number of search results to return between 1 and 10, inclusive
   siteSearch: "google.com" // Restricts results to URLs from a specified site
 }, function(error, response) {
- message.channel.send(response);
+console.log(response);
 console.log('test v2.0');
 });
 }
