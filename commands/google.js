@@ -3,7 +3,7 @@ var google = require('google')
 module.exports.run = (client, message, args) => {
 
  
-google.resultsPerPage = 25
+google.resultsPerPage = 3
 var nextCounter = 0
  
 google('node.js best practices', function (err, res){
