@@ -16,7 +16,7 @@ async function googleCommand(msg, args) {
 				.attr('href');
 			googleData = querystring.parse(googleData.replace('/url?', ''));
 			searchMessage.edit(`Result found!\n${googleData.q}`);
-		});
+		})
   
 		.catch((err) => {
 			searchMessage.edit('No results found!');
