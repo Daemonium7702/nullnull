@@ -17,6 +17,10 @@ async function googleCommand(msg, args) {
 			googleData = querystring.parse(googleData.replace('/url?', ''));
 			searchMessage.edit(`Result found!\n${googleData.q}`);
 		});
+  
+		.catch((err) => {
+			searchMessage.edit('No results found!');
+		});
 };
   exports.conf = {
   aliases: ['Google', 'google']
