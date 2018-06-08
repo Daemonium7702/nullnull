@@ -1,7 +1,7 @@
 const cheerio = require('cheerio')
 	, snekfetch = require('snekfetch')
 	, querystring = require('querystring');
-
+module.exports.run = (client, message, args) => {
 async function googleCommand(msg, args) {
 
 	let searchMessage = await message.reply('Searching... Sec.');
@@ -21,6 +21,7 @@ async function googleCommand(msg, args) {
 		.catch((err) => {
 			searchMessage.edit('No results found!');
 		});
+};
 };
   exports.conf = {
   aliases: ['Google', 'google']
