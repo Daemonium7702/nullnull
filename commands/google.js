@@ -5,8 +5,8 @@ module.exports.run = (client, message, args) => {
  
 google.resultsPerPage = 3
 var nextCounter = 0
- 
-google('node.js best practices', function (err, res){
+ const magic = args.join(' ')
+google(magic, function (err, res){
   if (err) console.error(err)
  
   for (var i = 0; i < res.links.length; ++i) {
