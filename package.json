@@ -32,7 +32,8 @@
 	"querystring": "^0.2.0",
 	  "google-translate-api": "^2.3.0",
 	  "google-search": "^0.0.5",
-	  "google": "^2.1.0"
+	  "google": "^2.1.0",
+	  "profanities": "^2.6.0"
 
   },
   "engines": {
