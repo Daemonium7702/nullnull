@@ -10,8 +10,8 @@ googleSearch.build({
   q: "",
   start: 5,
   fileType: "pdf",
-  gl: "tr", //geolocation,
-  lr: "lang_tr",
+  gl: "US", //geolocation,
+  lr: "lang_en",
   num: 10, // Number of search results to return between 1 and 10, inclusive
   siteSearch: "google.com" // Restricts results to URLs from a specified site
 }, function(error, response) {
