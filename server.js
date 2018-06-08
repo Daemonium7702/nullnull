@@ -67,12 +67,19 @@ fs.readdir('./commands/', (err, files) => {
 	});
 });
 client.on("message", async message => {
-	
-	if(message.content.includes('fuck'||'bitch'||'bastard'||'nigger'||'niggers'||'fuckers'||'shit'||'crap'||'negro'||'dipshit'||'motherfucker'||'snickersnick'||'nikk')){
-		&& if(guild.id = "329921522711920652"){
-			return}
-		if(message.content.toUppercase == ('fuck'||'bitch'||'bastard'||'nigger'||'niggers'||'fuckers'||'shit'||'crap'||'negro'||'dipshit'||'motherfucker'||'snickersnick'||'nikk')){
-	message.delete()
+    if(message.guild.id('9999999999')){
+       return;
+       }else{
+    
+        for(x - 0; x < profanities.length; x++){
+if (message.content.toUpperCase() == profanities[x].toUpperCase()){
+message.channel.send('Bro, can you watch your mouth ffs?');
+message.delete()
+}
+}
+}
+});
+client.on("message", async message => {
   if(message.author.bot) return;
   if(message.content.indexOf(config.prefix) !== 0) return;
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
