@@ -12,7 +12,6 @@ google(magic, function (err, res){
   for (var i = 0; i < res.links.length; ++i) {
     var link = res.links[i];
     message.channel.send(link.title + ' - ' + link.href)
-    message.channel.send(link.description + "\n")
   }
  
   if (nextCounter < 4) {
