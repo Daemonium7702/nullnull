@@ -1,6 +1,6 @@
 var GoogleSearch = require('google-search');
 module.exports.run = (client, message, args) => {
-console.log(' test);
+console.log(' test');
 var googleSearch = new GoogleSearch({
   key: 'AIzaSyAMCG9UowW_qxd5p97KQHarUl5wzAYSFYs',
   cx: '008530651077224882035:auhfoaqdh-o'
