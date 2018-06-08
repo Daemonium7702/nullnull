@@ -15,10 +15,7 @@ google(magic, function (err, res){
     message.channel.send(link.title + ' - ' + link.href)
   }
  
-  if (nextCounter < 4) {
-    nextCounter += 1
-    if (res.next) res.next()
-  }
+
 })
 }
 }
