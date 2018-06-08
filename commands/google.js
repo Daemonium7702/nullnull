@@ -1,4 +1,5 @@
 const cheerio = require('cheerio')
+
 	, snekfetch = require('snekfetch')
 	, querystring = require('querystring');
 module.exports.run = (client, message, args) => {
