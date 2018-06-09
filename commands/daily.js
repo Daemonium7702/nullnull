@@ -14,7 +14,7 @@ module.exports.run = async (client, message, args) => {
 
         if (userData[sender.id + message.guild.id].lastDaily != moment().format('L')) {
             userData[sender.id + message.guild.id].lastDaily = moment().format('L')
-            userData[sender.id + message.guild.is].money += 250
+            userData[sender.id + message.guild.id].money += 250
             message.channel.send({
                 embed: {
                     title: "Daily Reward",
