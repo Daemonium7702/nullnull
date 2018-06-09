@@ -135,7 +135,7 @@ client.on("message", async message => {
 				var video2 = await youtube.getVideoByID(video.id); // eslint-disable-line no-await-in-loop
 				await handleVideo(video2, message, voiceChannel, true); // eslint-disable-line no-await-in-loop
 			}
-			return message.channel.send(`✅ Playlist: **${playlist.title}****${playlist.duration()}** has been added to the queue!`);
+			return message.channel.send(`✅ Playlist: **${playlist.title}****${video2.duration()}** has been added to the queue!`);
 		} else {
 			try {
 				var video = await youtube.getVideo(url);
