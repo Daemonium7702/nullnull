@@ -135,7 +135,7 @@ client.on("message", async message => {
 				var video2 = await youtube.getVideoByID(video.id); // eslint-disable-line no-await-in-loop
 				await handleVideo(video2, message, voiceChannel, true); // eslint-disable-line no-await-in-loop
 			}
-			return message.channel.send(`✅ Playlist: **${playlist.title}** has been added to the queue!${playlist.duration(hours,mins,seconds)}`);
+			return message.channel.send(`✅ Playlist: **${playlist.title}****${playlist.duration()}** has been added to the queue!`);
 		} else {
 			try {
 				var video = await youtube.getVideo(url);
@@ -192,14 +192,14 @@ break;
 break;
       case "np":
 		if (!serverQueue) return message.channel.send('There is nothing playing.');
-		return message.channel.send(`🎶 Now playing: **${serverQueue.songs[0].title}****${serverQueue.songs[0].duration(hours,minutes,seconds)}**`);
+		return message.channel.send(`🎶 Now playing: **${serverQueue.songs[0].title}**`);
 break;
       case "queue":
 		if (!serverQueue) return message.channel.send('There is nothing playing.');
 		return message.channel.send(`
 __**Song queue:**__
 ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
-**Now playing:** ${serverQueue.songs[0].title}${serverQueue.songs[0].duration}
+**Now playing:** ${serverQueue.songs[0].title}}
 		`);
 break;
       case "pause":
@@ -257,7 +257,7 @@ async function handleVideo(video, message, voiceChannel, playlist = false) {
 		serverQueue.songs.push(song);
 		console.log(serverQueue.songs);
 		if (playlist) return undefined;
-		else return message.channel.send(` **${song.title}****${song.duration(hours,minutes,seconds)}** has been added to the queue!`);
+		else return message.channel.send(` **${song.title}** has been added to the queue!`);
 	}
 	return undefined;
 }
@@ -282,7 +282,7 @@ async function handleVideo(video, message, voiceChannel, playlist = false) {
 		.on('error', error => console.error(error));
 	dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
 
-	serverQueue.textChannel.send(`🎶 Start playing: **${song.title}****${song.duration(hours,minutes,seconds)}**`);
+	serverQueue.textChannel.send(`🎶 Start playing: **${song.title}**`);
 }
 
 });
