@@ -11,7 +11,7 @@ module.exports.run = async (client, message, args) => {
     fs.writeFile("Storage/userData.json", JSON.stringify(userData), (err) => {
         if (err) console.log(err)
     })
-    if (message === prefix + "daily") {
+
         if (userData[sender.id + message.guild.id].lastDaily != moment().format('L')) {
             userData[sender.id + message.guild.id].lastDaily = moment().format('L')
             userData[sender.id + message.guild.is].money += 250
@@ -33,7 +33,7 @@ module.exports.run = async (client, message, args) => {
     fs.writeFile("Storage/userData.json", JSON.stringify(userData), (err) => {
         if (err) console.log(err)
     });
-}
+
 exports.conf = {
     aliases: ['Daily', 'daily']
 };
