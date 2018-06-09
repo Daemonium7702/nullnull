@@ -3,7 +3,7 @@ const economy = require('discord-eco');
 const modRole = 'Administrator';
 module.exports.run = async (client, message, args) => {
 
-    
+    let prefix = "."
     // Check if they have the modRole
         if (!message.member.roles.find("name", modRole)) { // Run if they dont have role...
             message.channel.send('**You need the role `' + modRole + '` to use this command...**');
