@@ -89,7 +89,7 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
     }
 }
 exports.conf = {
-    aliases: ["Queue', "queue']
+    aliases: ["Queue", "queue"]
 };
 exports.help = {
     name: "Queue",
