@@ -1,35 +1,26 @@
 const Discord = require("discord.js");
-const fs= require('fs');
-let userData = JSON.parse(fs.readFileSync('Storage/userData.json', 'utf8'));
+const economy= require('discord-eco');
 module.exports.run = async (client, message, args) => {
-    let sender = message.author;
-    let prefix = "."
-    if (!userData[sender.id + message.guild.id]) userData[sender.id + message.guild.id] = {}
-    if (!userData[sender.id + message.guild.id].money) userData[sender.id + message.guild.id].money = 1000;
-    fs.writeFile("Storage/userData.json", JSON.stringify(userData), (err) => {
-        if (err) console.error(err)
-    })
     
+    let prefix = "."
+    economy.fetchBalance(message.author.id + message.guild.id).then((i) => { // economy.fetchBalance grabs the userID, finds it, and puts the data with it into i.
+         
+   const embed = new Discord.RichEmbed()
+                .setDescription(`**${message.guild.name} Bank**`)
+                .setColor(0xD4AF37) // You can set any HEX color if you put 0x before it.
+                .addField('Account Holder',message.author.username,true) // The TRUE makes the embed inline. Account Holder is the title, and message.author is the value
+                .addField('Account Balance',i.money,true)
 
-        message.channel.send({
-            embed: {
-                title: "Bank",
-                color: 0xF1C40F,
-                fields: [{
-                        name: "Account Holder",
-                        value: message.author.username,
-                        inline: true
-                    },
-                    {
-                        name: "Account Balance",
-                        value: userData[sender.id + message.guild.id].money,
-                        incline: true
-                    }
-                ],
-            }
+
+            // Now we need to send the message
+            message.channel.send({embed})
+
         })
-        console.log('Econ. Deployed');
+
     }
+
+});
+
 
     
   exports.conf = {
