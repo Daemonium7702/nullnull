@@ -102,9 +102,7 @@ let cmd;
 
 
 });
-const Discord = require("discord.js");
-const bot = new Discord.Client();
-const fs = require("fs");
+
 let userData = JSON.parse(fs.readFileSync('Storage/userData.json','utf8'));
 bot.on('message', message =>{
 let sender = message.author;
