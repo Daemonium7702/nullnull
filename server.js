@@ -102,6 +102,24 @@ let cmd;
 
 
 });
+const Discord = require("discord.js");
+const bot = new Discord.Client();
+const fs = require("fs");
+let userData = JSON.parse(fs.readFileSync('Storage/userData.json','utf8'));
+bot.on('message', message =>{
+let sender = message.author;
+let message = message.content.toUpperCase();
+let prefix = "."
+if (!userData[sender.id + message.guild.id]) userData[sender.id + message.guild.id] = {}
+if (!userData[sender.id + message.guild.id].money) userData[sender.id + message.guild.id].money = JSON;
+fs.writeFile("Storage/userData.json", JSON.stringify(userData), (err)=> {
+if (err) console.log(err)
+})
+bot.on("ready", () => {
+console.log("Economy launched....")
+});
+});
+
 	const YouTube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
 const ffmpeg = require('ffmpeg');
