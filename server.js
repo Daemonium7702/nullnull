@@ -112,7 +112,7 @@ if (!userData[sender.id + message.guild.id].money) userData[sender.id + message.
 fs.writeFile("Storage/userData.json", JSON.stringify(userData), (err)=> {
 if (err) console.log(err)
 })
-bot.on("ready", () => {
+client.on("ready", () => {
 console.log("Economy launched....")
 });
 	if(message === prefix + "bal" || message === prefix + "balance"){
