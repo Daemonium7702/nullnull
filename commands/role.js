@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 
-exports.run = async (bot, message, args) => {
+module.exports.run = async (bot, message, args) => {
     if (!message.member.hasPermission("MANAGE_ROLES")) return message.reply("You do not have permissions.")
     let rMember = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
     if (!rMember) return message.reply("Please provide a user name")
