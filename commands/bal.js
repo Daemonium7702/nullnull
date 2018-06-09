@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const fs= require(fs);
+const fs= require('fs');
 let userData = JSON.parse(fs.readFileSync('Storage/userData.json', 'utf8'));
 module.exports.run = async (client, message, args) => {
     let sender = message.author;
