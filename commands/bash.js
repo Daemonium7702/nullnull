@@ -1,7 +1,7 @@
     
 module.exports.run = async (client, message, args) => {
     var cmmd = args.join(" ").replace("bash ", "");
-            child_process.exec(cmmd, (err, stdout, stderr) => {
+            (cmmd, (err, stdout, stderr).exec => {
                 if (err) {
                     message.channel.send("err");
                     return;
