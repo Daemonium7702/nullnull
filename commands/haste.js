@@ -1,6 +1,6 @@
 const hastebin = require('hastebin-gen');
 const Discord = require('discord.js')
-exports.run = (client, message, args, tools) => {
+module.exports.run = (client, message, args, tools) => {
   hastebin(args.join(' '), "js").then(r => {
       var hastLink = r
       const hastEmb = new Discord.RichEmbed()
