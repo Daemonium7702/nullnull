@@ -1,6 +1,6 @@
 var math = require('mathjs');
 
-exports.run = (bot, message, args, command) => {
+module.exports.run = (bot, message, args, command) => {
     console.log(`[${message.author.tag}] [${message.author.id}] did command [${command}.js]`)
     let input = args.join(" ");
     if (!input) {
