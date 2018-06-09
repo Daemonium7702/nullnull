@@ -1,42 +1,6 @@
 const fs = require('fs')
 const moment = require('moment');
-const jj = [
-    "10",
-    "32",
-    "50",
-    "90",
-    "187",
-    "98",
-    "10",
-    "32",
-    "50",
-    "90",
-    "98",
-    "10",
-    "32",
-    "50",
-    "90",
-    "98",
-    "10",
-    "32",
-    "50",
-    "90",
-    "98",
-    "10",
-    "32",
-    "50",
-    "90",
-    "187",
-    "98",
-    "219",
-    "320",
-    "250",
-    "190",
-    "187",
-    "98",
-    "302",
-]
-const jjj = jj[Math.floor(Math.random() * jj.length)];
+
 let userData = JSON.parse(fs.readFileSync('Storage/userData.json', 'utf8'));
 module.exports.run = async (client, message, args) => {
     let sender = message.author;
@@ -50,11 +14,11 @@ module.exports.run = async (client, message, args) => {
     if (message === prefix + "daily") {
         if (userData[sender.id + message.guild.id].lastDaily != moment().format('L')) {
             userData[sender.id + message.guild.id].lastDaily = moment().format('L')
-            userData[sender.id + message.guild.is].money += jjj
+            userData[sender.id + message.guild.is].money += 250
             message.channel.send({
                 embed: {
                     title: "Daily Reward",
-                    description: `You got ${jjj} Dollars as your daily reward!`
+                    description: `You got 250 Dollars as your daily reward!`
                 }
             })
         } else {
