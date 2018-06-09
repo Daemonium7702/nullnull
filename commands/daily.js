@@ -35,7 +35,7 @@ const jj = [
     "98",
     "302",
 ]
-const jjj = answers[Math.floor(Math.random() * answers.length)];
+const jjj = jj[Math.floor(Math.random() * answers.length)];
 let userData = JSON.parse(fs.readFileSync('Storage/userData.json', 'utf8'));
 module.exports.run = async (client, message, args) => {
     let sender = message.author;
