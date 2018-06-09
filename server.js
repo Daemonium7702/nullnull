@@ -106,7 +106,6 @@ let cmd;
 let userData = JSON.parse(fs.readFileSync('Storage/userData.json','utf8'));
 bot.on('message', message =>{
 let sender = message.author;
-let message = message.content.toUpperCase();
 let prefix = "."
 if (!userData[sender.id + message.guild.id]) userData[sender.id + message.guild.id] = {}
 if (!userData[sender.id + message.guild.id].money) userData[sender.id + message.guild.id].money = JSON;
@@ -116,6 +115,23 @@ if (err) console.log(err)
 bot.on("ready", () => {
 console.log("Economy launched....")
 });
+	if(message === prefix + "bal" || message === prefix + "balance"){
+message.channel.send
+bot.on("ready", () => ({embed:{
+title: "Bank",
+color: 0xF1C40F,
+fields:[{
+name:"Account Holder",
+value: message.author.username,
+inline:true
+},
+{
+name:"Account Balance",
+value:userData[sender.id +message.guild.id].money,
+incline:true
+}],
+}}))
+}
 });
 
 	const YouTube = require('simple-youtube-api');
