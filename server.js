@@ -104,7 +104,7 @@ let cmd;
 });
 
 let userData = JSON.parse(fs.readFileSync('Storage/userData.json','utf8'));
-bot.on('message', message =>{
+client.on('message', message =>{
 let sender = message.author;
 let prefix = "."
 if (!userData[sender.id + message.guild.id]) userData[sender.id + message.guild.id] = {}
