@@ -7,7 +7,7 @@ module.exports.run = async (client, message, args) => {
     if (!userData[sender.id + message.guild.id]) userData[sender.id + message.guild.id] = {}
     if (!userData[sender.id + message.guild.id].money) userData[sender.id + message.guild.id].money = 1000;
     fs.writeFile("Storage/userData.json", JSON.stringify(userData), (err) => {
-        if (err) console.log(err)
+        if (err) console.error(err)
     })
     
 
