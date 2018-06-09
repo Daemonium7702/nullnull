@@ -24,9 +24,9 @@ module.exports.run = async (client, message, args) => {
     }
 }
 exports.conf = {
-    aliases: ['Play', 'play']
+    aliases: ['Stop', 'stop']
 };
 exports.help = {
-    name: "Play",
-    description: "Plays music."
+    name: "Stop",
+    description: "Stops music."
 }
