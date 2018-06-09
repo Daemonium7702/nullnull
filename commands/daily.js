@@ -39,7 +39,6 @@ const jjj = answers[Math.floor(Math.random() * answers.length)];
 let userData = JSON.parse(fs.readFileSync('Storage/userData.json', 'utf8'));
 module.exports.run = async (client, message, args) => {
     let sender = message.author;
-    let message = message.content.toUpperCase();
     let prefix = "."
     if (!userData[sender.id + message.guild.id]) userData[sender.id + message.guild.id] = {}
     if (!userData[sender.id + message.guild.id].money) userData[sender.id + message.guild.id].money = 1000;
