@@ -9,11 +9,11 @@ module.exports.run = async (client, message, args) => {
     if (!userData[sender.id + message.guild.id].money) userData[sender.id + message.guild.id].money = 1000;
     if (!userData[sender.id + message.guild.id].lastDaily) userData[sender.id + message.guild.id].lastDaily = 'Not Collected';
     fs.writeFile("Storage/userData.json", JSON.stringify(userData), (err) => {
-        if (err) console.log(err)
+        if (err) console.error(err)
     })
 
         if (userData[sender.id + message.guild.id].lastDaily != moment().format('L')) {
-            userData[sender.id + message.guild.id].lastDaily = moment().format('L')
+            userData[sender.id + message.guild.id].lastDaily = moment().format('L');
             userData[sender.id + message.guild.id].money += 250
             message.channel.send({
                 embed: {
@@ -25,13 +25,13 @@ module.exports.run = async (client, message, args) => {
             message.channel.send({
                 embed: {
                     title: "Daily Reward",
-                    description: "Youve already collected your daily reward! Collect your next one in " + moment().endOf('day').fromNow
+                    description: "Youve already collected your daily reward! Collect your next one in " + moment().endOf('day').fromNow + '.'
                 }
             })
         }
     }
     fs.writeFile("Storage/userData.json", JSON.stringify(userData), (err) => {
-        if (err) console.log(err)
+        if (err) console.error(err)
     });
 
 exports.conf = {
