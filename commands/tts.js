@@ -1,4 +1,4 @@
-const Discord = require "discord.js");
+const Discord = require("discord.js");
 module.exports.run = (client, message, args) => {
 	if(message.author.id = "347885325940424714"){
 	const ra = args.join(" ");
