@@ -28,10 +28,10 @@ module.exports.run = async (client, message, args) => {
                 ],
             }
         })
+        console.log('Econ. Deployed');
     }
-client.on("ready", () => {
-        console.log("Economy launched....")
-    });
+
+    
   exports.conf = {
   aliases: ['Bal', 'bal']
   };
