@@ -23,6 +23,7 @@ switch (args) {
         default:
           message.channel.send('```cooldued: 5000```')
        };
+       }
 exports.conf = {
   aliases: ['Buy', 'buy']
   };
