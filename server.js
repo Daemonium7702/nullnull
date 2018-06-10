@@ -46,7 +46,6 @@ client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 
 fs.readdir('./commands/', (err, files) => {
-   if (message.author.bot) return;
     if (err)
         console.error(err);
     let jsfiles = files.filter(f => f.split('.')
