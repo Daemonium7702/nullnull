@@ -46,6 +46,7 @@ client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 
 fs.readdir('./commands/', (err, files) => {
+   if (message.author.bot) return;
     if (err)
         console.error(err);
     let jsfiles = files.filter(f => f.split('.')
@@ -66,7 +67,7 @@ fs.readdir('./commands/', (err, files) => {
 });
 
 client.on("message", async message => {
- 
+if (message.author.bot) return;
     if (message.content.indexOf(config.prefix) !== 0) return;
     const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
