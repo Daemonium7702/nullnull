@@ -4,9 +4,9 @@ const economy = require('discord-eco');
 
 module.exports.run = async (client, message, args, tools )=> {
         if(timer[message.author.id] === 1) {
-          message.channel.send('UOH OH. I am pretty sure that you have already collected your allowance')
+          message.channel.send('Sorry! I am pretty sure that you have already collected your allowance!')
         } else {
-          message.channel.send('You have collected your allowance. Congrats')
+          message.channel.send('You have collected your daily allowance of $50')
           economy.updateBalance(message.author.id, 50)
             timer[message.author.id] = 1
      
