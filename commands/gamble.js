@@ -68,7 +68,8 @@ const diiccee = dice[Math.floor(Math.random()* dice.length)];
 const loss = '-'+args[0]
 const win = args[0]
 
-
+let defineduser = '';
+            defineduser = message.author.id;
  economy.fetchBalance(defineduser + message.guild.id).then((i) => { // economy.fetchBalance grabs the userID, finds it, and puts the data with it into i.
        if(i.money<win){
       message.channel.send('You\'re too broke to do that!');
