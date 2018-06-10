@@ -7,11 +7,13 @@ const queue = new Map();
 
 var servers = {};
 var prefix = '.';
+ 
+
+module.exports.run = async (client, message, args) => {
+	var serverQueue = queue.get(message.guild.id);
 let durationString = serverQueue.songs[0].duration.hours > 0 ? `0${serverQueue.songs[0].duration.hours}:0${serverQueue.songs[0].duration.minutes}:${serverQueue.songs[0].duration.seconds}`:serverQueue.songs[0].isStream ? `🔴LIVE` : `0${serverQueue.songs[0].duration.minutes}:${serverQueue.songs[0].duration.seconds}`
     let lines = serverQueue.songs[0].description.split('\n')
 let songString = `${durationString}` 
-
-module.exports.run = async (client, message, args) => {
     var args = message.content.substring(prefix.length).split(" ");
     if (!message.content.startsWith(prefix)) return;
     var searchString = args.slice(1).join(' ');
