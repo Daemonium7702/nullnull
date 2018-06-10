@@ -7,6 +7,10 @@ const queue = new Map();
 
 var servers = {};
 var prefix = '.';
+let durationString = serverQueue.songs[0].duration.hours > 0 ? `0${serverQueue.songs[0].duration.hours}:0${serverQueue.songs[0].duration.minutes}:${serverQueue.songs[0].duration.seconds}`:serverQueue.songs[0].isStream ? `🔴LIVE` : `0${serverQueue.songs[0].duration.minutes}:${serverQueue.songs[0].duration.seconds}`
+    let lines = serverQueue.songs[0].description.split('\n')
+let songString = `${durationString}` 
+
 module.exports.run = async (client, message, args) => {
     var args = message.content.substring(prefix.length).split(" ");
     if (!message.content.startsWith(prefix)) return;
@@ -31,7 +35,7 @@ module.exports.run = async (client, message, args) => {
                     var video2 = await youtube.getVideoByID(video.id); // eslint-disable-line no-await-in-loop
                     await handleVideo(video2, message, voiceChannel, true); // eslint-disable-line no-await-in-loop
                 }
-                return message.channel.send(`✅ Playlist: **${playlist.title}****${video2.duration()}** has been added to the queue!`);
+                return message.channel.send(` Playlist: **${playlist.title}****${durationString}** has been added to the queue!`);
             } else {
                 try {
                     var video = await youtube.getVideo(url);
