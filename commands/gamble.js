@@ -3,7 +3,8 @@ const Discord = require('discord.js');
 const economy = require('discord-eco');
 module.exports.run = async (client, message, args, tools )=> {
  const m = await message.channel.send("Rolling...");
-  const answers = [
+  const prefix = '.'
+ const answers = [
  2,
       1,
       3,
