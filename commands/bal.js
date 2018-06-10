@@ -17,7 +17,7 @@ module.exports.run = async (client, message, args) => {
             const embed = new Discord.RichEmbed()
                 .setDescription(`**${message.guild.name} Bank**`)
                 .setColor(0xD4AF37) // You can set any HEX color if you put 0x before it.
-                .addField('Account Holder',defineduser,true) // The TRUE makes the embed inline. Account Holder is the title, and message.author is the value
+                .addField('Account Holder',"<@"+defineduser+">",true) // The TRUE makes the embed inline. Account Holder is the title, and message.author is the value
                 .addField('Account Balance',i.money,true)
 
 
