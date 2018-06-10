@@ -2,7 +2,7 @@
 	"Ping":{
 "name":"Ping Command",
 "type":"Command",
-"price":"3000"
+"price":"3000",
 "desc":"Access to the ping command!"
 }
 }
