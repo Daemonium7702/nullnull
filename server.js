@@ -66,12 +66,12 @@ fs.readdir('./commands/', (err, files) => {
 });
 
 client.on("message", async message => {
-    if (message.author.bot) return;
+ 
     if (message.content.indexOf(config.prefix) !== 0) return;
     const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
     let msg = message.content.toLowerCase() || message.content.toUpperCase();
-    if (message.author.bot) return undefined;
+    
     let cmd;
     if (client.commands.has(command)) {
         cmd = client.commands.get(command);
