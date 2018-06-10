@@ -9,7 +9,7 @@ const client = new Discord.Client();
 // JSON Files
 const items = JSON.parse(fs.readFileSync('items.json', 'utf8'));
     let prefix = '.';
-    if (message.startsWith(`${prefix}BUY`)) { // We need to make a JSON file that contains the items
+module.exports.run = async (client, message, args) => {
 
         // Variables
         let categories = []; // Lets define categories as an empty array so we can add to it.
