@@ -65,25 +65,7 @@ fs.readdir('./commands/', (err, files) => {
     });
 });
 
-client.on("message", async message => {
-    if(message.guild.id = "343572980351107077"){
-       cmd.run(client, message, args);
-    if (message.author.bot) return;
-    if (message.content.indexOf(config.prefixx) !== 0) return;
-    const args = message.content.slice(config.prefixx.length).trim().split(/ +/g);
-    const command = args.shift().toLowerCase();
-    let msg = message.content.toLowerCase() || message.content.toUpperCase();
-    if (message.author.bot) return undefined;
-    let cmd;
-    if (client.commands.has(command)) {
-        cmd = client.commands.get(command);
-    } else if (client.aliases.has(command)) {
-        cmd = client.commands.get(client.aliases.get(command));
-    }
-    cmd.run(client, message, args);
-    
-    return}else{
-        
+client.on("message", async message => {       
     cmd.run(client, message, args);
     if (message.author.bot) return;
     if (message.content.indexOf(config.prefix) !== 0) return;
