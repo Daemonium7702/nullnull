@@ -9,7 +9,7 @@ module.exports.run = async (client, message, args) => {
     .addField(`in ${client.channels.size} channels`)
     .addField(`in ${client.guilds.size} servers`)
     .addField("Bot Name", client.user.username)
-    .setFooter("Created On", client.user.createdAt);
+    .addField("Created On", client.user.createdAt);
 
     return message.channel.send(botembed);
   }
