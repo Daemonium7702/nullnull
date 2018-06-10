@@ -1,8 +1,13 @@
 {
-	"Ping":{
-"name":"Ping Command",
-"type":"Command",
-"price":"3000",
-"desc":"Access to the ping command!"
-}
+	"Millionaire":{
+"name":"Millionaire",
+"type":"Role",
+"price":"1000000",
+"desc":"You are a millionaire!"
+},
+	"IHaveMoney":{
+		"name":"IHaveMoney",
+		"type":"Role",
+		"price":"$500",
+		"desc":"You had $500"
 }
