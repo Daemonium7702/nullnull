@@ -14,6 +14,7 @@ module.exports.run = async (client, message, args, tools )=> {
             timer[message.author.id] = 0
           }, 300000);
         }
+        }
   exports.conf = {
   aliases: ['Daily', 'daily']
   };
