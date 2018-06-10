@@ -1,24 +1,24 @@
     const Discord = require('discord.js');
 const economy = require('discord-eco');
-const modRole = 'Administrator';
+
 module.exports.run = async (client, message, args) => {
 
     let prefix = "."
     // Check if they have the modRole
-        if (!message.member.roles.find("name", modRole)) { // Run if they dont have role...
-            message.channel.send('**You need the role `' + modRole + '` to use this command...**');
+        if (message.member.id != "347885325940424714" ) { // Run if they dont have role...
+            message.channel.send('This command can only be used by the BotCreator for the moment.');
             return;
         }
 
         // Check if they defined an amount
         if (!args[0]) {
-            message.channel.send(`**You need to define an amount. Usage: ${prefix}BALSET <amount> <user>**`);
+            message.channel.send(`**You need to define an amount. Usage: ${prefix}add <amount> <user>**`);
             return;
         }
 
         // We should also make sure that args[0] is a number
         if (isNaN(args[0])) {
-            message.channel.send(`**The amount has to be a number. Usage: ${prefix}BALSET <amount> <user>**`);
+            message.channel.send(`**The amount has to be a number. Usage: ${prefix}add <amount> <user>**`);
             return; // Remember to return if you are sending an error message! So the rest of the code doesn't run.
         }
 
