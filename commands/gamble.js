@@ -68,21 +68,21 @@ const diiccee = dice[Math.floor(Math.random()* dice.length)];
 const loss = '-'+args[0]
 const win = args[0]
  if (!args[0]) {
-            message.channel.send(`**You need to define an amount. Usage: ${prefix}gamble <amount> <user>**`);
+            m.edit(`**You need to define an amount. Usage: ${prefix}gamble <amount> <user>**`);
             return;
         }
  economy.fetchBalance(defineduser + message.guild.id).then((i) => { // economy.fetchBalance grabs the userID, finds it, and puts the data with it into i.
        if(i.money<win){
-        message.channel.send('You\'re too broke to do that!');
+        m.edit('You\'re too broke to do that!');
        return}else{
 if(vals < diiccee){
 message.channel.send(`You rolled a ${vals}, I rolled a ${diiccee}... you have lost $${args[0]}`);
            if (!args[0]) {
-            message.channel.send(`**You need to define an amount. Usage: ${prefix}gamble <amount> <user>**`);
+            m.edit(`**You need to define an amount. Usage: ${prefix}gamble <amount> <user>**`);
             return;
         }
         if (isNaN(args[0])) {
-            message.channel.send(`**The amount has to be a number. Usage: ${prefix}gamble <amount> **`);
+            m.edit(`**The amount has to be a number. Usage: ${prefix}gamble <amount> **`);
             return; 
         } 
         let defineduser = '';
@@ -95,11 +95,11 @@ message.channel.send(`You rolled a ${vals}, I rolled a ${diiccee}... you have lo
     if(vals > diiccee){
     message.channel.send(`You rolled a ${vals}, I rolled a ${diiccee}... you have won $${args[0]}! `)
            if (!args[0]) {
-            message.channel.send(`**You need to define an amount. Usage: ${prefix}gamble <amount> <user>**`);
+            m.edit(`**You need to define an amount. Usage: ${prefix}gamble <amount> <user>**`);
             return;
         }
         if (isNaN(args[0])) {
-            message.channel.send(`**The amount has to be a number. Usage: ${prefix}gamble <amount> **`);
+            m.edit(`**The amount has to be a number. Usage: ${prefix}gamble <amount> **`);
             return; 
         } 
         let defineduser = '';
@@ -112,11 +112,11 @@ message.channel.send(`You rolled a ${vals}, I rolled a ${diiccee}... you have lo
     if(vals = diccee){
     message.channel.send(`You rolled a ${vals}, I rolled a ${diiccee}... we have tied. $${args[0]}.`)
            if (!args[0]) {
-            message.channel.send(`**You need to define an amount. Usage: ${prefix}gamble <amount> <user>**`);
+            m.edit(`**You need to define an amount. Usage: ${prefix}gamble <amount> <user>**`);
             return;
         }
         if (isNaN(args[0])) {
-            message.channel.send(`**The amount has to be a number. Usage: ${prefix}gamble <amount> **`);
+            m.edit(`**The amount has to be a number. Usage: ${prefix}gamble <amount> **`);
             return; 
         } 
     }
