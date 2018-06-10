@@ -61,6 +61,16 @@ module.exports.run = async (client, message, args, tools )=> {
   11,
   12,
   ]
+  if (!args[0]) {
+            message.channel.send(`**You need to define an amount. Usage: ${prefix}gamble<amount> <user>**`);
+            return;
+        }
+
+        // We should also make sure that args[0] is a number
+        if (isNaN(args[0])) {
+            message.channel.send(`**The amount has to be a number. Usage: ${prefix}gamble <amount> <user>**`);
+            return; // Remember to return if you are sending an error message! So the rest of the code doesn't run.
+        }
   const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
 const randomNamaste = answerss[Math.floor(Math.random() * answers.length)];
 const vals = randomNamaste+randomAnswer;
