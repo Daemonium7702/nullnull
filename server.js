@@ -65,8 +65,7 @@ fs.readdir('./commands/', (err, files) => {
     });
 });
 
-client.on("message", async message => {       
-    cmd.run(client, message, args);
+client.on("message", async message => {
     if (message.author.bot) return;
     if (message.content.indexOf(config.prefix) !== 0) return;
     const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
@@ -100,7 +99,7 @@ client.on("message", async message => {
     /////////if(message.author.id === "350693449722232832") return;
 
 
-    }});
+});
 
 
         
