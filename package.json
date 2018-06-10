@@ -35,7 +35,8 @@
 	  "google": "^2.1.0",
 	  "profanities": "^2.6.0",
 	  "moment": "^2.22.2",
-	  "discord-eco": "^0.0.10"
+	  "discord-eco": "^0.0.10",
+	  "quick-db": "^6.3.1"
 
   },
   "engines": {
