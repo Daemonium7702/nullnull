@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const economy = require('discord-eco');
+const items = JSON.parse(fs.readFileSync('items.json', 'utf8'));
 module.exports.run = async (client, message, args) => {
 
     let prefix = "."
