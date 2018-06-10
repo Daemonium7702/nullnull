@@ -66,6 +66,21 @@ fs.readdir('./commands/', (err, files) => {
 });
 
 client.on("message", async message => {
+    if(message.guild.id = "343572980351107077"){
+        const prefix = "~]";
+        if (message.author.bot) return undefined;
+         if (message.content.indexOf(prefix) !== 0) return;
+    const args = message.content.slice(prefix.length).trim().split(/ +/g);
+    const command = args.shift().toLowerCase();
+    let msg = message.content.toLowerCase() || message.content.toUpperCase();
+    let cmd;
+    if (client.commands.has(command)) {
+        cmd = client.commands.get(command);
+    } else if (client.aliases.has(command)) {
+        cmd = client.commands.get(client.aliases.get(command));
+    }
+    return}else{
+    cmd.run(client, message, args);
     if (message.author.bot) return;
     if (message.content.indexOf(config.prefix) !== 0) return;
     const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
@@ -99,7 +114,7 @@ client.on("message", async message => {
     /////////if(message.author.id === "350693449722232832") return;
 
 
-});
+    }});
 
 
         
