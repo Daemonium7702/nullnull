@@ -64,11 +64,11 @@ module.exports.run = async (client, message, args, tools )=> {
   const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
 const randomNamaste = answerss[Math.floor(Math.random() * answers.length)];
 const vals = randomNamaste+randomAnswer;
-const diiccee = dice[Math.floor()* dice.length];
+const diiccee = dice[Math.floor(Math.random()* dice.length)];
 const loss = '-'+args[0]
 const win = args[0]
 if(vals < diiccee){
-message.channel.send(`You rolled a ${vals}, I rolled a ${diiccee}... you have lost $${args[0]}.  )
+message.channel.send(`You rolled a ${vals}, I rolled a ${diiccee}... you have lost $${args[0]}`);
            if (!args[0]) {
             message.channel.send(`**You need to define an amount. Usage: ${prefix}gamble <amount> <user>**`);
             return;
@@ -85,7 +85,7 @@ message.channel.send(`You rolled a ${vals}, I rolled a ${diiccee}... you have lo
 
     }
     if(vals > diiccee){
-    message.channel.send(`You rolled a ${vals}, I rolled a ${diiccee}... you have won $${args[0]}!  )
+    message.channel.send(`You rolled a ${vals}, I rolled a ${diiccee}... you have won $${args[0]}! `)
            if (!args[0]) {
             message.channel.send(`**You need to define an amount. Usage: ${prefix}gamble <amount> <user>**`);
             return;
@@ -102,7 +102,7 @@ message.channel.send(`You rolled a ${vals}, I rolled a ${diiccee}... you have lo
 
     }
     if(vals = diccee){
-    message.channel.send(`You rolled a ${vals}, I rolled a ${diiccee}... we have tied. $${args[0]}.  )
+    message.channel.send(`You rolled a ${vals}, I rolled a ${diiccee}... we have tied. $${args[0]}.`)
            if (!args[0]) {
             message.channel.send(`**You need to define an amount. Usage: ${prefix}gamble <amount> <user>**`);
             return;
