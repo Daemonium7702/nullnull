@@ -5,8 +5,11 @@ module.exports.run = async (client, message, args) => {
     .setDescription("Bot Information")
     .setColor("#15f153")
     .setThumbnail(bicon)
+    .addField(`with ${client.users.size}users`)
+    .addField(`in ${client.channels.size} channels`)
+    .addField(`in ${client.guilds.size} servers`)
     .addField("Bot Name", client.user.username)
-    .addField("Created On", client.user.createdAt);
+    .setFooter("Created On", client.user.createdAt);
 
     return message.channel.send(botembed);
   }
