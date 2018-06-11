@@ -93,43 +93,30 @@ client.on("message", async message => {
     if (message.content.startsWith("ping")) {
         message.channel.send("pong!");
     }
-    sql.get(`SELECT * FROM money WHERE userId = "${message.author.id}"`).then(row => {
-        console.error; // Gotta log those errors
-        sql.run("CREATE TABLE IF NOT EXISTS money (userId TEXT, cash INTEGER, bank INTEGER)").then(() => {
-            sql.run("INSERT INTO money (userId, cash, bank) VALUES (?, ?, ?)", [message.author.id, 1, 0]);
-        });
-
-    }).catch(() => {
-        if (!row) { // Can't find the row.
-
-
-            sql.run("INSERT INTO money (userId, cash, bank) VALUES (?, ?, ?)", [message.author.id, 1, 0]);
-        } else { // Can find the row.
-            let curBank = Math.floor(0.1 * Math.sqrt(row.cash + 1));
-            if (curBank > row.bank) {
-                row.bank = curBank;
-                sql.run(`UPDATE scores SET points = ${row.cash + 1}, level = ${row.cash} WHERE userId = ${message.author.id}`);
-                message.reply(`You've leveled up your bank to level **${curBank}**! Glorious!`);
-            }
-            sql.run(`UPDATE money SET cash = ${row.cash + 1} WHERE userId = ${message.author.id}`);
-        }
-    }).catch(() => {
-        console.error;
-        sql.run("CREATE TABLE IF NOT EXISTS money (userId TEXT, cash INTEGER, bank INTEGER)").then(() => {
-            sql.run("INSERT INTO money (userId, cash, bank) VALUES (?, ?, ?)", [message.author.id, 1, 0]);
-        });
+    sql.get(`SELECT * FROM scores WHERE userId ="${message.author.id}"`).then(row => {
+    if (!row) {
+      sql.run("INSERT INTO scores (userId, points, level) VALUES (?, ?, ?)", [message.author.id, 1, 0]);
+    } else {
+      sql.run(`UPDATE scores SET points = ${row.points + 1} WHERE userId = ${message.author.id}`);
+    }
+  }).catch(() => {
+    console.error;
+    sql.run("CREATE TABLE IF NOT EXISTS scores (userId TEXT, points INTEGER, level INTEGER)").then(() => {
+      sql.run("INSERT INTO scores (userId, points, level) VALUES (?, ?, ?)", [message.author.id, 1, 0]);
+    });
+  });
 
 
-    });;
+   
    
         if (message.content.startsWith(config.prefix + "test")) {
             message.channel.send("coolm8")
         }
         
 
-
+});
                 
-            })
+            
     /*
   if(command === "ban"){
     let bUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
