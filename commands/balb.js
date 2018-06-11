@@ -1,4 +1,4 @@
-   const sql = require("sqlite");
+ const sql = require("sqlite");
 sql.open("./score.sqlite");
 
   module.exports.run = async (client, message, args) => {
@@ -23,9 +23,11 @@ sql.open("./score.sqlite");
     });
   }
 )}}
+};
   exports.conf = {
   aliases: ['Balb', 'balb']
   };
   exports.help = {
   name: "Balb", description: "Money money money."
+  }
   
