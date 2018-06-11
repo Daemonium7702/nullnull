@@ -126,7 +126,7 @@ message.channel.send(`You rolled a ${vals}, I rolled a ${diiccee}... you have lo
             return;
         }
         if (isNaN(args[0])) {
-            m.edit(`**The amount has to be a number. Usage: ${prefix}gamble <amount> **`);
+            message.channel.send(`**The amount has to be a number. Usage: ${prefix}gamble <amount> **`);
             return; 
         } 
     }
