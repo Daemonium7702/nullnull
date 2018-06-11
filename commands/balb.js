@@ -1,4 +1,4 @@
-  const sql = require("sqlite");
+   const sql = require("sqlite");
 sql.open("./score.sqlite");
 
   module.exports.run = async (client, message, args) => {
@@ -18,6 +18,7 @@ if (curBank > row.bank) {
   sql.run(`UPDATE cash SET cash = ${row.cash + 1}, bank = ${row.bank} WHERE userId = ${defineduser}`);
   message.reply(`You've leveled up to level **${curBank}**! Ain't that dandy?`);
 };
+}}
   exports.conf = {
   aliases: ['Balb', 'balb']
   };
