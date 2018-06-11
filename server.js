@@ -79,7 +79,7 @@ client.on("message", message => {
     sql.get(`SELECT * FROM money WHERE userId = "${message.author.id}"`).then(row => {
         console.error; // Gotta log those errors
         sql.run("CREATE TABLE IF NOT EXISTS money (userId TEXT, cash INTEGER, bank INTEGER)").then(() => {
-            sql.run("INSERT INTO scores (userId, cash, bank) VALUES (?, ?, ?)", [message.author.id, 1, 0]);
+            sql.run("INSERT INTO money (userId, cash, bank) VALUES (?, ?, ?)", [message.author.id, 1, 0]);
         });
 
     }).catch(() => {
