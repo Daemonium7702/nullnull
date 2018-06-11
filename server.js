@@ -71,6 +71,12 @@ client.on("ready", () => {
 });
 const prefix = "#";
 client.on("message", async message => {
+       const args = message.content.slice(prefix.length).trim().split(/ +/g);
+    const command = args.shift().toLowerCase();
+    let message = message.content.toLowerCase() || message.content.toUpperCase();
+
+    
+    
     if (message.author.bot) return; // Ignore bots.
     if (message.channel.type === "dm") return; // Ignore DM channels.
     if (message.content.startsWith("ping")) {
