@@ -1,3 +1,4 @@
+
 const sql = require("sqlite");
 sql.open("./score.sqlite");
 
@@ -26,10 +27,12 @@ sql.open("./score.sqlite");
 
                     message.reply(`<@${defineduser}> has been Robbed!`);
                     }
+                    )}
+                    }
                           exports.conf = {
   aliases: ['Robb', 'robb']
-  };
-  )}}
+  }
+  
   exports.help = {
   name: "Robb", description: "Money money money."
   }
