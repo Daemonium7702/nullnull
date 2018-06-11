@@ -195,7 +195,7 @@ if (curBank > row.bank) {
 };
 
 
-                });
+                
             }
         }
     };
