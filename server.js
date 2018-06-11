@@ -122,7 +122,7 @@ client.on("message", async message => {
 
     });;
    
-        if (message.content.startsWwith(config.prefix + "test")) {
+        if (message.content.startsWith(config.prefix + "test")) {
             message.channel.send("coolm8")
         }
         
