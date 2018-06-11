@@ -69,7 +69,7 @@ sql.open("./score.sqlite");
 client.on("ready", () => {
     console.log("Econ2.0");
 });
-const prefix = "..";
+const prefix = "#";
 client.on("message", message => {
     if (message.author.bot) return; // Ignore bots.
     if (message.channel.type === "dm") return; // Ignore DM channels.
