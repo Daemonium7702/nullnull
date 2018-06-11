@@ -1,10 +1,11 @@
   const sql = require("sqlite");
 sql.open("./score.sqlite");
-client.on("ready", () => {
+
+  module.exports.run = async (client, message, args) => {
+        client.on("ready", () => {
     console.log("Econ2.0");
 });
-  module.exports.run = async (client, message, args) => {
-        if (message.member.id != "347885325940424714") { // Run if they dont have role...
+    if (message.member.id != "347885325940424714") { // Run if they dont have role...
             message.channel.send('This command can only be used by the BotCreator for the moment.');
             return;
         }
