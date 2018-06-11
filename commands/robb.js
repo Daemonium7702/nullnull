@@ -1,5 +1,11 @@
-if (message.content.startsWith(config.prefix + "rob")) {
-        const rob = row.cash
+const sql = require("sqlite");
+sql.open("./score.sqlite");
+
+  module.exports.run = async (client, message, args) => {
+        client.on("ready", () => {
+    console.log("Econ2.0");
+});
+          const rob = row.cash
         if (!args[0]) {
             message.channel.send(`**You need to define a user. Usage: ${config.prefix}rob <user>**`);
             return;
