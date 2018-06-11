@@ -119,7 +119,7 @@ message.channel.send(`You rolled a ${vals}, I rolled a ${diiccee}... you have lo
         });
 
     }
-    if(vals = diccee){
+    if(vals = diiccee){
     message.channel.send(`You rolled a ${vals}, I rolled a ${diiccee}... we have tied. $${args[0]}.`)
            if (!args[0]) {
             message.channel.send(`**You need to define an amount. Usage: ${prefix}gamble <amount> <user>**`);
