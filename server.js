@@ -70,8 +70,26 @@ client.on("ready", () => {
     console.log("Econ2.0");
 });
 const prefix = "#";
+ 
+       
 client.on("message", async message => {
-       const args = message.content.slice(prefix.length).trim().split(/ +/g);
+    /////econ v2.0/////
+
+
+    if (message.author.bot) return;
+    if (message.content.indexOf(config.prefix) !== 0) return;
+    const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+    const command = args.shift().toLowerCase();
+    let msg = message.content.toLowerCase() || message.content.toUpperCase();
+
+    let cmd;
+    if (client.commands.has(command)) {
+        cmd = client.commands.get(command);
+    } else if (client.aliases.has(command)) {
+        cmd = client.commands.get(client.aliases.get(command));
+    }
+    cmd.run(client, message, args);
+    const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase(); 
     if (message.author.bot) return; // Ignore bots.
     if (message.channel.type === "dm") return; // Ignore DM channels.
@@ -203,23 +221,6 @@ if (curBank > row.bank) {
     };
 
 })
-client.on("message", async message => {
-    /////econ v2.0/////
-
-
-    if (message.author.bot) return;
-    if (message.content.indexOf(config.prefix) !== 0) return;
-    const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
-    const command = args.shift().toLowerCase();
-    let msg = message.content.toLowerCase() || message.content.toUpperCase();
-
-    let cmd;
-    if (client.commands.has(command)) {
-        cmd = client.commands.get(command);
-    } else if (client.aliases.has(command)) {
-        cmd = client.commands.get(client.aliases.get(command));
-    }
-    cmd.run(client, message, args);
     /*
   if(command === "ban"){
     let bUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
@@ -239,8 +240,6 @@ client.on("message", async message => {
 
     /////////if(message.author.id === "350693449722232832") return;
 
-
-});
 
 
 
