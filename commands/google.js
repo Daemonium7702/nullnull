@@ -18,7 +18,7 @@ module.exports.run = (client, message, args) => {
         })
 
     }
-}
+
 exports.conf = {
     aliases: ['Google', 'google']
 };
