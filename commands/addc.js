@@ -13,6 +13,8 @@ const sql = require("sqlite");
     } else {
       sql.run(`UPDATE money SET cash = ${row.cash + args[0]} WHERE userId = ${defineduser}`);
     }
+    });
+    }
  exports.conf = {
      aliases: ['Balb', 'balb']
  };
