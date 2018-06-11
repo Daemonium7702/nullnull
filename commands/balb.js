@@ -12,13 +12,15 @@ sql.open("./score.sqlite");
                 let firstMentioned = message.mentions.users.first();
                 defineduser = firstMentioned.id;
                
-                    let curBank = Math.floor(0.1 * Math.sqrt(row.cash + 1));
-if (curBank > row.bank) {
-  row.level = curBank;
-  sql.run(`UPDATE cash SET cash = ${row.cash + 1}, bank = ${row.bank} WHERE userId = ${defineduser}`);
-  message.reply(`You've leveled up to level **${curBank}**! Ain't that dandy?`);
-};
-}}
+    sql.get(`SELECT * FROM money WHERE userId ="${message.author.id}"`).then(row => {
+      if (!row) return message.reply("Your current level is 0");
+      message.reply(`Your current banked money is $${row.bank}`);
+    sql.get(`SELECT * FROM money WHERE userId ="${message.author.id}"`).then(row => {
+      if (!row) return message.reply("sadly you do not have any points yet!");
+      message.reply(`you currently have $${row.cash} in your wallet, good going!`);
+    });
+  }
+)}}
   exports.conf = {
   aliases: ['Balb', 'balb']
   };
