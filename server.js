@@ -64,14 +64,152 @@ fs.readdir('./commands/', (err, files) => {
         });
     });
 });
+const sql = require("sqlite");
+sql.open("./score.sqlite");
+client.on("ready", () => {
+    console.log("Econ2.0");
+});
+const prefix = "..";
+client.on("message", message => {
+    if (message.author.bot) return; // Ignore bots.
+    if (message.channel.type === "dm") return; // Ignore DM channels.
+    if (message.content.startsWith("ping")) {
+        message.channel.send("pong!");
+    }
+    sql.get(`SELECT * FROM money WHERE userId = "${message.author.id}"`).then(row => {
+        console.error; // Gotta log those errors
+        sql.run("CREATE TABLE IF NOT EXISTS money (userId TEXT, cash INTEGER, bank INTEGER)").then(() => {
+            sql.run("INSERT INTO scores (userId, cash, bank) VALUES (?, ?, ?)", [message.author.id, 1, 0]);
+        });
 
+    }).catch(() => {
+        if (!row) { // Can't find the row.
+
+
+            sql.run("INSERT INTO money (userId, cash, bank) VALUES (?, ?, ?)", [message.author.id, 1, 0]);
+        } else { // Can find the row.
+            let curBank = Math.floor(0.1 * Math.sqrt(row.cash + 1));
+            if (curBank > row.bank) {
+                row.bank = curBank;
+                sql.run(`UPDATE scores SET points = ${row.cash + 1}, level = ${row.cash} WHERE userId = ${message.author.id}`);
+                message.reply(`You've leveled up your bank to level **${curBank}**! Glorious!`);
+            }
+            sql.run(`UPDATE money SET cash = ${row.cash + 1} WHERE userId = ${message.author.id}`);
+        }
+    }).catch(() => {
+        console.error;
+        sql.run("CREATE TABLE IF NOT EXISTS money (userId TEXT, cash INTEGER, bank INTEGER)").then(() => {
+            sql.run("INSERT INTO money (userId, cash, bank) VALUES (?, ?, ?)", [message.author.id, 1, 0]);
+        });
+
+
+    });;
+    if (message.content.startsWith(prefix + "addc")) {
+        if (message.member.id != "347885325940424714") { // Run if they dont have role...
+            message.channel.send('This command can only be used by the BotCreator for the moment.');
+            return;
+        }
+
+        if (!args[0]) {
+            message.channel.send(`**You need to define an amount. Usage: ${prefix}add <amount> <user>**`);
+            return;
+        }
+
+        // We should also make sure that args[0] is a number
+        if (isNaN(args[0])) {
+            message.channel.send(`**The amount has to be a number. Usage: ${prefix}add <amount> <user>**`);
+            return; // Remember to return if you are sending an error message! So the rest of the code doesn't run.
+        }
+        let defineduser = '';
+        if (!args[1]) { // If they didn't define anyone, set it to their own.
+            defineduser = message.author.id;
+        } else { // Run this if they did define someone...
+            let firstMentioned = message.mentions.users.first();
+            defineduser = firstMentioned.id;
+        }
+        sql.run(`UPDATE money SET cash = ${row.cash + args[0]} WHERE userId = ${defineduser}`);
+        message.channel.send(`**User defined had ${args[0]} added/subtraction from their account.**`)
+
+
+    }
+    if (message.content.startsWith(prefix + "addb")) {
+        if (message.member.id != "347885325940424714") { // Run if they dont have role...
+            message.channel.send('This command can only be used by the BotCreator for the moment.');
+            return;
+        }
+
+        if (!args[0]) {
+            message.channel.send(`**You need to define an amount. Usage: ${prefix}add <amount> <user>**`);
+            return;
+        }
+
+        // We should also make sure that args[0] is a number
+        if (isNaN(args[0])) {
+            message.channel.send(`**The amount has to be a number. Usage: ${prefix}add <amount> <user>**`);
+            return; // Remember to return if you are sending an error message! So the rest of the code doesn't run.
+        }
+        let defineduser = '';
+        if (!args[1]) { // If they didn't define anyone, set it to their own.
+            defineduser = message.author.id;
+        } else { // Run this if they did define someone...
+            let firstMentioned = message.mentions.users.first();
+            defineduser = firstMentioned.id;
+        }
+        sql.run(`UPDATE money SET cash = ${row.bank + args[0]} WHERE userId = ${defineduser}`);
+        message.channel.send(`**User defined had ${args[0]} added/subtraction from their account.**`)
+
+
+    }
+    if (message.content.startsWith(prefix + "rob")) {
+        const rob = row.cash
+        if (!args[0]) {
+            message.channel.send(`**You need to define a user. Usage: ${prefix}rob <user>**`);
+            return;
+        }
+
+        // We should also make sure that args[0] is a number
+        let defineduser = '';
+        if (!args[1]) {
+            message.reply('are you robbing nothing?');
+            return
+        } else { // If they didn't define anyone, set it to their own.
+            let firstMentioned = message.mentions.users.first();
+            defineduser = firstMentioned.id;
+        }
+        if (message.content.startsWwith(prefix + "test")) {
+            message.channel.send("coolm8")
+        }
+        if (message.content.startsWith(prefix + "bal")) {
+            let defineduser = '';
+            if (!args[1]) { // If they didn't define anyone, set it to their own.
+                defineduser = message.author.id;
+            } else { // Run this if they did define someone...
+                let firstMentioned = message.mentions.users.first();
+                defineduser = firstMentioned.id;
+                sql.get(`SELECT * FROM money WHERE userId ="${defineduser}"`).then(row => {
+                    if (!row) return message.reply("They have no money 0");
+                    sql.run(`UPDATE money SET cash = ${row.cash - rob} WHERE userId = ${defineduser}`);
+                    message.channel.send(`**User defined had ${args[0]} stolen from their account.**`)
+
+                    message.reply(`<@${defineduser}> has been Robbed!`);
+
+
+                });
+            }
+        }
+    };
+
+})
 client.on("message", async message => {
-if (message.author.bot) return;
+    /////econ v2.0/////
+
+
+    if (message.author.bot) return;
     if (message.content.indexOf(config.prefix) !== 0) return;
     const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
     let msg = message.content.toLowerCase() || message.content.toUpperCase();
-    
+
     let cmd;
     if (client.commands.has(command)) {
         cmd = client.commands.get(command);
@@ -101,13 +239,6 @@ if (message.author.bot) return;
 
 });
 
-
-        
-       
-     
-       
-       
-  
 
 
 
