@@ -12,7 +12,7 @@ const sql = require("sqlite");
       sql.run("INSERT INTO money (userId, cash, bank) VALUES (?, ?, ?)", [defineduser, 1, 0]);
     } else {
       sql.run(`UPDATE money SET cash = ${row.cash + args[0]} WHERE userId = ${defineduser}`);
-   message.channel.send(`${defineduser}'s was given args[0] dollars!`) }
+   message.channel.send(`<@${defineduser}>'s was given ${args[0]} dollars!`) }
     });
     }
  exports.conf = {
