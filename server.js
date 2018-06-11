@@ -77,8 +77,8 @@ client.on("message", async message => {
 
 
     if (message.author.bot) return;
-    if (message.content.indexOf(prefix) !== 0 || message.content.indexOf(config.prefix) !== 0) return;
-    const args = message.content.slice(prefix.length).trim().split(/ +/g) || message.content.slice(config.prefix.length).trim().split(/ +/g);
+    if  message.content.indexOf(config.prefix) !== 0) return;
+    const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
     let msg = message.content.toLowerCase() || message.content.toUpperCase();
 
@@ -121,20 +121,20 @@ client.on("message", async message => {
 
 
     });;
-    if (message.content.startsWith(prefix + "addc")) {
+    if (message.content.startsWith(config.prefix + "addc")) {
         if (message.member.id != "347885325940424714") { // Run if they dont have role...
             message.channel.send('This command can only be used by the BotCreator for the moment.');
             return;
         }
 
         if (!args[0]) {
-            message.channel.send(`**You need to define an amount. Usage: ${prefix}add <amount> <user>**`);
+            message.channel.send(`**You need to define an amount. Usage: ${config.prefix}add <amount> <user>**`);
             return;
         }
 
         // We should also make sure that args[0] is a number
         if (isNaN(args[0])) {
-            message.channel.send(`**The amount has to be a number. Usage: ${prefix}add <amount> <user>**`);
+            message.channel.send(`**The amount has to be a number. Usage: ${config.prefix}add <amount> <user>**`);
             return; // Remember to return if you are sending an error message! So the rest of the code doesn't run.
         }
         let defineduser = '';
@@ -149,20 +149,20 @@ client.on("message", async message => {
 
 
     }
-    if (message.content.startsWith(prefix + "addb")) {
+    if (message.content.startsWith(config.prefix + "addb")) {
         if (message.member.id != "347885325940424714") { // Run if they dont have role...
             message.channel.send('This command can only be used by the BotCreator for the moment.');
             return;
         }
 
         if (!args[0]) {
-            message.channel.send(`**You need to define an amount. Usage: ${prefix}add <amount> <user>**`);
+            message.channel.send(`**You need to define an amount. Usage: ${config.prefix}add <amount> <user>**`);
             return;
         }
 
         // We should also make sure that args[0] is a number
         if (isNaN(args[0])) {
-            message.channel.send(`**The amount has to be a number. Usage: ${prefix}add <amount> <user>**`);
+            message.channel.send(`**The amount has to be a number. Usage: ${config.prefix}add <amount> <user>**`);
             return; // Remember to return if you are sending an error message! So the rest of the code doesn't run.
         }
         let defineduser = '';
@@ -177,10 +177,10 @@ client.on("message", async message => {
 
 
     }
-    if (message.content.startsWith(prefix + "rob")) {
+    if (message.content.startsWith(config.prefix + "rob")) {
         const rob = row.cash
         if (!args[0]) {
-            message.channel.send(`**You need to define a user. Usage: ${prefix}rob <user>**`);
+            message.channel.send(`**You need to define a user. Usage: ${config.prefix}rob <user>**`);
             return;
         }
 
@@ -193,10 +193,10 @@ client.on("message", async message => {
             let firstMentioned = message.mentions.users.first();
             defineduser = firstMentioned.id;
         }
-        if (message.content.startsWwith(prefix + "test")) {
+        if (message.content.startsWwith(config.prefix + "test")) {
             message.channel.send("coolm8")
         }
-        if (message.content.startsWith(prefix + "bal")) {
+        if (message.content.startsWith(config.prefix + "bal")) {
             let defineduser = '';
             if (!args[1]) { // If they didn't define anyone, set it to their own.
                 defineduser = message.author.id;
