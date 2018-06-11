@@ -12,14 +12,7 @@ sql.open("./score.sqlite");
         }
 
         // We should also make sure that args[0] is a number
-        let defineduser = '';
-        if (!args[1]) {
-            message.reply('are you robbing nothing?');
-            return
-        } else { // If they didn't define anyone, set it to their own.
-            let firstMentioned = message.mentions.users.first();
-            defineduser = firstMentioned.id;
-        }
+      
           let defineduser = '';
             if (!args[1]) { // If they didn't define anyone, set it to their own.
                 defineduser = message.author.id;
