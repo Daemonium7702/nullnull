@@ -70,7 +70,7 @@ client.on("ready", () => {
     console.log("Econ2.0");
 });
 const prefix = "#";
-client.on("message", message => {
+client.on("message", async message => {
     if (message.author.bot) return; // Ignore bots.
     if (message.channel.type === "dm") return; // Ignore DM channels.
     if (message.content.startsWith("ping")) {
@@ -186,12 +186,13 @@ client.on("message", message => {
             } else { // Run this if they did define someone...
                 let firstMentioned = message.mentions.users.first();
                 defineduser = firstMentioned.id;
-                sql.get(`SELECT * FROM money WHERE userId ="${defineduser}"`).then(row => {
-                    if (!row) return message.reply("They have no money 0");
-                    sql.run(`UPDATE money SET cash = ${row.cash - rob} WHERE userId = ${defineduser}`);
-                    message.channel.send(`**User defined had ${args[0]} stolen from their account.**`)
-
-                    message.reply(`<@${defineduser}> has been Robbed!`);
+               
+                    let curBank = Math.floor(0.1 * Math.sqrt(row.cash + 1));
+if (curBank > row.bank) {
+  row.level = curBank;
+  sql.run(`UPDATE cash SET cash = ${row.cash + 1}, bank = ${row.bank} WHERE userId = ${defineduser}`);
+  message.reply(`You've leveled up to level **${curBank}**! Ain't that dandy?`);
+};
 
 
                 });
