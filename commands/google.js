@@ -1,8 +1,3 @@
-const GoogleSearch = require('google-search');
-var google = require('google')
-module.exports.run = (client, message, args) => {
-
-
         google.resultsPerPage = 3
         var nextCounter = 0
         const magic = args.join(' ')
