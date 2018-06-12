@@ -5,18 +5,17 @@ const opus = require('node-opus');
 const youtube = new YouTube('AIzaSyB23US7bJ7DJvqt_qTPZaXAdy9RV2GKJxg');
 const queue = new Map();
 
-var servers = {};
-var prefix = '.';
- 
+
 
 module.exports.run = async (client, message, args) => {
-	  var song = {
+	var servers = {}; 
+	var serverQueue = queue.get(message.guild.id);
+	var song = {
             id: video.id,
             title: video.title,
             url: `https://www.youtube.com/watch?v=${video.id}`,
             duration: video.duration
         };
-	var serverQueue = queue.get(message.guild.id);
 let durationString = serverQueue.songs[0].duration.hours > 0 ? `0${serverQueue.songs[0].duration.hours}:0${serverQueue.songs[0].duration.minutes}:${serverQueue.songs[0].duration.seconds}`:serverQueue.songs[0].isStream ? `🔴LIVE` : `0${serverQueue.songs[0].duration.minutes}:${serverQueue.songs[0].duration.seconds}`
     let lines = serverQueue.songs[0].description.split('\n')
 let songString = `${durationString}` 
