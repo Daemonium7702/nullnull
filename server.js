@@ -107,9 +107,9 @@ client.on("message", async message => {
   });
 
 
-   const play = client.emojis.get("456137267954712608");
-const pause = client.emojis.get("456136895307448333");
-const skip = client.emojis.get("456135961571622952");
+   const pplay = client.emojis.get("456137267954712608");
+const ppause = client.emojis.get("456136895307448333");
+const sskip = client.emojis.get("456135961571622952");
      const YouTube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
 const ffmpeg = require('ffmpeg');
@@ -142,7 +142,7 @@ var servers = {};
 				var video2 = await youtube.getVideoByID(video.id); // eslint-disable-line no-await-in-loop
 				await handleVideo(video2, message, voiceChannel, true); // eslint-disable-line no-await-in-loop
 			}
-			return message.channel.send(` ${play} Playlist: **${playlist.title}** has been added to the queue!`);
+			return message.channel.send(` ${pplay} Playlist: **${playlist.title}** has been added to the queue!`);
 		} else {
 			try {
 				var video = await youtube.getVideo(url);
@@ -179,14 +179,14 @@ Please provide a value to select one of the search results ranging from 1-10.
       case "skip":
 		if (!message.member.voiceChannel) return message.channel.send('You are not in a voice channel!');
 		if (!serverQueue) return message.channel.send('There is nothing playing that I could skip for you.');
-		serverQueue.connection.dispatcher.end('${skip}Skip command has been used!');
+		serverQueue.connection.dispatcher.end('${sskip}Skip command has been used!');
 		return undefined;
         break;
       case "stop":
 		if (!message.member.voiceChannel) return message.channel.send('You are not in a voice channel!');
 		if (!serverQueue) return message.channel.send('There is nothing playing that I could stop for you.');
 		serverQueue.songs = [];
-		serverQueue.connection.dispatcher.end('${pause}Stop command has been used!');
+		serverQueue.connection.dispatcher.end('${ppause}Stop command has been used!');
 		return undefined;
 break;
       case "volume":
