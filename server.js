@@ -119,8 +119,7 @@ const queue = new Map();
 
 var servers = {};
 
-    var args = message.content.substring(config.prefix.length).split(" ");
-    if (!message.content.startsWith(config.prefix)) return;
+      if (!message.content.startsWith(config.prefix)) return;
   var searchString = args.slice(1).join(' ');
 	var url = args[1] ? args[1].replace(/<(.+)>/g, '$1') : '';
 	var serverQueue = queue.get(message.guild.id);
