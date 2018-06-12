@@ -1,4 +1,4 @@
-onst Discord = require("discord.js");
+const Discord = require("discord.js");
 const sql = require("sqlite");
 sql.open("./score.sqlite");
  module.exports.run = async (client, message, args) => {
