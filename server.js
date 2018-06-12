@@ -104,7 +104,9 @@ client.on("message", async message => {
     sql.run("CREATE TABLE IF NOT EXISTS money (userId TEXT, cash INTEGER, bank INTEGER)").then(() => {
       sql.run("INSERT INTO money (userId, cash, bank) VALUES (?, ?, ?)", [message.author.id, 1, 0]);
     });
-  });;
+  });
+
+	  });
 
    const pplay = client.emojis.get("456137267954712608");
 const ppause = client.emojis.get("456136895307448333");
@@ -254,7 +256,7 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
         }
         return undefined;
     
-})
+
 async function handleVideo(video, msg, voiceChannel, playlist = false) {
     const serverQueue = queue.get(msg.guild.id);
     console.log(chalk.red("MOOOOSIK"));
@@ -334,9 +336,9 @@ function play(guild, song) {
     .addField("Check out Daebot by inviting him to your server https://discordapp.com/api/oauth2/authorize?client_id=447588362350755840&permissions=8&scope=bot!");
     serverQueue.textChannel.send(NowEmbed);
  
-}
-});
 
+};
+});
 
                 
             
