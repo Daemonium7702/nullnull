@@ -1,5 +1,6 @@
+onst Discord = require("discord.js");
 const sql = require("sqlite");
- sql.open("./score.sqlite");
+sql.open("./score.sqlite");
  module.exports.run = async (client, message, args) => {
      let defineduser = '';
      if (!args[1]) { // If they didn't define anyone, set it to their own.
