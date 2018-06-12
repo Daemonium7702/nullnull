@@ -1,4 +1,4 @@
-const sql = require("sqlite");
+ const sql = require("sqlite");
  sql.open("./score.sqlite");
  module.exports.run = async (client, message, args) => {
      let defineduser = '';
