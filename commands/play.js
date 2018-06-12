@@ -1,8 +1,7 @@
+
 const YouTube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
-const YouTube = require('simple-youtube-api');
-const ytdl = require('ytdl-core');
-const youtube = new YouTube(YOUTUBE_API_KEY);
+const youtube = new YouTube('AIzaSyB23US7bJ7DJvqt_qTPZaXAdy9RV2GKJxg');
 const queue = new Map();
 
 var servers = {};
