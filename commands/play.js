@@ -1,5 +1,3 @@
-
-const YouTube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
 const youtube = new YouTube('AIzaSyB23US7bJ7DJvqt_qTPZaXAdy9RV2GKJxg');
 const queue = new Map();
@@ -127,7 +125,7 @@ Please provide a value to select one of the search results ranging from 1-10.
 	serverQueue.textChannel.send(`🎶 Start playing: **${song.title}**`);
 }
 }
-});
+};
 exports.conf = {
     aliases: ['Play', 'play']
 };
