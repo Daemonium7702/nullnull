@@ -12,17 +12,11 @@ sql.open("./score.sqlite");
     if (!row) {
       sql.run("INSERT INTO money (userId, cash, bank) VALUES (?, ?, ?)", [defineduser, 1, 0]);
     } else {
-      sql.run(`UPDATE money SET cash = ${row.cash + args[0]} WHERE userId = ${defineduser}`);
+      sql.run(`UPDATE money SET cash = ${row.cash + args[1]} WHERE userId = ${defineduser}`);
      message.channel.send(`<@${defineduser}>'s was given ${args[0]} dollars!`) }
     });
     }
- exports.conf = {
-     aliases: ['Balb', 'balb']
- };
- exports.help = {
-     name: "Balb",
-     description: "Money money money."
- }
+
           exports.conf = {
   aliases: ['Addc', 'addc']
   };
