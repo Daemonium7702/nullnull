@@ -2,6 +2,7 @@ const YouTube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
 const ffmpeg = require('ffmpeg');
 const opus = require('node-opus');
+const queue = new Map();
 const youtube = new YouTube('AIzaSyB23US7bJ7DJvqt_qTPZaXAdy9RV2GKJxg');
 var prefix = '.';
 module.exports.run = async (client, message, args) => {
