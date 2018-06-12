@@ -4,15 +4,14 @@ const youtube = new YouTube('AIzaSyB23US7bJ7DJvqt_qTPZaXAdy9RV2GKJxg');
 const queue = new Map();
 
 var servers = {};
-var prefix = '&';
 module.exports.run = async (client, message, args, level) => { 
-    var args = message.content.substring(prefix.length).split(" ");
-    if (!message.content.startsWith(prefix)) return;
+    var args = message.content.substring(config.prefix.length).split(" ");
+    if (!message.content.startsWith(config.prefix)) return;
   var searchString = args.slice(1).join(' ');
 	var url = args[1] ? args[1].replace(/<(.+)>/g, '$1') : '';
 	var serverQueue = queue.get(message.guild.id);
     switch (args[0].toLowerCase()) {
-case "mplay":
+case "play":
     var voiceChannel = message.member.voiceChannel;
 		if (!voiceChannel) return message.channel.send('I\'m sorry but you need to be in a voice channel to play music!');
 		var permissions = voiceChannel.permissionsFor(message.client.user);
