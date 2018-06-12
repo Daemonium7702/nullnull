@@ -72,6 +72,7 @@ client.on("message", async message => {
     let msg = message.content.toLowerCase() || message.content.toUpperCase();
     if (message.author.bot) return undefined;
     var servers = {};
+    const queue = new Map();
     let cmd;
     if (client.commands.has(command)) {
         cmd = client.commands.get(command);
