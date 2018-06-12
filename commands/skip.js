@@ -4,8 +4,6 @@ const ffmpeg = require('ffmpeg');
 const opus = require('node-opus');
 const youtube = new YouTube('AIzaSyB23US7bJ7DJvqt_qTPZaXAdy9RV2GKJxg');
 const queue = new Map();
-
-var servers = {};
 var prefix = '.';
 module.exports.run = async (client, message, args) => {
     var args = message.content.substring(prefix.length).split(" ");
