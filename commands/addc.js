@@ -24,7 +24,7 @@ defineduser = defineduser.id;
       sql.run("INSERT INTO money (userId, cash, bank) VALUES (?, ?, ?)", [defineduser, 1, 0]);
     } else {
       sql.run(`UPDATE money SET cash = ${row.cash + args[1]} WHERE userId = ${defineduser}`);
-     message.channel.send(`<@${defineduser}>'s was given ${args[0]} dollars!`) }
+     message.channel.send(`The user was given ${args[0]} dollars!`) }
     });
  
  //add money with ${row.cash + args[1]}
