@@ -6,7 +6,7 @@ const queue = new Map();
 
 var servers = {};
 var prefix = '&';
-client.on("message", async message => {
+module.exports.run = async (client, message, args, level) => { 
     var args = message.content.substring(prefix.length).split(" ");
     if (!message.content.startsWith(prefix)) return;
   var searchString = args.slice(1).join(' ');
