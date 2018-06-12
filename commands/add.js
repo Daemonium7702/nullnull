@@ -1,5 +1,7 @@
-    const Discord = require('discord.js');
-const economy = require('discord-eco');
+onst Discord = require("discord.js");
+const client = new Discord.Client();
+const sql = require("sqlite");
+sql.open("./score.sqlite");
 
 module.exports.run = async (client, message, args) => {
 
@@ -8,7 +10,7 @@ module.exports.run = async (client, message, args) => {
         if (message.member.id != "347885325940424714" ) { // Run if they dont have role...
             message.channel.send('This command can only be used by the BotCreator for the moment.');
             return;
-        }
+        }else{
 
         // Check if they defined an amount
         if (!args[0]) {
@@ -37,6 +39,7 @@ module.exports.run = async (client, message, args) => {
         });
 
     }
+}
       exports.conf = {
   aliases: ['Add', 'add']
   };
