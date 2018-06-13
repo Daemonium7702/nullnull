@@ -4,16 +4,16 @@ sql.open("./score.sqlite");
  module.exports.run = async (client, message, args) => {
     let defineduser = message.mentions.users.first() || message.author;
 defineduser = defineduser.id;
-  if (args[2]) {
+  if (args[1]) {
    
    
  sql.get(`SELECT * FROM money WHERE userId ='${defineduser}'`).then(row => {
     if (!row) {
       sql.run('INSERT INTO money (userId, cash, bank) VALUES (?, ?, ?)', [defineduser, 1, 0]);
     } else {
-      val = parseInt(args[2])
+      val = parseInt(args[1])
       sql.run(`UPDATE money SET cash = ${row.cash + val} WHERE userId = '${defineduser}'`);
-     message.channel.send(`<@${defineduser}>'s was given ${args[2]} dollars!`) }
+     message.channel.send(`<@${defineduser}>'s was given ${val]} dollars!`) }
     });//add money with ${row.cash + args[2]}
    
    
@@ -26,7 +26,7 @@ defineduser = defineduser.id;
     } else {
       vall = parseInt(args[0])
       sql.run(`UPDATE money SET cash = ${row.cash + vall} WHERE userId = '${defineduser}'`);
-     message.channel.send(`The user was given ${args[0]} dollars!`) }
+     message.channel.send(`The user was given ${vall} dollars!`) }
     });
  
  //add money with ${row.cash + args[1]}
