@@ -1,13 +1,14 @@
 const ms = require("ms");
 module.exports.run = async (client, message, args, levels) => {
 jj = args[0]
-let Timer = args[1];
+  ii = args[1]
+let Timer = args[2];
 
-if(!args[1]){
+if(!args[2]){
   return message.channel.send("Please enter a period of time, with either `s,m or h` at the end!");
 }
 
-if(args[1] <= 0){
+if(args[2] <= 0){
   return message.channel.send("Please enter a period of time, with either `s,m or h` at the end!");
 }
 
@@ -15,7 +16,7 @@ message.channel.send(":white_check_mark: Timer has been set for: " + `${ms(ms(Ti
 
 setTimeout(function(){
   message.channel.send(`Timer has ended, it lasted: ${ms(ms(Timer), {long: true})} Message will now be sent` + message.author.toString());
-  message.channel.send(jj)
+  message.channel.send(jj+ii)
 
 }, ms(Timer));
 }
