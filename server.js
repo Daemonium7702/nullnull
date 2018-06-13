@@ -63,7 +63,8 @@ fs.readdir('./commands/', (err, files) => {
         });
     });
 });
-
+const sql = require("sqlite");
+sql.open("./score.sqlite");
 client.on("message", async message => {
     if (message.author.bot) return;
     if (message.content.indexOf(config.prefix) !== 0) return;
@@ -80,6 +81,29 @@ client.on("message", async message => {
         cmd = client.commands.get(client.aliases.get(command));
     }
     cmd.run(client, message, args);
+
+
+
+
+  if (message.author.bot) return;
+  if (message.channel.type !== "text") return;
+    if (message.content.startsWith("ping")) {
+    message.channel.send("pong!");
+  }
+  sql.get(`SELECT * FROM money WHERE userId ="${message.author.id}"`).then(row => {
+    if (!row) {
+      sql.run("INSERT INTO money (userId, cash, bank) VALUES (?, ?, ?)", [message.author.id, 1, 0]);
+    } else {
+      sql.run(`UPDATE money SET cash = ${row.cash + 1} WHERE userId = ${message.author.id}`);
+    }
+  }).catch(() => {
+    console.error;
+    sql.run("CREATE TABLE IF NOT EXISTS money (userId TEXT, cash INTEGER, bank INTEGER)").then(() => {
+      sql.run("INSERT INTO money (userId, cash, bank) VALUES (?, ?, ?)", [message.author.id, 1, 0]);
+    });
+  });
+});
+
     /*
   if(command === "ban"){
     let bUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
@@ -100,7 +124,7 @@ client.on("message", async message => {
     /////////if(message.author.id === "350693449722232832") return;
 
 
-});
+
 
 
         
