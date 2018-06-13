@@ -16,7 +16,7 @@ message.channel.send(":white_check_mark: Timer has been set for: " + `${ms(ms(Ti
 
 setTimeout(function(){
   message.channel.send(`Timer has ended, it lasted: ${ms(ms(Timer), {long: true})} Message will now be sent` + message.author.toString());
-  message.channel.send(jj+ii)
+  message.channel.send(jj+" "+ii)
 
 }, ms(Timer));
 }
