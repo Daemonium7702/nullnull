@@ -7,7 +7,7 @@ defineduser = defineduser.id;
   if (args[2]) {
    
    
-y     sql.get(`SELECT * FROM money WHERE userId ='${defineduser}'`).then(row => {
+ sql.get(`SELECT * FROM money WHERE userId ='${defineduser}'`).then(row => {
     if (!row) {
       sql.run('INSERT INTO money (userId, cash, bank) VALUES (?, ?, ?)', [defineduser, 1, 0]);
     } else {
