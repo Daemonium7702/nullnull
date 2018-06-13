@@ -13,7 +13,7 @@ defineduser = defineduser.id;
     } else {
       val = parseInt(args[0])
       sql.run(`UPDATE money SET cash = ${row.cash + val} WHERE userId = '${defineduser}'`);
-     message.channel.send(`<@${defineduser}>'s was given ${val]} dollars!`) }
+     message.channel.send(`<@${defineduser}>'s was given ${val} dollars!`) }
     });//add money with ${row.cash + args[2]}
    
    
