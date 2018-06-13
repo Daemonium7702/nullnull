@@ -11,7 +11,8 @@ defineduser = defineduser.id;
     if (!row) {
       sql.run('INSERT INTO money (userId, cash, bank) VALUES (?, ?, ?)', [defineduser, 1, 0]);
     } else {
-      sql.run(`UPDATE money SET cash = ${row.cash + args[2]} WHERE userId = '${defineduser}'`);
+      val = parseInt(args[2])
+      sql.run(`UPDATE money SET cash = ${row.cash + val]} WHERE userId = '${defineduser}'`);
      message.channel.send(`<@${defineduser}>'s was given ${args[2]} dollars!`) }
     });//add money with ${row.cash + args[2]}
    
@@ -23,7 +24,8 @@ defineduser = defineduser.id;
     if (!row) {
       sql.run('INSERT INTO money (userId, cash, bank) VALUES (?, ?, ?)', [defineduser, 1, 0]);
     } else {
-      sql.run(`UPDATE money SET cash = ${row.cash + args[0]} WHERE userId = '${defineduser}'`);
+      val = parseInt(args[0])
+      sql.run(`UPDATE money SET cash = ${row.cash + val} WHERE userId = '${defineduser}'`);
      message.channel.send(`The user was given ${args[0]} dollars!`) }
     });
  
