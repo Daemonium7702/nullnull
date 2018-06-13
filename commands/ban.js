@@ -1,6 +1,4 @@
 module.exports.run = async (client, message, args) => {
-
-case "ban":
             if(!message.guild.member(message.author).hasPermission("BAN_MEMBERS")) return message.reply("It appears you don't have permission to do this.")
             if(!message.guild.member(bot.user).hasPermission("BAN_MEMBERS")) return message.reply("It appears I don't have permission to do this.")
             
@@ -12,11 +10,7 @@ case "ban":
             if(message.mentions.users.size < 1) return message.reply("You must mention someone in order to ban them!");
             if(!reason1) return message.reply("Enter a reason for ban.");
             if(!message.guild.member(user1).kickable) return message.reply("I can't ban the owner!");
-            
             message.guild.member(user1).ban(reason);
-            
-            
-            break;
         }
          exports.conf = {
   aliases: ['Ban', 'ban']
