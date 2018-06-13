@@ -9,7 +9,7 @@ defineduser = defineduser.id;
    
       sql.get(`SELECT * FROM money WHERE userId ="${defineduser}"`).then(row => {
     if (!row) {
-      sql.run("INSERT INTO money (userId, cash, bank) VALUES (?, ?, ?)", [defineduser, 1, 0]);
+      sql.run('INSERT INTO money (userId, cash, bank) VALUES (?, ?, ?)', [defineduser, 1, 0]);
     } else {
       sql.run(`UPDATE money SET cash = ${row.cash + args[2]} WHERE userId = ${defineduser}`);
      message.channel.send(`<@${defineduser}>'s was given ${args[2]} dollars!`) }
@@ -21,7 +21,7 @@ defineduser = defineduser.id;
  
    sql.get(`SELECT * FROM money WHERE userId ="${defineduser}"`).then(row => {
     if (!row) {
-      sql.run("INSERT INTO money (userId, cash, bank) VALUES (?, ?, ?)", [defineduser, 1, 0]);
+      sql.run('INSERT INTO money (userId, cash, bank) VALUES (?, ?, ?)', [defineduser, 1, 0]);
     } else {
       sql.run(`UPDATE money SET cash = ${row.cash + args[0]} WHERE userId = ${defineduser}`);
      message.channel.send(`The user was given ${args[0]} dollars!`) }
