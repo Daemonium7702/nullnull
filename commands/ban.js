@@ -11,6 +11,7 @@ module.exports.run = async (client, message, args) => {
             if(!reason1) return message.reply("Enter a reason for ban.");
             if(!message.guild.member(user1).kickable) return message.reply("I can't ban the owner!");
             message.guild.member(user1).ban(reason1);
+            modlog1.channel.send(`${user1} Was kicked by ${message.author}`)
         }
          exports.conf = {
   aliases: ['Ban', 'ban']
