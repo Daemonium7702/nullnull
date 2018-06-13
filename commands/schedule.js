@@ -1,7 +1,7 @@
 const ms = require("ms");
 module.exports.run = async (client, message, args, levels) => {
-jj = args.join(' ')
-let Timer = args[0];
+jj = args.[1]
+let Timer = args[2];
 
 if(!args[0]){
   return message.channel.send("Please enter a period of time, with either `s,m or h` at the end!");
