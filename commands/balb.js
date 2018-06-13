@@ -10,12 +10,13 @@
         sql.get(`SELECT * FROM money WHERE userId ="${defineduser}"`).then(row => {
              if (!row) return message.reply("Your current level is 0");
              message.channel.send(`Current banked money of user is $${row.bank}`);
-},
-             sql.get(`SELECT * FROM money WHERE userId ="${defineduser}"`).then(row => {
-                 if (!row) return message.reply("sadly you do not have any points yet!");
-                 message.channel.send(`User currently have $${row.cash} in your wallet, good going!`);
-             })
-         )}
+             message.channel.send(`User currently have $${row.cash} in your wallet, good going!`);
+//},
+	     //sql.get(`SELECT * FROM money WHERE userId ="${defineduser}"`).then(row => {
+             //    if (!row) return message.reply("sadly you do not have any points yet!");
+             //})
+         })
+};
  exports.conf = {
      aliases: ['Balb', 'balb']
  };
