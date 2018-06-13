@@ -1,6 +1,6 @@
 const ms = require("ms");
 module.exports.run = async (client, message, args, levels) => {
-jj = args.[1]
+jj = args[1]
 let Timer = args[2];
 
 if(!args[0]){
