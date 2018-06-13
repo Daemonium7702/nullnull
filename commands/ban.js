@@ -6,7 +6,7 @@ case "ban":
             
             let user1 = message.mentions.users.first();
             let reason1 = message.content.split(" ").slice(2).join(" ");
-            let modlog1 = bot.channels.find("name", "mod-log" || "moderation-log");
+            let modlog1 = bot.channels.find("name", "incidents" || "Incidents");
 
             if(!modlog1) return message.reply("I've detected that this server doesn't have a mod-log channel.");
             if(message.mentions.users.size < 1) return message.reply("You must mention someone in order to ban them!");
