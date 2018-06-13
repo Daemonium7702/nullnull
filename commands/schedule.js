@@ -3,11 +3,11 @@ module.exports.run = async (client, message, args, levels) => {
 jj = args[1]
 let Timer = args[2];
 
-if(!args[0]){
+if(!args[2]){
   return message.channel.send("Please enter a period of time, with either `s,m or h` at the end!");
 }
 
-if(args[0] <= 0){
+if(args[2] <= 0){
   return message.channel.send("Please enter a period of time, with either `s,m or h` at the end!");
 }
 
