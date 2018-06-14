@@ -1,4 +1,5 @@
-   const YouTube = require('simple-youtube-api');
+const client = new Discord.Client();   
+const YouTube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
 const ffmpeg = require('ffmpeg');
 const opus = require('node-opus');
