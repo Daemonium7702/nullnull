@@ -1,11 +1,9 @@
-const Discord = require("discord.js");
-const client = new Discord.Client();   
+const Discord = require("discord.js"); 
 const YouTube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
 const ffmpeg = require('ffmpeg');
 const opus = require('node-opus');
 const youtube = new YouTube('AIzaSyB23US7bJ7DJvqt_qTPZaXAdy9RV2GKJxg');
-client.queue = new Map();
 var prefix = '.';
 module.exports.run = async (client, message, args) => {
     var args = message.content.substring(prefix.length).split(" ");
