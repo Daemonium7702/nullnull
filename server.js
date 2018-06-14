@@ -46,8 +46,7 @@ client.on("message", async message => {
     if (message.content.indexOf(config.prefix) !== 0) return;
     const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
-    let message = message.content.toLowerCase() || message.content.toUpperCase();
-    if (message.author.bot) return undefined;
+      if (message.author.bot) return undefined;
     var servers = {};
     const queue = new Map();
     if (message.author.bot) return;
