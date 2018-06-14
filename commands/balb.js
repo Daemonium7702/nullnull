@@ -24,7 +24,7 @@
                  message.channel.send(`Current banked money of user is $${row.bank}`);
                  message.channel.send(`User currently have $${row.cash} in your wallet, good going!`);
 
-             }
+             })
      }
  }
  exports.conf = {
