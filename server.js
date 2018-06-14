@@ -40,8 +40,6 @@ client.on('guildMemberAdd', member => {
     // Send the message, mentioning the member
     channel.send(` ${member}, Has joined the Fray... Poor Person`);
 });
-
-client.on("message", async message => {
    client.on("message", async message => {
   if(message.author.bot) return;
   if(message.content.indexOf(config.prefix) !== 0) return;
@@ -90,7 +88,6 @@ client.on("message", async message => {
     console.error;
     sql.run("CREATE TABLE IF NOT EXISTS money (userId TEXT, cash INTEGER, bank INTEGER)").then(() => {
       sql.run("INSERT INTO money (userId, cash, bank) VALUES (?, ?, ?)", [message.author.id, 1, 0]);
-    });
   });
 });
 });
