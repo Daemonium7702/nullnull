@@ -42,14 +42,12 @@ client.on('guildMemberAdd', member => {
 });
 
 client.on("message", async message => {
-    if (message.author.bot) return;
-    if (message.content.indexOf(config.prefix) !== 0) return;
-    const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
-    const command = args.shift().toLowerCase();
-      if (message.author.bot) return undefined;
-    var servers = {};
+   client.on("message", async message => {
+  if(message.author.bot) return;
+  if(message.content.indexOf(config.prefix) !== 0) return;
+  const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+  const command = args.shift().toLowerCase();
     const queue = new Map();
-    if (message.author.bot) return;
     if(command==="Lyons2"){
      const oldMessage = args.join(" ");
       message.delete().catch(O_o=>{}); 
@@ -95,20 +93,5 @@ client.on("message", async message => {
     });
   });
 });
-    /*
-  if(command === "ban"){
-    let bUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-    if(!bUser) return message.channel.send("Can't find user!");
-    let bReason = args.join(" ").slice(22);
-    if(!message.member.hasPermission("MANAGE_MEMBERS")) return message.channel.send("No can do pal!");
-    if(bUser.hasPermission("MANAGE_MESSAGES")) return message.channel.send("That person can't be kicked!");
-  
-    let incidentchannel = message.guild.channels.find(`name`, "incidents");
-    if(!incidentchannel) return message.channel.send("Can't find incidents channel.");
-    message.guild.member(bUser).ban(bReason);
-    incidentchannel.send("completed");
-    return;
-  }
-*/ //not functional//
-    /////////if(message.author.id === "350693449722232832") return;
-client.login(process.env.BOT_TOKEN);
+});
+  client.login(process.env.BOT_TOKEN);
