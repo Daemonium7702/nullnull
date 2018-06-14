@@ -2,10 +2,9 @@ const Discord = require("discord.js");
 const YouTube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
 const youtube = new YouTube('AIzaSyB23US7bJ7DJvqt_qTPZaXAdy9RV2GKJxg');
-const client = require("../server.js");
 const prefix = "."
 module.exports.run = async (client, message, args, level) => { 
-    const queue = require(client.queue);
+    client.queue = {}
 	var args = message.content.substring(prefix.length).split(" ");
     if (!message.content.startsWith(prefix)) return;
   var searchString = args.slice(1).join(' ');
