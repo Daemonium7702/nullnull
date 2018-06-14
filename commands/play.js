@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 const YouTube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
 const youtube = new YouTube('AIzaSyB23US7bJ7DJvqt_qTPZaXAdy9RV2GKJxg');
+cons queue = require(client.queue)
 const prefix = "."
 module.exports.run = async (client, message, args, level) => { 
     var args = message.content.substring(prefix.length).split(" ");
