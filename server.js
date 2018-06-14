@@ -15,8 +15,8 @@ const translate = require('google-translate-api');
 const GoogleSearch = require('google-search');
 const google = require('google');
 const profanities = require('profanities');
-
-
+const sql = require("sqlite");
+sql.open("./score.sqlite");
 
 
 client.on("ready", () => {
@@ -41,55 +41,48 @@ client.on('guildMemberAdd', member => {
     channel.send(` ${member}, Has joined the Fray... Poor Person`);
 });
 
-client.commands = new Discord.Collection();
-client.aliases = new Discord.Collection();
-
-fs.readdir('./commands/', (err, files) => {
-    if (err)
-        console.error(err);
-    let jsfiles = files.filter(f => f.split('.')
-        .pop() === 'js');
-    if (jsfiles.length <= 0) {
-        console.log('No commands to load!');
-        return;
-    }
-    console.log(`[Commands]\tLoaded a total amount ${files.length} Commands`);
-    jsfiles.forEach(f => {
-        let props = require(`./commands/${ f }`);
-        props.fileName = f;
-        client.commands.set(props.help.name, props);
-        props.conf.aliases.forEach(alias => {
-            client.aliases.set(alias, props.help.name);
-        });
-    });
-});
-const sql = require("sqlite");
-sql.open("./score.sqlite");
 client.on("message", async message => {
     if (message.author.bot) return;
     if (message.content.indexOf(config.prefix) !== 0) return;
     const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
-    let msg = message.content.toLowerCase() || message.content.toUpperCase();
+    let message = message.content.toLowerCase() || message.content.toUpperCase();
     if (message.author.bot) return undefined;
     var servers = {};
-   client.queue = new Map();
-    let cmd;
-    if (client.commands.has(command)) {
-        cmd = client.commands.get(command);
-    } else if (client.aliases.has(command)) {
-        cmd = client.commands.get(client.aliases.get(command));
-    }
-    cmd.run(client, message, args);
-
-
-
-
-  if (message.author.bot) return;
-  if (message.channel.type !== "text") return;
-    if (message.content.startsWith("ping")) {
-    message.channel.send("pong!");
-  }
+    const queue = new Map();
+    if (message.author.bot) return;
+    if(command==="Lyons2"){
+     const oldMessage = args.join(" ");
+      message.delete().catch(O_o=>{}); 
+    const a = oldMessage.replace(/y/g, "ab");
+     const b = a.replace(/x/g, "za");
+     const c = b.replace(/w/g, "yz");
+     const  d = c.replace(/v/g, "xy");
+     const  e = d.replace(/u/g, "wx");
+     const f = e.replace(/t/g, "vw");
+     const  g = f.replace(/s/g, "uv");
+     const  h = g.replace(/r/g, "tu");
+       const i = h.replace(/q/g, "st");
+     const  j = i.replace(/p/g, "rs");
+     const  k = j.replace(/o/g, "qr");
+     const  l = k.replace(/n/g, "pq");
+    const m = l.replace(/m/g, "op");
+    const n = m.replace(/l/g, "no");
+    const  o = n.replace(/k/g, "mn");
+    const  p = o.replace(/j/g, "lm");
+    const q = p.replace(/i/g, "kl");
+    const  r = q.replace(/h/g, "jk");
+    const s = r.replace(/g/g, "ij");
+    const  t = s.replace(/f/g, "hi");
+    const  u = t.replace(/e/g, "gh");
+    const  v = u.replace(/d/g, "fg");
+    const  w = v.replace(/c/g, "ef");
+    const x = w.replace(/b/g, "de");
+    const y = x.replace(/a/g, "cd");
+    const z = y.replace(/z/g, "bc");
+    message.channel.send(z);
+    message.channel.send("this is the lyonsCipher V2.0");
+ }
   sql.get(`SELECT * FROM money WHERE userId ="${message.author.id}"`).then(row => {
     if (!row) {
       sql.run("INSERT INTO money (userId, cash, bank) VALUES (?, ?, ?)", [message.author.id, 1, 0]);
@@ -103,7 +96,6 @@ client.on("message", async message => {
     });
   });
 });
-
     /*
   if(command === "ban"){
     let bUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
@@ -119,21 +111,5 @@ client.on("message", async message => {
     return;
   }
 */ //not functional//
-
-
     /////////if(message.author.id === "350693449722232832") return;
-
-
-
-
-
-        
-       
-     
-       
-       
-  
-
-
-
 client.login(process.env.BOT_TOKEN);
