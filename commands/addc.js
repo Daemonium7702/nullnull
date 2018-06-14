@@ -15,7 +15,7 @@ defineduser = defineduser.id;
       sql.run(`UPDATE money SET cash = ${row.cash + val} WHERE userId = '${defineduser}'`);
      message.channel.send(`<@${defineduser}>'s was given ${val} dollars!`) }
     });//add money with ${row.cash + args[2]}
-   
+   console.log(val);
    
 } else {
     
@@ -28,7 +28,7 @@ defineduser = defineduser.id;
       sql.run(`UPDATE money SET cash = ${row.cash + vall} WHERE userId = '${defineduser}'`);
      message.channel.send(`The user was given ${vall} dollars!`) }
     });
- 
+ console.log(vall)
  //add money with ${row.cash + args[1]}
 }
   
