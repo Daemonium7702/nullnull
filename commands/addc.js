@@ -11,12 +11,13 @@ defineduser = defineduser.id;
     if (!row) {
       sql.run('INSERT INTO money (userId, cash, bank) VALUES (?, ?, ?)', [defineduser, 1, 0]);
     } else {
-     const val = parseInt(args[0])
+     const val = parseInt(args[1])
       sql.run(`UPDATE money SET cash = ${row.cash + val} WHERE userId = '${defineduser}'`);
      message.channel.send(`<@${defineduser}>'s was given ${val} dollars!`) }
-    });//add money with ${row.cash + args[2]}
-   console.log(val);
+       console.log(val);
    
+ });//add money with ${row.cash + args[2]}
+
 } else {
     
  
@@ -27,8 +28,9 @@ defineduser = defineduser.id;
       const vall = parseInt(args[0])
       sql.run(`UPDATE money SET cash = ${row.cash + vall} WHERE userId = '${defineduser}'`);
      message.channel.send(`The user was given ${vall} dollars!`) }
-    });
- console.log(vall);
+     console.log(vall);
+   });
+
  //add money with ${row.cash + args[1]}
 }
   
