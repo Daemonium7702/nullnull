@@ -1,6 +1,6 @@
 const YouTube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
-const queue = new Map();
+client.queue = new Map();
 const youtube = new YouTube('AIzaSyB23US7bJ7DJvqt_qTPZaXAdy9RV2GKJxg');
 const prefix = "."
 module.exports.run = async (client, message, args, level) => { 
@@ -8,7 +8,7 @@ module.exports.run = async (client, message, args, level) => {
     if (!message.content.startsWith(prefix)) return;
   var searchString = args.slice(1).join(' ');
 	var url = args[1] ? args[1].replace(/<(.+)>/g, '$1') : '';
-	var serverQueue = queue.get(message.guild.id);
+	var serverQueue = client.queue.get(message.guild.id);
     switch (args[0].toLowerCase()) {
 case "play":
     var voiceChannel = message.member.voiceChannel;
@@ -63,7 +63,7 @@ Please provide a value to select one of the search results ranging from 1-10.
         break;
     
     async function handleVideo(video, message, voiceChannel, playlist = false) {
-	var serverQueue = queue.get(message.guild.id);
+	var serverQueue = client.queue.get(message.guild.id);
 	console.log(video);
 	var song = {
 		id: video.id,
@@ -79,7 +79,7 @@ Please provide a value to select one of the search results ranging from 1-10.
 			volume: 5,
 			playing: true
 		};
-		queue.set(message.guild.id, queueConstruct);
+		client.queue.set(message.guild.id, queueConstruct);
 
 		queueConstruct.songs.push(song);
 
@@ -89,7 +89,7 @@ Please provide a value to select one of the search results ranging from 1-10.
 			play(message.guild, queueConstruct.songs[0]);
 		} catch (error) {
 			console.error(`I could not join the voice channel: ${error}`);
-			queue.delete(message.guild.id);
+			client.queue.delete(message.guild.id);
 			return message.channel.send(`I could not join the voice channel: ${error}`);
 		}
 	} else {
@@ -101,11 +101,11 @@ Please provide a value to select one of the search results ranging from 1-10.
 	return undefined;
 }
   function play(guild, song) {
-	var serverQueue = queue.get(guild.id);
+	var serverQueue = client.queue.get(guild.id);
 
 	if (!song) {
 		serverQueue.voiceChannel.leave();
-		queue.delete(guild.id);
+		client.queue.delete(guild.id);
 		return;
 	}
 	console.log(serverQueue.songs);
