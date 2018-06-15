@@ -143,7 +143,6 @@ message.channel.send("You are "+randomAnswer+".")
 return}else{
 message.channel.send(args +" is"+randomAnswer+".")
 }
-}   
 if (command === "8ball") {
         const answers = [
             "Yes",
