@@ -117,14 +117,31 @@ client.on("message", async message => {
     }
 	if(command === "cowsay"){
 		const moo = args.join(' ');
-	message.channel.send("```"+ "________________________________\n " +"<"+ moo + ">\n "+"--------------------------------\n"+"        \\    ^__^ \n "+"        \\  (oo)\\_______\n "+"            (__)\\       )\\/\\\n "+"                ||----w ||\n "+"                ||     ||\n "+"```");
+	message.channel.send("```"+ "________________________________\n " +"<"+ moo + ">\n "+"--------------------------------\n"+"        \\    ^__^ \n "+"        \\   (oo)\\_______\n "+"            (__)\\       )\\/\\\n "+"                ||----w ||\n "+"                ||     ||\n "+"```");
 	}
 if(command === "insult"){
 const a = args.join
+  const answers = [
+            "a bastard",
+            "wicked",
+            "so fat, it took Thanos 2 snaps to kill her",
+            "so ugly, even Dr. Frankenstein turned you down",
+            "such a weeb that i fucked ur mum so hard her pussy turned into a dick and  then i fuked ur dads asshole so hard it turned into a pussy then they cucked me and fuked each other whilst i was rubbing my dick until i cummed into ur mums dick who used that semen as lube but she also cummed into ur dads pussy. 6 months later ur little sister came out whomst ur parents groomed until she hit puberty and they continued to fuk her everyday until she gave birth to you",
+            "not worth even the laziest of insults",
+            "not good",
+	  "noob Sauce",
+	  "so fat the flash tried to run around you but he died from age before he could get halfway",
+	  "a cocain addicted cow",
+	  "depresses cuz ur mom gay lol",
+	  "mmmmmmmmmmmmmmmmmmmmmmmmmmmGay"
+        ]
+   const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
+        message.channel.send(randomAnswer);
+    }
 if(!args){
-message.channel.send("You are a wickedly unseemly sphincter and a naive, soul-destroying mass of neuroses and pathologies")
+message.channel.send("You are "+randomAnswer+".")
 return}else{
-message.channel.send(args +" "+"is a wickedly unseemly sphincter and a naive, soul-destroying mass of neuroses and pathologies.")
+message.channel.send(args +" is"+randomAnswer+".")
 }
 }   
 if (command === "8ball") {
