@@ -47,6 +47,7 @@ client.on("message", async message => {
     const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
     const prefix = config.prefix
+    
     if (command === "ping") {
         const m = await message.channel.send("Ping?");
         const answers = [
@@ -849,8 +850,8 @@ client.on("message", async message => {
     var searchString = args.slice(1).join(' ');
     var url = args[1] ? args[1].replace(/<(.+)>/g, '$1') : '';
     var serverQueue = queue.get(message.guild.id);
-    switch (args[0].toLowerCase()) {
-        case "play":
+
+        if(command ==="play"){
             var voiceChannel = message.member.voiceChannel;
             if (!voiceChannel) return message.channel.send('I\'m sorry but you need to be in a voice channel to play music!');
             var permissions = voiceChannel.permissionsFor(message.client.user);
@@ -900,59 +901,56 @@ Please provide a value to select one of the search results ranging from 1-10.
                 }
                 return handleVideo(video, message, voiceChannel);
             }
-            break;
-        case "skip":
+	}
+       if(command === "skip"){
             if (!message.member.voiceChannel) return message.channel.send('You are not in a voice channel!');
             if (!serverQueue) return message.channel.send('There is nothing playing that I could skip for you.');
             serverQueue.connection.dispatcher.end('Skip command has been used!');
             return undefined;
-            break;
-        case "stop":
+       }
+        if(command === "stop"){
             if (!message.member.voiceChannel) return message.channel.send('You are not in a voice channel!');
             if (!serverQueue) return message.channel.send('There is nothing playing that I could stop for you.');
             serverQueue.songs = [];
             serverQueue.connection.dispatcher.end('Stop command has been used!');
             return undefined;
-            break;
-        case "volume":
+	}
+        if(command === "vol"){
             if (!message.member.voiceChannel) return message.channel.send('You are not in a voice channel!');
             if (!serverQueue) return message.channel.send('There is nothing playing.');
             if (!args[1]) return message.channel.send(`The current volume is: **${serverQueue.volume}**`);
             serverQueue.volume = args[1];
             serverQueue.connection.dispatcher.setVolumeLogarithmic(args[1] / 5);
             return message.channel.send(`I set the volume to: **${args[1]}**`);
-            break;
-        case "np":
+    }
+       if(command === "np"){
             if (!serverQueue) return message.channel.send('There is nothing playing.');
             return message.channel.send(`🎶 Now playing: **${serverQueue.songs[0].title}**`);
-            break;
-        case "queue":
+       }
+       if(command === "queue"){
             if (!serverQueue) return message.channel.send('There is nothing playing.');
             return message.channel.send(`
 __**Song queue:**__
 ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
 **Now playing:** ${serverQueue.songs[0].title}
 		`);
-            break;
-        case "pause":
+}
+        if(command === "pause"){
             if (serverQueue && serverQueue.playing) {
                 serverQueue.playing = false;
                 serverQueue.connection.dispatcher.pause();
                 return message.channel.send('Well, I guess paused the music for you!');
             }
             return message.channel.send('There is nothing playing. Like. Anywhere');
-            break;
-        case "resume":
+	}
+      if(command === "resume"){
             if (serverQueue && !serverQueue.playing) {
                 serverQueue.playing = true;
                 serverQueue.connection.dispatcher.resume();
                 return message.channel.send('I have resumed the music for you!');
             }
             return message.channel.send('There is nothing playing.');
-
-
             return undefined;
-            break;
     }
     async function handleVideo(video, message, voiceChannel, playlist = false) {
         var serverQueue = queue.get(message.guild.id);
