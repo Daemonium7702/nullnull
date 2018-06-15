@@ -115,7 +115,19 @@ client.on("message", async message => {
         message.channel.send(z);
         message.channel.send("this is the lyonsCipher V2.0");
     }
-    if (command === "8ball") {
+	if(command === "cowsay"){
+		const moo = args.join(' ');
+	message.channel.send("```"+ "________________________________\n " +"<"+ moo + ">\n "+"--------------------------------"+"        \   ^__^ \n "+"         \  (oo)\_______"+"            (__)\       )\/\\"+"                ||----w |"+"                ||     ||"+"```");
+	}
+if(command === "insult"){
+const a = args.join
+if(!args){
+message.channel.send("You are a wickedly unseemly sphincter and a naive, soul-destroying mass of neuroses and pathologies")
+return}else{
+message.channel.send(args + "is a wickedly unseemly sphincter and a naive, soul-destroying mass of neuroses and pathologies.")
+}
+}   
+if (command === "8ball") {
         const answers = [
             "Yes",
             "Not a Chance!",
