@@ -82,12 +82,10 @@ client.on("message", async message => {
         message.author.send("```js\n Music: \n Np: Shows What Is Now Playing Usage: .np \n Pause: Pauses Music Usage: .pause \n Play: Plays Music. Usage: .play [song Name], Then Select From List By Typing The Corresponding Number (e.g. For Song 2 Type 2) \n Queue: Shows Music Queue \n Resume: Resumes A Paused Song. Usage: .resume \n Skip: Skips A Song Usage: .skip \n Stop: Stops Music From Playing Usage: .stop \n Vol: Volume Usage: .vol [number] \n```")
         message.channel.send(`js\n Help was sent to ${message.author.tag}`);
     }
-if(command === "time"){
-	var today = new Date()
-let Day = today.toString().split(" ")[0].concat("day");
-let Month = today.toString().split(" ")[1]
-let Year = today.toString().split(" ")[3]
-message.channel.send(`\`${Day}\` \`${Month}\` \`${Year}\`\n\`Time of day:\` \`${today.toString().split(" ")[4]}\``)
+	if(command === "time"){
+var d = new Date();
+var n = d.getTimezoneOffset();
+	message.channel.send(n)
 }
     if (command === "Lyons2") {
         const oldMessage = args.join(" ");
