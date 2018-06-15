@@ -135,13 +135,12 @@ const a = args.join
 	  "depresses cuz ur mom gay lol",
 	  "mmmmmmmmmmmmmmmmmmmmmmmmmmmGay"
         ]
-   const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
-        message.channel.send(randomAnswer);
-    }
+  const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
 if(!args){
 message.channel.send("You are "+randomAnswer+".")
 return}else{
 message.channel.send(args +" is"+randomAnswer+".")
+}
 }
 if (command === "8ball") {
         const answers = [
