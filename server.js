@@ -83,7 +83,7 @@ client.on("message", async message => {
         message.channel.send(`js\n Help was sent to ${message.author.tag}`);
     }
 	if(command === "time"){
-var d = new Date();
+var d = args.join(' ');
 var n = d.getTimezoneOffset();
 	message.channel.send(n)
 }
