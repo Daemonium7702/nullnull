@@ -77,7 +77,7 @@ client.on("message", async message => {
     var url = args[1] ? args[1].replace(/<(.+)>/g, '$1') : '';
     var serverQueue = queue.get(message.guild.id);
     switch (args[0].toLowerCase()) {
-        case "mplay":
+        case "play":
             var voiceChannel = message.member.voiceChannel;
             if (!voiceChannel) return message.channel.send('I\'m sorry but you need to be in a voice channel to play music!');
             var permissions = voiceChannel.permissionsFor(message.client.user);
@@ -128,20 +128,20 @@ Please provide a value to select one of the search results ranging from 1-10.
                 return handleVideo(video, message, voiceChannel);
             }
             break;
-        case "mskip":
+        case "skip":
             if (!message.member.voiceChannel) return message.channel.send('You are not in a voice channel!');
             if (!serverQueue) return message.channel.send('There is nothing playing that I could skip for you.');
             serverQueue.connection.dispatcher.end('Skip command has been used!');
             return undefined;
             break;
-        case "mstop":
+        case "stop":
             if (!message.member.voiceChannel) return message.channel.send('You are not in a voice channel!');
             if (!serverQueue) return message.channel.send('There is nothing playing that I could stop for you.');
             serverQueue.songs = [];
             serverQueue.connection.dispatcher.end('Stop command has been used!');
             return undefined;
             break;
-        case "mvolume":
+        case "volume":
             if (!message.member.voiceChannel) return message.channel.send('You are not in a voice channel!');
             if (!serverQueue) return message.channel.send('There is nothing playing.');
             if (!args[1]) return message.channel.send(`The current volume is: **${serverQueue.volume}**`);
@@ -149,11 +149,11 @@ Please provide a value to select one of the search results ranging from 1-10.
             serverQueue.connection.dispatcher.setVolumeLogarithmic(args[1] / 5);
             return message.channel.send(`I set the volume to: **${args[1]}**`);
             break;
-        case "mnp":
+        case "np":
             if (!serverQueue) return message.channel.send('There is nothing playing.');
             return message.channel.send(`🎶 Now playing: **${serverQueue.songs[0].title}**`);
             break;
-        case "mqueue":
+        case "queue":
             if (!serverQueue) return message.channel.send('There is nothing playing.');
             return message.channel.send(`
 __**Song queue:**__
@@ -161,7 +161,7 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
 **Now playing:** ${serverQueue.songs[0].title}
 		`);
             break;
-        case "mpause":
+        case "pause":
             if (serverQueue && serverQueue.playing) {
                 serverQueue.playing = false;
                 serverQueue.connection.dispatcher.pause();
@@ -169,7 +169,7 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
             }
             return message.channel.send('There is nothing playing. Like. Anywhere');
             break;
-        case "mresume":
+        case "resume":
             if (serverQueue && !serverQueue.playing) {
                 serverQueue.playing = true;
                 serverQueue.connection.dispatcher.resume();
@@ -243,7 +243,15 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
 
         serverQueue.textChannel.send(`Started playing: **${song.title}**`);
     }
-
+    if (command === "help") {
+        message.author.send(`Economy: \n Add: Ignore This Command It Is In Maintenance \n Addb: Ignore This Command It Is In Maintenance \n Addc: Ignore This Command It Is In Maintenance \n Bal: Ignore This Command It Is In Maintenance \n Balb: Ignore This Command It Is In Maintenance \n Buy: Ignore This Command It Is In Maintenance \n Daily: Ignore This Command It Is In Maintenance \n Gamble: Ignore This Command It Is In Maintenance \n Gamblec: Ignore This Command It Is In Maintenance \n Robb: Ignore This Command It Is In Maintenance \n`);
+        message.author.send(`Fun:\n 8ball: This Command Is An 8Ball Usage: .8ball [YesOrNo Question] \n Bomb: Sends A Bomb Usage: .bomb \n Clapify: Clapifies That Text! Usage: .clapify [text] \n Urban: Looks Up A String On Urban Dictionary Usage: .Urban [string] \n Fireworks: Sends Some Cool Fireworks Usage: .fireworks \n Forcecrush: Force Crush! Usage: .forcecrush \n Fusrodah: Fus.....RO DAH!!! Usage: Call To The Ancients With .fusrodah \n Lovecalc: Calculates The Chances Of Love Between Any Two Objects! Usage: .lovecalc [object1] [object2] \n Magicify: Turns Your Message Into An Ugly Embed! Usage: .magicify [text] \n Meme: Sends Some Dank Memes! Usage: .meme \n O: Swotchos Oll Vowols On O Strong To "o" Usogo: .o [toxt] \n Reverse: Reverses A String Usage: .reverse [words] \n Rickroll: .... Usage: .rickroll \n Rr1: Russian Roulette Bud! Usage: .rr1 \n Say: Makes The Bot Say What You Say. Usage: .say [words] \n Sigh: Sigh :( Usage: .sigh \n Ss: Compete With Other Users To Set The Status Of My Bot! Usage: .ss \n Tts: Text To Speech. Usage: .tts [text] WARNING THIS CAN BE ANNOYING DISABLE TTS IF SOMEONE ABUSES IT, AND REPORT THEM WITH .BUGREPORT \n`);
+        message.author.send(`NSFW:\n Ass: Shows Some Ass ;) NSFW ONLY Usage: .ass\n Bond: Bondage NSFW ONLY Usage: .bond\n Hentai: Looks Up Some Hentai Babes For You Weebs Out There Usage: .hentai\n Nsfw: Sends Some Standard NSFW Usage: .nsfw\n`);
+        message.author.send(`Moderation: Ban: Bans A User MOD ONLY Usage: .ban [@user] [Reason]\n Kick: Kicks A Member. Usage: .kick @member [reason]\n Purge: Deletes Messages MOD ONLY Usage: .purge [number<100]\n Report: Reports A Member Usage: .report [@member] [reason]\n Role: Ignore This Command It Is In Maintenance \n`);
+        message.author.send(`Utilities: \n Botinfo: Displays Info On The Bot Usage: .botinfo \n Bugreport: Reports A Bug Directly To The Dev Of The Bot (A.K.A. ME) Usage: .bugreport [Bug] \n Calc: Calculates The Value Of An Expression Usage: .calc [expression E.g. 1+1] \n Help: Ehm, Idk What To Tell You. Usage: How Are You Even Here? \n Haste: Adds A String To Hastebin Usage: .haste [String (A.K.A Words)] \nInv: Shows Invite Links For My Bot, And The Support Server. Usage: .inv \n Line: Draws The LINE! Usage: .line \nPing: Pings Places All Around The World Usage: .ping \n Schedule: Schedules A Message. Usage: .schedule [Part 1 Of Message] [Part 2 Of Message] [time] \n Serverinfo: Displays Info On The Server Usage: .serverinfo \n Timer: Sets A Timer. Usage: .timer [time In Ms, S, M, Or H.] \nTranslate: Translates Supplied Text. Usage: .translate [language To Translate TO] [text To Translate] \n`);
+        message.author.send(`Music: \n Np: Shows What Is Now Playing Usage: .np \n Pause: Pauses Music Usage: .pause \n Play: Plays Music. Usage: .play [song Name], Then Select From List By Typing The Corresponding Number (e.g. For Song 2 Type 2) \n Queue: Shows Music Queue \n Resume: Resumes A Paused Song. Usage: .resume \n Skip: Skips A Song Usage: .skip \n Stop: Stops Music From Playing Usage: .stop \n Vol: Volume Usage: .vol [number] \n`)
+        message.channel.send(`Help was sent to ${message.author.tag}`);
+    }
 
     if (command === "Lyons2") {
         const oldMessage = args.join(" ");
