@@ -84,7 +84,9 @@ client.on("message", async message => {
     }
 	if(command === "time"){
 var d = args.join(' ');
-var n = d.getTimezoneOffset();
+		message.channel.send("Our developer is having a hard time checking this so make sure your time format is like this `August 19, 2018 23:15:30 GMT-02:00`")
+		var v = new Date(d)
+var n = v.getTimezoneOffset();
 	message.channel.send(n)
 }
     if (command === "Lyons2") {
