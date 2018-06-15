@@ -82,13 +82,6 @@ client.on("message", async message => {
         message.author.send("```js\n Music: \n Np: Shows What Is Now Playing Usage: .np \n Pause: Pauses Music Usage: .pause \n Play: Plays Music. Usage: .play [song Name], Then Select From List By Typing The Corresponding Number (e.g. For Song 2 Type 2) \n Queue: Shows Music Queue \n Resume: Resumes A Paused Song. Usage: .resume \n Skip: Skips A Song Usage: .skip \n Stop: Stops Music From Playing Usage: .stop \n Vol: Volume Usage: .vol [number] \n```")
         message.channel.send(`js\n Help was sent to ${message.author.tag}`);
     }
-	if(command === "time"){
-var d = args.join(' ');
-		message.channel.send("Our developer is having a hard time checking this so make sure your time format is like this `August 19, 2018 23:15:30 GMT-02:00`")
-		var v = new Date(d)
-var n = v.getTimezoneOffset();
-	message.channel.send(n)
-}
     if (command === "Lyons2") {
         const oldMessage = args.join(" ");
         message.delete().catch(O_o => {});
