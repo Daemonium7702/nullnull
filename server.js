@@ -124,7 +124,7 @@ const a = args.join
 if(!args){
 message.channel.send("You are a wickedly unseemly sphincter and a naive, soul-destroying mass of neuroses and pathologies")
 return}else{
-message.channel.send(args + "is a wickedly unseemly sphincter and a naive, soul-destroying mass of neuroses and pathologies.")
+message.channel.send(args +" "+"is a wickedly unseemly sphincter and a naive, soul-destroying mass of neuroses and pathologies.")
 }
 }   
 if (command === "8ball") {
