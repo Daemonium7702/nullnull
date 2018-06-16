@@ -19,6 +19,7 @@ const YouTube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
 const youtube = new YouTube('AIzaSyB23US7bJ7DJvqt_qTPZaXAdy9RV2GKJxg');
 const queue = new Map();
+const stats = new Fortnite("e2d71ad5-8609-48bb-bfce-701c36d3181d");
 
 client.on("ready", () => {
     console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);
@@ -72,7 +73,39 @@ client.on("message", async message => {
         m.edit(`Pong! It took ${m.createdTimestamp - message.createdTimestamp}ms to find ***${randomNamaste}*** in ***${randomAnswer}*** after ${Math.round(client.ping)} counts of felony!!`)
 
     };
+	if(command === "fortnite"){
+ let platform;
+        let username;
 
+        if (!['pc', 'xbl', 'psn'].includes(args[0])) return message.channel.send('**Please Include the platform: `!fortnite [ pc | xbl | psn ] <username>`**');
+        if (!args[1]) return message.channel.send('**Please Include the username: `!fortnite [ pc | xbl | psn ] <username>`**');
+
+        platform = args.shift();
+        username = args.join(' ');
+
+        stats.getInfo(username, platform).then(data => {
+                    const embed = new Discord.MessageEmbed()
+                        .setColor(0xffffff)
+                        .setTitle(`Stats for ${data.username}`)
+                        .setDescription(`**Top Placement**\n\n**Top 3s:** *${data.lifetimeStats[0].value}*\n**Top 5s:** *${data.lifetimeStats[1].value}*\n**Top 6s:** *${data.lifetimeStats[3].value}*\n**Top 12s:** *${data.lifetimeStats[4].value}*\n**Top 25s:** *${data.lifetimeStats[5].value}*`, true)
+                        .addField('Total Score', data.lifetimeStats[6].value, true)
+                        .addField('Matches Played', data.lifetimeStats[7].value, true)
+                        .addField('Wins', data.lifetimeStats[8].value, true)
+                        .addField('Win Percentage', data.lifetimeStats[9].value, true)
+                        .addField('Kills', data.lifetimeStats[10].value, true)
+                        .addField('K/D Ratio', data.lifetimeStats[11].value, true)
+                        .addField('Kills Per Minute', data.lifetimeStats[12].value, true)
+                        .addField('Time Played', data.lifetimeStats[13].value, true)
+                        .addField('Average Survival Time', data.lifetimeStats[14].value, true)
+
+                    message.channel.send(embed)
+                        .catch(error => {
+
+                            message.channel.send('Username not found!');
+
+                        })
+
+                }
     if (command === "help") {
         message.author.send("```js\n Economy: \n Add: Ignore This Command It Is In Maintenance \n Addb: Ignore This Command It Is In Maintenance \n Addc: Ignore This Command It Is In Maintenance \n Bal: Ignore This Command It Is In Maintenance \n Balb: Ignore This Command It Is In Maintenance \n Buy: Ignore This Command It Is In Maintenance \n Daily: Ignore This Command It Is In Maintenance \n Gamble: Ignore This Command It Is In Maintenance \n Gamblec: Ignore This Command It Is In Maintenance \n Robb: Ignore This Command It Is In Maintenance \n```");
         message.author.send("```js\n Fun:\n 8ball: This Command Is An 8Ball Usage: .8ball [YesOrNo Question] \n Bomb: Sends A Bomb Usage: .bomb \n Clapify: Clapifies That Text! Usage: .clapify [text] \n Urban: Looks Up A String On Urban Dictionary Usage: .Urban [string] \n Fireworks: Sends Some Cool Fireworks Usage: .fireworks \n Forcecrush: Force Crush! Usage: .forcecrush \n Fusrodah: Fus.....RO DAH!!! Usage: Call To The Ancients With .fusrodah \n Lovecalc: Calculates The Chances Of Love Between Any Two Objects! Usage: .lovecalc [object1] [object2] \n Magicify: Turns Your Message Into An Ugly Embed! Usage: .magicify [text] \n Meme: Sends Some Dank Memes! Usage: .meme \n O: Swotchos Oll Vowols On O Strong To 'o' Usogo: .o [toxt] \n Reverse: Reverses A String Usage: .reverse [words] \n Rickroll: .... Usage: .rickroll \n Rr1: Russian Roulette Bud! Usage: .rr1 \n Say: Makes The Bot Say What You Say. Usage: .say [words] \n Sigh: Sigh :frowning: Usage: .sigh \n Ss: Compete With Other Users To Set The Status Of My Bot! Usage: .ss \n Tts: Text To Speech. Usage: .tts [text] WARNING THIS CAN BE ANNOYING DISABLE TTS IF SOMEONE ABUSES IT, AND REPORT THEM WITH .BUGREPORT \n```");
