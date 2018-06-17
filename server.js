@@ -75,6 +75,10 @@ client.on("message", async message => {
         m.edit(`Pong! It took ${m.createdTimestamp - message.createdTimestamp}ms to find ***${randomNamaste}*** in ***${randomAnswer}*** after ${Math.round(client.ping)} counts of felony!!`)
 
     };
+	if(command === "log"){
+		console.log(user.presence);
+		console.log(user.presence.name);
+	}
 		 if (command === "uptime") {
         message.channel.send("The uptime is **" + moment.duration(client.uptime).format(' D [days], H [hrs], m [mins], s [secs]') + "**")
     }
