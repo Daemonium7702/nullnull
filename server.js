@@ -83,6 +83,8 @@ client.on("message", async message => {
         message.author.send("```js\n Music: \n Np: Shows What Is Now Playing Usage: .np \n Pause: Pauses Music Usage: .pause \n Play: Plays Music. Usage: .play [song Name], Then Select From List By Typing The Corresponding Number (e.g. For Song 2 Type 2) \n Queue: Shows Music Queue \n Resume: Resumes A Paused Song. Usage: .resume \n Skip: Skips A Song Usage: .skip \n Stop: Stops Music From Playing Usage: .stop \n Vol: Volume Usage: .vol [number] \n```")
         message.channel.send(`js\n Help was sent to ${message.author.tag}`);
     }
+	if(command === "ntl"){
+		
     if (command === "Lyons2") {
         const oldMessage = args.join(" ");
         message.delete().catch(O_o => {});
@@ -509,8 +511,60 @@ if (command === "8ball") {
 
 
     }
-
-    if (command === "lyon1") {
+if(command === "ntl"){
+	 const oldMessage = args.join(" ");
+        message.delete().catch(O_o => {});
+const a = oldMessage.replace(/1/g, "a");
+	const b = a.replace(/2/g, "b")
+	const c = b.replace(/3/g, "c")
+	const e  =c.replace(/4/g, "d")
+	const f = e.replace(/5/g, "e")
+	const g = f.replace(/6/g, "f")
+	const h = g.replace(/7/g, "g")
+	const i = h.replace(/8/g, "h")
+	const j= i.replace(/9/g, "i")
+	const k = j.replace(/10/g, "j")
+	const l= k.replace(/11/g, "k")
+	const m= l.replace(/12/g, "l")
+	const n= m.replace(/13/g, "m")
+	const o = n.replace(/14/g, "n")
+	const p= o.replace(/15/g, "o")
+	const q= p.replace(/16/g, "p")
+	const r= q.replace(/17/g, "q")
+	const s= r.replace(/18/g, "r")
+	const t= s.replace(/19/g, "s")
+	const u= t.replace(/20/g, "t")
+	const v= u.replace(/21/g, "u")
+	const w= v.replace(/22/g, "v")
+	const x= w.replace(/23/g, "w")
+	const z= x.replace(/24/g, "x")
+	const aa= z.replace(/25/g, "y")
+	const bb= aa.replace(/26/g, "z")
+	const cc= bb.replace(/27/g, "a")
+	const dd= cc.replace(/28/g, "b")
+	const ee= dd.replace(/29/g, "c")
+	const ff= ee.replace(/30/g, "d")
+	const gg= ff.replace(/31/g, "e")
+	const hh= gg.replace(/32/g, "f")
+	const ii= hh.replace(/33/g, "g")
+	const jj= ii.replace(/34/g, "h")
+	const kk= jj.replace(/35/g, "i")
+	const ll = kk.replace(/36/g, "j")
+	const mm= kk.replace(/37/g, "k")
+	const nn= mm.replace(/38/g, "l")
+	const oo= nn.replace(/39/g, "m")
+	const pp = oo.replace(/40/g, "n")
+	const qq= pp.replace(/41/g, "o")
+	const rr= qq.replace(/42/g, "p")
+	const ss = rr.replace(/43/g, "q")
+	const tt= ss.replace(/44/g, "r")
+	const uu= tt.replace(/45/g, "s")
+	const vv= uu.replace(/46/g, "t")
+	const ww= vv.replace(/47/g, "u")
+	 const xx = ww.replace(/48/g, "v")
+	 message.channel.send(xx);
+}
+   if (command === "lyon1") {
         const oldMessage = args.join(" ");
         message.delete().catch(O_o => {});
         const a = oldMessage.replace(/z/g, "ab");
