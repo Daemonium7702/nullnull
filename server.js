@@ -19,6 +19,8 @@ const YouTube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
 const youtube = new YouTube(process.env.YT_API);
 const queue = new Map();
+const moment = require('moment');
+require('moment-duration-format');
 
 
 client.on("ready", () => {
