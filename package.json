@@ -40,7 +40,7 @@
 	  "parse-ms": "^1.0.1",
 	  "quick.db": "^6.3.1",
 	  "sqlite": "^2.9.2",
-	  "fortnite": "^4.1.1"
+	  "moment-duration-format": "^2.2.2"
 
   },
   "engines": {
