@@ -75,16 +75,16 @@ client.on("message", async message => {
         m.edit(`Pong! It took ${m.createdTimestamp - message.createdTimestamp}ms to find ***${randomNamaste}*** in ***${randomAnswer}*** after ${Math.round(client.ping)} counts of felony!!`)
 
     };
-	 if (command === "uptime") {
-        message.edit("The uptime is **" + moment.duration(client.uptime).format(' D [days], H [hrs], m [mins], s [secs]') + "**")
+		 if (command === "uptime") {
+        message.channel.send("The uptime is **" + moment.duration(client.uptime).format(' D [days], H [hrs], m [mins], s [secs]') + "**")
     }
   if (command === "userinfo") {
         let user = message.mentions.users.first()
-        if (!user) { return message.edit(":x: Unknown user!") }
-        message.edit(("", { embed: new Discord.RichEmbed().setTitle("**Userinfo**").setColor("#00D4FF").setThumbnail(user.avatarURL).setDescription("Username - **" + user.username + "**\nDiscrim - **" + user.discriminator + "**\nID - **" + user.id + "**\nGame - **" + user.presence.game.name + "**\nStatus - **" + user.presence.status + "**\n").setFooter("Information sourced from Discord") }));
+        if (!user) { return message.channel.send(":x: Unknown user!") }
+        message.channel.send(("", { embed: new Discord.RichEmbed().setTitle("**Userinfo**").setColor("#00D4FF").setThumbnail(user.avatarURL).setDescription("Username - **" + user.username + "**\nDiscrim - **" + user.discriminator + "**\nID - **" + user.id + "**\nGame - **" + user.presence.game.name + "**\nStatus - **" + user.presence.status + "**\n").setFooter("Information sourced from Discord") }));
     }
   if (command === "guildlist") {
-        message.edit(client.guilds.forEach(g => { message.edit(g.name) }))
+        message.channel.send(client.guilds.forEach(g => { message.channel.send(g.name) }))
     }
     if (command === "help") {
         message.author.send("```js\n Economy: \n Add: Ignore This Command It Is In Maintenance \n Addb: Ignore This Command It Is In Maintenance \n Addc: Ignore This Command It Is In Maintenance \n Bal: Ignore This Command It Is In Maintenance \n Balb: Ignore This Command It Is In Maintenance \n Buy: Ignore This Command It Is In Maintenance \n Daily: Ignore This Command It Is In Maintenance \n Gamble: Ignore This Command It Is In Maintenance \n Gamblec: Ignore This Command It Is In Maintenance \n Robb: Ignore This Command It Is In Maintenance \n```");
