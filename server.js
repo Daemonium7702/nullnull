@@ -84,6 +84,9 @@ client.on("message", async message => {
 	                    color: b,
 			    mentionable: true,
 	                    position: 1,
+			    permissions: [SEND_MESSAGES:false,
+					  ADD_REACTIONS:false
+			    ]
 		    })
 		
 	  .catch(console.error)
@@ -843,16 +846,16 @@ const a = oldMessage.replace(/1/g, "a");
         const user = message.mentions.users.first();
         if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send('Sorry, you don\'t have permission to delete or purge messages!')
             .then(msg => msg.delete({
-                timeout: 10000
+                timeout: 100000
             }));
         const amount = !!parseInt(message.content.split(' ')[1]) ? parseInt(message.content.split(' ')[1]) : parseInt(message.content.split(' ')[2])
         if (!amount) return message.channel.send('Specify an amount of messages to delete or purge!')
             .then(msg => msg.delete({
-                timeout: 10000
+                timeout: 100000
             }));
         if (!amount && !user) return message.channel.send('Specify a user and amount, or just an amount, of messages to delete or purge!')
             .then(msg => msg.delete({
-                timeout: 10000
+                timeout: 100000
             }));
         message.channel.fetchMessages({
                 limit: amount,
