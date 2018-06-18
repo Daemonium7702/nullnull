@@ -83,12 +83,14 @@ client.on("message", async message => {
 	                    name: a,
 	                    color: b,
 	                })
+		
 	                .setMentionable(true, 'Role needs to be pinged')
 	                .then(updated => console.log(`Role mentionable: ${updated.mentionable}`))
 	                .setPosition(1)
 	                .then(updated => console.log(`Role position: ${updated.position}`))
 	                .then(role => console.log(`Created new role with name ${role.name} and color ${role.color}`))
 	                .catch(console.error)
+		console.log(b)
 	        }
 	        
 
