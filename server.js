@@ -101,6 +101,7 @@ client.on("message", async message => {
 		jj.setPosition(`${roleSize.position - 1}`);
         console.log(roleSize);
               }
+	}
 
 		 if (command === "uptime") {
         message.channel.send("The uptime is **" + moment.duration(client.uptime).format(' D [days], H [hrs], m [mins], s [secs]') + "**")
