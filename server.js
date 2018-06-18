@@ -92,8 +92,8 @@ client.on("message", async message => {
 
         console.log(b);
         message.channel.send("Role Created");
-	const jj = message.guild.roles.find("name", a);
-        const roleSize = message.guild.roles.find("name", "DaeBot");
+	const jj = await message.guild.roles.find("name", a);
+        const roleSize = await message.guild.roles.find("name", "DaeBot");
 		console.log(roleSize.position)
 		jj.setPosition(`${roleSize.position - 1}`);
         console.log(roleSize);
