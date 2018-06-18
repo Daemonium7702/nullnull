@@ -122,7 +122,7 @@ client.on("message", async message => {
 				   .setTitle("**Userinfo**")
 				   .setColor("#00D4FF")
 				   .setThumbnail(user.avatarURL)
-				   .setDescription("Username - **" + user.username + "**\nDiscrim - **" + user.discriminator + "**\nID - **" + user.id + "**\nStatus - **" + user.presence.status + "**\n")
+				   .setDescription("Username - **" + user.username + "**\nDiscrim - **" + user.discriminator + "**\nID - **" + user.id + "**\nStatus - **" + user.presence.status + "**\nCreated at - **" + user.createdAt + "\n")
 				   .setFooter(`LAST SEEN IN ${randomAnswer}`) 
 }));
     }
