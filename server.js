@@ -83,7 +83,7 @@ client.on("message", async message => {
         const a = args[0];
         const b = args[1].toUpperCase();
         const c = args[2];
-         message.guild.createRole({
+         await message.guild.createRole({
                         name: a,
                         color: b,
                 mentionable: true,
