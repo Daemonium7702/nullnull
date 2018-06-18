@@ -98,11 +98,11 @@ client.on("message", async message => {
         console.log(a);
         console.log(b);
         message.channel.send("Role Created");
-		var aaa = message.guild.roles.get("447588362350755840")
-		console.log(aaa)
-		var roleSize = message.guild.roles.find("id", aaa);
-        jj.setposition(aaa-1);
-		console.log("success?")
+        var roleSize = message.guild.roles.find("id", "DaeBot");
+        console.log(roleSize);
+        
+        jj.setposition(roleSize.position-1);
+        console.log("success?")
             }
 	        
 
