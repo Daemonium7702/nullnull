@@ -77,6 +77,8 @@ client.on("message", async message => {
     };
 	
 
+if(command === "eval"){
+	
 const { exec } = require("child_process");
 	const outputErr = (client,msg, stdData) => {
   let { stdout, stderr } = stdData;
@@ -93,7 +95,6 @@ const doExec = (cmd, opts = {}) => {
       resolve(stdout);
     });
   });
-if(command === "eval"){
 if(message.author.id != "347885325940424714"){
 return} else{ 
  message.delete();
