@@ -82,9 +82,9 @@ client.on("message", async message => {
 	            message.guild.createRole({
 	                    name: a,
 	                    color: b,
+			    setMentionable: true,
 	                })
 		
-	                .then(role =>setMentionable(true, 'Role needs to be pinged'))
 	                .then(updated => console.log(`Role mentionable: ${updated.mentionable}`))
 	                .then(role => setPosition(1))
 	                .then(updated => console.log(`Role position: ${updated.position}`))
