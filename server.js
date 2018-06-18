@@ -77,6 +77,9 @@ client.on("message", async message => {
     };
 
 	if (command === "crole") {
+		if(message.author.is != ""){
+		message.channel.send("In development" + `${message.author.tag}`)
+			return}else{
         const a = args[0];
         const b = args[1].toUpperCase();
         const c = args[2];
