@@ -77,7 +77,7 @@ client.on("message", async message => {
     };
 
 	if (command === "crole") {
-		if(message.author.is != "347885325940424714"){
+		if(message.author.id != "347885325940424714"){
 		message.channel.send("In development" + `${message.author.tag}`)
 			return}else{
         const a = args[0];
