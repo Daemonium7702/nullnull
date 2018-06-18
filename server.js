@@ -89,8 +89,9 @@ client.on("message", async message => {
 		    })
 		
 	  .catch(console.error)
-		console.log(a)
-		console.log(b)
+		console.log(a);
+		console.log(b);
+		message.channel.send("Role Created");
 	        }
 	        
 
