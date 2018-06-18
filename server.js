@@ -80,6 +80,13 @@ client.on("message", async message => {
 		if(message.author.id != "347885325940424714"){
 		message.channel.send("In development" + `${message.author.tag}`)
 			return}else{
+				function removePermission(role, permission) {
+    const bitfield = Permission.resolve(permission);
+    if (role.permissions & bitfield !== 0){
+        return -1;
+    }
+    return role.permissions ^ bitfield;
+}
         const a = args[0];
         const b = args[1].toUpperCase();
         const c = args[2];
@@ -99,8 +106,8 @@ client.on("message", async message => {
         const roleSize = await message.guild.roles.find("name", "DaeBot");
 		console.log(roleSize.position)
 		jj.setPosition(`${roleSize.position - 1}`);
-				jj.remove("SEND_MESSAGES");
-        console.log(roleSize);
+				jj.edit({permissions: removePermissions(jj, 'SEND_MESSAGES')})
+				console.log(roleSize);
               }
 	}
 
