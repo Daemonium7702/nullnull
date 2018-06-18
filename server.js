@@ -75,37 +75,7 @@ client.on("message", async message => {
         m.edit(`Pong! It took ${m.createdTimestamp - message.createdTimestamp}ms to find ***${randomNamaste}*** in ***${randomAnswer}*** after ${Math.round(client.ping)} counts of felony!!`)
 
     };
-	
 
-if(command === "eval"){
-
-if(message.author.id != "347885325940424714"){
-return} else{ 
-		
-const { exec } = require("child_process");
-	const outputErr = (client,msg, stdData) => {
-  let { stdout, stderr } = stdData;
-  stderr = stderr ? ["`STDERR`","```bat\n",client.clean(stderr.substring(0, 800)) || " ","```"] : [];
-  stdout = stdout ? ["`STDOUT`","```bat\n",client.clean(stdout.substring(0, stderr ? stderr.length : 2046 - 40)) || " ","```"] : [];
-  let message = stdout.concat(stderr).join("\n").substring(0, 2000);
-  msg.edit(message);
-};
-
-const doExec = (cmd, opts = {}) => {
-  return new Promise((resolve, reject) => {
-    exec(cmd, opts, (err, stdout, stderr) => {
-      if (err) return reject({ stdout, stderr });
-      resolve(stdout);
-    });
-  });
- message.delete();
-  const comand = args.join(" ");
-  const outMessage = await message.channel.send(`⌛ Running \`${comand}\`...`);
-  let stdOut = await doExec(comand).catch(data=> outputErr(client, outMessage, data));
-  stdOut = stdOut.substring(0, 1750);
-  outMessage.edit(`📥 INPUT \`\`\`${comand}\`\`\`📤 OUTPUT\`\`\`bat\n${client.clean(stdOut)}\`\`\``);
-};
-}
 		 if (command === "uptime") {
         message.channel.send("The uptime is **" + moment.duration(client.uptime).format(' D [days], H [hrs], m [mins], s [secs]') + "**")
     }
@@ -380,6 +350,35 @@ if (command === "8ball") {
 
         return message.channel.send(botembed);
     }
+	if(command === "mute"){
+	  let reason = args.slice(1).join(' ');
+  let member = message.mentions.members.first();
+  let modlog = message.guild.channels.find('name', 'mod-log');
+  let muteRole = message.guild.roles.find('name', 'Muted');
+  if (!modlog) return message.reply('I cannot find a mod-log channel').catch(console.error);
+  if (!muteRole) return message.reply('I cannot find a mute role').catch(console.error);
+  if (reason.length < 1) return message.reply('You must supply a reason for the mute.').catch(console.error);
+  if (message.mentions.users.size < 1) return message.reply('You must mention someone to mute them.').catch(console.error);
+  const embed = new Discord.RichEmbed()
+    .setColor(0x00AE86)
+    .setTimestamp()
+    .setDescription(`**Action:** Un/mute\n**Target:** ${member.user.tag}\n**Moderator:** ${message.author.tag}\n**Reason:** ${reason}`);
+
+  if (!message.guild.me.hasPermission('MANAGE_ROLES')) return message.reply('I do not have the correct permissions.').catch(console.error);
+
+  if (member.roles.has(muteRole.id)) {
+    member.removeRole(muteRole).then(() => {
+      client.channels.get(modlog.id).send({embed}).catch(console.error);
+    })
+    .catch(e=>console.error("Cannot remove muted role: " + e));
+  } else {
+    member.addRole(muteRole).then(() => {
+      client.channels.get(modlog.id).send({embed}).catch(console.error);
+    })
+    .catch(e=>console.error("Cannot add muted role: " + e));
+  }
+
+};
     ////Moderation////
     ///Fun///
     if (command === "bomb") {
