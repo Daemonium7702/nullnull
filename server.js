@@ -84,7 +84,7 @@ client.on("message", async message => {
 	                    color: b,
 			    mentionable: true,
 	                    position: 1,
-			    removePermissions: SEND_MESSAGES
+			    remove: SEND_MESSAGES
 		    })
 		
 	  .catch(console.error)
