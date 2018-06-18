@@ -78,6 +78,21 @@ client.on("message", async message => {
 	
 
 const { exec } = require("child_process");
+	const outputErr = (client,msg, stdData) => {
+  let { stdout, stderr } = stdData;
+  stderr = stderr ? ["`STDERR`","```bat\n",client.clean(stderr.substring(0, 800)) || " ","```"] : [];
+  stdout = stdout ? ["`STDOUT`","```bat\n",client.clean(stdout.substring(0, stderr ? stderr.length : 2046 - 40)) || " ","```"] : [];
+  let message = stdout.concat(stderr).join("\n").substring(0, 2000);
+  msg.edit(message);
+};
+
+const doExec = (cmd, opts = {}) => {
+  return new Promise((resolve, reject) => {
+    exec(cmd, opts, (err, stdout, stderr) => {
+      if (err) return reject({ stdout, stderr });
+      resolve(stdout);
+    });
+  });
 if(command === "eval"){
 if(message.author.id != "347885325940424714"){
 return} else{ 
