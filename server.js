@@ -87,7 +87,6 @@ client.on("message", async message => {
 		    })
 		
 	                .then(updated => console.log(`Role mentionable: ${updated.mentionable}`))
-	                .then(updated => console.log(`Role position: ${updated.position}`))
 	                .then(role => console.log(`Created new role with name ${role.name} and color ${role.color}`))
 	                .catch(console.error)
 		console.log(b)
