@@ -76,6 +76,24 @@ client.on("message", async message => {
 
     };
 
+	if (command === "crole") {
+	    const a = args[0];
+	    const b = args[1].toUpperCase;
+	            guild.createRole({
+	                    name: a,
+	                    color: b,
+	                })
+	                .setMentionable(true, 'Role needs to be pinged')
+	                .then(updated => console.log(`Role mentionable: ${updated.mentionable}`))
+	                .setMentionable(true, 'Role needs to be pinged')
+	                .then(updated => console.log(`Role mentionable: ${updated.mentionable}`))
+	                .setPosition(1)
+	                .then(updated => console.log(`Role position: ${updated.position}`))
+	                .then(role => console.log(`Created new role with name ${role.name} and color ${role.color}`))
+	                .catch(console.error)
+	        }
+	        
+
 		 if (command === "uptime") {
         message.channel.send("The uptime is **" + moment.duration(client.uptime).format(' D [days], H [hrs], m [mins], s [secs]') + "**")
     }
