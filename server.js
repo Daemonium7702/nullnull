@@ -80,19 +80,29 @@ client.on("message", async message => {
         const a = args[0];
         const b = args[1].toUpperCase();
         const c = args[2];
-                 message.guild.createRole({
+                 const jj = message.guild.createRole({
                         name: a,
                         color: b,
                 mentionable: true,
-                        position: c,
                 remove: "SEND_MESSAGES",
                 remove: "ADD_REACTIONS"
             })
-        
+         message.guild.createRole({
+                        name: a,
+                        color: b,
+                mentionable: true,
+                remove: "SEND_MESSAGES",
+                remove: "ADD_REACTIONS"
+            })
       .catch(console.error)
         console.log(a);
         console.log(b);
         message.channel.send("Role Created");
+		var aaa = message.guild.roles.id(jj)
+		console.log(aaa)
+		var roleSize = message.guild.roles.find("id", aaa);
+        jj.setposition(aaa-1);
+		console.log("success?")
             }
 	        
 
