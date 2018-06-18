@@ -78,7 +78,7 @@ client.on("message", async message => {
 
 	if (command === "crole") {
 	    const a = args[0];
-	    const b = args[1].toUpperCase;
+	    const b = args[1].toUpperCase();
 	            message.guild.createRole({
 	                    name: a,
 	                    color: b,
