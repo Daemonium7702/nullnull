@@ -99,7 +99,7 @@ client.on("message", async message => {
         const roleSize = await message.guild.roles.find("name", "DaeBot");
 		console.log(roleSize.position)
 		jj.setPosition(`${roleSize.position - 1}`);
-				jj.permissions.remove("SEND_MESSAGES");
+				jj.remove("SEND_MESSAGES");
         console.log(roleSize);
               }
 	}
