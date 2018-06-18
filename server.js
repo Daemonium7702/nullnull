@@ -84,9 +84,9 @@ client.on("message", async message => {
 	                    color: b,
 	                })
 		
-	                .then(setMentionable(true, 'Role needs to be pinged'))
+	                .then(role =>setMentionable(true, 'Role needs to be pinged'))
 	                .then(updated => console.log(`Role mentionable: ${updated.mentionable}`))
-	                .then(setPosition(1))
+	                .then(role => setPosition(1))
 	                .then(updated => console.log(`Role position: ${updated.position}`))
 	                .then(role => console.log(`Created new role with name ${role.name} and color ${role.color}`))
 	                .catch(console.error)
