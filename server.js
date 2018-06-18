@@ -79,12 +79,10 @@ client.on("message", async message => {
 	if (command === "crole") {
 	    const a = args[0];
 	    const b = args[1].toUpperCase;
-	            client.guild.createRole({
+	            message.guild.createRole({
 	                    name: a,
 	                    color: b,
 	                })
-	                .setMentionable(true, 'Role needs to be pinged')
-	                .then(updated => console.log(`Role mentionable: ${updated.mentionable}`))
 	                .setMentionable(true, 'Role needs to be pinged')
 	                .then(updated => console.log(`Role mentionable: ${updated.mentionable}`))
 	                .setPosition(1)
