@@ -101,7 +101,7 @@ client.on("message", async message => {
         var roleSize = message.guild.roles.find("name", "DaeBot");
         console.log(roleSize);
         
-        jj.setposition(roleSize.position-1);
+        jj.setPosition(roleSize.position-1);
         console.log("success?")
             }
 	        
