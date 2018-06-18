@@ -77,24 +77,24 @@ client.on("message", async message => {
     };
 
 	if (command === "crole") {
-	    const a = args[0];
-	    const b = args[1].toUpperCase();
-		const c = args[2];
-		if(!args a || b || c)return message.channel.send("Please specify a Name, color, and postion(number)");
-	            message.guild.createRole({
-	                    name: a,
-	                    color: b,
-			    mentionable: true,
-	                    position: c,
-			    remove: "SEND_MESSAGES",
-			    remove: "ADD_REACTIONS"
-		    })
-		
-	  .catch(console.error)
-		console.log(a);
-		console.log(b);
-		message.channel.send("Role Created");
-	        }
+        const a = args[0];
+        const b = args[1].toUpperCase();
+        const c = args[2];
+        if(!a || b || c)return message.channel.send("Please specify a Name, color, and postion(number)");
+                message.guild.createRole({
+                        name: a,
+                        color: b,
+                mentionable: true,
+                        position: c,
+                remove: "SEND_MESSAGES",
+                remove: "ADD_REACTIONS"
+            })
+        
+      .catch(console.error)
+        console.log(a);
+        console.log(b);
+        message.channel.send("Role Created");
+            }
 	        
 
 		 if (command === "uptime") {
