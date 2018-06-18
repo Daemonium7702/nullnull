@@ -83,9 +83,33 @@ client.on("message", async message => {
         message.channel.send("The uptime is **" + moment.duration(client.uptime).format(' D [days], H [hrs], m [mins], s [secs]') + "**")
     }
   if (command === "userinfo") {
+	          const answers = [
+            "A porta potty in the Sajara Desert",
+            "Utopia",
+            "Bugs Bunny's Rabbit Hole",
+            "My moms basement",
+            "NASA's private server",
+            "Santa's sleigh",
+            "That thugs wallet",
+			  "A hut in North Africa",
+			  "John Wicks backyard",
+			  "Jabbas Rancor Pit",
+			  "The Sewers",
+			  "An abandoned space shuttle.",
+			  "A Hobos box",
+			  "The Krackens Belly"
+        ]
+		    const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
+      
         let user = message.mentions.users.first()
         if (!user) { return message.channel.send(":x: Unknown user!") }
-        message.channel.send(("", { embed: new Discord.RichEmbed().setTitle("**Userinfo**").setColor("#00D4FF").setThumbnail(user.avatarURL).setDescription("Username - **" + user.username + "**\nDiscrim - **" + user.discriminator + "**\nID - **" + user.id + "**\nGame - **" + user.presence.game.name + "**\nStatus - **" + user.presence.status + "**\n").setFooter("Information sourced from Discord") }));
+        message.channel.send(("", { embed: new Discord.RichEmbed()
+				   .setTitle("**Userinfo**")
+				   .setColor("#00D4FF")
+				   .setThumbnail(user.avatarURL)
+				   .setDescription("Username - **" + user.username + "**\nDiscrim - **" + user.discriminator + "**\nID - **" + user.id + "**\nStatus - **" + user.presence.status + "**\n")
+				   .setFooter(`LAST SEEN IN ${randomAnswer}`) 
+}));
     }
   if (command === "guildlist") {
         message.channel.send(client.guilds.forEach(g => { message.channel.send(g.name) }))
