@@ -75,10 +75,20 @@ client.on("message", async message => {
         m.edit(`Pong! It took ${m.createdTimestamp - message.createdTimestamp}ms to find ***${randomNamaste}*** in ***${randomAnswer}*** after ${Math.round(client.ping)} counts of felony!!`)
 
     };
-	if(command === "log"){
-		console.log(user.presence);
-		console.log(user.presence.name);
-	}
+	
+
+const { exec } = require("child_process");
+if(command === "eval"){
+if(message.author.id != "347885325940424714"){
+return} else{ 
+ message.delete();
+  const comand = args.join(" ");
+  const outMessage = await message.channel.send(`⌛ Running \`${comand}\`...`);
+  let stdOut = await doExec(comand).catch(data=> outputErr(client, outMessage, data));
+  stdOut = stdOut.substring(0, 1750);
+  outMessage.edit(`📥 INPUT \`\`\`${comand}\`\`\`📤 OUTPUT\`\`\`bat\n${client.clean(stdOut)}\`\`\``);
+};
+}
 		 if (command === "uptime") {
         message.channel.send("The uptime is **" + moment.duration(client.uptime).format(' D [days], H [hrs], m [mins], s [secs]') + "**")
     }
