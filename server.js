@@ -79,11 +79,13 @@ client.on("message", async message => {
 	if (command === "crole") {
 	    const a = args[0];
 	    const b = args[1].toUpperCase();
+		const c = args[2];
+		if(!args a || b || c)return message.channel.send("Please specify a Name, color, and postion(number)");
 	            message.guild.createRole({
 	                    name: a,
 	                    color: b,
 			    mentionable: true,
-	                    position: 1,
+	                    position: c,
 			    remove: "SEND_MESSAGES",
 			    remove: "ADD_REACTIONS"
 		    })
