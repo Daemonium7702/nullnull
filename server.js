@@ -82,11 +82,11 @@ client.on("message", async message => {
 	            message.guild.createRole({
 	                    name: a,
 	                    color: b,
-			    setMentionable: true,
-	                })
+			    mentionable: true,
+	                    position: 1,
+		    })
 		
 	                .then(updated => console.log(`Role mentionable: ${updated.mentionable}`))
-	                .then(role => setPosition(1))
 	                .then(updated => console.log(`Role position: ${updated.position}`))
 	                .then(role => console.log(`Created new role with name ${role.name} and color ${role.color}`))
 	                .catch(console.error)
