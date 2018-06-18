@@ -84,7 +84,8 @@ client.on("message", async message => {
 	                    color: b,
 			    mentionable: true,
 	                    position: 1,
-			    remove: SEND_MESSAGES
+			    remove: "SEND_MESSAGES",
+			    remove: "ADD_REACTIONS"
 		    })
 		
 	  .catch(console.error)
