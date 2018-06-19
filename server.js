@@ -76,14 +76,14 @@ client.on("message", async message => {
     if (command === "balc") {
         sql.get(`SELECT * FROM money WHERE userId ="${message.author.id}"`).then(row => {
             if (!row) return message.reply("Your pocket money is 0");
-            message.reply(`Your current banked money ${row.cash}`);
+            message.reply(`You have ${row.cash} in cash, GLORiOUS`);
         });
     }
 
     if (command === "balb") {
         sql.get(`SELECT * FROM money WHERE userId ="${message.author.id}"`).then(row => {
             if (!row) return message.reply("You're broke as hell!");
-            message.reply(`you have ${row.bank} in cash, glorious!`);
+            message.reply(`you have banked a total of ${row.bank}!`);
 
         })
     }
@@ -104,7 +104,7 @@ client.on("message", async message => {
                     console.log(`${row.cash}`)
                     console.log(`${rrow}`)
                     sql.run(`UPDATE money SET cash = ${rrow + camt} WHERE userId = ${defineduser}`);
-                    message.channel.send("added " + `${rrow}` + " dollars to" + `${defineduser}`)
+                    message.channel.send("added " + `${rrow}` + " dollars to" +"<@" + `${defineduser}`+">");
                 }
             })
         }
@@ -128,7 +128,7 @@ client.on("message", async message => {
                     console.log(`${row.bank}`)
                     console.log(`${rrow}`)
                     sql.run(`UPDATE money SET bank = ${rrow + camt} WHERE userId = ${defineduser}`);
-                    message.channel.send("added " + `${rrow}` + " dollars to" + `${defineduser}`)
+                    message.channel.send("added " + `${rrow}` + " dollars to" + "<@"+`${defineduser}`+">");
                 }
             })
         }
@@ -140,7 +140,7 @@ client.on("message", async message => {
         } else {
             sql.get(`SELECT * FROM money WHERE userId ="${defineduser}"`).then(row => {
                 if (!row) {
-                    sql.run("INSERT INTO money (userId, cash, bank) VALUES (?, ?, ?)", [defineduser, 1, 0]);
+                    sql.run("INSERT INTO money (userId, cash, bank) VALUES (?, ?, ?)", [message.author.id, 1, 0]);
                 } else {
                     const rrow = parseInt(row.cash)
                     const brow = parstInt(row.bank)
@@ -148,8 +148,8 @@ client.on("message", async message => {
                     console.log(`${brow}`);
                     console.log(`${row.cash}`);
                     console.log(`${rrow}`);
-                    sql.run(`UPDATE money SET bank = ${rrow + brow} WHERE userId = ${defineduser}`);
-                    sql.run(`UPDATE money SET bank = ${rrow - rrow} WHERE userId = ${defineduser}`)
+                    sql.run(`UPDATE money SET bank = ${rrow + brow} WHERE userId = message.author.id`);
+                    sql.run(`UPDATE money SET bank = ${rrow - rrow} WHERE userId = message.author.id`)
                     message.channel.send("Added all money to bank. Your balance is now" + `${row.bank}`)
 
                 }
