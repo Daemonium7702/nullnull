@@ -138,7 +138,7 @@ client.on("message", async message => {
             message.channel.send("Ok so like, this is embarrasing, ik. but i forgot how to check members for permissions. so youre gonna have to sit here for a min.")
             return
         } else {
-            sql.get(`SELECT * FROM money WHERE userId ="${defineduser}"`).then(row => {
+            sql.get(`SELECT * FROM money WHERE userId ="${message.author.id}"`).then(row => {
                 if (!row) {
                     sql.run("INSERT INTO money (userId, cash, bank) VALUES (?, ?, ?)", [message.author.id, 1, 0]);
                 } else {
