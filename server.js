@@ -100,7 +100,9 @@ defineduser = defineduser.id;
     } else {
       sql.run(`UPDATE money SET cash = ${row.cash + camt} WHERE userId = ${defineduser}`);
     }
-				
+    }
+    )}
+				}
     if (command === "ping") {
         const m = await message.channel.send("Ping?");
         const answers = [
@@ -1227,7 +1229,7 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
             } catch (error) {
                 console.error(`I could not join the voice channel: ${error}`);
                 queue.delete(message.guild.id);
-                return message.channel.send(`Sorry :( I could not join the voice channel: ${error}`);
+                return message.channel.send(`Sorry I could not join the voice channel: ${error}`);
             }
         } else {
             serverQueue.songs.push(song);
