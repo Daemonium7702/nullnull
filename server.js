@@ -50,19 +50,7 @@ client.on("message", async message => {
     const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
     const prefix = config.prefix
-    
-    client.on("message", message => {
-  if (message.author.bot) return;
-  if (message.channel.type !== "text") return;
-
-  if (message.content.startsWith(prefix + "ping")) {
-    message.channel.send("pong!");
-  }
-	    
-	    
-	    
-	    
-	    
+   
 	    const sql = require("sqlite");
 sql.open("./cash.sqlite");
 
@@ -90,14 +78,15 @@ sql.open("./cash.sqlite");
       if (!row) return message.reply("Your pocket money is 0");
       message.reply(`Your current banked money ${row.bank}`);
     });
-  } else
+  }
 
   if (command === "balc") {
     sql.get(`SELECT * FROM money WHERE userId ="${message.author.id}"`).then(row => {
       if (!row) return message.reply("You're broke as hell!");
       message.reply(`you have ${row.cash} in cash, glorious!`);
-    });
-  } 
+    
+  }
+  )}
     if (command === "ping") {
         const m = await message.channel.send("Ping?");
         const answers = [
