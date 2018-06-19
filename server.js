@@ -150,7 +150,7 @@ client.on("message", async message => {
                     console.log(`${row.cash}`);
                     console.log(`${rrow}`);
                     sql.run(`UPDATE money SET bank = ${rrow + brow} WHERE userId = ${message.author.id}`);
-                    sql.run(`UPDATE money SET bank = ${rrow - rrow} WHERE userId = ${message.author.id}`)
+                    sql.run(`UPDATE money SET cash = ${rrow - rrow} WHERE userId = ${message.author.id}`)
                     message.channel.send("Added all money to bank. Your balance is now" + `${row.bank}`)
 
                 }
