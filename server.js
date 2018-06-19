@@ -99,7 +99,7 @@ defineduser = defineduser.id;
     if (!row) {
       sql.run("INSERT INTO money (userId, cash, bank) VALUES (?, ?, ?)", [defineduser, 1, 0]);
     } else {
-	    const rrow = row.cash.parseInt()
+	    const rrow =parseInt(row.cash)
 	    console.log(`${row.cash}`)
 	    console.log(`${rrow}`)
       sql.run(`UPDATE money SET cash = ${rrow + camt} WHERE userId = ${defineduser}`);
