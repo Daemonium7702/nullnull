@@ -51,6 +51,53 @@ client.on("message", async message => {
     const command = args.shift().toLowerCase();
     const prefix = config.prefix
     
+    client.on("message", message => {
+  if (message.author.bot) return;
+  if (message.channel.type !== "text") return;
+
+  if (message.content.startsWith(prefix + "ping")) {
+    message.channel.send("pong!");
+  }
+	    
+	    
+	    
+	    
+	    
+	    const sql = require("sqlite");
+sql.open("./cash.sqlite");
+
+  sql.get(`SELECT * FROM money WHERE userId ="${message.author.id}"`).then(row => {
+    if (!row) {
+      sql.run("INSERT INTO money (userId, cash, bank) VALUES (?, ?, ?)", [message.author.id, 1, 0]);
+    } else {
+      let cBank = Math.floor(0.1 * Math.sqrt(row.cash + 1));
+      if (cBank > row.cash) {
+        row.bank = cBank;
+        sql.run(`UPDATE money SET cash = ${row.cash + 1}, bank = ${row.bank} WHERE userId = ${message.author.id}`);
+        message.reply(`You've Now got **${cBank}**! What a rich boi?`);
+      }
+      sql.run(`UPDATE money SET cash = ${row.cash + 1} WHERE userId = ${message.author.id}`);
+    }
+  }).catch(() => {
+    console.error;
+    sql.run("CREATE TABLE IF NOT EXISTS money (userId TEXT, cash INTEGER, bank INTEGER)").then(() => {
+      sql.run("INSERT INTO money (userId, cash, bank) VALUES (?, ?, ?)", [message.author.id, 1, 0]);
+    });
+  });
+
+  if (command === "balb") {
+    sql.get(`SELECT * FROM money WHERE userId ="${message.author.id}"`).then(row => {
+      if (!row) return message.reply("Your pocket money is 0");
+      message.reply(`Your current banked money ${row.bank}`);
+    });
+  } else
+
+  if (command === "balc") {
+    sql.get(`SELECT * FROM money WHERE userId ="${message.author.id}"`).then(row => {
+      if (!row) return message.reply("You're broke as hell!");
+      message.reply(`you have ${row.cash} in cash, glorious!`);
+    });
+  } 
     if (command === "ping") {
         const m = await message.channel.send("Ping?");
         const answers = [
