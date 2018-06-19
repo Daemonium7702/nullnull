@@ -177,8 +177,8 @@ client.on("message", async message => {
             "That one guy",
             "My money",
         ]
-        const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
-        const randomNamaste = namaste[Math.floor(Math.random() * answers.length)];
+        const randomAnswer = await answers[Math.floor(Math.random() * answers.length)];
+        const randomNamaste = await namaste[Math.floor(Math.random() * answers.length)];
         m.edit(`Pong! It took ${m.createdTimestamp - message.createdTimestamp}ms to find ***${randomNamaste}*** in ***${randomAnswer}*** after ${Math.round(client.ping)} counts of felony!!`)
 
     };
