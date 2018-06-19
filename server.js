@@ -80,13 +80,7 @@ client.on("message", async message => {
 		if(message.author.id != "347885325940424714"){
 		message.channel.send("In development" + `${message.author.tag}`)
 			return}else{
-				function removePermission(role, permission) {
-    const bitfield = Permission.resolve(permission);
-    if (role.permissions & bitfield !== 0){
-        return -1;
-    }
-    return role.permissions ^ bitfield;
-}
+				
         const a = args[0];
         const b = args[1].toUpperCase();
         const c = args[2];
@@ -106,8 +100,8 @@ client.on("message", async message => {
         const roleSize = await message.guild.roles.find("name", "DaeBot");
 		console.log(roleSize.position)
 		jj.setPosition(`${roleSize.position - 1}`);
-				jj.edit({permissions: removePermissions(jj, 'SEND_MESSAGES')})
 				console.log(roleSize);
+				message.channel.send("you need to manage perms manually. Sorry!")
               }
 	}
 
@@ -1121,10 +1115,10 @@ Please provide a value to select one of the search results ranging from 1-10.
         if(command === "vol"){
             if (!message.member.voiceChannel) return message.channel.send('You are not in a voice channel!');
             if (!serverQueue) return message.channel.send('There is nothing playing.');
-            if (!args[1]) return message.channel.send(`The current volume is: **${serverQueue.volume}**`);
-            serverQueue.volume = args[1];
-            serverQueue.connection.dispatcher.setVolumeLogarithmic(args[1] / 5);
-            return message.channel.send(`I set the volume to: **${args[1]}**`);
+            if (!args[0]) return message.channel.send(`The current volume is: **${serverQueue.volume}**`);
+            serverQueue.volume = args[0];
+            serverQueue.connection.dispatcher.setVolumeLogarithmic(args[0] / 10);
+            return message.channel.send(`I set the volume to: **${args[0]}**`);
     }
        if(command === "np"){
             if (!serverQueue) return message.channel.send('There is nothing playing.');
@@ -1213,7 +1207,7 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
                 play(guild, serverQueue.songs[0]);
             })
             .on('error', error => console.error(error));
-        dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
+        dispatcher.setVolumeLogarithmic(serverQueue.volume / 10);
 
         serverQueue.textChannel.send(`Started playing: **${song.title}**`);
     }
