@@ -101,10 +101,11 @@ client.on("message", async message => {
                     sql.run("INSERT INTO money (userId, cash, bank) VALUES (?, ?, ?)", [defineduser, 1, 0]);
                 } else {
                     const rrow = parseInt(row.cash)
+		    const ccrow = parseInt(camt)
                     console.log(`${row.cash}`)
                     console.log(`${rrow}`)
-                    sql.run(`UPDATE money SET cash = ${rrow + camt} WHERE userId = ${defineduser}`);
-                    message.channel.send("added " + `${rrow}` + " dollars to" +"<@" + `${defineduser}`+">");
+                    sql.run(`UPDATE money SET cash = ${rrow + ccrow} WHERE userId = ${defineduser}`);
+                    message.channel.send("added " + `${camt}` + " dollars to" +"<@" + `${defineduser}`+">");
                 }
             })
         }
@@ -128,7 +129,7 @@ client.on("message", async message => {
                     console.log(`${row.bank}`)
                     console.log(`${rrow}`)
                     sql.run(`UPDATE money SET bank = ${rrow + camt} WHERE userId = ${defineduser}`);
-                    message.channel.send("added " + `${rrow}` + " dollars to" + "<@"+`${defineduser}`+">");
+                    message.channel.send("added " + `${camt}` + " dollars to" + "<@"+`${defineduser}`+">");
                 }
             })
         }
@@ -143,7 +144,7 @@ client.on("message", async message => {
                     sql.run("INSERT INTO money (userId, cash, bank) VALUES (?, ?, ?)", [message.author.id, 1, 0]);
                 } else {
                     const rrow = parseInt(row.cash)
-                    const brow = parstInt(row.bank)
+                    const brow = parseInt(row.bank)
                     console.log(`${row.bank}`);
                     console.log(`${brow}`);
                     console.log(`${row.cash}`);
