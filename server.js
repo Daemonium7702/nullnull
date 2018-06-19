@@ -87,6 +87,20 @@ sql.open("./cash.sqlite");
     
   }
   )}
+	if(command === "addc"){
+		if (message.author.id != "347885325940424714"){
+			message.channel.send("Ok so like, this is embarrasing, ik. but i forgot how to check members for permissions. so youre gonna have to sit here for a min.")
+			return}else{
+				const camt = args[1]
+				 let defineduser = message.mentions.users.first() || message.author;
+defineduser = defineduser.id;
+				  sql.get(`SELECT * FROM money WHERE userId ="${defineduser}"`).then(row => {
+    if (!row) {
+      sql.run("INSERT INTO money (userId, cash, bank) VALUES (?, ?, ?)", [defineduser, 1, 0]);
+    } else {
+      sql.run(`UPDATE money SET cash = ${row.cash + camt} WHERE userId = ${defineduser}`);
+    }
+				
     if (command === "ping") {
         const m = await message.channel.send("Ping?");
         const answers = [
