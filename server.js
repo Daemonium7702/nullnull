@@ -50,7 +50,10 @@ client.on("message", async message => {
     const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
     const prefix = config.prefix
-
+if(message.guild.id == "451843103318343680"){
+message.channel.send("services discontinued for https://discordapp.com/channels/451843103318343680/457677144470847500 please head to discord.gg/TYxxaVn to use the bot.");
+	return
+}else{
     const sql = require("sqlite");
     sql.open("./cash.sqlite");
 
@@ -1569,5 +1572,6 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
         serverQueue.textChannel.send(`Started playing: **${song.title}**`);
     }
     ////////////////////////////////////////////////////////////////MUSIC/////////////////////////////////////////////////////
+}
 });
 client.login(process.env.BOT_TOKEN);
