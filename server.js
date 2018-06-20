@@ -21,7 +21,7 @@ const youtube = new YouTube(process.env.YT_API);
 const queue = new Map();
 const moment = require('moment');
 require('moment-duration-format');
-
+const meme = require('memejs');
 
 client.on("ready", () => {
     console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);
@@ -235,6 +235,7 @@ message.channel.send("services discontinued for https://discordapp.com/channels/
 
 
 	var aaIndex = parseInt(a.first().content);
+		
 		    if(aaIndex == 1){
 		    message.channel.send("You commit suicide. Game over...");
 			    return
@@ -256,7 +257,7 @@ message.channel.send("services discontinued for https://discordapp.com/channels/
 
 	var bbIndex = parseInt(bb.first().content);
 	if(bbIndex == 1){
-	message.channel.send("You grab a wooden plank, one pack of gauze, and 3 cans of food.You now enter the Bunker. Over you seal it shut, and you begin to feel the floor rattle. The rattle turns into a roar. You fall down unable to keep your balance. Your supplies go all over the floor. After 3 minutes, the rumbling stops. You notice very faint cracks in the walls of the bunker. You have 3 choices, \n 1) sleep \n 2) Go upstairs again \n 3) explore");
+	message.channel.send("You grab a wooden plank, one pack of gauze, and 3 cans of food.You now enter the Bunker. Once you seal it shut, you begin to feel the floor rattle. The rattle turns into a roar. You fall down unable to keep your balance. Your supplies go all over the floor. After 3 minutes, the rumbling stops. You notice very faint cracks in the walls of the bunker. You have 3 choices, \n 1) sleep \n 2) Go upstairs again \n 3) explore");
 	try{
 	
 	 var bbb = await  message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 3, {
@@ -282,7 +283,7 @@ message.channel.send("services discontinued for https://discordapp.com/channels/
                 });
 	    }catch (err) {
 		    console.error(err);
-		    return message.channel.send('You took too long, or chose an invalid option. The nuclear blast envelops you, and your skin melts. Game Over...');
+		    return message.channel.send('YOu took too long. A dark and mysterious force envelopes you. Your soul is consumed. Game Over...');
 	    }
 
 	var bbcIndex = parseInt(bbc.first().content);
@@ -330,8 +331,51 @@ message.channel.send("services discontinued for https://discordapp.com/channels/
 	}
 	if(bbcIndex = 2){
 	///explore
-	message.channel.send("You choose to explore the bunker. In the corner, you see a geiger counter. A flashlight, and a can of soup. You notice that there is a small amount of light coming from a crack in the wall. On a dusty workstation, you see a sledgehammer, and a pocket knife. You may choose to \n Undecided ***end of case***")
-	return}
+	message.channel.send("You choose to explore the bunker. In the corner, you see a geiger counter. A flashlight, and a can of soup. You notice that there is a small amount of light coming from a crack in the wall. On a dusty workstation, you see a sledgehammer, and a pocket knife. You may choose four items \n 1) sledgehammer, soup, light, geiger counter. \n 2) pocket knife, soup, light, geiger counter. ")
+	
+			try{
+	
+	 var supp = await  message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 3, {
+                    maxMatches: 1,
+                    time: 30000,
+                    errors: ['time']
+                });
+	    }catch (err) {
+		    console.error(err);
+		    return message.channel.send('You took too long, or chose an invalid option. The nuclear blast envelops you, and your skin melts. Game Over...');
+	    }
+
+	var supIndex = parseInt(supp.first().content);
+		
+		if(supIndex = 1){
+		message.channel.send("You chose to take the sledge hammer, the soup, and the geiger counter. As a result, You will be overburdened. You will have 15 seconds less than normal, but are immune to time altering buffs/debuffs. You will face less difficulties. You hear a sudden snap from inside the wall. \n 1) walk nearer, \n 2) cover hole with plank. ");
+			
+			try{
+	
+	 var sldg = await  message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 3, {
+                    maxMatches: 1,
+                    time: 15000,
+                    errors: ['time']
+                });
+	    }catch (err) {
+		    console.error(err);
+		    return message.channel.send('You took too long, or chose an invalid option. The nuclear blast envelops you, and your skin melts. Game Over...');
+	    }
+
+	var sldgh = parseInt(sldg.first().content);
+		if(sldgh = 1){
+		message.channel.send("You draw nearer, you notice light coming from a small crack in the fissures. As you strain your eyes the light is consumed briefly by a shadow.... There is something there. \n 1) break fissure with hammer  \n 2) block fissure.")
+		}
+		if(sldgh = 2){
+		message.channel.send("time consuming lol sorry")
+		}	
+			return}
+		if(supIndex = 2){
+		message.channel.send("You chose the knife, soup, light, and geiger counter. You will have 5 more seconds than usual. With such a small weapon, you are not intimidating. Gameplay will be much harder You hear a loud sound from near the wall. \n 1) Draw nearer, \n 2) Cover the hole with a plank.");
+			
+		}
+		
+		return}
 	}
 	if(bbbIndex = 2){
 	///go up
