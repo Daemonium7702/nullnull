@@ -271,7 +271,7 @@ message.channel.send("services discontinued for https://discordapp.com/channels/
 	    }
 
 	var bbbIndex = parseInt(bbb.first().content);
-	if(bbbIndex = 1){
+	if(bbbIndex === 1){
 	///sleep
 	message.channel.send("After all the chaos, you find your eyelids growing heavy. You place a roll of cloth on the stone floor, and you close your eyes. Images of today flashing across the back. Your mind races, *'Is my family alive' 'Is there anyone else?' 'What do I do now?' 'Is this it?' 'What about... Her...'* Gradually, your thoughts fade into darkness, and you fall asleep. 2x time bonus. answer increased to 60s for two turns. When you awake in the morning, you have two choices, \n 1) Go upstairs \n 2) Explore.")
 	try{
@@ -287,7 +287,7 @@ message.channel.send("services discontinued for https://discordapp.com/channels/
 	    }
 
 	var bbcIndex = parseInt(bbc.first().content);
-	if(bbcIndex = 1){
+	if(bbcIndex === 1){
 	///go up
 	message.channel.send("You decide to open the vault doors. As soon as you do, air rushes in. You exit the vault. You notice the world glowing a faint green. **TIME REDUCED TO 10 SECOND DUE TO RADIOACTIVITY ☢** \n 1)Go back in \n 2) Stay.")
 	try{
@@ -303,7 +303,7 @@ message.channel.send("services discontinued for https://discordapp.com/channels/
 	    }
 
 	var bbbcIndex = parseInt(bbbc.first().content);
-	if(bbbcIndex = 1){
+	if(bbbcIndex === 1){
 	///stay
 	message.channel.send("☢☢☢ TIME REDUCED TO 5s. Your skin blisters, Your fingertips turn black. \n 1) stay \n 2) Go Back")
 		try{
@@ -319,17 +319,17 @@ message.channel.send("services discontinued for https://discordapp.com/channels/
 	    }
 
 	var bbbccIndex = parseInt(bbbcc.first().content);
-	if(bbbccIndex = 1){
+	if(bbbccIndex === 1){
 	message.channel.send("You stay where you are. Fighting the pain. Your flesh melts off of your bones. Your eyes pop. Your fingers shrivel. Your head is slowly balded. You die of severe radiation poisioning and 3rd degree burns. Game Over...")
 	return
 	}
-	if(bbbccIndex = 2){
+	if(bbbccIndex === 2){
 	message.channel.send("You enter the vault, but its too late. You were severely hurt by radiation. You have no way to cleanse yourself, and no way to treat your wounds. You die of tumeric infections. Game Over...");
 	return
 	}
 	}
 	
-	if(bbcIndex = 2){
+	if(bbcIndex === 2){
 	///explore
 	message.channel.send("You choose to explore the bunker. In the corner, you see a geiger counter. A flashlight, and a can of soup. You notice that there is a small amount of light coming from a crack in the wall. On a dusty workstation, you see a sledgehammer, and a pocket knife. You may choose four items \n 1) sledgehammer, soup, light, geiger counter. \n 2) pocket knife, soup, light, geiger counter. ")
 	
@@ -363,14 +363,14 @@ message.channel.send("services discontinued for https://discordapp.com/channels/
 	    }
 
 	var sldgh = parseInt(sldg.first().content);
-		if(sldgh = 1){
+		if(sldgh === 1){
 		message.channel.send("You draw nearer, you notice light coming from a small crack in the fissures. As you strain your eyes the light is consumed briefly by a shadow.... There is something there. \n 1) break fissure with hammer  \n 2) block fissure.")
 		}
-		if(sldgh = 2){
+		if(sldgh === 2){
 		message.channel.send("time consuming lol sorry")
 		}	
 			return}
-		if(supIndex = 2){
+		if(supIndex === 2){
 		message.channel.send("You chose the knife, soup, light, and geiger counter. You will have 5 more seconds than usual. With such a small weapon, you are not intimidating. Gameplay will be much harder You hear a loud sound from near the wall. \n 1) Draw nearer, \n 2) Cover the hole with a plank.");
 			
 		}
