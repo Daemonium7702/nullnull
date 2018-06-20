@@ -328,7 +328,7 @@ message.channel.send("services discontinued for https://discordapp.com/channels/
 	return
 	}
 	}
-	}
+	
 	if(bbcIndex = 2){
 	///explore
 	message.channel.send("You choose to explore the bunker. In the corner, you see a geiger counter. A flashlight, and a can of soup. You notice that there is a small amount of light coming from a crack in the wall. On a dusty workstation, you see a sledgehammer, and a pocket knife. You may choose four items \n 1) sledgehammer, soup, light, geiger counter. \n 2) pocket knife, soup, light, geiger counter. ")
@@ -441,6 +441,7 @@ message.channel.send("***END OF CURRENT LINE")
             }
         }
     }
+}
 }
 }
 }
