@@ -313,29 +313,31 @@ client.on("message", async message => {
 	var bbbccIndex = parseInt(bbbcc.first().content);
 	if(bbbccIndex = 1){
 	message.channel.send("You stay where you are. Fighting the pain. Your flesh melts off of your bones. Your eyes pop. Your fingers shrivel. Your head is slowly balded. You die of severe radiation poisioning and 3rd degree burns. Game Over...")
+	return
 	}
 	if(bbbccIndex = 2){
 	message.channel.send("You enter the vault, but its too late. You were severely hurt by radiation. You have no way to cleanse yourself, and no way to treat your wounds. You die of tumeric infections. Game Over...");
+	return
 	}
 	}
 	}
 	if(bbcIndex = 2){
 	///explore
 	message.channel.send("You choose to explore the bunker. In the corner, you see a geiger counter. A flashlight, and a can of soup. You notice that there is a small amount of light coming from a crack in the wall. On a dusty workstation, you see a sledgehammer, and a pocket knife. You may choose to \n Undecided ***end of case***")
-	}
+	return}
 	}
 	if(bbbIndex = 2){
 	///go up
 	message.channel.send("You go upstairs i cba to make v2 of this so ***end of case for now***")
-	}
+	return}
 	if(bbbIndex = 3){
 	///explore
 	message.channel.send("You explore. I cba to write v2 so ***end of case for now.***")
-	}
+	return}
 	}
 	if(bbIndex == 2){
 	message.channel.send("You enter the bunker, and just in time. You are thrown to the ground as a thunderous roar sounds overhead. You are underground, but you still hear the wood splintering overhead. This continues for several minutes, then the roar comes to a cease. You remain still. You look around the room and notice some small cracks in the cement walls. You have 3 choices.\n 1) Sleep \n 2) Go upstairs again, \n 3) explore the bunker.")
-	}
+	return}
 	}
 	    if(aaIndex == 3){
 message.channel.send("You Stood by the window. The force of the wind shatters the glass into millions of pieces, embedding them in your flesh. Shortly after, The wooden walls begin to splinter, the walls slam into you with such force, that they fly stright through your body. You are rendered unconscious. The light soon fills the room, and the heat eliminates any trace of your existence.")
