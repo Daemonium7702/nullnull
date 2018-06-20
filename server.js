@@ -162,7 +162,7 @@ client.on("message", async message => {
 
 
     if (command === "daecade") {
-        message.channel.send("A bright flash of light blinds you. You place your hands in front of your face to protect your eyes. Never before has this been seen. A smoke plume erupts from the ground. You have four choices,\n 1) End it here and now. \n 2)Head north to the door \n 3) You head south to the bunker \n 4) You stand where you are by the window staring in awe at the magnificent light. \n respond by typing 1, 2, 3, or 4.");
+        message.channel.send("***STAGE 1:*** \n A bright flash of light blinds you. You place your hands in front of your face to protect your eyes. Never before has this been seen. A smoke plume erupts from the ground. You have four choices,\n 1) End it here and now. \n 2)Head north to the door \n 3) You head south to the bunker \n 4) You stand where you are by the window staring in awe at the magnificent light. \n respond by typing 1, 2, 3, or 4.");
         try {
             var response = await message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 5, {
                 maxMatches: 1,
@@ -180,21 +180,100 @@ client.on("message", async message => {
             return
        }
         if (videoIndex == 2) {
-            message.channel.send("You are at the door. You have two choices, \n 1) Open the door, and walk outside. \n 2)Go back ")
+		
+            message.channel.send("***STAGE 2:*** \n You are at the door. You have two choices, \n 1) Open the door, and walk outside. \n 2)Go back ")
             try {
-                var response = await message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 3, {
+                var opttsto = await message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 3, {
                     maxMatches: 1,
                     time: 30000,
                     errors: ['time']
                 });
+		    
             } catch (err) {
                 console.error(err);
                 return message.channel.send('You took too long, or chose an invalid option. The nuclear blast envelops you, and your skin melts. Game Over...');
             }
         }
+	    var opttstoIndex = parseInt(opttsto.first().content);
+	    if(opttstoIndex == 1){
+		    message.channel.send("You Walk Outside, you will have one quarter the usual time to make your moves until you find safehaven. You may /n 1) stay outside, \n 2) head back inside")
+	  try{
+	  var a = await  message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 3, {
+                    maxMatches: 1,
+                    time: 7500,
+                    errors: ['time']
+                });
+	    }catch (err) {
+		    console.error(err);
+		    return message.channel.send('You took too long, or chose an invalid option. The nuclear blast envelops you, and your skin melts. Game Over...');
+	    }
+	    }
+	var aIndex = parseInt(a.first().content);
+	if(aIndex == 1){
+	message.channel.send("In a state of paralysis, you stand with fear. The word grows brighter, hotter. The wall of head approaches you. You are flung into the air by a massive gust of wind. Moments later, your skin begins to boil, then burn. Turning black, before vanishing into the ashes around. Game Over...")
+	return
+	}
+	if(aIndex == 2){
+	message.channel.send("You return inside, the wall of flames draws nearer. You have half the normal time to make your move.  1) End it here and now. \n 2) You head south to the bunker \n 3) You stand where you are by the window staring in awe at the magnificent light. \n respond by typing 1, 2, 3, or 4.")
+	   try{
+	   var aa = await  message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 3, {
+                    maxMatches: 1,
+                    time: 15000,
+                    errors: ['time']
+                });
+	    }catch (err) {
+		    console.error(err);
+		    return message.channel.send('You took too long, or chose an invalid option. The nuclear blast envelops you, and your skin melts. Game Over...');
+}
+}
+
+	var aaIndex = parseInt(a.first().content);
+		    if(aaIndex == 1){
+		    message.channel.send("You commit suicide. Game over...");
+			    return
+			    
+		    }
+	if(aaIndex == 2){
+	message.channel.send("You arrive at the underground concrete bunker entrance.\n 1) You may choose to gather supplies, but your next move will have half the usual time to respond, \n 2)Or you can enter the bunker immediately.");
+	try{
 	
+	 var bb = await  message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 3, {
+                    maxMatches: 1,
+                    time: 30000,
+                    errors: ['time']
+                });
+	    }catch (err) {
+		    console.error(err);
+		    return message.channel.send('You took too long, or chose an invalid option. The nuclear blast envelops you, and your skin melts. Game Over...');
+	    }
+}
+	var bbIndex = parseInt(bb.first().content);
+	if(bbIndex == "1"){
+	message.channel.send("You grab a wooden plank, one pack of gauze, and 3 cans of food.You now enter the Bunker. Over you seal it shut, and you begin to feel the floor rattle. The rattle turns into a roar. You fall down unable to keep your balance. Your supplies go all over the floor. After 3 minutes, the rumbling stops. You notice very faint cracks in the walls of the bunker. You have 3 choices, \n 1) sleep \n 2) Go upstairs again \n 3) explore ***END OF CURRENT LINE***");
+	}
+	if(bbIndex == "2"){
+	message.channel.send("incomplete.")
+	}
+	    
+	if(opttstoIndex == 2){
+		message.channel.send("You head back. You have 3 choices 1) End it here and now. \n 2) You head south to the bunker \n 3) You stand where you are by the window staring in awe at the magnificent light. \n respond by typing 1, 2, 3, or 4.");
+	    try{
+	    var b = await  message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 4, {
+                    maxMatches: 1,
+                    time: 30000,
+                    errors: ['time']
+                });
+	    }catch (err) {
+		    console.error(err);
+		    return message.channel.send('You took too long, or chose an invalid option. The nuclear blast envelops you, and your skin melts. Game Over...');
+	    }
+}
+	var bIndex = parseInt(b.first().content);
+if(bIndex = 1){
+message.channel.send("***END OF CURRENT LINE")
+}
         if (videoIndex == 3) {
-            message.channel.send("You arrive at the underground concrete bunker entrance.\n You may choose to gather supplies, but your next move will have half the usual time to respond, \n 2)Or you can enter the bunker immediately.");
+            message.channel.send("You arrive at the underground concrete bunker entrance.\n You may choose to gather supplies, but your next move will have half the usual time to respond, \n 2)Or you can enter the bunker immediately. ***END OF CURRENT LINE***");
             try {
                 var response = await message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 3, {
                     maxMatches: 1,
@@ -209,9 +288,8 @@ client.on("message", async message => {
 
 
         if (videoIndex == 4) {
-            message.channel.send("You chose to stand around gawking like a moron. You will have half the usual time to respond to your next move. You may choose \n 1) to repeat this action, \n or head to the bunker.")
-            message.channel.send("You arrive at the underground concrete bunker entrance.\n You may choose to gather supplies, but your next move will have half the usual time to respond, \n 2)Or you can enter the bunker immediately.");
-            try {
+            message.channel.send("You chose to stand around gawking like a moron. You will have half the usual time to respond to your next move. You may choose \n 1) to repeat this action, \n or head to the bunker.***END OF CURRENT LINE***")
+              try {
                 var response = await message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 3, {
                     maxMatches: 1,
                     time: 30000,
@@ -223,7 +301,6 @@ client.on("message", async message => {
             }
         }
     }
-    
 
 
 
