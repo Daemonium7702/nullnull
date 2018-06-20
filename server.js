@@ -171,13 +171,14 @@ client.on("message", async message => {
             });
         } catch (err) {
             console.error(err);
+		console.log(response);
             return message.channel.send('No or invalid value entered, quitting game.');
         }
         var videoIndex = parseInt(response.first().content);
-        if (videoIndex = 1) {
+        if (videoIndex == 1) {
             message.channel.send("You chose to commit suicide. Game Over...");
             return
-        }
+       }
         if (videoIndex == 2) {
             message.channel.send("You are at the door. You have two choices, \n 1) Open the door, and walk outside. \n 2)Go back ")
             try {
@@ -191,6 +192,7 @@ client.on("message", async message => {
                 return message.channel.send('You took too long, or chose an invalid option. The nuclear blast envelops you, and your skin melts. Game Over...');
             }
         }
+	
         if (videoIndex == 3) {
             message.channel.send("You arrive at the underground concrete bunker entrance.\n You may choose to gather supplies, but your next move will have half the usual time to respond, \n 2)Or you can enter the bunker immediately.");
             try {
@@ -204,6 +206,7 @@ client.on("message", async message => {
                 return message.channel.send('You took too long, or chose an invalid option. The nuclear blast envelops you, and your skin melts. Game Over...');
             }
         }
+
 
         if (videoIndex == 4) {
             message.channel.send("You chose to stand around gawking like a moron. You will have half the usual time to respond to your next move. You may choose \n 1) to repeat this action, \n or head to the bunker.")
@@ -220,6 +223,7 @@ client.on("message", async message => {
             }
         }
     }
+    
 
 
 
