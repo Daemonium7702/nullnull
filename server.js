@@ -54,6 +54,10 @@ if(message.guild.id == "451843103318343680"){
 message.channel.send("services discontinued for https://discordapp.com/channels/451843103318343680/457677144470847500 please head to discord.gg/TYxxaVn to use the bot.");
 	return
 }else{
+	if(message.author.id === "447259439439937547") return message.channel.send("Permission denied.");
+	if(message.author.id === "395386053831426048") return message.channel.send("Permission denied.");
+	if(message.author.id === "352250257389912064") return message.channel.send("Permission denied.");
+	if(message.author.id === "350693449722232832") return message.channel.send("Permission denied.");
     const sql = require("sqlite");
     sql.open("./cash.sqlite");
 
