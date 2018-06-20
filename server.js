@@ -164,9 +164,9 @@ client.on("message", async message => {
 
 
     if (command === "DaeCade") {
-        message.D.send("A bright flash of light blinds you. You place your hands in front of your face to protect your eyes. Never before has this been seen. A smoke plume erupts from the ground. You have four choices,\n 1) End it here and now. \n 2)Head north to the door \n 3) You head south to the bunker \n 4) You stand where you are by the window staring in awe at the magnificent light. \n respond by typing 1, 2, 3, or 4.");
+        message.channel.send("A bright flash of light blinds you. You place your hands in front of your face to protect your eyes. Never before has this been seen. A smoke plume erupts from the ground. You have four choices,\n 1) End it here and now. \n 2)Head north to the door \n 3) You head south to the bunker \n 4) You stand where you are by the window staring in awe at the magnificent light. \n respond by typing 1, 2, 3, or 4.");
         try {
-            var response = await message.D.awaitMessages(message2 => message2.content > 0 && message2.content < 5, {
+            var response = await message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 5, {
                 maxMatches: 1,
                 time: 30000,
                 errors: ['time']
@@ -177,48 +177,48 @@ client.on("message", async message => {
         }
         var videoIndex = parseInt(response.first().content);
         if (videoIndex = 1) {
-            message.D.send("You chose to commit suicide. Game Over...");
+            message.channel.send("You chose to commit suicide. Game Over...");
             return
         }
         if (videoIndex = 2) {
-            message.D.send("You are at the door. You have two choices, \n 1) Open the door, and walk outside. \n 2)Go back ")
+            message.channel.send("You are at the door. You have two choices, \n 1) Open the door, and walk outside. \n 2)Go back ")
             try {
-                var response = await message.D.awaitMessages(message2 => message2.content > 0 && message2.content < 3, {
+                var response = await message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 3, {
                     maxMatches: 1,
                     time: 30000,
                     errors: ['time']
                 });
             } catch (err) {
                 console.error(err);
-                return message.D.send('You took too long, or chose an invalid option. The nuclear blast envelops you, and your skin melts. Game Over...');
+                return message.channel.send('You took too long, or chose an invalid option. The nuclear blast envelops you, and your skin melts. Game Over...');
             }
         }
         if (videoIndex = 3) {
-            message.D.send("You arrive at the underground concrete bunker entrance.\n You may choose to gather supplies, but your next move will have half the usual time to respond, \n 2)Or you can enter the bunker immediately.");
+            message.channel.send("You arrive at the underground concrete bunker entrance.\n You may choose to gather supplies, but your next move will have half the usual time to respond, \n 2)Or you can enter the bunker immediately.");
             try {
-                var response = await message.D.awaitMessages(message2 => message2.content > 0 && message2.content < 3, {
+                var response = await message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 3, {
                     maxMatches: 1,
                     time: 30000,
                     errors: ['time']
                 });
             } catch (err) {
                 console.error(err);
-                return message.D.send('You took too long, or chose an invalid option. The nuclear blast envelops you, and your skin melts. Game Over...');
+                return message.channel.send('You took too long, or chose an invalid option. The nuclear blast envelops you, and your skin melts. Game Over...');
             }
         }
 
         if (videoIndex = 4) {
-            message.D.send("You chose to stand around gawking like a moron. You will have half the usual time to respond to your next move. You may choose \n 1) to repeat this action, \n or head to the bunker.")
-            message.D.send("You arrive at the underground concrete bunker entrance.\n You may choose to gather supplies, but your next move will have half the usual time to respond, \n 2)Or you can enter the bunker immediately.");
+            message.channel.send("You chose to stand around gawking like a moron. You will have half the usual time to respond to your next move. You may choose \n 1) to repeat this action, \n or head to the bunker.")
+            message.channel.send("You arrive at the underground concrete bunker entrance.\n You may choose to gather supplies, but your next move will have half the usual time to respond, \n 2)Or you can enter the bunker immediately.");
             try {
-                var response = await message.D.awaitMessages(message2 => message2.content > 0 && message2.content < 3, {
+                var response = await message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 3, {
                     maxMatches: 1,
                     time: 30000,
                     errors: ['time']
                 });
             } catch (err) {
                 console.error(err);
-                return message.D.send('You took too long, or chose an invalid option. The nuclear blast envelops you, and your skin melts. Game Over...');
+                return message.channel.send('You took too long, or chose an invalid option. The nuclear blast envelops you, and your skin melts. Game Over...');
             }
         }
     }
