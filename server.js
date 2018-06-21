@@ -347,7 +347,7 @@ message.channel.send("services discontinued for https://discordapp.com/channels/
 
 	var supIndex = parseInt(supp.first().content);
 		
-		if(supIndex = 1){
+		if(supIndex === 1){
 		message.channel.send("You chose to take the sledge hammer, the soup, and the geiger counter. As a result, You will be overburdened. You will have 15 seconds less than normal, but are immune to time altering buffs/debuffs. You will face less difficulties. You hear a sudden snap from inside the wall. \n 1) walk nearer, \n 2) cover hole with plank. ");
 			
 			try{
@@ -377,11 +377,11 @@ message.channel.send("services discontinued for https://discordapp.com/channels/
 		
 		return}
 	}
-	if(bbbIndex = 2){
+	if(bbbIndex === 2){
 	///go up
 	message.channel.send("You go upstairs i cba to make v2 of this so ***end of case for now***")
 	return}
-	if(bbbIndex = 3){
+	if(bbbIndex === 3){
 	///explore
 	message.channel.send("You explore. I cba to write v2 so ***end of case for now.***")
 	return}
@@ -409,7 +409,7 @@ return
 	    }
 
 	var bIndex = parseInt(b.first().content);
-if(bIndex = 1){
+if(bIndex === 1){
 message.channel.send("***END OF CURRENT LINE")
 }
         if (videoIndex == 3) {
