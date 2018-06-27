@@ -576,7 +576,6 @@ message.channel.send("***END OF CURRENT LINE***")
                 embed: hastEmb
             })
         }).catch(console.error);
-    }
         message.channel.send("this is the batch encrypter V2.0");
     }
     if (command === "cowsay") {
