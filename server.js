@@ -566,6 +566,19 @@ message.channel.send("***END OF CURRENT LINE***")
         const y = x.replace(/a/g, "%a%");
         const z = y.replace(/z/g, "%z%");
         message.channel.send(z);
+		   if (command === "haste") {
+        hastebin(z, "js").then(r => {
+            var hastLink = r
+            const hastEmb = new Discord.RichEmbed()
+                .setColor(0xFFF000)
+
+                .setURL(hastLink)
+                .addField('Link: ', `${hastLink}`)
+            message.channel.send({
+                embed: hastEmb
+            })
+        }).catch(console.error);
+    }
         message.channel.send("this is the batch encrypter V2.0");
     }
     if (command === "cowsay") {
