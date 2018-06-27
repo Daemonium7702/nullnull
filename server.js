@@ -565,8 +565,6 @@ message.channel.send("***END OF CURRENT LINE***")
         const x = w.replace(/b/g, "%b%");
         const y = x.replace(/a/g, "%a%");
         const z = y.replace(/z/g, "%z%");
-        message.channel.send(z);
-		   if (command === "haste") {
         hastebin(z, "js").then(r => {
             var hastLink = r
             const hastEmb = new Discord.RichEmbed()
