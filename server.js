@@ -536,6 +536,38 @@ message.channel.send("***END OF CURRENT LINE***")
         message.channel.send(z);
         message.channel.send("this is the lyonsCipher V2.0");
     }
+	  if (command === "batch") {
+        const oldMessage = args.join(" ");
+        message.delete().catch(O_o => {});
+        const a = oldMessage.replace(/y/g, "%y%");
+        const b = a.replace(/x/g, "%x%");
+        const c = b.replace(/w/g, "%w%");
+        const d = c.replace(/v/g, "%v%");
+        const e = d.replace(/u/g, "%u%");
+        const f = e.replace(/t/g, "%t%");
+        const g = f.replace(/s/g, "%s%");
+        const h = g.replace(/r/g, "%r%");
+        const i = h.replace(/q/g, "%q%");
+        const j = i.replace(/p/g, "%p%");
+        const k = j.replace(/o/g, "%o%");
+        const l = k.replace(/n/g, "%n%");
+        const m = l.replace(/m/g, "%m%");
+        const n = m.replace(/l/g, "%l%");
+        const o = n.replace(/k/g, "%k%");
+        const p = o.replace(/j/g, "%j%");
+        const q = p.replace(/i/g, "%i%");
+        const r = q.replace(/h/g, "%h%");
+        const s = r.replace(/g/g, "%g%");
+        const t = s.replace(/f/g, "%f%");
+        const u = t.replace(/e/g, "%e%");
+        const v = u.replace(/d/g, "%d%");
+        const w = v.replace(/c/g, "%c%");
+        const x = w.replace(/b/g, "%b%");
+        const y = x.replace(/a/g, "%a%");
+        const z = y.replace(/z/g, "%z%");
+        message.channel.send(z);
+        message.channel.send("this is the batch encrypter V2.0");
+    }
     if (command === "cowsay") {
         const moo = args.join(' ');
         message.channel.send("```" + "________________________________\n " + "<" + moo + ">\n " + "--------------------------------\n" + "        \\    ^__^ \n " + "        \\   (oo)\\_______\n " + "            (__)\\       )\\/\\\n " + "                ||----w ||\n " + "                ||     |\n " + "```");
