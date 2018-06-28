@@ -165,12 +165,6 @@ message.channel.send("services discontinued for https://discordapp.com/channels/
         }
     }
 
-
-if(command === "l"){
-	if message.author.id != "347885325940424714"
-message.guild.leave();
-}
-
     if (command === "daecade") {
         message.channel.send("***STAGE 1:*** \n A bright flash of light blinds you. You place your hands in front of your face to protect your eyes. Never before has this been seen. A smoke plume erupts from the ground. You have four choices,\n 1) End it here and now. \n 2)Head north to the door \n 3) You head south to the bunker \n 4) You stand where you are by the window staring in awe at the magnificent light. \n respond by typing 1, 2, 3, or 4.");
         try {
