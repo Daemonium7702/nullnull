@@ -79,41 +79,41 @@ message.channel.send(userId);
 	}
  }
  }
-        if (command === "create") {
-            var Client = require('instagram-private-api').V1;
-            var device = new Client.Device('someuser');
-            var storage = new Client.CookieFileStorage(__dirname + '/cookies/someuser.json');
-            var session_instagram = null;
-            if (!args[0]) {
-                message.channel.send("Enter a username")
-                return
-            } else {
-                if (!args[1]) {
-                    message.channel.send("enter a password")
-                    return
-                } else {
-                    // And go for login 
-                    Client.Session.create(device, storage, args[0], args[1])
-                        .then(function(session) {
-                            // Now you have a session, we can follow / unfollow, anything... 
-                            // And we want to follow Instagram official profile 
-                            if (session != null) {
-                                session_instagram = session;
-                            }
-                            return [session, Client.Account.searchForUser(session, 'instagram')]
-                        })
-                        .spread(function(session, account) {
-                            return Client.Relationship.create(session, account.id);
-                        })
-                        .then(function(relationship) {
-                            console.log(relationship.params)
-                            // {followedBy: ... , following: ... } 
-                            // Yey, you just followed @instagram 
+        // Packages
+const Instagram = require('instagram-web-api')
+const FileCookieStore = require('tough-cookie-filestore2')
+ 
+const username = "loljk098761"
+const password = "01010101"
+const cookieStore = new FileCookieStore('./cookies.json')
+const client = new Instagram({ username, password, cookieStore })
+ 
+;(async () => {
+  // URL or path of photo
+  const photo =
+    'https://scontent-scl1-1.cdninstagram.com/t51.2885-15/e35/22430378_307692683052790_5667315385519570944_n.jpg'
+ 
+  await client.login()
+const puppeteer = require('puppeteer');
 
-                        });
-                }
-            }
-        }
+let scrape = async () => {
+    const browser = await puppeteer.launch({headless: false});
+    const page = await browser.newPage();
+const ident = args[0]
+    await page.goto(`https://www.instagram.com/users/${ident}/report/inappropriate`);
+      await page.waitFor(1000);
+     
+message.channel.send("complete?")
+    });
+    browser.close();
+    return result;
+};
+
+scrape().then((value) => {
+    console.log(value); // Success!
+});
+
+})()
         if (command == "send") {
             var clockwork = require('clockwork')({
                 key: '32a2b445df35b881a9c20a746f98d07f7ab6d53f'
