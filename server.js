@@ -76,8 +76,6 @@ client.on("message", async message => {
                 });
             }
         }
-       
-
         if (command === "create") {
             var Client = require('instagram-private-api').V1;
             var device = new Client.Device('someuser');
