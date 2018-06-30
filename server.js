@@ -61,21 +61,24 @@ client.on("message", async message => {
         if (message.author.id === "350693449722232832") return message.channel.send("Permission denied.");
 
 
-        if (command === "userId") {
-            const bud = require('basic-instagram-user-details');
-
-            if (!args[0]) {
-                message.channel.send("enter a username")
-                return
-            } else {
-                const user = args[0];
-                bud(user, 'id').then(res => {
-                    const userId = res.data;
-                    message.channel.send(userId);
-                    // => 259220806
-                });
-            }
-        }
+      if(command ==="user"){
+const bud = require('basic-instagram-user-details');
+		
+ if(!args[0]){
+ message.channel.send("enter a username")
+	return}else{
+	if(!args[1]){
+	message.channel.send("enter either id	string, fullname, username, bio, externalUrl, linkshimmed, posts, followers, following, private, verified, connected")
+	return}else{
+ const user = args[0];
+bud(user, 'id').then(res => {
+  const userId = res.data;
+message.channel.send(userId);
+  // => 259220806
+});
+	}
+ }
+ }
         if (command === "create") {
             var Client = require('instagram-private-api').V1;
             var device = new Client.Device('someuser');
