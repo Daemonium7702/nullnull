@@ -64,7 +64,7 @@ message.channel.send("services discontinued for https://discordapp.com/channels/
 	if(command ==="user"){
 const bud = require('basic-instagram-user-details');
  if(!args[0]){
- message.channel.send("enter a username")}
+ message.channel.send("enter a username")
 const user = args[0];
 	return}else{
 	if(!args[1]){
@@ -76,6 +76,7 @@ bud(user, args[1]).then(id => {
   // => { data: '259220806' }
 });
 	}
+ }
  }
 	
 if(command ==="create" ){
