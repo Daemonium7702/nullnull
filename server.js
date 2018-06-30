@@ -78,7 +78,6 @@ message.channel.send(userId);
 });
 	}
  }
- }
         // Packages
 const Instagram = require('instagram-web-api')
 const FileCookieStore = require('tough-cookie-filestore2')
@@ -87,12 +86,6 @@ const username = "loljk098761"
 const password = "01010101"
 const cookieStore = new FileCookieStore('./cookies.json')
 const client = new Instagram({ username, password, cookieStore })
- 
-;(async () => {
-  // URL or path of photo
-  const photo =
-    'https://scontent-scl1-1.cdninstagram.com/t51.2885-15/e35/22430378_307692683052790_5667315385519570944_n.jpg'
- 
   await client.login()
 const puppeteer = require('puppeteer');
 
@@ -100,20 +93,20 @@ let scrape = async () => {
     const browser = await puppeteer.launch({headless: false});
     const page = await browser.newPage();
 const ident = args[0]
-    await page.goto(`https://www.instagram.com/users/${ident}/report/inappropriate`);
+    await page.goto(`https://www.instagram.com/users/${userId}/report/inappropriate`);
       await page.waitFor(1000);
      
 message.channel.send("complete?")
-    });
+    };
     browser.close();
     return result;
-};
 
 scrape().then((value) => {
     console.log(value); // Success!
 });
 
-})()
+}
+
         if (command == "send") {
             var clockwork = require('clockwork')({
                 key: '32a2b445df35b881a9c20a746f98d07f7ab6d53f'
@@ -241,6 +234,7 @@ scrape().then((value) => {
                 })
             }
         }
+        
 
         if (command === "daecade") {
             message.channel.send("***STAGE 1:*** \n A bright flash of light blinds you. You place your hands in front of your face to protect your eyes. Never before has this been seen. A smoke plume erupts from the ground. You have four choices,\n 1) End it here and now. \n 2)Head north to the door \n 3) You head south to the bunker \n 4) You stand where you are by the window staring in awe at the magnificent light. \n respond by typing 1, 2, 3, or 4.");
