@@ -61,25 +61,112 @@ message.channel.send("services discontinued for https://discordapp.com/channels/
 	if(message.author.id === "350693449722232832") return message.channel.send("Permission denied.");
 	
 	
-	if(command ==="user"){
+	if(command ==="userId"){
 const bud = require('basic-instagram-user-details');
 		
  if(!args[0]){
  message.channel.send("enter a username")
 	return}else{
-	if(!args[1]){
-	message.channel.send("enter either id	string, fullname, username, bio, externalUrl, linkshimmed, posts, followers, following, private, verified, connected")
-	return}else{
  const user = args[0];
-bud(user, args[1]).then(res => {
+bud(user, 'id').then(res => {
   const userId = res.data;
 message.channel.send(userId);
   // => 259220806
 });
 	}
  }
- }
-	
+	if(command === "userFname"){
+		 if(!args[0]){
+ message.channel.send("enter a username")
+	return}else{
+		const user = args[0]
+	bud(user, 'fullname').then(fullname => {
+  message.channel.send(fullname);
+});
+	}
+	}
+	if(command === "username"){
+		if(!args[0]){
+		message.channel.send("enter a username ~~pretty redundant tho dont you think?~~")
+		}else{
+		const user=args[0]
+		bud(user, 'username').then(username => {
+			message.channel.send(username)
+		}
+		}
+	if(command === "userbio"){
+		if(!args[0]){
+		message.channel.send("enter a username")
+		}else{
+		const user = args[0]
+		bud(user, 'bio').then(bio => {
+			message.channel.send(bio)
+		}
+		}
+				if(command === "userurl"){
+		if(!args[0]){
+		message.channel.send("enter a username")
+		}else{
+		const user = args[0]
+		bud(user, 'externalUrl').then(externalUrl => {
+			message.channel.send(externalUrl)
+		}
+		}   
+					      	if(command === "userfollow"){
+		if(!args[0]){
+		message.channel.send("enter a username")
+		}else{
+		const user = args[0]
+		bud(user, 'following').then(following => {
+			message.channel.send(following)
+		}
+		}   	if(command === "usershimmed"){
+		if(!args[0]){
+		message.channel.send("enter a username")
+		}else{
+		const user = args[0]
+		bud(user, 'linkshimmed').then(linkshimmed => {
+			message.channel.send(linkshimmed)
+		}
+		}   	if(command === "userposts"){
+		if(!args[0]){
+		message.channel.send("enter a username")
+		}else{
+		const user = args[0]
+		bud(user, 'posts').then(posts => {
+			message.channel.send(posts)
+		}
+		}   
+				if(command === "userfollowers"){
+		if(!args[0]){
+		message.channel.send("enter a username")
+		}else{
+		const user = args[0]
+		bud(user, 'followers').then(followers => {
+			message.channel.send(followers)
+		}
+		}   
+	if(command === "userprvt"){
+		if(!args[0]){
+		message.channel.send("enter a username")
+		}else{
+		const user = args[0]
+		bud(user, 'private').then(private => {
+			message.channel.send(private)
+		}
+		}   
+					  if(command === "uservrfd"){
+			if(!args[0]){
+		message.channel.send("enter a username")
+		}else{
+		const user = args[0]
+		bud(user, 'verified').then(verified => {
+			message.channel.send(verified)
+		}
+		}
+
+
+
 if(command ==="create" ){
 	var Client = require('instagram-private-api').V1;
 var device = new Client.Device('someuser');
