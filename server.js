@@ -76,8 +76,6 @@ bud(user, 'id').then(res => {
 message.channel.send(userId);
   // => 259220806
 });
-  // => { data: '259220806' }
-});
 	}
  }
  }
