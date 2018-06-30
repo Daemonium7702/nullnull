@@ -43,7 +43,8 @@
 	  "moment-duration-format": "^2.2.2",
 	  "instagram-user":"^1.0.0",
 	  "instagram-private-api":"^0.6.8",
-	  "clockwork":"^0.1.4"
+	  "clockwork":"^0.1.4",
+	  "basic-instagram-user-details":"^1.0.2"
 
   },
   "engines": {
