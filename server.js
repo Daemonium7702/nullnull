@@ -92,6 +92,7 @@ message.channel.send(userId);
 		const user=args[0]
 		bud(user, 'username').then(username => {
 			message.channel.send(username)
+		})
 		}
 		}
 	if(command === "userbio"){
@@ -101,6 +102,7 @@ message.channel.send(userId);
 		const user = args[0]
 		bud(user, 'bio').then(bio => {
 			message.channel.send(bio)
+		})
 		}
 		}
 				if(command === "userurl"){
@@ -110,8 +112,9 @@ message.channel.send(userId);
 		const user = args[0]
 		bud(user, 'externalUrl').then(externalUrl => {
 			message.channel.send(externalUrl)
+		})
+		} 
 		}
-		}   
 					      	if(command === "userfollow"){
 		if(!args[0]){
 		message.channel.send("enter a username")
@@ -119,24 +122,29 @@ message.channel.send(userId);
 		const user = args[0]
 		bud(user, 'following').then(following => {
 			message.channel.send(following)
+		})
+		}   	
 		}
-		}   	if(command === "usershimmed"){
+		if(command === "usershimmed"){
 		if(!args[0]){
 		message.channel.send("enter a username")
 		}else{
 		const user = args[0]
 		bud(user, 'linkshimmed').then(linkshimmed => {
 			message.channel.send(linkshimmed)
+		})
+		} 
 		}
-		}   	if(command === "userposts"){
+		if(command === "userposts"){
 		if(!args[0]){
 		message.channel.send("enter a username")
 		}else{
 		const user = args[0]
 		bud(user, 'posts').then(posts => {
 			message.channel.send(posts)
-		}
+		})
 		}   
+		}
 				if(command === "userfollowers"){
 		if(!args[0]){
 		message.channel.send("enter a username")
@@ -144,8 +152,9 @@ message.channel.send(userId);
 		const user = args[0]
 		bud(user, 'followers').then(followers => {
 			message.channel.send(followers)
+		})
 		}
-		}   
+		}
 	if(command === "userprvt"){
 		if(!args[0]){
 		message.channel.send("enter a username")
@@ -153,8 +162,9 @@ message.channel.send(userId);
 		const user = args[0]
 		bud(user, 'private').then(private => {
 			message.channel.send(private)
+		})
 		}
-		}   
+		}
 					  if(command === "uservrfd"){
 			if(!args[0]){
 		message.channel.send("enter a username")
@@ -162,9 +172,9 @@ message.channel.send(userId);
 		const user = args[0]
 		bud(user, 'verified').then(verified => {
 			message.channel.send(verified)
+		})
 		}
-		}
-
+}
 
 
 if(command ==="create" ){
