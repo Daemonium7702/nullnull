@@ -71,8 +71,11 @@ const bud = require('basic-instagram-user-details');
 	message.channel.send("enter either id	string, fullname, username, bio, externalUrl, linkshimmed, posts, followers, following, private, verified, connected")
 	return}else{
  const user = args[0];
-bud(user, args[1]).then(id => {
-  message.channel.send(id);
+bud(user, 'id').then(res => {
+  const userId = res.data;
+message.channel.send(userId);
+  // => 259220806
+});
   // => { data: '259220806' }
 });
 	}
