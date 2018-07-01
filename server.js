@@ -101,7 +101,7 @@ return}else{
     await page.goto(`https://www.instagram.com/users/${ident}/report/inappropriate`);
 await page.waitFor(5000);
 	console.log(`https://www.instagram.com/users/${ident}/report/inappropriate`);
-    await page.click('#react-root > div > ul > li:nth-child(5) > div');
+    await page.eval('#react-root > div > ul > li:nth-child(5) > div', form => form.click());
 	await page.waitFor(5000);
 message.channel.send("complete?")
     
