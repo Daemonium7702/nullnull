@@ -81,35 +81,52 @@ message.channel.send(userId);
 }     
 }   // Packages
 if(command === "Rport"){
+	 console.log("where does this stop reading 1");
 const Instagram = require('instagram-web-api')
+ console.log("where does this stop reading 2");
 const FileCookieStore = require('tough-cookie-filestore2')
- 
+ console.log("where does this stop reading 3");
 const username = "loljk098761"
+ console.log("where does this stop reading 4");
 const password = "01010101"
+ console.log("where does this stop reading 5");
 const cookieStore = new FileCookieStore('./cookies.json')
+ console.log("where does this stop reading 6");
 const cllient = new Instagram({ username, password, cookieStore })
+ console.log("where does this stop reading 7");
   await cllient.login()
+	 console.log("where does this stop reading 8");
 const puppeteer = require('puppeteer');
-
+ console.log("where does this stop reading 9");
 let scrape = async () => {
+	 console.log("where does this stop reading 10");
     const browser = await puppeteer.launch({headless: false});
+	 console.log("where does this stop reading 11");
     const page = await browser.newPage();
+	 console.log("where does this stop reading 12");
 const ident = args[0]
+ console.log("where does this stop reading 13");
 if(!args[0]){
+	 console.log("where does this stop reading 14");
 message.channel.send("Please Supply an ID")
+	 console.log("where does this stop reading 15");
 return}else{
+	 console.log("where does this stop reading 16");
     await page.goto(`https://www.instagram.com/users/${ident}/report/inappropriate`);
-await page.waitFor(5000);
+ console.log("where does this stop reading 17");
+	await page.waitFor(2000);
+	 console.log("where does this stop reading 18");
 	console.log(`https://www.instagram.com/users/${ident}/report/inappropriate`);
+	 console.log("where does this stop reading 19");
     await page.eval('#react-root > div > ul > li:nth-child(5) > div', form => form.click());
-	await page.waitFor(5000);
+	 console.log("where does this stop reading 20");
+	await page.waitFor(2000);
+	 console.log("where does this stop reading 21");
 message.channel.send("complete?")
-    
+     console.log("where does this stop reading 22");
     browser.close();
-    return result;
-
-scrape().then((value) => {
-    console.log(value); // Success!
+	 console.log("where does this stop reading 23");
+    return message.channel.send("worked");
 });
 }
 }
