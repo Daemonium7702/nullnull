@@ -99,7 +99,9 @@ if(!args[0]){
 message.channel.send("Please Supply an ID")
 return}else{
     await page.goto(`https://www.instagram.com/users/${ident}/report/inappropriate`);
-    await page.click('#react-root> div > ul > li:nth-child(5) > div > p');
+await page.waitFor(5000);
+	console.log(`https://www.instagram.com/users/${ident}/report/inappropriate`);
+    await page.click('#react-root > div > ul > li:nth-child(5) > div');
 	await page.waitFor(5000);
 message.channel.send("complete?")
     
