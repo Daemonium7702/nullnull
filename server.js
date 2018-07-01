@@ -86,8 +86,8 @@ const FileCookieStore = require('tough-cookie-filestore2')
 const username = "loljk098761"
 const password = "01010101"
 const cookieStore = new FileCookieStore('./cookies.json')
-const client = new Instagram({ username, password, cookieStore })
-  await client.login()
+const cllient = new Instagram({ username, password, cookieStore })
+  await cllient.login()
 const puppeteer = require('puppeteer');
 
 let scrape = async () => {
