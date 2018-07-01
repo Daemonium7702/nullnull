@@ -75,10 +75,11 @@ bud(user, 'id').then(res => {
   const userId = res.data;
 message.channel.send(userId);
   // => 259220806
-});
-	}
- }
-        // Packages
+})
+}
+}     
+}   // Packages
+if(command === "Rport"){
 const Instagram = require('instagram-web-api')
 const FileCookieStore = require('tough-cookie-filestore2')
  
@@ -93,18 +94,22 @@ let scrape = async () => {
     const browser = await puppeteer.launch({headless: false});
     const page = await browser.newPage();
 const ident = args[0]
-    await page.goto(`https://www.instagram.com/users/${userId}/report/inappropriate`);
-      await page.waitFor(1000);
-     
+if(!args[0]){
+message.channel.send("Please Supply an ID")
+return}else{
+    await page.goto(`https://www.instagram.com/users/${ident}/report/inappropriate`);
+    await page.click('#default > div > div > div > div > section > div:nth-child(2) > ol > li:nth-child(1) > article > div.image_container > a > img');
+	await page.waitFor(5000);
 message.channel.send("complete?")
-    };
+    
     browser.close();
     return result;
 
 scrape().then((value) => {
     console.log(value); // Success!
 });
-
+}
+}
 }
 
         if (command == "send") {
