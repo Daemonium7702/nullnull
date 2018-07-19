@@ -613,6 +613,11 @@ scrape().then((value) => {
             message.channel.send(z);
             message.channel.send("this is the lyonsCipher V2.0");
         }
+	    if(command === "remspace"){
+	    const spacemes = args.join('');
+	    message.delete().catch(O_o => {});
+	    const z = spacemes.replace(/ /g, "");
+	    message.channel.send(z)}
         if (command === "batch") {
             const oldMessage = args.join(" ");
             message.delete().catch(O_o => {});
