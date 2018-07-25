@@ -47,7 +47,9 @@ The command list is listed below.
  Bond: Bondage NSFW ONLY Usage: .bond
  Hentai: Looks Up Some Hentai Babes For You Weebs Out There Usage: .hentai
  Nsfw: Sends Some Standard NSFW Usage: .nsfw
- Moderation: Ban: Bans A User MOD ONLY Usage: .ban [@user] [Reason]
+ 
+ # Moderation:
+ Ban: Bans A User MOD ONLY Usage: .ban [@user] [Reason]
  Kick: Kicks A Member. Usage: .kick @member [reason]
  Purge: Deletes Messages MOD ONLY Usage: .purge [number<100]
  Report: Reports A Member Usage: .report [@member] [reason]
