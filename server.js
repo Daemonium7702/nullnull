@@ -52,7 +52,7 @@ client.on("message", async message => {
     const command = args.shift().toLowerCase();
     const prefix = config.prefix
     if (message.guild.id == "451843103318343680") {
-        message.channel.send("services discontinued for https://discordapp.com/channels/451843103318343680/457677144470847500 please head to discord.gg/TYxxaVn to use the bot.");
+        message.channel.send("services discontinued for https://discordapp.com/channels/451843103318343680/457677144470847500 please head to https://discord.gg/GfJw3VB to use the bot.");
         return
     } else {
 	    if(message.author.id != "347885325940424714")
@@ -61,7 +61,7 @@ client.on("message", async message => {
         if (message.author.id === "352250257389912064") return message.channel.send("Permission denied.");
         if (message.author.id === "350693449722232832") return message.channel.send("Permission denied.");
 
-
+/*
       if(command ==="user"){
 const bud = require('basic-instagram-user-details');
 		
@@ -134,7 +134,7 @@ scrape().then((value) => {
         }
 
 
-
+*/
 
         const sql = require("sqlite");
         sql.open("./cash.sqlite");
@@ -243,7 +243,7 @@ scrape().then((value) => {
             }
         }
         
-
+/*
         if (command === "daecade") {
             message.channel.send("***STAGE 1:*** \n A bright flash of light blinds you. You place your hands in front of your face to protect your eyes. Never before has this been seen. A smoke plume erupts from the ground. You have four choices,\n 1) End it here and now. \n 2)Head north to the door \n 3) You head south to the bunker \n 4) You stand where you are by the window staring in awe at the magnificent light. \n respond by typing 1, 2, 3, or 4.");
             try {
@@ -474,7 +474,7 @@ scrape().then((value) => {
             }
         }
 
-
+*/
 
         if (command === "ping") {
             const m = await message.channel.send("Ping?");
@@ -576,9 +576,10 @@ scrape().then((value) => {
             message.author.send("```js\n Fun:\n 8ball: This Command Is An 8Ball Usage: .8ball [YesOrNo Question] \n Cowsay: Moooooo Usage: .cowsay [text] \n Insult: Instults a given person (Still under develeopment) Usage: .insult [name] Bomb: Sends A Bomb Usage: .bomb \n Clapify: Clapifies That Text! Usage: .clapify [text] \n Urban: Looks Up A String On Urban Dictionary Usage: .Urban [string] \n Fireworks: Sends Some Cool Fireworks Usage: .fireworks \n Forcecrush: Force Crush! Usage: .forcecrush \n Fusrodah: Fus.....RO DAH!!! Usage: Call To The Ancients With .fusrodah \n Lovecalc: Calculates The Chances Of Love Between Any Two Objects! Usage: .lovecalc [object1] [object2] \n Magicify: Turns Your Message Into An Ugly Embed! Usage: .magicify [text] \n Meme: Sends Some Dank Memes! Usage: .meme \n O: Swotchos Oll Vowols On O Strong To 'o' Usogo: .o [toxt] \n Reverse: Reverses A String Usage: .reverse [words] \n Rickroll: .... Usage: .rickroll \n Rr1: Russian Roulette Bud! Usage: .rr1 \n Say: Makes The Bot Say What You Say. Usage: .say [words] \n Sigh: Sigh :frowning: Usage: .sigh \n Ss: Compete With Other Users To Set The Status Of My Bot! Usage: .ss \n Tts: Text To Speech. Usage: .tts [text] WARNING THIS CAN BE ANNOYING DISABLE TTS IF SOMEONE ABUSES IT, AND REPORT THEM WITH .BUGREPORT \n```");
             message.author.send("```js\n NSFW:\n Ass: Shows Some Ass ;) NSFW ONLY Usage: .ass\n Bond: Bondage NSFW ONLY Usage: .bond\n Hentai: Looks Up Some Hentai Babes For You Weebs Out There Usage: .hentai\n Nsfw: Sends Some Standard NSFW Usage: .nsfw\n```");
             message.author.send("```js\n Moderation: Ban: Bans A User MOD ONLY Usage: .ban [@user] [Reason]\n Kick: Kicks A Member. Usage: .kick @member [reason]\n Purge: Deletes Messages MOD ONLY Usage: .purge [number<100]\n Report: Reports A Member Usage: .report [@member] [reason]\n Role: Ignore This Command It Is In Maintenance \n```");
-            message.author.send("```js\n Utilities: \n Uptime: Shows Uptime Usage: .uptime \n Guildlist: Shows a list of guilds the bot is in. Usage: .guildlist \n Userinfo: displays info on a user Usage: .userinfo [@user] \n Botinfo: Displays Info On The Bot Usage: .botinfo \n Bugreport: Reports A Bug Directly To The Dev Of The Bot (A.K.A. ME) Usage: .bugreport [Bug] \n Calc: Calculates The Value Of An Expression Usage: .calc [expression E.g. 1+1] \n Help: Ehm, Idk What To Tell You. Usage: How Are You Even Here? \n Haste: Adds A String To Hastebin Usage: .haste [String (A.K.A Words)] \nInv: Shows Invite Links For My Bot, And The Support Server. Usage: .inv \n Line: Draws The LINE! Usage: .line \nPing: Pings Places All Around The World Usage: .ping \n Schedule: Schedules A Message. Usage: .schedule [Part 1 Of Message] [Part 2 Of Message] [time] \n Serverinfo: Displays Info On The Server Usage: .serverinfo \n Timer: Sets A Timer. Usage: .timer [time In Ms, S, M, Or H.] \nTranslate: Translates Supplied Text. Usage: .translate [language To Translate TO] [text To Translate] \n```");
+            message.author.send("```js/n Programming tools: Batch: Obfuscates some batch script. (you will need to make a key list for it.) Usage: .batch [batch code here] \n ntl: Basic universal obfuscation (this is for the bot dev only. If you can get how it works, then cheers) Usage: .ntl [text]```")
+	    message.author.send("```js\n Utilities: \n Uptime: Shows Uptime Usage: .uptime \n Guildlist: Shows a list of guilds the bot is in. Usage: .guildlist \n Userinfo: displays info on a user Usage: .userinfo [@user] \n Botinfo: Displays Info On The Bot Usage: .botinfo \n Bugreport: Reports A Bug Directly To The Dev Of The Bot (A.K.A. ME) Usage: .bugreport [Bug] \n Calc: Calculates The Value Of An Expression Usage: .calc [expression E.g. 1+1] \n Help: Ehm, Idk What To Tell You. Usage: How Are You Even Here? \n Haste: Adds A String To Hastebin Usage: .haste [String (A.K.A Words)] \nInv: Shows Invite Links For My Bot, And The Support Server. Usage: .inv \n Line: Draws The LINE! Usage: .line \nPing: Pings Places All Around The World Usage: .ping \n Schedule: Schedules A Message. Usage: .schedule [Part 1 Of Message] [Part 2 Of Message] [time] \n Serverinfo: Displays Info On The Server Usage: .serverinfo \n Timer: Sets A Timer. Usage: .timer [time In Ms, S, M, Or H.] \nTranslate: Translates Supplied Text. Usage: .translate [language To Translate TO] [text To Translate] \nRemspace: Removes all spaces from a string. Usage: .remspace [text]```");
             message.author.send("```js\n Music: \n Np: Shows What Is Now Playing Usage: .np \n Pause: Pauses Music Usage: .pause \n Play: Plays Music. Usage: .play [song Name], Then Select From List By Typing The Corresponding Number (e.g. For Song 2 Type 2) \n Queue: Shows Music Queue \n Resume: Resumes A Paused Song. Usage: .resume \n Skip: Skips A Song Usage: .skip \n Stop: Stops Music From Playing Usage: .stop \n Vol: Volume Usage: .vol [number] \n```")
-            message.channel.send(`js\n Help was sent to ${message.author.tag}`);
+            message.channel.send(`\n Help was sent to ${message.author.tag}`);
         }
 
         if (command === "Lyons2") {
@@ -618,6 +619,7 @@ scrape().then((value) => {
 	    message.delete().catch(O_o => {});
 	    const z = spacemes.replace(/ /g, "");
 	    message.channel.send(z)}
+	    
         if (command === "batch") {
             const oldMessage = args.join(" ");
             message.delete().catch(O_o => {});
@@ -824,7 +826,7 @@ scrape().then((value) => {
                 const bug = args.join(" ")
                 if (!bug) return message.channel.send('Please specify a bug!')
                 const content = clean(`**${message.author.username}**#${message.author.discriminator} (${message.author.id}) reported a bug:\n${bug}\nServer: **${message.guild.name}**\nID: **${message.guild.id}**`);
-                const id = '456010007884988427';
+                const id = '475832009009397770';
                 new Promise((resolve, reject) => {
                     superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
                         .set('Authorization', `Bot ${client.token}`).send({
@@ -858,6 +860,7 @@ scrape().then((value) => {
 
             return message.channel.send(botembed);
         }
+	    /*
         if (command === "mute") {
             let reason = args.slice(1).join(' ');
             let member = message.mentions.members.first();
@@ -912,7 +915,7 @@ scrape().then((value) => {
                 message.channel.send(`You've succesfully unmuted ${user}`);
             });
         };
-
+*/
         ////Moderation////
         ///Fun///
         if (command === "bomb") {
@@ -973,7 +976,7 @@ scrape().then((value) => {
 
         if (command === "clapify") {
             if (args.length < 1) return message.channel.send("**I need some text to clapify.** `ium clap <sentence>`")
-            message.channel.send(args.map(randomizeCase).join(':clap:'));
+            message.channel.send(args.map(randomizeCase).join(' '));
         }
         if (command === "urban") {
             if (!args[0]) return message.channel.send(`***Please specify some text!***`);
@@ -1374,9 +1377,12 @@ scrape().then((value) => {
                         return text;
                 }
                 const bug = args.join(" ")
-                if (!bug) return message.channel.send('Please specify a bug!')
+		if(!message.content.includes("@")){
+		return message.channel.send('Please tell me about the member.')
+		}
+                if (!bug) return message.channel.send('Please Specify an issue!!')
                 const content = clean(`**${message.author.username}**#${message.author.discriminator} (${message.author.id}) reported a bug:\n${bug}\nServer: **${message.guild.name}**\nID: **${message.guild.id}**`);
-                const id = 'channel_id';
+                const id = '475838383671738378';
                 new Promise((resolve, reject) => {
                     superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
                         .set('Authorization', `Bot ${client.token}`).send({
@@ -1385,10 +1391,10 @@ scrape().then((value) => {
                         .end((err, res) => {
                             if (err) {
                                 reject(err);
-                                message.reply('There was an error while sending your bug report to Frogbot Support. Please try again later.');
+                                message.reply('There was an error while sending your bug report to Daebot Support. Please try again later.');
                             } else {
                                 resolve(res);
-                                message.channel.send(`:white_check_mark: **${message.author.username}**, your bug report has successfully been submitted to Frogbot Support for review. Thank you!.`);
+                                message.channel.send(`:white_check_mark: **${message.author.username}**, your bug report has successfully been submitted to Daebot Support for review. Thank you!.`);
                             }
                         });
                 });
