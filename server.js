@@ -667,6 +667,7 @@ scrape().then((value) => {
             message.channel.send("```" + "________________________________\n " + "<" + moo + ">\n " + "--------------------------------\n" + "        \\    ^__^ \n " + "        \\   (oo)\\_______\n " + "            (__)\\       )\\/\\\n " + "                ||----w ||\n " + "                ||     |\n " + "```");
         }
         if (command === "insult") {
+		  if (!message.channel.nsfw) return message.reply("You can use this command only on nsfw channels!");
             const a = args.join
             const answers = [
                 "a bastard",
@@ -679,7 +680,7 @@ scrape().then((value) => {
                 "noob Sauce",
                 "so fat the flash tried to run around you but he died from age before he could get halfway",
                 "a cocain addicted cow",
-                "depresses cuz ur mom gay lol",
+                "depressed cuz ur mom gay lol",
                 "mmmmmmmmmmmmmmmmmmmmmmmmmmmGay"
             ]
             const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
@@ -1391,10 +1392,10 @@ scrape().then((value) => {
                         .end((err, res) => {
                             if (err) {
                                 reject(err);
-                                message.reply('There was an error while sending your bug report to Daebot Support. Please try again later.');
+                                message.reply('There was an error while sending report to Daebot Support. Please try again later.');
                             } else {
                                 resolve(res);
-                                message.channel.send(`:white_check_mark: **${message.author.username}**, your bug report has successfully been submitted to Daebot Support for review. Thank you!.`);
+                                message.channel.send(`:white_check_mark: **${message.author.username}**,report has successfully been submitted to Daebot Support for review.Appropriate investigation will take place. Thank you!.`);
                             }
                         });
                 });
@@ -1542,10 +1543,10 @@ scrape().then((value) => {
             if (!voiceChannel) return message.channel.send('I\'m sorry but you need to be in a voice channel to play music!');
             var permissions = voiceChannel.permissionsFor(message.client.user);
             if (!permissions.has('CONNECT')) {
-                return message.channel.send('I cannot connect to your voice channel, make sure I have the proper permissions!');
+                return message.channel.send('Error! Check my permissions!');
             }
             if (!permissions.has('SPEAK')) {
-                return message.channel.send('I cannot speak in this voice channel, make sure I have the proper permissions!');
+                return message.channel.send('Error! Check my permissions!');
             }
             if (url.match(/^https?:\/\/(www.youtube.com|youtube.com)\/playlist(.*)$/)) {
                 var playlist = await youtube.getPlaylist(url);
@@ -1554,7 +1555,7 @@ scrape().then((value) => {
                     var video2 = await youtube.getVideoByID(video.id); // eslint-disable-line no-await-in-loop
                     await handleVideo(video2, message, voiceChannel, true); // eslint-disable-line no-await-in-loop
                 }
-                return message.channel.send(`✅ Playlist: **${playlist.title}** has been added to the queue!`);
+                return message.channel.send(`Perfect! **${playlist.title}** Ill just dd to the queue!`);
             } else {
                 try {
                     var video = await youtube.getVideo(url);
@@ -1576,42 +1577,42 @@ Please provide a value to select one of the search results ranging from 1-10.
                             });
                         } catch (err) {
                             console.error(err);
-                            return message.channel.send('No or invalid value entered, cancelling video selection.');
+                            return message.channel.send('Sorry, no input detected. Shutting down');
                         }
                         var videoIndex = parseInt(response.first().content);
                         var video = await youtube.getVideoByID(videos[videoIndex - 1].id);
                     } catch (err) {
                         console.error(err);
-                        return message.channel.send('🆘 I could not obtain any search results.');
+                        return message.channel.send('Error!!! I could not obtain any results for that query');
                     }
                 }
                 return handleVideo(video, message, voiceChannel);
             }
         }
         if (command === "skip") {
-            if (!message.member.voiceChannel) return message.channel.send('You are not in a voice channel!');
-            if (!serverQueue) return message.channel.send('There is nothing playing that I could skip for you.');
-            serverQueue.connection.dispatcher.end('Skip command has been used!');
+            if (!message.member.voiceChannel) return message.channel.send('I cant play through nothing! Join  Voice Channel!');
+            if (!serverQueue) return message.channel.send('Gotta have a song to skip before I can skip it.');
+            serverQueue.connection.dispatcher.end('Sure thing! I hated that song anyways!');
             return undefined;
         }
         if (command === "stop") {
-            if (!message.member.voiceChannel) return message.channel.send('You are not in a voice channel!');
+            if (!message.member.voiceChannel) return message.channel.send('I cant play through nothing! Join  Voice Channel!');
             if (!serverQueue) return message.channel.send('There is nothing playing that I could stop for you.');
             serverQueue.songs = [];
             serverQueue.connection.dispatcher.end('Stop command has been used!');
             return undefined;
         }
         if (command === "vol") {
-            if (!message.member.voiceChannel) return message.channel.send('You are not in a voice channel!');
-            if (!serverQueue) return message.channel.send('There is nothing playing.');
-            if (!args[0]) return message.channel.send(`The current volume is: **${serverQueue.volume}**`);
+            if (!message.member.voiceChannel) return message.channel.send('I cant play through nothing! Join  Voice Channel!');
+            if (!serverQueue) return message.channel.send('Nothin\' playin\' I\'m afraid.');
+            if (!args[0]) return message.channel.send(`Volume at: **${serverQueue.volume}**`);
             serverQueue.volume = args[0];
             serverQueue.connection.dispatcher.setVolumeLogarithmic(args[0] / 10);
-            return message.channel.send(`I set the volume to: **${args[0]}**`);
+            return message.channel.send(`*screams* Is ThIs BeTtEr?`);
         }
         if (command === "np") {
             if (!serverQueue) return message.channel.send('There is nothing playing.');
-            return message.channel.send(`🎶 Now playing: **${serverQueue.songs[0].title}**`);
+            return message.channel.send(`That sick jam youre listening to is: **${serverQueue.songs[0].title}**`);
         }
         if (command === "queue") {
             if (!serverQueue) return message.channel.send('There is nothing playing.');
