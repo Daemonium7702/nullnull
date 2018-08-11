@@ -1520,7 +1520,7 @@ scrape().then((value) => {
                         },
                         {
                             name: "And to join my creators host server:",
-                            value: "https://discord.gg/f7Ntjek  Have fun! Everyone there likes to work on cryptology!"
+                            value: "https://discord.gg/YsHPSh4  Have fun! Everyone there likes to work on cryptology, Programming, and all things cyberSecurity!\n the creator of this bot is also a chemist/businessman."
                         }
                     ],
                     timestamp: new Date(),
