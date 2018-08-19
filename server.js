@@ -60,8 +60,45 @@ client.on("message", async message => {
         if (message.author.id === "395386053831426048") return message.channel.send("Permission denied.");
         if (message.author.id === "352250257389912064") return message.channel.send("Permission denied.");
         if (message.author.id === "350693449722232832") return message.channel.send("Permission denied.");
-
-/*
+ if(command == "search"){
+	 const query = args[0];
+	 const page = args[1];
+	 const color = args[2];
+client.search(`${args[0]}`);
+    .then(images => {
+       message.channel.send(images)
+	    /*
+        [{
+            "url": "http://steveangello.com/boss.jpg",
+            "type": "image/jpeg",
+            "width": 1024,
+            "height": 768,
+            "size": 102451,
+            "thumbnail": {
+                "url": "http://steveangello.com/thumbnail.jpg",
+                "width": 512,
+                "height": 512
+            }
+        }]
+         */
+    });
+ 
+// paginate results
+	 if(args[1]){
+client.search(query, {page: page});
+		 .then(images => {
+	 message.channel.send(images)
+		 });
+		 }
+	 if(args[2]){
+// search for certain size
+client.search(query, {dominantColor: color});
+	 .then(images => {
+		 message.channel.send(images)
+	 });
+	 }
+	 }
+	 /*
       if(command ==="user"){
 const bud = require('basic-instagram-user-details');
 		
