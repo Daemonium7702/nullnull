@@ -63,7 +63,7 @@ client.on("message", async message => {
         if (message.author.id === "350693449722232832") return message.channel.send("Permission denied.");
 if(command=="bluebunny"){
 	var bluebunny=[
-	"http://www.rabbitfarming.net/wp-content/uploads/2017/05/American-Blue-Rabbit-Breeders-620x350.jpg".
+	"http://www.rabbitfarming.net/wp-content/uploads/2017/05/American-Blue-Rabbit-Breeders-620x350.jpg",
 		"https://i.pinimg.com/originals/87/69/0f/87690f463d1854396b5db929d133e0ab.png",
 		"http://myhouserabbit.com/archive/images/kytaro.jpg",
 		"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_a3hjwE09byMKQOwkFWXnDCOY-wxkAWD9r9L55lMvepU0Qnhd0g",
@@ -74,7 +74,7 @@ if(command=="bluebunny"){
 		"https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/b0a29d41834505.57b602bc8e343.jpg",
 		"https://i.pinimg.com/originals/f2/db/e3/f2dbe3cbe3952cffd7065986d55ee2d6.jpg",
 		"http://www.awsfzoo.com/media/DSC_1445-1-1140x580.jpg",
-		"https://d2z1w4aiblvrwu.cloudfront.net/ad/A2v7/blue-bunny-ice-cream-freezer-aisle-song-by-frankie-valli-large-3.jpg"
+		"https://d2z1w4aiblvrwu.cloudfront.net/ad/A2v7/blue-bunny-ice-cream-freezer-aisle-song-by-frankie-valli-large-3.jpg",
 	]
 	 const randomAnswer = await bluebunny[Math.floor(Math.random() * bluebunny.length)];
 }
