@@ -704,6 +704,24 @@ scrape().then((value) => {
             const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
             message.channel.send(randomAnswer);
         }
+	       if (command === "bunny") {
+            var subreddits = [
+                'rabbits'
+            ]
+            var sub = subreddits[Math.round(Math.random() * (subreddits.length - 1))];
+
+            randomPuppy(sub)
+                .then(url => {
+                    const embed = new Discord.RichEmbed()
+                        .setColor("RANDOM")
+                        .setAuthor("4k", client.user.avatarURL)
+                        .setFooter("Bunnies")
+                        .setImage(url);
+                    message.channel.send({
+                        embed
+                    });
+                })
+        }
         ////NSFW////
         if (command === "ass") {
             if (!message.channel.nsfw) return message.reply("You can use this command only on nsfw channels!");
