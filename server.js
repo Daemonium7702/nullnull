@@ -23,7 +23,7 @@ const moment = require('moment');
 require('moment-duration-format');
 const meme = require('memejs');
 const GoogleImages = require('google-images');
-const client = new GoogleImages('008530651077224882035:auhfoaqdh-oCSE ID', 'AIzaSyCn9ZUO348j1DhWmyA9TTgyaXgsestJM2Q');
+const Gclient = new GoogleImages('008530651077224882035:auhfoaqdh-oCSE ID', 'AIzaSyCn9ZUO348j1DhWmyA9TTgyaXgsestJM2Q');
 
 client.on("ready", () => {
     console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);
@@ -65,7 +65,7 @@ client.on("message", async message => {
 	 const query = args[0];
 	 const page = args[1];
 	 const color = args[2];
-client.search(`${args[0]}`);
+Gclient.search(`${args[0]}`);
     .then(images => {
        message.channel.send(images)
 	    /*
@@ -86,14 +86,14 @@ client.search(`${args[0]}`);
  
 // paginate results
 	 if(args[1]){
-client.search(query, {page: page});
+Gclient.search(query, {page: page});
 		 .then(images => {
 	 message.channel.send(images)
 		 });
 		 }
 	 if(args[2]){
 // search for certain size
-client.search(query, {dominantColor: color});
+Gclient.search(query, {dominantColor: color});
 	 .then(images => {
 		 message.channel.send(images)
 	 });
