@@ -74,6 +74,7 @@ if(command=="bluebunny"){
 		"https://d2z1w4aiblvrwu.cloudfront.net/ad/A2v7/blue-bunny-ice-cream-freezer-aisle-song-by-frankie-valli-large-3.jpg",
 	]
 	 const randomAnswer = await bluebunny[Math.floor(Math.random() * bluebunny.length)];
+	message.channel.send(bluebunny)
 }
 	    /*
 	    if(command=="greenbunny"){
