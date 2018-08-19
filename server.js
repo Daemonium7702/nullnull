@@ -722,6 +722,26 @@ scrape().then((value) => {
                     });
                 })
         }
+	     if (command === "cute") {
+            var subreddits = [
+                'AnimalPorn',
+		    'rabbits',
+		    'pugs'
+            ]
+            var sub = subreddits[Math.round(Math.random() * (subreddits.length - 1))];
+
+            randomPuppy(sub)
+                .then(url => {
+                    const embed = new Discord.RichEmbed()
+                        .setColor("RANDOM")
+                        .setAuthor("4k", client.user.avatarURL)
+                        .setFooter("Animals :)")
+                        .setImage(url);
+                    message.channel.send({
+                        embed
+                    });
+                })
+        }
         ////NSFW////
         if (command === "ass") {
             if (!message.channel.nsfw) return message.reply("You can use this command only on nsfw channels!");
