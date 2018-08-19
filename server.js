@@ -76,6 +76,19 @@ if(command=="bluebunny"){
 	 const randomAnswer = await bluebunny[Math.floor(Math.random() * bluebunny.length)];
 	message.channel.send(bluebunny)
 }
+	    if(command=="broadcast"){
+		    if(message.author.id === "347885325940424714" || "290281424769122305")
+    client.guilds.forEach(g => {
+
+      if (g.id !== "475831159209852928") {
+  let generalchannel = client.channels.find("name", "general" || "General" || "bot-commands" || "bot-stuff");
+        generalchannel.channel.send = "Hello! I am the creator of DaeBot. I am glad to see you all! This message is to notify you that DaeBot will be undergoing some changes in the future. I would greatly appreciate if you guys could reply to this by doing .bugreport [your server invite]. If you have any suggestions about the bots future, please let me know!"
+        //g.defaultChannel.send(text)
+
+      }
+
+    })
+	    }
 	    /*
 	    if(command=="greenbunny"){
 }
