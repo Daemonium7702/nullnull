@@ -22,9 +22,6 @@ const queue = new Map();
 const moment = require('moment');
 require('moment-duration-format');
 const meme = require('memejs');
-const GoogleImages = require('google-images');
-const Gclient = new GoogleImages('008530651077224882035:auhfoaqdh-oCSE ID', 'AIzaSyCn9ZUO348j1DhWmyA9TTgyaXgsestJM2Q');
-
 client.on("ready", () => {
     console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);
     client.user.setActivity(`on ${client.channels.size} servers`);
