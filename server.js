@@ -61,44 +61,34 @@ client.on("message", async message => {
         if (message.author.id === "395386053831426048") return message.channel.send("Permission denied.");
         if (message.author.id === "352250257389912064") return message.channel.send("Permission denied.");
         if (message.author.id === "350693449722232832") return message.channel.send("Permission denied.");
- if(command == "search"){
-	 const query = args[0];
-	 const page = args[1];
-	 const color = args[2];
-Gclient.search(`${args[0]}`);
-    .then(images => {
-       message.channel.send(images)
+if(command=="bluebunny"){
+	var bluebunny=[
+	"http://www.rabbitfarming.net/wp-content/uploads/2017/05/American-Blue-Rabbit-Breeders-620x350.jpg".
+		"https://i.pinimg.com/originals/87/69/0f/87690f463d1854396b5db929d133e0ab.png",
+		"http://myhouserabbit.com/archive/images/kytaro.jpg",
+		"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_a3hjwE09byMKQOwkFWXnDCOY-wxkAWD9r9L55lMvepU0Qnhd0g",
+		"https://i.ytimg.com/vi/TJUWzAo4jqI/maxresdefault.jpg",
+		"https://d2z1w4aiblvrwu.cloudfront.net/ad/wV9w/blue-bunny-ice-cream-pb-n-cones-by-a-hare-song-by-kenny-loggins-large-10.jpg",
+		"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTg9KTgvzh-HvN_e9kZgCwZXdrcyHZl72jCmZfxke7EWcnihCen",
+		"https://zatista-images.s3.amazonaws.com/products/24258_f9949d5f70dafb77ef1d68c8724db3f26e49a277_559a7T2sL7JP15oP_1_800x800.jpg",
+		"https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/b0a29d41834505.57b602bc8e343.jpg",
+		"https://i.pinimg.com/originals/f2/db/e3/f2dbe3cbe3952cffd7065986d55ee2d6.jpg",
+		"http://www.awsfzoo.com/media/DSC_1445-1-1140x580.jpg",
+		"https://d2z1w4aiblvrwu.cloudfront.net/ad/A2v7/blue-bunny-ice-cream-freezer-aisle-song-by-frankie-valli-large-3.jpg"
+	]
+	 const randomAnswer = await bluebunny[Math.floor(Math.random() * bluebunny.length)];
+}
 	    /*
-        [{
-            "url": "http://steveangello.com/boss.jpg",
-            "type": "image/jpeg",
-            "width": 1024,
-            "height": 768,
-            "size": 102451,
-            "thumbnail": {
-                "url": "http://steveangello.com/thumbnail.jpg",
-                "width": 512,
-                "height": 512
-            }
-        }]
-         */
-    });
- 
-// paginate results
-	 if(args[1]){
-Gclient.search(query, {page: page});
-		 .then(images => {
-	 message.channel.send(images)
-		 });
-		 }
-	 if(args[2]){
-// search for certain size
-Gclient.search(query, {dominantColor: color});
-	 .then(images => {
-		 message.channel.send(images)
-	 });
-	 }
-	 }
+	    if(command=="greenbunny"){
+}
+	    if(command=="yellowbunny"){
+}
+	    if(command=="orangebunny"){
+	    }
+	    if(command=="redbunny"){
+}
+	    if(command=="purplebunny"){
+}/*
 	 /*
       if(command ==="user"){
 const bud = require('basic-instagram-user-details');
@@ -754,6 +744,24 @@ scrape().then((value) => {
                         .setColor("RANDOM")
                         .setAuthor("4k", client.user.avatarURL)
                         .setFooter("Bunnies")
+                        .setImage(url);
+                    message.channel.send({
+                        embed
+                    });
+                })
+        }
+	        if (command === "walrus") {
+            var subreddits = [
+                'walrus'
+            ]
+            var sub = subreddits[Math.round(Math.random() * (subreddits.length - 1))];
+
+            randomPuppy(sub)
+                .then(url => {
+                    const embed = new Discord.RichEmbed()
+                        .setColor("RANDOM")
+                        .setAuthor("4k", client.user.avatarURL)
+                        .setFooter("Walruses!")
                         .setImage(url);
                     message.channel.send({
                         embed
