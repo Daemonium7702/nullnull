@@ -934,6 +934,13 @@ scrape().then((value) => {
             }
         }
 	       client.on("guildCreate", guild => {
+		       try{
+			       function clean(text) {
+                    if (typeof(text) === 'string')
+                        return text.replace(/`/g, '`' + String.fromCharCode(8203)).replace(/@/g, '@' + String.fromCharCode(8203));
+                    else
+                        return text;
+                }
 		       const content = clean(`***New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!***`)
 	           const id = '481195643575205899'
 		       new Promise((resolve, reject) => {
@@ -950,7 +957,10 @@ scrape().then((value) => {
                                 }
                         });
                 });
-            }); 
+    } catch (err) {
+                console.log(err)
+            }
+              }); 
         if (command === "botinfo") {
             let bicon = client.user.displayAvatarURL;
             let botembed = new Discord.RichEmbed()
