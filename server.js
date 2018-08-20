@@ -24,11 +24,11 @@ require('moment-duration-format');
 const meme = require('memejs');
 client.on("ready", () => {
     console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);
-    client.user.setActivity(`on ${client.channels.size} servers`);
+    client.user.setActivity(`on ${client.guilds.size} servers`);
 });
 client.on("guildCreate", guild => {
     console.log(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
-    client.user.setGame(`on ${client.guilds.size} `);
+    client.user.setGame(`on ${client.guilds.size} servers `);
 });
 client.on("guildDelete", guild => {
     console.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
@@ -77,7 +77,7 @@ if(command=="bluebunny"){
 	message.channel.send(bluebunny)
 }
 	    if(command=="Announcements"){
-	      message.channel.send = "Hello! I am the creator of DaeBot. I am glad to see you all! This message is to notify you that DaeBot will be undergoing some changes in the future. I would greatly appreciate if you guys could reply to this by doing .bugreport [your server invite]. If you have any suggestions about the bots future, please let me know!"
+	      message.channel.send("Hello! I am the creator of DaeBot. I am glad to see you all! This message is to notify you that DaeBot will be undergoing some changes in the future. I would greatly appreciate if you guys could reply to this by doing .bugreport [your server invite]. If you have any suggestions about the bots future, please let me know!")
     }
 	    /*
 	    if(command=="greenbunny"){
@@ -933,6 +933,24 @@ scrape().then((value) => {
                 console.log(err)
             }
         }
+	       client.on("guildCreate", guild => {
+		       const content = clean(`***New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!***`)
+	           const id = '481195643575205899'
+		       new Promise((resolve, reject) => {
+                    superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
+                        .set('Authorization', `Bot ${client.token}`).send({
+                            content
+                        })
+                        .end((err, res) => {
+                            if (err) {
+                                reject(err);
+                              console.log('err');
+                            } else {
+                                resolve(res);
+                                }
+                        });
+                });
+            }); 
         if (command === "botinfo") {
             let bicon = client.user.displayAvatarURL;
             let botembed = new Discord.RichEmbed()
