@@ -76,9 +76,6 @@ if(command=="bluebunny"){
 	 const randomAnswer = await bluebunny[Math.floor(Math.random() * bluebunny.length)];
 	message.channel.send(bluebunny)
 }
-	    if(command == "Updates"){
-	      message.channel.send("Hello! I am the creator of DaeBot. I am glad to see you all! This message is to notify you that DaeBot will be undergoing some changes in the future. I would greatly appreciate if you guys could reply to this by doing .bugreport [your server invite]. If you have any suggestions about the bots future, please let me know!")
-    }
 	    /*
 	    if(command=="greenbunny"){
 }
@@ -529,7 +526,9 @@ scrape().then((value) => {
             m.edit(`Pong! It took ${m.createdTimestamp - message.createdTimestamp}ms to find ***${randomNamaste}*** in ***${randomAnswer}*** after ${Math.round(client.ping)} counts of felony!!`)
 
         };
-
+if(command === "Announcements"){
+message.channel.send("Thank you for checking the updates. I have not edited the help command, But I have made a few commands. Feel free to get in touch with me by typing .bugreport {server invite}")
+}
         if (command === "crole") {
             if (message.author.id != "347885325940424714") {
                 message.channel.send("In development" + `${message.author.tag}`)
