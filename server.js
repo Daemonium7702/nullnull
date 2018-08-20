@@ -83,10 +83,9 @@ if(command=="bluebunny"){
         if (!generalchannel) return message.reply("I've detected that this server doesn't have a mod-log channel.");
 	      generalchannel.channel.send = "Hello! I am the creator of DaeBot. I am glad to see you all! This message is to notify you that DaeBot will be undergoing some changes in the future. I would greatly appreciate if you guys could reply to this by doing .bugreport [your server invite]. If you have any suggestions about the bots future, please let me know!"
         //g.defaultChannel.send(text)
+      })
       }
-
-    })
-	    }
+    }
 	    /*
 	    if(command=="greenbunny"){
 }
