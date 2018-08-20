@@ -599,12 +599,8 @@ message.channel.send("Thank you for checking the updates. I have not edited the 
 			message.channel.send("Sorry bud, This command is a bit spammy, and is only for my creator, Daemonium.")
 		return
 		}else{
-			  let modlog1 = client.channels.find("name", "general" || "General" || "Off-topic");
             message.channel.send(client.guilds.forEach(g => {
-		    message.channel.send(g.name)
-		 modlog1.channel.createInvite()
-  .then(invite => message.channel.send(`Created an invite with a code of ${invite.code}`))
-  .catch(console.error);
+		    message.channel.send(g.name);
             }))
         }
 	}
@@ -1581,7 +1577,7 @@ message.channel.send("Thank you for checking the updates. I have not edited the 
 
             }, ms(Timer));
         }
-        if (command === "Serverinfo") {
+        if (command === "serverinfo") {
             let sicon = message.guild.iconURL;
             let serverembed = new Discord.RichEmbed()
                 .setDescription("Server Information")
