@@ -600,10 +600,10 @@ message.channel.send("Thank you for checking the updates. I have not edited the 
 		return
 		}else{
             message.channel.send(client.guilds.forEach(g => {
-                channel.createInvite()
+		    message.channel.send(g.name)
+		    message.channel.createInvite()
   .then(invite => message.channel.send(`Created an invite with a code of ${invite.code}`))
   .catch(console.error);
-		    message.channel.send(g.name)
             }))
         }
 	}
