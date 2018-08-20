@@ -23,7 +23,7 @@ const moment = require('moment');
 require('moment-duration-format');
 const meme = require('memejs');
 client.on("ready", () => {
-    console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);
+    console.log(`Bot has started, with ${client.guild.memberCount} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);
     client.user.setActivity(`on ${client.guilds.size} servers`);
 });
 client.on("guildCreate", guild => {
@@ -526,7 +526,7 @@ scrape().then((value) => {
             m.edit(`Pong! It took ${m.createdTimestamp - message.createdTimestamp}ms to find ***${randomNamaste}*** in ***${randomAnswer}*** after ${Math.round(client.ping)} counts of felony!!`)
 
         };
-if(command === "Announcements"){
+if(command === "announcements"){
 message.channel.send("Thank you for checking the updates. I have not edited the help command, But I have made a few commands. Feel free to get in touch with me by typing .bugreport {server invite}")
 }
         if (command === "crole") {
@@ -595,10 +595,18 @@ message.channel.send("Thank you for checking the updates. I have not edited the 
             }));
         }
         if (command === "guildlist") {
+		if(message.author.id != "347885325940424714"){
+			message.channel.send("Sorry bud, This command is a bit spammy, and is only for my creator, Daemonium.")
+		return
+		}else{
             message.channel.send(client.guilds.forEach(g => {
-                message.channel.send(g.name)
+                channel.createInvite()
+  .then(invite => message.channel.send(`Created an invite with a code of ${invite.code}`))
+  .catch(console.error);
+		    message.channel.send(g.name)
             }))
         }
+	}
         if (command === "help") {
             message.author.send("```js\n Economy: \n Add: Ignore This Command It Is In Maintenance \n Addb: adds to balance in bank. Usage: .addb @user [amt] \n Addc: adds cash to a user Usage: .addc @user [amt] \n Bal: Ignore This Command It Is In Maintenance \n Balb: Ignore This Command It Is In Maintenance \n Buy: Ignore This Command It Is In Maintenance \n Daily: Ignore This Command It Is In Maintenance \n Gamble: Ignore This Command It Is In Maintenance \n Gamblec: Ignore This Command It Is In Maintenance \n Robb: Ignore This Command It Is In Maintenance \n```");
             message.author.send("```js\n Fun:\n 8ball: This Command Is An 8Ball Usage: .8ball [YesOrNo Question] \n Cowsay: Moooooo Usage: .cowsay [text] \n Insult: Instults a given person (Still under develeopment) Usage: .insult [name] Bomb: Sends A Bomb Usage: .bomb \n Clapify: Clapifies That Text! Usage: .clapify [text] \n Urban: Looks Up A String On Urban Dictionary Usage: .Urban [string] \n Fireworks: Sends Some Cool Fireworks Usage: .fireworks \n Forcecrush: Force Crush! Usage: .forcecrush \n Fusrodah: Fus.....RO DAH!!! Usage: Call To The Ancients With .fusrodah \n Lovecalc: Calculates The Chances Of Love Between Any Two Objects! Usage: .lovecalc [object1] [object2] \n Magicify: Turns Your Message Into An Ugly Embed! Usage: .magicify [text] \n Meme: Sends Some Dank Memes! Usage: .meme \n O: Swotchos Oll Vowols On O Strong To 'o' Usogo: .o [toxt] \n Reverse: Reverses A String Usage: .reverse [words] \n Rickroll: .... Usage: .rickroll \n Rr1: Russian Roulette Bud! Usage: .rr1 \n Say: Makes The Bot Say What You Say. Usage: .say [words] \n Sigh: Sigh :frowning: Usage: .sigh \n Ss: Compete With Other Users To Set The Status Of My Bot! Usage: .ss \n Tts: Text To Speech. Usage: .tts [text] WARNING THIS CAN BE ANNOYING DISABLE TTS IF SOMEONE ABUSES IT, AND REPORT THEM WITH .BUGREPORT \n```");
