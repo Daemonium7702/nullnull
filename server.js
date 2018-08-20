@@ -76,7 +76,7 @@ if(command=="bluebunny"){
 	 const randomAnswer = await bluebunny[Math.floor(Math.random() * bluebunny.length)];
 	message.channel.send(bluebunny)
 }
-	    if(command=="Announcements"){
+	    if(command == "Updates"){
 	      message.channel.send("Hello! I am the creator of DaeBot. I am glad to see you all! This message is to notify you that DaeBot will be undergoing some changes in the future. I would greatly appreciate if you guys could reply to this by doing .bugreport [your server invite]. If you have any suggestions about the bots future, please let me know!")
     }
 	    /*
