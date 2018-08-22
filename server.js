@@ -1098,6 +1098,7 @@ message.channel.send("Thank you for checking the updates. I have not edited the 
             message.channel.send(args.map(randomizeCase).join(' '));
         }
         if (command === "urban") {
+	if (!message.channel.nsfw) return message.reply("You can use this command only on nsfw channels!");
             if (!args[0]) return message.channel.send(`***Please specify some text!***`);
             let res = await urban(args.join(' ')).catch(e => {
                 return message.channel.send('***Sorry, that word was not found!***');
