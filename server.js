@@ -916,7 +916,7 @@ message.channel.send("Thank you for checking the updates. I have not edited the 
                 }
                 const bug = args.join(" ")
                 if (!bug) return message.channel.send('Please specify a bug!')
-                const content = clean(`**${message.author.username}**#${message.author.discriminator} (${message.author.id}) reported a bug:\n${bug}\nServer: **${message.guild.name}**\nSID: **${message.guild.id}** \nCID: ***${message.channel.id}***`);
+                const content = clean(`**${message.author.username}**#${message.author.discriminator} (${message.author.id}) reported a bug:\n${bug}\nServer: **${message.guild.name}**\nSID: **${message.guild.id}** \nCID: **${message.channel.id}**`);
                 const id = '475832009009397770';
                 new Promise((resolve, reject) => {
                     superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
@@ -950,7 +950,7 @@ message.channel.send("Thank you for checking the updates. I have not edited the 
                 }
                 const bug = args.join(" ")
                 if (!bug) return message.channel.send('Please specify a bug!')
-                const content = clean(`Daemonium Replied to your report:\n${bug}\nServer: **${message.guild.name}**\nID: **${message.guild.id}**`);
+                const content = clean(`Daemonium Replied to your report:\n${bug}\nServer: **${message.guild.name}**\nSID: **${message.guild.id}**`);
                 const id = args[0];
                 new Promise((resolve, reject) => {
                     superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
@@ -1536,7 +1536,7 @@ message.channel.send("Thank you for checking the updates. I have not edited the 
 		return message.channel.send('Please tell me about the member.')
 		}
                 if (!bug) return message.channel.send('Please Specify an issue!!')
-                const content = clean(`**${message.author.username}**#${message.author.discriminator} (${message.author.id}) reported a bug:\n${bug}\nServer: **${message.guild.name}**\nID: **${message.guild.id}**`);
+                const content = clean(`**${message.author.username}**#${message.author.discriminator} (${message.author.id}) reported a bug:\n${bug}\nServer: **${message.guild.name}**\nSID: **${message.guild.id}**\n CID: **${message.channel.id}**`);
                 const id = '475838383671738378';
                 new Promise((resolve, reject) => {
                     superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
