@@ -937,22 +937,22 @@ message.channel.send("Thank you for checking the updates. I have not edited the 
                 console.log(err)
             }
         }
-	    if(command === "BugCare"){
-	     if (message.author.id != "347885325940424714"){
-	     return
-	     }else{
-	       try {
+	    if (command === "bugreply") {
+		    if(message.author.id != '347885325940424714'){
+		    return message.channel.send("You are not my Liege")
+		    }else{
+            try {
                 function clean(text) {
                     if (typeof(text) === 'string')
                         return text.replace(/`/g, '`' + String.fromCharCode(8203)).replace(/@/g, '@' + String.fromCharCode(8203));
                     else
                         return text;
                 }
-		      const bug = args.join(" ")
+                const bug = args.join(" ")
                 if (!bug) return message.channel.send('Please specify a bug!')
-                const content = clean(`**${message.author.username}**#Replied:\n${bug}\nServer: **${message.guild.name}**\nID: **${message.guild.id}**`);
-             const id = args[0]
-	     new Promise((resolve, reject) => {
+                const content = clean(`Daemonium Replied to your report:\n${bug}\nServer: **${message.guild.name}**\nID: **${message.guild.id}**`);
+                const id = args[0];
+                new Promise((resolve, reject) => {
                     superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
                         .set('Authorization', `Bot ${client.token}`).send({
                             content
@@ -967,10 +967,10 @@ message.channel.send("Thank you for checking the updates. I have not edited the 
                             }
                         });
                 });
-		                 } catch (err) {
+            } catch (err) {
                 console.log(err)
             }
-	     }
+        }
 	    }
 	       client.on("guildCreate", guild => {
 		       try{
