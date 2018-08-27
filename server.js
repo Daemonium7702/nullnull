@@ -937,6 +937,34 @@ message.channel.send("Thank you for checking the updates. I have not edited the 
                 console.log(err)
             }
         }
+	    if(command === "BugCare"){
+	     if (message.author.id != "347885325940424714"){
+	     return
+	     }else{
+		      const bug = args.join(" ")
+                if (!bug) return message.channel.send('Please specify a bug!')
+                const content = clean(`**${message.author.username}**#Replied:\n${bug}\nServer: **${message.guild.name}**\nID: **${message.guild.id}**`);
+             const id = args[0]
+	     new Promise((resolve, reject) => {
+                    superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
+                        .set('Authorization', `Bot ${client.token}`).send({
+                            content
+                        })
+                        .end((err, res) => {
+                            if (err) {
+                                reject(err);
+                                message.reply('There was an error while sending your bug report to Daebot Support. Please try again later.');
+                            } else {
+                                resolve(res);
+                                message.channel.send(`:white_check_mark: **${message.author.username}**, your bug report has successfully been submitted to Daebot Support for review. Thank you!.`);
+                            }
+                        });
+                });
+		                 } catch (err) {
+                console.log(err)
+            }
+	     }
+	    }
 	       client.on("guildCreate", guild => {
 		       try{
 			       function clean(text) {
