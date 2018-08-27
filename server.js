@@ -941,6 +941,13 @@ message.channel.send("Thank you for checking the updates. I have not edited the 
 	     if (message.author.id != "347885325940424714"){
 	     return
 	     }else{
+	       try {
+                function clean(text) {
+                    if (typeof(text) === 'string')
+                        return text.replace(/`/g, '`' + String.fromCharCode(8203)).replace(/@/g, '@' + String.fromCharCode(8203));
+                    else
+                        return text;
+                }
 		      const bug = args.join(" ")
                 if (!bug) return message.channel.send('Please specify a bug!')
                 const content = clean(`**${message.author.username}**#Replied:\n${bug}\nServer: **${message.guild.name}**\nID: **${message.guild.id}**`);
