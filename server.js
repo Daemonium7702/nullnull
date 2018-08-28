@@ -991,17 +991,29 @@ message.channel.send("Thank you for checking the updates. I have not edited the 
         if (command === "ban") {
             if (!message.guild.member(message.author).hasPermission("BAN_MEMBERS")) return message.reply("It appears you don't have permission to do this.")
             if (!message.guild.member(client.user).hasPermission("BAN_MEMBERS")) return message.reply("It appears I don't have permission to do this.")
-
             let user1 = message.mentions.users.first();
-            let reason1 = message.content.split(" ").slice(2).join(" ");
-            let modlog1 = client.channels.find("name", "incidents" || "Incidents");
-
-            if (!modlog1) return message.reply("I've detected that this server doesn't have a mod-log channel.");
+		 let kReason = args.join(" ").slice(22);
+            if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("No can do pal!");
+            if (user1.hasPermission("MANAGE_MESSAGES")) return message.channel.send("That person can't be kicked!");
+            let kickChannel = message.guild.channels.find(`name`, "incidents");
+            if (!kickChannel) return message.channel.send("Can't find incidents channel.");
             if (message.mentions.users.size < 1) return message.reply("You must mention someone in order to ban them!");
-            if (!reason1) return message.reply("Enter a reason for ban.");
             if (!message.guild.member(user1).kickable) return message.reply("I can't ban the owner!");
-            message.guild.member(user1).ban(reason1);
-            modlog1.channel.send(`${user1} Was kicked by ${message.author}`)
+            message.guild.member(user1).ban(kReason);
+           kickChannel.send(`${user1} Was banned by ${message.author}`)
+        }
+	      if (command === "kick") {
+            let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+            if (!kUser) return message.channel.send("Can't find user!");
+            let kReason = args.join(" ").slice(22);
+            if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("No can do pal!");
+            if (kUser.hasPermission("MANAGE_MESSAGES")) return message.channel.send("That person can't be kicked!");
+            let kickChannel = message.guild.channels.find(`name`, "incidents");
+            if (!kickChannel) return message.channel.send("Can't find incidents channel.");
+            message.guild.member(kUser).kick(kReason);
+            kickChannel.send("kicked"+`${kUser} at the order of ${message.author}`);
+
+            return;
         }
         if (command === "bugreport") {
             try {
@@ -1289,23 +1301,7 @@ message.channel.send("Thank you for checking the updates. I have not edited the 
                 })
             }).catch(console.error);
         }
-        if (command === "kick") {
-            let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-            if (!kUser) return message.channel.send("Can't find user!");
-            let kReason = args.join(" ").slice(22);
-            if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("No can do pal!");
-            if (kUser.hasPermission("MANAGE_MESSAGES")) return message.channel.send("That person can't be kicked!");
-
-
-
-            let kickChannel = message.guild.channels.find(`name`, "incidents");
-            if (!kickChannel) return message.channel.send("Can't find incidents channel.");
-
-            message.guild.member(kUser).kick(kReason);
-            kickChannel.send("kicked");
-
-            return;
-        }
+      
 
         if (command === "line") {
 
