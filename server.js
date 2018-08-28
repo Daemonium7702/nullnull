@@ -618,8 +618,7 @@ message.channel.send("Thank you for checking the updates. I have not edited the 
 
 	    if(command === "runict"){
    const oldMessage = args.join(" ");
-   message.delete().catch(O_o => {});
-   const A = oldMessage.replace(/ᚪ/g, " A ");
+   const a = oldMessage.replace(/ᚪ/g, " A ");
    const a1 = a.replace(/ᚫ/g, " AESC ");
    const a2 = a1.replace(/ᛉ/g, " ALGIZ EOLHX ");
    const a3 = a2.replace(/ᚨ/g, " A ");
