@@ -616,6 +616,93 @@ message.channel.send("Thank you for checking the updates. I have not edited the 
           message.channel.send("For updates on the bot, or to see whats new with it, please type .Announcements")
 	}
 
+	    if(command === "runict"){
+   const oldMessage = args.join(" ");
+   message.delete().catch(O_o => {});
+   const A = oldMessage.replace(/ᚪ/g, " A ");
+   const a1 = a.replace(/ᚫ/g, " AESC ");
+   const a2 = a1.replace(/ᛉ/g, " ALGIZ EOLHX ");
+   const a3 = a2.replace(/ᚨ/g, " A ");
+   const a4 = a3.replace(/ᛒ/g, " B ");
+   const a5 = a4.replace(/ᛍ/g, " C ");
+   const a6 = a5.replace(/ᛣ/g, " CALC ");
+   const a7 = a6.replace(/ᛤ/g, " CEALC ")
+   const a8 = a7.replace(/ᚳ/g, " CEN ");
+   const a9 = a8.replace(/ᛢ/g, " CWEORTH ");
+   const a10 = a9.replace(/ᛑ/g, " D ");
+   const b1 = a10.replace(/ᛞ/g, " D ");
+   const b2 = b1.replace(/ᛛ/g, " DottedL ");
+   const b3 = b2.replace(/ᛀ/g, " DottedN ");
+   const b4 = b3.replace(/ᛔ/g, " DottedP ");
+   const b5 = b4.replace(/ᛂ/g, " E ");
+   const b6 = b5.replace(/ᛠ/g, " EAR ");
+   const b7 = b6.replace(/ᛖ/g, " E ");
+   const b8 = b7.replace(/ᚶ/g, " ENG ");
+   const b9 = b8.replace(/ᚧ/g, " ETH ");
+   const b10 = b9.replace(/ᚠ/g, " F ");
+   const c1 = b10.replace(/ᚵ/g, " G ");
+   const c2 = c1.replace(/ᚸ/g, " GAR ");
+   const c3 = c2.replace(/ᚷ/g, " G ");
+   const c4 = c3.replace(/ᛄ/g, " ?? ");
+   const c5 = c4.replace(/ᚻ/g, " H ");
+   const c6 = c5.replace(/ᚺ/g, " H ");
+   const c7 = c6.replace(/ᛨ/g, " YR ");
+   const c8 = c7.replace(/ᛝ/g, " ING ");
+   const c9 = c8.replace(/ᛜ/g, " INGWAZ ");
+   const c10 = c9.replace(/ᛡ/g, " IOR ");
+   const d1 = c10.replace(/ᛁ/g, " I ");
+   const d2 = d1.replace(/ᛇ/g, " IWAZ EOH ");
+   const d3 = d2.replace(/ᛃ/g, " J ");
+   const d4 = d3.replace(/ᚴ/g, " K ");
+   const d5 = d4.replace(/ᚲ/g, " KAUNA ");
+   const d6 = d5.replace(/ᛚ/g, " L ");
+   const d7 = d6.replace(/ᛅ/g, " AE ");
+   const d8 = d7.replace(/ᚼ/g, " H ");
+   const d9 = d8.replace(/ᛘ/g, " M ");
+   const d10 = d9.replace(/ᚬ/g, " O ");
+   const e1 = d10.replace(/ᛦ/g, " YR ");
+   const e2 = e1.replace(/ᛗ/g, " M ");
+   const e3 = e2.replace(/ᚾ/g, " N ");
+   const e4 = e3.replace(/ᚮ/g, " O ");
+   const e5 = e4.replace(/ᚯ/g, " OE ");
+   const e6 = e5.replace(/ᚰ/g, " ON ");
+   const e7 = e6.replace(/ᛕ/g, " P ");
+   const e8 = e7.replace(/ᚩ/g, " O ");
+   const e9 = e8.replace(/ᛟ/g, " O ");
+   const e10 = e9.replace(/ᛈ/g, " P ");
+   const f1 = e10.replace(/ᛩ/g, " Q ");
+   const f2 = f1.replace(/ᚱ/g, " R ");
+   const f3 = f2.replace(/ᛆ/g, " AR A ");
+   const f4 = f3.replace(/ᛓ/g, " BJARKAN B ");
+   const f5 = f4.replace(/ᚽ/g, " HAGALL H ");
+   const f6 = f5.replace(/ᛙ/g, " M ");
+   const f7 = f6.replace(/ᚿ/g, " N ");
+   const f8 = f7.replace(/ᚭ/g, " O ");
+   const f9 = f8.replace(/ᛌ/g, " S ");
+   const f10 = f9.replace(/ᛐ/g, " TYR T ");
+   const g1 = f10.replace(/ᛧ/g, " YR ");
+   const g2 = g1.replace(/ᛋ/g, " S ");
+   const g3 = g2.replace(/ᛊ/g, " SOWILO S ");
+   const g4 = g3.replace(/ᛥ/g, " STAN ");
+   const g5 = g4.replace(/ᚦ/g, " TH ");
+   const g6 = g5.replace(/ᛏ/g, " TIWAZ TIR TYR T ");
+   const g7 = g6.replace(/ᚢ/g, " URUZ UR U ");
+   const g8 = g7.replace(/ᚡ/g, " V ");
+   const g9 = g8.replace(/ᚥ/g, " W ");
+   const g10 = g9.replace(/ᚹ/g, " WUNJO WYNN W ");
+   const h1=g10.replace(/ᛪ/g, " X ");
+   const h2 = h1.replace(/ᚤ/g, " Y ");
+   const h3 = h2.replace(/ᚣ/g, " YR ");
+   const h4 = h3.replace(/ᛎ/g, " Z ");
+   const h5 = h4.replace(/᛬/g, " : ");
+   const h6 = h5.replace(/᛫/g, " . ");
+   const h7= h6.replace(/ᛮ/g, " 17 ");
+   const h8 = h7.replace(/ᛯ/g, " 18 ");
+   const h9 = h8.replace(/ᛰ/g, " 19 ");
+   const h10 = h9.replace(/᛭/g, " + ");
+		    message.channel.send(h10);
+		    message.channel.send("Runes successfully translated...")
+	    }
         if (command === "Lyons2") {
             const oldMessage = args.join(" ");
             message.delete().catch(O_o => {});
