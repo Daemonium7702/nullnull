@@ -701,8 +701,19 @@ message.channel.send("Thank you for checking the updates. I have not edited the 
    const h9 = h8.replace(/ᛰ/g, " 19 ");
    const h10 = h9.replace(/᛭/g, " + ");
 		    message.channel.send(h10);
-		    message.channel.send("Runes successfully translated...")
-	    }
+		   hastebin(h10, "js").then(r => {
+                var hastLink = r
+                const hastEmb = new Discord.RichEmbed()
+                    .setColor(0xFFF000)
+
+                    .setURL(hastLink)
+                    .addField('Link: ', `${hastLink}`)
+                message.channel.send({
+                    embed: hastEmb
+                })
+            }).catch(console.error);
+            message.channel.send("Runict by Daemonium");
+        }
         if (command === "Lyons2") {
             const oldMessage = args.join(" ");
             message.delete().catch(O_o => {});
