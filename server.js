@@ -1584,6 +1584,21 @@ message.channel.send("Thank you for checking the updates. I have not edited the 
             };
         }
 
+	    if(command === "o"){
+		      message.delete().catch(O_o => {});
+            const oldMessage = args.join(" ");
+	    const a = oldMessage.replace(/a/g, "o")
+		const aa = a.replace(/A/g, "O")
+	    const e = aa.replace(/e/g, "o")
+		const ee = e.replace(/E/g, "O")
+		const i = ee.replace(/i/g, "o")
+		const ii = i.replace(/I/g, "O")
+		const u = ii.replace(/u/g, "o")
+		const uu = uu.replace(/U/g, "O")
+		message.channel.send(uu)
+	    }
+	    
+	    
         if (command === "purge") {
             const user = message.mentions.users.first();
             if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send('Sorry, you don\'t have permission to delete or purge messages!')
