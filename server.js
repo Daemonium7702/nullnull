@@ -1594,7 +1594,7 @@ message.channel.send("Thank you for checking the updates. I have not edited the 
 		const i = ee.replace(/i/g, "o")
 		const ii = i.replace(/I/g, "O")
 		const u = ii.replace(/u/g, "o")
-		const uu = uu.replace(/U/g, "O")
+		const uu = u.replace(/U/g, "O")
 		message.channel.send(uu)
 	    }
 	    
