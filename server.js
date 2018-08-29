@@ -1699,15 +1699,14 @@ message.channel.send("Thank you for checking the updates. I have not edited the 
             message.channel.send(sayMessage);
         }
         if (command === "schedulemsg") {
-            jj = args[0]
-            ii = args[1]
-            let Timer = args[2];
+            jj = args.join(" ")
+            let Timer = args[0];
 
-            if (!args[2]) {
+            if (!args[1]) {
                 return message.channel.send("Please enter a period of time, with either `s,m or h` at the end!");
             }
 
-            if (args[2] <= 0) {
+            if (args[1] <= 0) {
                 return message.channel.send("Please enter a period of time, with either `s,m or h` at the end!");
             }
 
@@ -1715,7 +1714,7 @@ message.channel.send("Thank you for checking the updates. I have not edited the 
 
             setTimeout(function() {
                 message.channel.send(`Timer has ended, it lasted: ${ms(ms(Timer), {long: true})} Message will now be sent` + message.author.toString());
-                message.channel.send(jj + " " + ii)
+                message.channel.send(jj)
 
             }, ms(Timer));
         }
