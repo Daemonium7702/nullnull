@@ -5,6 +5,7 @@ const randomPuppy = require('random-puppy');
 const superagent = require("superagent");
 const ms = require("ms");
 const fs = require("fs");
+const CQ = require("coffeequate");
 const hastebin = require('hastebin-gen');
 const urban = require('relevant-urban');
 const math = require('mathjs');
@@ -558,7 +559,54 @@ message.channel.send("Thank you for checking the updates. I have not edited the 
                 message.channel.send("you need to manage perms manually. Sorry!")
             }
         }
-
+if(command == "alg"){
+const variable = args[0]
+if(!args [0]){
+message.channel.send("Please enter a variable to solve for! If you have no variable, please enter variable value eqn (x 4 5x^30)")	
+}
+	if(!args){
+	message.channel.send("Please enter a variable and eqn for me to solve. ```Example: \n  .alg y mx+b-y \n Output: mx+b \n Example 2: \n 4 x 1+x \n Output: 5```")
+	}
+	if(args[1]){
+	const value = args[1]
+	      }
+	const vc1 = args.join(" ")
+	var check = 0
+	var a = (vc1.match(/a/g) || []).length);
+	var b = (vc1.match(/b/g) || []).length);
+	var c =(vc1.match(/c/g) || []).length);
+	var d =(vc1.match(/a/g) || []).length);
+	var e =(vc1.match(/a/g) || []).length);
+	var f =(vc1.match(/a/g) || []).length);
+	var g =(vc1.match(/a/g) || []).length);
+	var h =(vc1.match(/a/g) || []).length);
+	var i =(vc1.match(/a/g) || []).length);
+	var j = (vc1.match(/a/g) || []).length);
+	var k = (vc1.match(/a/g) || []).length);
+	var l =(vc1.match(/a/g) || []).length);
+	var m =(vc1.match(/a/g) || []).length);
+	var n =(vc1.match(/a/g) || []).length);
+	var o =(vc1.match(/a/g) || []).length);
+	var p =(vc1.match(/a/g) || []).length);
+	var q =(vc1.match(/a/g) || []).length);
+	var r =(vc1.match(/a/g) || []).length);
+	var s =(vc1.match(/a/g) || []).length);
+	var t = (vc1.match(/a/g) || []).length);
+	var u =(vc1.match(/a/g) || []).length);
+	var v =(vc1.match(/a/g) || []).length);
+	var w =(vc1.match(/a/g) || []).length);
+	var x = (vc1.match(/a/g) || []).length);
+	var y =(vc1.match(/a/g) || []).length);
+	var z =(vc1.match(/a/g) || []).length);
+	check = a+b+c+d+e+f+g+h+i+j+k+l+m+n+o+p+q+r+s+t+u+v+w+x+y+z
+	if(!args[2]){
+	console.log(CQ(vc1).solve(variable))
+	message.channel.send("Logged answer for variable solve.")
+	}else{
+		console.log(CQ(vc1).nsolve(value,variable))
+	message.channel.send("Logged answer for numerical solve.")
+	}
+	}
         if (command === "uptime") {
             message.channel.send("The uptime is **" + moment.duration(client.uptime).format(' D [days], H [hrs], m [mins], s [secs]') + "**")
         }
