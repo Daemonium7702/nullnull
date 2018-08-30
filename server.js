@@ -567,9 +567,7 @@ message.channel.send("Please enter a variable to solve for! If you have no varia
 	if(!args){
 	message.channel.send("Please enter a variable and eqn for me to solve. ```Example: \n  .alg y mx+b-y \n Output: mx+b \n Example 2: \n 4 x 1+x \n Output: 5```")
 	}
-	if(args[1]){
 	const value = args[1]
-	      }
 	const vc1 = args.join(" ")
 	var check = 0
 	var a = (vc1.match(/a/g) || []).length;
@@ -603,7 +601,7 @@ message.channel.send("Please enter a variable to solve for! If you have no varia
 	console.log(CQ(vc1).solve(variable))
 	message.channel.send("Logged answer for variable solve.")
 	}else{
-		console.log(CQ(vc1).nsolve(value,variable))
+		console.log(CQ(vc1).nsolve(value, variable))
 	message.channel.send("Logged answer for numerical solve.")
 	}
 	}
