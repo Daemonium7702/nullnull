@@ -1202,7 +1202,7 @@ message.channel.send("Please enter a variable to solve for! If you have no varia
                 .setDescription("Bot Information")
                 .setColor("#15f153")
                 .setThumbnail(bicon)
-                .addField("users", `with ${client.guilds.MemberCount}users`)
+                .addField("users", `with ${client.users.size} users`)
                 .addField("channels", `in ${client.channels.size} channels`)
                 .addField("Servers", `in ${client.guilds.size} servers`)
                 .addField("Bot Name", client.user.username)
