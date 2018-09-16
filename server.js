@@ -498,7 +498,7 @@ scrape().then((value) => {
 
         */
 	     
-anti_spam(client, {
+/*anti_spam(client, {
   warnBuffer: 5, //Maximum amount of messages allowed to send in the interval time before getting warned.
   maxBuffer: 10, // Maximum amount of messages allowed to send in the interval time before getting banned.
   interval: 500, // Amount of time in ms users can send a maximum of the maxBuffer variable before getting banned.
@@ -507,7 +507,8 @@ anti_spam(client, {
   maxDuplicatesWarning: 5,// Maximum amount of duplicate messages a user can send in a timespan before getting warned
   maxDuplicatesBan: 10, // Maximum amount of duplicate messages a user can send in a timespan before getting banned
   deleteMessagesAfterBanForPastDays: 1 // Delete the spammed messages after banning for the past x days.
-});
+});*/
+	    
         client.on('guildMemberAdd', member => {
 
             // Send the message to a designated channel on a server:
