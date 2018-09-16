@@ -512,9 +512,10 @@ client.on('guildMemberAdd', member => {
     channel.send(` ${member}, Has joined the Fray... Poor Person`);
 });
 	    client.on('guildMemberAdd', member => {
-if member.toString().contains("webchain"){
+if (member.toString().contains("webchain")){
 	const faggot = message.guild.roles.find('name', 'Webchain Fags')
-if !faggot return 
+if (!faggot){ return 
+}
 }else{
 message.member(member).addRole(faggot)
 	message.channel.send("Another li'l Beeeyyaaaatttch has joined")
