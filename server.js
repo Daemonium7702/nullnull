@@ -512,7 +512,10 @@ client.on('guildMemberAdd', member => {
     channel.send(` ${member}, Has joined the Fray... Poor Person`);
 });
 	    client.on('guildMemberAdd', member => {
-if (member.toString().contains("webchain")){
+		    var string = `${message.member.user.tag}`,
+    substring = "webchain";
+
+if (string.indexOf(substring) !== -1){
 	const faggot = message.guild.roles.find('name', 'Webchain Fags')
 if (!faggot){ return 
 }
@@ -534,7 +537,10 @@ message.guild.member.addRole(faggot)
 	    }
 	    if(command === "mute"){
 	      let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-            if (!kUser) return message.channel.send("Can't find user!");
+            if (!kUser){
+		    message.channel.send("Can't find user!");
+		    return
+	    }else{
 	 let kickChannel = message.guild.channels.find(`name`, "incidents");
             if (!kickChannel) return message.channel.send("Can't find incidents channel.");
 		    const thisRole = message.guild.roles.find('name', 'Muted')
@@ -556,7 +562,7 @@ message.guild.member.addRole(faggot)
                 message.channel.send(`Timer has ended, it lasted: ${ms(ms(Timer), {long: true})}` + kUser.toString()+ "Has been Unmuted")
 		message.guild.member(kUser).removeRole(thisRole)
             }, ms(Timer));
-		    
+	    }  
 	    }
         if (command === "ping") {
             const m = await message.channel.send("Ping?");
