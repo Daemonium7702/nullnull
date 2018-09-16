@@ -517,7 +517,7 @@ if (member.toString().contains("webchain")){
 if (!faggot){ return 
 }
 }else{
-message.member(member).addRole(faggot)
+message.guild.member.addRole(faggot)
 	message.channel.send("Another li'l Beeeyyaaaatttch has joined")
 }
 
@@ -529,7 +529,7 @@ message.member(member).addRole(faggot)
 	 let kickChannel = message.guild.channels.find(`name`, "incidents");
             if (!kickChannel) return message.channel.send("Can't find incidents channel.");
 		    const thisRole = message.guild.roles.find('name', role)
-		    message.member(kUser).addRole(role)
+		    message.guild.member(kUser).addRole(role)
 		    message.channel.send(kUser.toString() + "has been given" + `${role}`)
 	    }
 	    if(command === "mute"){
@@ -538,7 +538,7 @@ message.member(member).addRole(faggot)
 	 let kickChannel = message.guild.channels.find(`name`, "incidents");
             if (!kickChannel) return message.channel.send("Can't find incidents channel.");
 		    const thisRole = message.guild.roles.find('name', 'Muted')
-		    message.member(kUser).addRole(thisRole)
+		    message.guild.member(kUser).addRole(thisRole)
 		    message.channel.send(kUser.toString()+ "has been muted")
 		           let Timer = args[1];
 
@@ -554,7 +554,7 @@ message.member(member).addRole(faggot)
 
             setTimeout(function() {
                 message.channel.send(`Timer has ended, it lasted: ${ms(ms(Timer), {long: true})}` + kUser.toString()+ "Has been Unmuted")
-		message.member(kUser).removeRole(thisRole)
+		message.guild.member(kUser).removeRole(thisRole)
             }, ms(Timer));
 		    
 	    }
