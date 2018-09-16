@@ -23,6 +23,9 @@ const queue = new Map();
 const moment = require('moment');
 require('moment-duration-format');
 const meme = require('memejs');
+var anti_spam = require("discord-anti-spam");
+
+ 
 client.on("ready", () => {
     console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);
     client.user.setActivity(`on ${client.guilds.size} servers`);
@@ -494,6 +497,17 @@ scrape().then((value) => {
                 }
 
         */
+	     
+antispam(client, {
+  warnBuffer: 5, //Maximum amount of messages allowed to send in the interval time before getting warned.
+  maxBuffer: 10, // Maximum amount of messages allowed to send in the interval time before getting banned.
+  interval: 1000, // Amount of time in ms users can send a maximum of the maxBuffer variable before getting banned.
+  warningMessage: "Listen here bub. I\'ma abolish you if you dont shut the f up.", // Warning message send to the user indicating they are going to fast.
+  banMessage: "has been banned cuz he didn\n't let me get my beauty sleep. Whose next??", // Ban message, always tags the banned user in front of it.
+  maxDuplicatesWarning: 5,// Maximum amount of duplicate messages a user can send in a timespan before getting warned
+  maxDuplicatesBan: 10, // Maximum amount of duplicate messages a user can send in a timespan before getting banned
+  deleteMessagesAfterBanForPastDays: 1 // Delete the spammed messages after banning for the past x days.
+});
         client.on('guildMemberAdd', member => {
 
             // Send the message to a designated channel on a server:
