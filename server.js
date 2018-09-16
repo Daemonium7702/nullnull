@@ -502,7 +502,61 @@ scrape().then((value) => {
         }
 
 */
+client.on('guildMemberAdd', member => {
 
+    // Send the message to a designated channel on a server:
+    const channel = member.guild.channels.find('name', 'general');
+    // Do nothing if the channel wasn't found on this server
+    if (!channel) return;
+
+    channel.send(` ${member}, Has joined the Fray... Poor Person`);
+});
+	    client.on('guildMemberAdd', member => {
+if member.toString().contains("webchain"){
+	const faggot = message.guild.roles.find('name', 'Webchain Fags')
+if !faggot return 
+}else{
+message.member(member).addRole(faggot)
+	message.channel.send("Another li'l Beeeyyaaaatttch has joined")
+}
+
+});
+	    if(command === "grole"){
+		    const role = args[0]
+	    let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+            if (!kUser) return message.channel.send("Can't find user!");
+	 let kickChannel = message.guild.channels.find(`name`, "incidents");
+            if (!kickChannel) return message.channel.send("Can't find incidents channel.");
+		    const thisRole = message.guild.roles.find('name', role)
+		    message.member(kUser).addRole(role)
+		    message.channel.send(kUser.toString() + "has been given" + `${role}`)
+	    }
+	    if(command === "mute"){
+	      let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+            if (!kUser) return message.channel.send("Can't find user!");
+	 let kickChannel = message.guild.channels.find(`name`, "incidents");
+            if (!kickChannel) return message.channel.send("Can't find incidents channel.");
+		    const thisRole = message.guild.roles.find('name', 'Muted')
+		    message.member(kUser).addRole(thisRole)
+		    message.channel.send(kUser.toString()+ "has been muted")
+		           let Timer = args[1];
+
+            if (!args[1]) {
+                return message.channel.send("Please enter a period of time, with either `s,m or h` at the end!");
+            }
+
+            if (args[1] <= 0) {
+                return message.channel.send("Please enter a period of time, with either `s,m or h` at the end!");
+            }
+
+            message.channel.send(":white_check_mark: Timer has been set for: " + `${ms(ms(Timer), {long: true})}`)
+
+            setTimeout(function() {
+                message.channel.send(`Timer has ended, it lasted: ${ms(ms(Timer), {long: true})}` + kUser.toString()+ "Has been Unmuted")
+		message.member(kUser).removeRole(thisRole)
+            }, ms(Timer));
+		    
+	    }
         if (command === "ping") {
             const m = await message.channel.send("Ping?");
             const answers = [
@@ -1196,6 +1250,35 @@ message.channel.send("Please enter a variable to solve for! If you have no varia
                 console.log(err)
             }
               }); 
+	    
+	    client.on("guildDelete", guild => {
+  try{
+			       function clean(text) {
+                    if (typeof(text) === 'string')
+                        return text.replace(/`/g, '`' + String.fromCharCode(8203)).replace(/@/g, '@' + String.fromCharCode(8203));
+                    else
+                        return text;
+                }
+		       const content = clean(`***New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!***`)
+	           const id = '481195643575205899'
+		       new Promise((resolve, reject) => {
+                    superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
+                        .set('Authorization', `Bot ${client.token}`).send({
+                            content
+                        })
+                        .end((err, res) => {
+                            if (err) {
+                                reject(err);
+                              console.log('err');
+                            } else {
+                                resolve(res);
+                                }
+                        });
+                });
+    } catch (err) {
+                console.log(err)
+            }
+});
         if (command === "botinfo") {
             let bicon = client.user.displayAvatarURL;
             let botembed = new Discord.RichEmbed()
@@ -1224,7 +1307,6 @@ message.channel.send("Please enter a variable to solve for! If you have no varia
                 .setColor(0x00AE86)
                 .setTimestamp()
                 .setDescription(`**Action:** Un/mute\n**Target:** ${member.user.tag}\n**Moderator:** ${message.author.tag}\n**Reason:** ${reason}`);
-
             if (!message.guild.me.hasPermission('MANAGE_ROLES')) return message.reply('I do not have the correct permissions.').catch(console.error);
 
             if (member.roles.has(muteRole.id)) {
@@ -1751,7 +1833,7 @@ message.channel.send("Please enter a variable to solve for! If you have no varia
             } catch (err) {
                 console.log(err)
             }
-        }
+	}
         if (command === "reverse") {
             if (args.length < 1) {
                 throw 'You must input text to be reversed!';
