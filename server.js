@@ -38,7 +38,14 @@ client.on("guildDelete", guild => {
     console.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
     client.user.setGame(`on Dis Cord`);
 });
+    client.on('guildMemberAdd', member => {
 
+            // Send the message to a designated channel on a server:
+            const channel = member.guild.channels.find('name', 'general');
+            // Do nothing if the channel wasn't found on this server
+            if (!channel) return;
+            channel.send(` ${member}, Has joined the Fray... Poor Person`);
+        });
 client.on("message", async message => {
 	function log(logmessage) {
 		if (message.guild.channels.has(logChannel)) {
@@ -513,29 +520,6 @@ scrape().then((value) => {
   maxDuplicatesBan: 10, // Maximum amount of duplicate messages a user can send in a timespan before getting banned
   deleteMessagesAfterBanForPastDays: 1 // Delete the spammed messages after banning for the past x days.
 });*/
-	    
-	    
-	
-        client.on('guildMemberAdd', member => {
-
-            // Send the message to a designated channel on a server:
-            const channel = member.guild.channels.find('name', 'general');
-            // Do nothing if the channel wasn't found on this server
-            if (!channel) return;
-            channel.send(` ${member}, Has joined the Fray... Poor Person`);
-            var string = `${message.member.user.tag}`,
-                substring = "webchain";
-            if (string.indexOf(substring) !== -1) {
-                const faggot = message.guild.roles.find('name', 'Webchain Fags')
-                if (!faggot) {
-                    return
-                }
-            } else {
-                const faggot = message.guild.roles.find('name', 'Webchain Fags')
-                message.guild.member(member).addRole(faggot)
-            }
-
-        });
         if (command === "grole") {
             const role = args[0]
             let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
