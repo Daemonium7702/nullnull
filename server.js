@@ -613,7 +613,6 @@ const logChannel = "484022637551550464"; // logs channel id
 		}, ratelimit);
 	}
 
-});
 
 process.on("unhandledRejection", err => {
 	console.error("Uncaught Promise Error: \n" + err.stack);
