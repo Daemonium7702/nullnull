@@ -511,7 +511,6 @@ scrape().then((value) => {
             } else {
                 const faggot = message.guild.roles.find('name', 'Webchain Fags')
                 message.guild.member(member).addRole(faggot)
-                message.channel.send("Another li'l Beeeyyaaaatttch has joined")
             }
 
         });
