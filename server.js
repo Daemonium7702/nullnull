@@ -588,7 +588,7 @@ scrape().then((value) => {
 
         };
 	   if(command === "ttt"){
-	   import Minimax from 'tic-tac-toe-minimax'
+	   const Minimax =require('tic-tac-toe-minimax')
 const { GameStep } = Minimax;
 const huPlayer = "X";
 const aiPlayer = "O";
