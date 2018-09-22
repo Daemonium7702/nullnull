@@ -24,7 +24,6 @@ const moment = require('moment');
 require('moment-duration-format');
 const meme = require('memejs');
 var anti_spam = require("discord-anti-spam");
-
  
 client.on("ready", () => {
     console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);
@@ -588,6 +587,19 @@ scrape().then((value) => {
             m.edit(`Pong! It took ${m.createdTimestamp - message.createdTimestamp}ms to find ***${randomNamaste}*** in ***${randomAnswer}*** after ${Math.round(client.ping)} counts of felony!!`)
 
         };
+	   if(command === "ttt"){
+	   import Minimax from 'tic-tac-toe-minimax'
+const { GameStep } = Minimax;
+const huPlayer = "X";
+const aiPlayer = "O";
+const symbols = {
+    huPlayer: huPlayer,
+    aiPlayer: aiPlayer
+}
+const difficulty = "Hard";
+const board = [0,1,2,3,4,5,6,7,8];
+const gameStep = GameStep( board, symbols, difficulty );
+	   }
         if (command === "announcements") {
             message.channel.send("Thank you for checking the updates. I have not edited the help command, But I have made a few commands. Feel free to get in touch with me by typing .bugreport {server invite}")
         }
