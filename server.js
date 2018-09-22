@@ -587,51 +587,7 @@ scrape().then((value) => {
             m.edit(`Pong! It took ${m.createdTimestamp - message.createdTimestamp}ms to find ***${randomNamaste}*** in ***${randomAnswer}*** after ${Math.round(client.ping)} counts of felony!!`)
 
         };
-	   if(command === "ttt"){
-	   const Minimax =require('tic-tac-toe-minimax')
-const { GameStep } = Minimax;
-const huPlayer = "X";
-const aiPlayer = "O";
-const symbols = {
-    huPlayer: huPlayer,
-    aiPlayer: aiPlayer
-}
-const difficulty = "Hard";
-const board = [0,1,2,3,4,5,6,7,8];
-const gameStep = GameStep( board, symbols, difficulty );
-	   }
-        if (command === "announcements") {
-            message.channel.send("Thank you for checking the updates. I have not edited the help command, But I have made a few commands. Feel free to get in touch with me by typing .bugreport {server invite}")
-        }
-        if (command === "crole") {
-            if (message.author.id != "347885325940424714") {
-                message.channel.send("In development" + `${message.author.tag}`)
-                return
-            } else {
-
-                const a = args[0];
-                const b = args[1].toUpperCase();
-                const c = args[2];
-                await message.guild.createRole({
-                        name: a,
-                        color: b,
-                        mentionable: true,
-                        remove: "SEND_MESSAGES",
-                        remove: "ADD_REACTIONS"
-                    })
-                    .catch(console.error)
-                console.log(a);
-
-                console.log(b);
-                message.channel.send("Role Created");
-                const jj = await message.guild.roles.find("name", a);
-                const roleSize = await message.guild.roles.find("name", "DaeBot");
-                console.log(roleSize.position)
-                jj.setPosition(`${roleSize.position - 1}`);
-                console.log(roleSize);
-                message.channel.send("you need to manage perms manually. Sorry!")
-            }
-        }
+	   
         if (command === "morly") {
             message.delete().catch(O_o => {});
             const oldMessage = args.join(" ");
