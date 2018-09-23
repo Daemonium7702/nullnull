@@ -551,6 +551,17 @@ scrape().then((value) => {
 		}
 			var primeNumbers = prime(num);
 message.channel.send(primeNumbers);
+			hastebin(primeNumbers, "js").then(r => {
+				var hastLink = r
+				const hastEmb = new Discord.RichEmbed()
+					.setColor(0xFFF000)
+
+					.setURL(hastLink)
+					.addField('Link: ', `${hastLink}`)
+				message.channel.send({
+					embed: hastEmb
+				})
+			}).catch(console.error);
 		}
 		if(command === "qr"){
 			
