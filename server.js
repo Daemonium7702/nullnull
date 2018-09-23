@@ -560,8 +560,10 @@ Jimp.read(buffer, function(err, image) {
         message.channel.send(value.result);
         message.channel.send(value);
     };
-    qr.decode(image.bitmap);
+   const jimmy =  qr.decode(image.bitmap);
+	message.channel.send(jimmy)
 });
+			
 		}
 		
 		
