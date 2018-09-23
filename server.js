@@ -606,7 +606,8 @@ scrape().then((value) => {
 					args[0] = "a"
 				}
 
-				Caesar.Cipher(shift).crypt(txt);
+				const caesarshift=Caesar.Cipher(shift).crypt(txt);
+			message.channel.send(caesarshift)
 			}
 		}
 		if (command === "caesardec") {
@@ -672,7 +673,8 @@ scrape().then((value) => {
 				} else if (args[0] = 26) {
 					args[0] = "a"
 				}
-				Caesar.Decipher(shift).crypt(txt);
+				const newceas=Caesar.Decipher(shift).crypt(txt);
+			message.channel.send(newceas)
 			}
 		}
 		if (command === "vigenc") {
@@ -684,7 +686,8 @@ scrape().then((value) => {
 			if (!phr) {
 				return message.channel.send("You must have a phrase! (usage: .vigenc pass text)")
 			}
-			Vigenere.Cipher(password).crypt(phr);
+			const vigvig=Vigenere.Cipher(password).crypt(phr);
+		message.channel.send(vigvig)
 		}
 		if (command === "vigdec") {
 			const password = args[0];
@@ -695,39 +698,48 @@ scrape().then((value) => {
 			if (!phr) {
 				return message.channel.send("You must have a phrase! (usage: .vigdec pass text)")
 			}
-			Vigenere.Decipher(password).crypt(phr);
+			const vigvg = Vigenere.Decipher(password).crypt(phr);
+		message.channel.send(vigvg)
 		}
 		if (command === "rot5enc") {
 			const txt = args.join(' ')
-			ROT5.Cipher().crypt(txt);
+			const rfive = ROT5.Cipher().crypt(txt);
+		message.channel.send(rfive)
 		}
 		if (command === "rot13enc") {
 			const txt = args.join(' ')
-			ROT13.Cipher().crypt(txt);
+			const rthirteen = ROT13.Cipher().crypt(txt);
+		message.channel.send(rthirteen)
 		}
 		if (command === "rot18enc") {
 			const txt = args.join(' ')
-			ROT18.Cipher().crypt(txt);
+			const r18 = ROT18.Cipher().crypt(txt);
+		message.channel.send(r18)
 		}
 		if (command === "rot47enc") {
 			const txt = args.join(' ')
-			ROT47.Cipher().crypt(txt);
+			const rr4 = ROT47.Cipher().crypt(txt);
+		message.channel.send(rr4)
 		}
-		if (command === "rot5enc") {
+		if (command === "rot5dec") {
 			const txt = args.join(' ')
-			ROT5.Decipher().crypt(txt);
+			const rrr= ROT5.Decipher().crypt(txt);
+		message.channel.send(rrr)
 		}
-		if (command === "rot13enc") {
+		if (command === "rot13dec") {
 			const txt = args.join(' ')
-			ROT13.Decipher().crypt(txt);
+			const rrrr =ROT13.Decipher().crypt(txt);
+		message.channel.send(rrrr)
 		}
-		if (command === "rot18enc") {
+		if (command === "rot18dec") {
 			const txt = args.join(' ')
-			ROT18.Decipher().crypt(txt);
+			const rrrrr =ROT18.Decipher().crypt(txt);
+		message.channel.send(rrrrr)
 		}
-		if (command === "rot47enc") {
+		if (command === "rot47dec") {
 			const txt = args.join(' ')
-			ROT47.Decipher().crypt(txt);
+			const rrrrrr =ROT47.Decipher().crypt(txt);
+		message.channel.send(rrrrrr)
 		}
 		if (command == "ttb64") {
 			const jj = args.join(' ');
