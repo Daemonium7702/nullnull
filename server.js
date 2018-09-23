@@ -558,7 +558,7 @@ scrape().then((value) => {
 		}
 			var text = prime(num);
 			var title = "sum numeros"
-message.channel.send(primeNumbers);
+message.channel.send(text);
  pastebin
     .createPaste({
         text: text,
