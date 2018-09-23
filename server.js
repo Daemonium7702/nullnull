@@ -36,6 +36,13 @@ const Jimp = require("jimp");
 const QrCode = require("qrcode-reader");
 const Parser = require('qrcode-image-parser');
 const prime = require('get-primes')
+var PastebinAPI = require('pastebin-js'),
+  pastebin = new PastebinAPI({
+      'api_dev_key' : '7d0884ae9f6fcda7dfe3feaed6349ac9',
+      'api_user_name' : 'DaemoniumDVMors',
+      'api_user_password' : 'Dallasrules123.'
+    });
+
 
 client.on("ready", () => {
 	console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);
@@ -551,18 +558,32 @@ scrape().then((value) => {
 		}
 			var primeNumbers = prime(num);
 message.channel.send(primeNumbers);
-			hastebin(primeNumbers, "js").then(r => {
-				var hastLink = r
-				const hastEmb = new Discord.RichEmbed()
-					.setColor(0xFFF000)
-
-					.setURL(hastLink)
-					.addField('Link: ', `${hastLink}`)
-				message.channel.send({
-					embed: hastEmb
-				})
-			}).catch(console.error);
+			pastebin
+			.createPasteFromFile("newPaste", primeNumbers, null, 0, "N")
+			.then(function (data){
+		message.channel.send(data);
+			})
+			.fail(function (err){
+				console.log(err)
+				message.channel.send(err);
+			})
+			      }
+		if(command === "paste"){
+		const title = args[0]
+const fixruppr = args[0].length
+const text = args.join('').substr(fixruppr)
+  pastebin
+    .createPasteFromFile(title, text, null, 0, "N")
+    .then(function (data) {
+        // we have succesfully pasted it. Data contains the id
+        message.channel.send(data);
+    })
+    .fail(function (err) {
+        console.log(err);
+message.channel.send(err);
+    });
 		}
+		/*
 		if(command === "qr"){
 			
 const myphoto =message.attachments
@@ -585,7 +606,7 @@ Jimp.read(buffer, (err, lenna) => {
 });
 			
 		}
-		
+		*/
 		
 		
 		if(command === "hexenc"){
