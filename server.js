@@ -546,7 +546,8 @@ scrape().then((value) => {
 		if(command === "qr"){
 			
 const myphoto =message.attachments
-Jimp.read(myphoto, (err, lenna) => {
+const buffer = myphoto
+Jimp.read(buffer, (err, lenna) => {
   if (err) console.error(err)
         // TODO handle error
  lenna
