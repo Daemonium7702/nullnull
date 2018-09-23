@@ -556,6 +556,17 @@ scrape().then((value) => {
 const texts = args.join(' ')
 message.channel.send(ascii_to_hexa(texts));
 		}
+		if(command == "hexdec"){
+		function hex2a(hexing) {
+    var hex = hexing.toString();
+    var str = '';
+    for (var i = 0; i < hex.length; i += 2)
+    str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+    return str;
+}
+			const texto = args.join(' ')
+			message.channel.send(hex2a(texto))
+		}
 		if (command === "caesarenc") {
 			const shift = args[0];
 			const txt = args.join('')
@@ -973,7 +984,7 @@ message.channel.send(ascii_to_hexa(texts));
 			message.author.send("```js\n Programming tools: Batch: Obfuscates some batch script. (you will need to make a key list for it.) Usage: .batch [batch code here] \n ntl: Basic universal obfuscation (this is for the bot dev only. If you can get how it works, then cheers) Usage: .ntl [text]```")
 			message.author.send("```js\n Utilities:\n Uptime: Shows Uptime Usage: .uptime \n Guildlist: Shows a list of guilds the bot is in. Usage: .guildlist \n Userinfo: displays info on a user Usage: .userinfo [@user] \n Botinfo: Displays Info On The Bot Usage: .botinfo \n Bugreport: Reports A Bug Directly To The Dev Of The Bot (A.K.A. ME) Usage: .bugreport [Bug] \n Calc: Calculates The Value Of An Expression Usage: .calc [expression E.g. 1+1] \n Help: Ehm, Idk What To Tell You. Usage: How Are You Even Here? \n Haste: Adds A String To Hastebin Usage: .haste [String (A.K.A Words)] \nInv: Shows Invite Links For My Bot, And The Support Server. Usage: .inv \n Line: Draws The LINE! Usage: .line \nPing: Pings Places All Around The World Usage: .ping \n Schedule: Schedules A Message. Usage: .schedule [Part 1 Of Message] [Part 2 Of Message] [time] \n Serverinfo: Displays Info On The Server Usage: .serverinfo \n Timer: Sets A Timer. Usage: .timer [time In Ms, S, M, Or H.] \nTranslate: Translates Supplied Text. Usage: .translate [language To Translate TO] [text To Translate] \nRemspace: Removes all spaces from a string. Usage: .remspace [text]```");
 			message.author.send("```js\n Music: \n Np: Shows What Is Now Playing Usage: .np \n Pause: Pauses Music Usage: .pause \n Play: Plays Music. Usage: .play [song Name], Then Select From List By Typing The Corresponding Number (e.g. For Song 2 Type 2) \n Queue: Shows Music Queue \n Resume: Resumes A Paused Song. Usage: .resume \n Skip: Skips A Song Usage: .skip \n Stop: Stops Music From Playing Usage: .stop \n Vol: Volume Usage: .vol [number] \n```")
-			message.author.send("```js\n Ciphers:  rotenc[5, 13, 18, and 47]: uses either rot 5,13,18, or 47 to encode some text. Usage: .rotenc47 text  \n.rotdec[5, 13, 18, and 47]: Uses rot to decode text. Usage: .rotdec47 text \n.caesarenc enciphers text using caesar. Usage: .caesar [shift] [text] eg:.caesarenc 3 hello, or .caesarenc c hello\n .caesardec deciphers text using caesar. Usage: .caesardec [shift] [text] eg:.caesardec 3 hello, or .caesardec c hello\n .vigenc: uses vig on text. Usage: .vigenc [key] [hello]\n .vigdec: uses vig on text. Usage: .vigdec [key] [hello]```")
+			message.author.send("```js\n Ciphers:  rotenc[5, 13, 18, and 47]: uses either rot 5,13,18, or 47 to encode some text. Usage: .rotenc47 text  \n.rotdec[5, 13, 18, and 47]: Uses rot to decode text. Usage: .rotdec47 text \n.caesarenc enciphers text using caesar. Usage: .caesar [shift] [text] eg:.caesarenc 3 hello, or .caesarenc c hello\n .caesardec deciphers text using caesar. Usage: .caesardec [shift] [text] eg:.caesardec 3 hello, or .caesardec c hello\n .vigenc: uses vig on text. Usage: .vigenc [key] [hello]\n .vigdec: uses vig on text. Usage: .vigdec [key] [hello] \n .hexenc turns ascii to hexadecimal Usage: .hexenc string \n .hexdec: converts hexadecimal to ascii Usage: .hexdec string```")
 			message.channel.send(`\n Help was sent to ${message.author.tag}`);
 			message.channel.send("For updates on the bot, or to see whats new with it, please type .Announcements")
 		}
