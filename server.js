@@ -23,7 +23,8 @@ const queue = new Map();
 const moment = require('moment');
 require('moment-duration-format');
 const meme = require('memejs');
-var anti_spam = require("discord-anti-spam");
+const base64 = require("base-64");
+const utf = require("utf8");
  
 client.on("ready", () => {
     console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);
@@ -529,6 +530,18 @@ scrape().then((value) => {
             message.guild.member(kUser).addRole(role)
             message.channel.send(kUser.toString() + "has been given" + `${role}`)
         }
+	    if(command == "ttb64"){
+		    const jj = args.join(' ');
+var bytes = utf.encode(jj);
+var encoded = base64.encode(bytes);
+message.channel.send(encoded);
+	    }
+	    if(command == "b64tt"){
+	     const jj = args.join(' ');
+var bytes = utf.encode(jj);
+var decoded = base64.decode(bytes);
+message.channel.send(decoded);
+	    }
         if (command === "mute") {
             if (!message.member.hasPermission('KICK_MEMBERS')) {
                 message.channel.send("You are pathetically helpless. Maybe ask someone who isn\n't to mute this member.")
