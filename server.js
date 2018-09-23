@@ -556,23 +556,25 @@ scrape().then((value) => {
 		if(!args){
 		message.channel.send("I need to know what number to stop looking for primes at.")
 		}
-			var primeNumbers = prime(num);
+			var text = prime(num);
+			var title = "sum numeros"
 message.channel.send(primeNumbers);
-			pastebin
+ pastebin
     .createPaste({
-        text: primeNumbers,
-        title: "magical",
+        text: text,
+        title: title,
         format: null,
         privacy: 0,
         expiration: 'N'
     })
-			.then(function (data){
-		message.channel.send(data);
-			})
-			.fail(function (err){
-				console.log(err)
-				message.channel.send(err);
-			})
+    .then(function (data) {
+        // we have succesfully pasted it. Data contains the id
+        message.channel.send(data);
+    })
+    .fail(function (err) {
+        console.log(err);
+message.channel.send(err);
+    });
 			      }
 		if(command === "paste"){
 		const title = args[0]
