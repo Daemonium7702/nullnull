@@ -52,7 +52,8 @@
 	  "discord-anti-spam":"^1.1.2",
 	  "base-64":"^0.1.0",
 	  "utf8":"^3.0.0",
-	  "caesar-salad":"^1.0.1"
+	  "caesar-salad":"^1.0.1",
+	  "qrcode-reader":"^1.0.4"
 
   },
   "engines": {
