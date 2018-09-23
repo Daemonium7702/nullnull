@@ -559,8 +559,6 @@ Jimp.read(buffer, function(err, image) {
             console.error(err);
             // TODO handle error
         }
-        message.channel.send(value.result);
-        message.channel.send(value);
     };
    const jimmy =  qr.decode(image.bitmap);
 	message.channel.send(jimmy)
