@@ -546,8 +546,7 @@ scrape().then((value) => {
 		if(command === "qr"){
 			
 const myphoto =message.attachments
-var buffer = myphoto
-Jimp.read(buffer, function(err, image) {
+Jimp.read(myphoto, function(err, image) {
     if (err) {
         console.error(err);
         // TODO handle error
@@ -558,6 +557,8 @@ Jimp.read(buffer, function(err, image) {
             console.error(err);
             // TODO handle error
         }
+	    console.log(value.result);
+        console.log(value);
     };
    const jimmy =  qr.decode(image.bitmap);
 	message.channel.send(jimmy)
