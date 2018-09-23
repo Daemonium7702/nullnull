@@ -551,6 +551,41 @@ scrape().then((value) => {
 			message.channel.send(kUser.toString() + "has been given" + `${role}`)
 		}
 		///some crypto///
+		if(command === "f2cipher"){
+const thmessage = args.join('')
+const a = thmessage.replace(/a/gi, "196418_1");
+const b = a.replace(/b/gi, "121393_2");
+const c = b.replace(/c/gi, "75025_3")
+const d = c.replace(/d/gi, "46368_5")
+const e = d.replace(/e/gi, "28657_8")
+const f = e.replace(/f/gi, "17711_13")
+const g = f.replace(/g/gi, "10946_21")
+const h = g.replace(/h/gi, "6765_34")
+const i = h.replace(/i/gi, "4181_55")
+const j = i.replace(/j/gi, "2584_89")
+const k = j.replace(/k/gi, "1597_144")
+const l = k.replace(/l/gi, "987_233")
+const m = l.replace(/m/gi, "610_377")
+const n = m.replace(/n/gi, "377_610")
+const o = n.replace(/o/gi, "233_987")
+const p = o.replace(/p/gi, "144_1597")
+const q = p.replace(/q/gi, "89_2584")
+const r = q.replace(/r/gi, "55_4181")
+const s = r.replace(/s/gi, "34_6765")
+const t = s.replace(/t/gi, "21_10946")
+const u = t.replace(/u/gi, "13_17711")
+const v = u.replace(/v/gi, "8_28657")
+const w = v.replace(/w/gi, "5_46368")
+const x = w.replace(/x/gi, "3_75025")
+const y = x.replace(/y/gi, "2_121393")
+const z = y.replace(/z/gi, "1_196418")
+const spacer = z.replace(/ /gi, "-")
+message.channel.send(spacer)
+		}
+			
+		
+		
+		
 		if(command === "gprime"){
 			const num = args.join('')
 		if(!args){
