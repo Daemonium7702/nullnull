@@ -550,6 +550,9 @@ scrape().then((value) => {
 			message.guild.member(kUser).addRole(role)
 			message.channel.send(kUser.toString() + "has been given" + `${role}`)
 		}
+		if(command =="reta"){
+			message.channel.send("https://www.youtube.com/watch?v=Hds9tFMuU8o")
+		}
 		///some crypto///
 		if(command === "f2cipher"){
 const thmessage = args.join('')
