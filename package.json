@@ -55,7 +55,7 @@
 	  "caesar-salad":"^1.0.1",
 	  "qrcode-reader":"^1.0.4",
 	  "jimp":"^0.5.0",
-	  "qr-image-parser":"^1.0.3",
+	  "qrcode-image-parser":"^1.0.3",
 	  "jsqr":"^1.1.1"
 
   },
