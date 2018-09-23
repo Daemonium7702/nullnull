@@ -542,6 +542,7 @@ scrape().then((value) => {
 		}
 		///some crypto///
 		if(command === "qr"){
+			var Attachment = (message.attachments).array()
 		Attachment.forEach(function(attachment) {
   myphoto = attachment.url
 });
