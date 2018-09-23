@@ -33,7 +33,8 @@ const ROT5 = caesarSalad.ROT5;
 const ROT18 = caesarSalad.ROT18;
 const ROT47 = caesarSalad.ROT47;
 const Jimp = require("jimp");
-const QrCode = require("qrcode-reader")
+const QrCode = require("qrcode-reader");
+const Parser = require('qrcode-image-parser');
 
 client.on("ready", () => {
 	console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);
@@ -543,10 +544,8 @@ scrape().then((value) => {
 		}
 		///some crypto///
 		if(command === "qr"){
-			var Attachment = (message.attachments).array()
-		Attachment.forEach(function(attachment) {
-  myphoto = attachment.url
-});
+			
+const myphoto =message.attachments
 var buffer = myphoto
 Jimp.read(buffer, function(err, image) {
     if (err) {
