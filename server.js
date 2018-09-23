@@ -32,7 +32,8 @@ const ROT13 = caesarSalad.ROT13;
 const ROT5 = caesarSalad.ROT5;
 const ROT18 = caesarSalad.ROT18;
 const ROT47 = caesarSalad.ROT47;
-var Jimp = require("jimp");
+const Jimp = require("jimp");
+const QrCode = require("qrcode-reader")
 
 client.on("ready", () => {
 	console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);
