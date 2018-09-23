@@ -546,11 +546,10 @@ scrape().then((value) => {
 		if(command === "qr"){
 			
 const myphoto =message.attachments
-Jimp.read(myphoto, function(err, image) {
-    if (err) {
-        console.error(err);
+Jimp.read(myphoto, (err, lenna) => {
+  if (err) console.error(err)
         // TODO handle error
-    }
+ lenna
     var qr = new QrCode();
     qr.callback = function(err, value) {
         if (err) {
