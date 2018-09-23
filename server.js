@@ -540,6 +540,22 @@ scrape().then((value) => {
 			message.channel.send(kUser.toString() + "has been given" + `${role}`)
 		}
 		///some crypto///
+		if(command === "hexenc"){
+		
+		
+		function ascii_to_hexa(str)
+  {
+	var arr1 = [];
+	for (var n = 0, l = str.length; n < l; n ++) 
+     {
+		var hex = Number(str.charCodeAt(n)).toString(16);
+		arr1.push(hex);
+	 }
+	return arr1.join('');
+   }
+const texts = args.join(' ')
+message.channel.send(ascii_to_hexa(texts));
+		}
 		if (command === "caesarenc") {
 			const shift = args[0];
 			const txt = args.join('')
@@ -606,7 +622,8 @@ scrape().then((value) => {
 					args[0] = "a"
 				}
 
-				const caesarshift=Caesar.Cipher(shift).crypt(txt);
+				const caesarshiftt=Caesar.Cipher(shift).crypt(txt);
+				const caesarshift= caesarshiftt.substr(1)
 			message.channel.send(caesarshift)
 			}
 		}
@@ -673,7 +690,8 @@ scrape().then((value) => {
 				} else if (args[0] = 26) {
 					args[0] = "a"
 				}
-				const newceas=Caesar.Decipher(shift).crypt(txt);
+				const newceass=Caesar.Decipher(shift).crypt(txt);
+				const newceas = newceass.substr(1);
 			message.channel.send(newceas)
 			}
 		}
