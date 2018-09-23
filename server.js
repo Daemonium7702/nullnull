@@ -559,7 +559,13 @@ scrape().then((value) => {
 			var primeNumbers = prime(num);
 message.channel.send(primeNumbers);
 			pastebin
-			.createPasteFromFile("newPaste", primeNumbers, null, 0, "N")
+    .createPaste({
+        text: primeNumbers,
+        title: "magical",
+        format: null,
+        privacy: 0,
+        expiration: 'N'
+    })
 			.then(function (data){
 		message.channel.send(data);
 			})
@@ -573,7 +579,13 @@ message.channel.send(primeNumbers);
 const fixruppr = args[0].length
 const text = args.join('').substr(fixruppr)
   pastebin
-    .createPasteFromFile(title, text, null, 0, "N")
+    .createPaste({
+        text: text,
+        title: title,
+        format: null,
+        privacy: 0,
+        expiration: 'N'
+    })
     .then(function (data) {
         // we have succesfully pasted it. Data contains the id
         message.channel.send(data);
