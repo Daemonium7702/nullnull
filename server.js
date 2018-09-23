@@ -35,6 +35,7 @@ const ROT47 = caesarSalad.ROT47;
 const Jimp = require("jimp");
 const QrCode = require("qrcode-reader");
 const Parser = require('qrcode-image-parser');
+const prime = require('get-primes')
 
 client.on("ready", () => {
 	console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);
@@ -543,6 +544,14 @@ scrape().then((value) => {
 			message.channel.send(kUser.toString() + "has been given" + `${role}`)
 		}
 		///some crypto///
+		if(command === "gprime"){
+			const num = args.join('')
+		if(!args){
+		message.channel.send("I need to know what number to stop looking for primes at.")
+		}
+			var primeNumbers = prime(num);
+message.channel.send(primeNumbers);
+		}
 		if(command === "qr"){
 			
 const myphoto =message.attachments
