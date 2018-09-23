@@ -556,12 +556,12 @@ scrape().then((value) => {
 		if(!args){
 		message.channel.send("I need to know what number to stop looking for primes at.")
 		}
-			var text = prime(num);
-			var title = "sum numeros"
-message.channel.send(text);
+			const primeNumbers = prime(num);
+			const title = "sum numeros"
+message.channel.send(primeNumbers);
  pastebin
     .createPaste({
-        text: text,
+        text: primeNumbers,
         title: title,
         format: null,
         privacy: 0,
