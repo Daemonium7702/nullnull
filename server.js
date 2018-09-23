@@ -32,6 +32,7 @@ const ROT13 = caesarSalad.ROT13;
 const ROT5 = caesarSalad.ROT5;
 const ROT18 = caesarSalad.ROT18;
 const ROT47 = caesarSalad.ROT47;
+var Jimp = require("jimp");
 
 client.on("ready", () => {
 	console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);
@@ -540,6 +541,31 @@ scrape().then((value) => {
 			message.channel.send(kUser.toString() + "has been given" + `${role}`)
 		}
 		///some crypto///
+		if(command === "qr"){
+		Attachment.forEach(function(attachment) {
+  myphoto = attachment.url
+});
+var buffer = myphoto
+Jimp.read(buffer, function(err, image) {
+    if (err) {
+        console.error(err);
+        // TODO handle error
+    }
+    var qr = new QrCode();
+    qr.callback = function(err, value) {
+        if (err) {
+            console.error(err);
+            // TODO handle error
+        }
+        message.channel.send(value.result);
+        message.channel.send(value);
+    };
+    qr.decode(image.bitmap);
+});
+		}
+		
+		
+		
 		if(command === "hexenc"){
 		
 		
