@@ -556,7 +556,7 @@ scrape().then((value) => {
 		if(!args){
 		message.channel.send("I need to know what number to stop looking for primes at.")
 		}
-			const primeNumbers = prime(num);
+			const primeNumbers = prime(num).toString();
 			const title = "sum numeros"
 message.channel.send(primeNumbers);
  pastebin
