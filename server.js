@@ -175,7 +175,7 @@ db.collection.insert(newItem);
 if(!collection.name.contains(message.author.id)){
 addData
 }
-
+})
 
 if(command === "dklmnopqrtdjhcnmdkjl"){
  message.channel.send("https://discord.gg/g4zwF8")
