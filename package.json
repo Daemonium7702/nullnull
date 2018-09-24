@@ -58,7 +58,8 @@
 	  "qrcode-image-parser":"^1.0.3",
 	  "jsqr":"^1.1.1",
 	  "get-primes":"^1.0.3",
-	  "pastebin-js":"^0.6.0"
+	  "pastebin-js":"^0.6.0",
+	  "mongodb":"^3.1.6"
 
   },
   "engines": {
