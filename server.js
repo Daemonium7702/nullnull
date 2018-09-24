@@ -116,7 +116,67 @@ client.on("message", async message => {
 	    if(command=="purplebunny"){
 }*/
 ////////DATABASE//////////
-//var connectionUrl = mongodb://Admin:hippopotomonstrosesquippedalaphobia1@ds235788.mlab.com:35788/daemonium
+const connectionUrl = mongodb://Admin:hippopotomonstrosesquippedalaphobia1@ds235788.mlab.com:35788/daemonium
+function getUserByName(money, res) {
+
+    mongodb.connect(connectionUrl, function(err, db) {
+        var collection = db.collection('DaeC')
+        collection.findOne({
+                'users': money
+            },
+            function(err, result) {
+                if (err) {
+                    console.error(err)
+                    res.status(500).send("unable to gather data")
+                } else {
+                    res.status(200).json(result)
+                }
+            }
+        );
+    });
+
+}
+function getMoney(res) {
+    mongodb.connect(connectionUrl, function(err, db) {
+        var collection = db.collection('DaeC')
+        collection.find({}, {
+                "users": 1,
+                _id: 0
+            })
+            .toArray(function(err, result) {
+                if (err) {
+                    console.err(err)
+                    res.status(500).send("error")
+                } else {
+                    res.status(200).json(result)
+                }
+            })
+    })
+}
+function addData(res) {
+const naame=message.author.id
+    mongodb.connect(connectionUrl, function(err, db) {
+        var collection = db.collection('DaeC')
+collection.find({}, {
+"users":{
+"name":naame
+}
+})
+let newitem = {
+  name: message.author.tag,
+ money: 1,
+ bank:1
+};
+db.collection.insert(newItem);
+}
+)}
+  mongodb.connect(connectionUrl, function(err, db) {
+        var collection = db.collection('DaeC')
+if(!collection.name.contains(message.author.id)){
+addData
+}
+
+
 if(command === "dklmnopqrtdjhcnmdkjl"){
  message.channel.send("https://discord.gg/g4zwF8")
 }
