@@ -116,6 +116,7 @@ client.on("message", async message => {
 	    if(command=="purplebunny"){
 }*/
 ////////DATABASE//////////
+		/*
 const connectionUrl = "mongodb://Admin:hippopotomonstrosesquippedalaphobia1@ds235788.mlab.com:35788/daemonium"
 function getUserByName(money, res) {
 
@@ -176,7 +177,7 @@ if(!collection.name.contains(message.author.id)){
 addData
 }
 })
-
+*/
 if(command === "dklmnopqrtdjhcnmdkjl"){
  message.channel.send("https://discord.gg/g4zwF8")
 }
