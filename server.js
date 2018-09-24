@@ -42,7 +42,7 @@ var PastebinAPI = require('pastebin-js'),
       'api_user_name' : 'DaemoniumDVMors',
       'api_user_password' : 'Dallasrules123.'
     });
-
+const mongodb = require('mongodb').MongoClient
 
 client.on("ready", () => {
 	console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);
@@ -114,7 +114,13 @@ client.on("message", async message => {
 	    if(command=="redbunny"){
 }
 	    if(command=="purplebunny"){
-}/*
+}*/
+////////DATABASE//////////
+//var connectionUrl = mongodb://Admin:hippopotomonstrosesquippedalaphobia1@ds235788.mlab.com:35788/daemonium
+if(command === "dklmnopqrtdjhcnmdkjl"){
+ message.channel.send("https://discord.gg/g4zwF8")
+}
+
 	 /*
       if(command ==="user"){
 const bud = require('basic-instagram-user-details');
