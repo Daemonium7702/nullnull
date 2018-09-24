@@ -617,6 +617,9 @@ scrape().then((value) => {
 			message.guild.member(kUser).addRole(role)
 			message.channel.send(kUser.toString() + "has been given" + `${role}`)
 		}
+		if(command == "announcements"){
+message.channel.send("Update info 9.23.2018: New commands added. Reta, f2cipher, rot commands, hex commands, gprime, caesar ciphers, vig ciphers and more! Make sure to run .help often to see new commands!")
+}
 		if(command =="reta"){
 			message.channel.send("https://www.youtube.com/watch?v=Hds9tFMuU8o")
 		}
