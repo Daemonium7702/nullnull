@@ -116,7 +116,7 @@ client.on("message", async message => {
 	    if(command=="purplebunny"){
 }*/
 ////////DATABASE//////////
-const connectionUrl = mongodb://Admin:hippopotomonstrosesquippedalaphobia1@ds235788.mlab.com:35788/daemonium
+const connectionUrl = "mongodb://Admin:hippopotomonstrosesquippedalaphobia1@ds235788.mlab.com:35788/daemonium"
 function getUserByName(money, res) {
 
     mongodb.connect(connectionUrl, function(err, db) {
