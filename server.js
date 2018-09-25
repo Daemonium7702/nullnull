@@ -1564,7 +1564,7 @@ message.channel.send(ascii_to_hexa(texts));
 			if (message.mentions.users.size < 1) return message.reply("You must mention someone in order to ban them!");
 			if (!message.guild.member(kUser).kickable) return message.reply("I can't ban the owner!");
 			message.guild.member(kUser).ban(kReason);
-			kickChannel.send(`${kUser} Was banned by ${message.author}`)
+			kickChannel.send(`${kUser} Was banned by ${message.author} for ${kReason}`)
 		}
 		if (command === "kick") {
 			let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
@@ -1575,7 +1575,7 @@ message.channel.send(ascii_to_hexa(texts));
 			let kickChannel = message.guild.channels.find(`name`, "incidents");
 			if (!kickChannel) return message.channel.send("Can't find incidents channel.");
 			message.guild.member(kUser).kick(kReason);
-			kickChannel.send("kicked" + `${kUser} at the order of ${message.author}`);
+			kickChannel.send("kicked" + `${kUser} at the order of ${message.author} with the reasoning: ${kReason}`);
 			return;
 		}
 		if (command === "bugreport") {
