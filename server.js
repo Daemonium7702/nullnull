@@ -135,14 +135,16 @@ client.on("message", async message => {
 				const collection = client.db(dbName).collection('daecade');
 				// Insert some documents 
 					collection.update(
-						{"users":{[message.author.id]:{$exists : true}}},
+						{"users":{[message.author.id]}},
 						{
 						"users": {
 							[message.author.id]: {
 								"money": 1
 							}
 						}
-					}, function(err, result) {
+					},
+						{upsert:true}
+						function(err, result) {
 						assert.equal(err, null);
 						assert.equal(1, result.result.n);
 						assert.equal(1, result.ops.length);
