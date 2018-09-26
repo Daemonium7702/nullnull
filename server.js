@@ -118,8 +118,6 @@ client.on("message", async message => {
 	    if(command=="purplebunny"){
 }*/
 ////////DATABASE//////////
-	
-						 if (command === "dbconninit") {
 	// Connection URL
 	const url = 'mongodb://Admin:hippopotomonstrosesquippedalaphobia1@ds235788.mlab.com:35788/daemonium';
 	// Database Name
@@ -186,8 +184,7 @@ client.on("message", async message => {
 		})*/
 		client.close();
 	})
-}
-
+		///This will eventually add 40k users to my db. Its aboutta get overloaded xD
 	 /*
       if(command ==="user"){
 const bud = require('basic-instagram-user-details');
