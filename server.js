@@ -184,6 +184,41 @@ client.close()
 }
 		 	
 				 }
+				 const findDocuments = function(db, callback) {
+  // Get the documents collection
+			const url = 'mongodb://Admin:hippopotomonstrosesquippedalaphobia1@ds235788.mlab.com:35788/daemonium';
+			MongoClient.connect(url, function(err, client) {
+  	const dbName = 'daemonium';
+				assert.equal(null, err);
+  message.channel.send("Connected successfully to server");
+  const db = client.db(dbName);
+		
+  const collection = client.db(dbName).collection('daecade');
+  // Find some documents
+  collection.find({[message.author.tag]:""}).toArray(function(err, docs) {
+    assert.equal(err, null);
+    console.log("Found the following records");
+    message.channel.send(docs);
+    callback(docs);
+	  if(null){
+const uuuser = "null" 
+}else{
+const uuuser = "found"
+}
+	  if(uuuser == "found"){
+	  return message.channel.send("user found")
+	  }else{
+if(uuuser == "null"){
+insertDocuments()(db, function() {
+client.close()
+}
+);
+}
+}
+  });
+				 });
+}
+		 	
   findDocuments()(db, function() {
   client.close();
 })
