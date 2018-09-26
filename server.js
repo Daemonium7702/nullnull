@@ -115,10 +115,9 @@ client.on("message", async message => {
 	    }
 	    if(command=="redbunny"){
 }
-	    if(command=="purplebunny"){
-}*/
-////////DATABASE//////////
-	
+	    if(command=="purplebunny"){	
+	    */
+		////////DATABASE////////
 						 if (command === "dbconninit") {
 	// Connection URL
 	const url = 'mongodb://Admin:hippopotomonstrosesquippedalaphobia1@ds235788.mlab.com:35788/daemonium';
@@ -134,8 +133,7 @@ client.on("message", async message => {
 			MongoClient.connect(url, function(err, client) {
 				const dbName = 'daemonium';
 				const collection = client.db(dbName).collection('daecade');
-				// Insert some documents
-				if (
+				// Insert some documents 
 					collection.update(
 						{"users":{[message.author.id]:{$exists : true}}},
 						{
@@ -151,10 +149,11 @@ client.on("message", async message => {
 						message.channel.send("New user detected..... Inserted 1 document into the collection");
 						callback(result);
 					})
-
-				);
 			})
 		}
+				client.close();
+	})
+}
 	/*	const findDocuments = function(db, callback) {
 			// Get the documents collection
 			const url = 'mongodb://Admin:hippopotomonstrosesquippedalaphobia1@ds235788.mlab.com:35788/daemonium';
@@ -182,9 +181,6 @@ client.on("message", async message => {
 		insertDocuments(db, function() {
 			message.channel.send("User not found, entry added.")
 		})*/
-		client.close();
-	})
-}
 
 	 /*
       if(command ==="user"){
