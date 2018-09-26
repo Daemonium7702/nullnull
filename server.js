@@ -119,7 +119,7 @@ client.on("message", async message => {
 ////////DATABASE//////////
 		const findDocuments = function(db, callback) {
   // Get the documents collection
-  const collection = db.collection('DaeC');
+  const collection = db.collection('daecade');
   // Find some documents
   collection.find({[message.author.tag]:""}).toArray(function(err, docs) {
     assert.equal(err, null);
@@ -135,7 +135,7 @@ const uuuser = "found"
 }
 		 	 const insertDocuments = function(db, callback) {
   // Get the documents collection
-  const collection = db.collection('DaeC');
+  const collection = db.collection('daecade');
   // Insert some documents
 			 if(
   collection.insertMany([
