@@ -119,6 +119,7 @@ client.on("message", async message => {
 ////////DATABASE//////////
 		const findDocuments = function(db, callback) {
   // Get the documents collection
+			const url = 'mongodb+srv://Admin:hippopotomonstrosesquippedalaphobia1@ds235788.mlab.com:35788/daemonium';
 			MongoClient.connect(url, function(err, client) {
   	const dbName = 'daemonium';
 				assert.equal(null, err);
@@ -141,6 +142,7 @@ const uuuser = "found"
 				 });
 }
 		 	 const insertDocuments = function(db, callback) {
+				 const url = 'mongodb+srv://Admin:hippopotomonstrosesquippedalaphobia1@ds235788.mlab.com:35788/daemonium';
   // Get the documents collection
   const collection = db.collection('daecade');
   // Insert some documents
@@ -157,7 +159,7 @@ const uuuser = "found"
   );}
  if(command === "dbconninit"){
 // Connection URL
-const url = 'mongodb://Admin:hippopotomonstrosesquippedalaphobia1@ds235788.mlab.com:35788/daemonium';
+const url = 'mongodb+srv://Admin:hippopotomonstrosesquippedalaphobia1@ds235788.mlab.com:35788/daemonium';
 // Database Name
 const dbName = 'daemonium';
 // Use connect method to connect to the server
