@@ -2346,7 +2346,7 @@ message.channel.send(ascii_to_hexa(texts));
 		////////////////////////////////////////////////////MUSIC//////////////////////////////////////////////////////////////////////
 		if (!message.content.startsWith(prefix)) return;
 		var searchString = args.slice(1).join(' ');
-		var url = args[1] ? args[1].replace(/<(.+)>/g, '$1') : '';
+		var urrl = args[1] ? args[1].replace(/<(.+)>/g, '$1') : '';
 		var serverQueue = queue.get(message.guild.id);
 
 		if (command === "play") {
@@ -2360,7 +2360,7 @@ message.channel.send(ascii_to_hexa(texts));
 				return message.channel.send('Error! Check my permissions!');
 			}
 			if (url.match(/^https?:\/\/(www.youtube.com|youtube.com)\/playlist(.*)$/)) {
-				var playlist = await youtube.getPlaylist(url);
+				var playlist = await youtube.getPlaylist(urrl);
 				var videos = await playlist.getVideos();
 				for (const video of Object.values(videos)) {
 					var video2 = await youtube.getVideoByID(video.id); // eslint-disable-line no-await-in-loop
