@@ -136,24 +136,26 @@ client.on("message", async message => {
 				const collection = client.db(dbName).collection('daecade');
 				// Insert some documents
 				if (
-					collection.insertMany([{
+					collection.update(
+						{"users":{[message.author.id]:{$exists : true}}},
+						{
 						"users": {
 							[message.author.id]: {
 								"money": 1
 							}
 						}
-					}], function(err, result) {
+					}, function(err, result) {
 						assert.equal(err, null);
 						assert.equal(1, result.result.n);
 						assert.equal(1, result.ops.length);
-						console.log("Inserted 1 document into the collection");
+						message.channel.send("New user detected..... Inserted 1 document into the collection");
 						callback(result);
 					})
 
 				);
 			})
 		}
-		const findDocuments = function(db, callback) {
+	/*	const findDocuments = function(db, callback) {
 			// Get the documents collection
 			const url = 'mongodb://Admin:hippopotomonstrosesquippedalaphobia1@ds235788.mlab.com:35788/daemonium';
 			MongoClient.connect(url, function(err, client) {
@@ -181,7 +183,7 @@ client.on("message", async message => {
 		})
 		insertDocuments(db, function() {
 			message.channel.send("User not found, entry added.")
-		})
+		})*/
 		client.close();
 	})
 }
