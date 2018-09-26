@@ -134,8 +134,10 @@ client.on("message", async message => {
 				const dbName = 'daemonium';
 				const collection = client.db(dbName).collection('daecade');
 				// Insert some documents 
-					collection.update(
-						{"users":{[message.author.id]}},
+					collection.update({$and: [
+						{"users":{[message.author.id]:{$size:0}}},
+						{"users":{[message.author.id]:{$exists:true}}},	
+					]},
 						{
 						"users": {
 							[message.author.id]: {
@@ -143,7 +145,6 @@ client.on("message", async message => {
 							}
 						}
 					},
-						{upsert:true}
 						function(err, result) {
 						assert.equal(err, null);
 						assert.equal(1, result.result.n);
@@ -2586,3 +2587,4 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
 	}
 });
 client.login(process.env.BOT_TOKEN);
+
