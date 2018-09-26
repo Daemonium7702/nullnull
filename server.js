@@ -79,44 +79,6 @@ client.on("message", async message => {
 	const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
 	const command = args.shift().toLowerCase();
 	const prefix = config.prefix
-		// Connection URL
-	const url = 'mongodb://Admin:hippopotomonstrosesquippedalaphobia1@ds235788.mlab.com:35788/daemonium';
-	// Database Name
-	const dbName = 'daemonium';
-	// Use connect method to connect to the server
-	MongoClient.connect(url, function(err, client) {
-		assert.equal(null, err);
-		const db = client.db(dbName);
-		const insertDocuments = function(db, callback) {
-			// Get the documents collection
-			MongoClient.connect(url, function(err, client) {
-				const dbName = 'daemonium';
-				const collection = client.db(dbName).collection('daecade');
-				// Insert some documents
-				if (
-					collection.update(
-						{"users":{[message.author.id]:{$exists : false}}},
-						{
-						"users": {
-							[message.author.id]: {
-								"money": 1
-							}
-						}
-					},
-						{upsert:true},
-						function(err, result) {
-						assert.equal(err, null);
-						assert.equal(1, result.result.n);
-						assert.equal(1, result.ops.length);
-						message.channel.send("New user detected..... Inserted 1 document into the collection");
-						callback(result);
-					})
-
-				);
-			})
-		}
-			client.close();
-	})
 	if (message.guild.id == "451843103318343680") {
 		message.channel.send("services discontinued for https://discordapp.com/channels/451843103318343680/457677144470847500 please head to https://discord.gg/GfJw3VB to use the bot.");
 		return
@@ -156,7 +118,43 @@ client.on("message", async message => {
 	    if(command=="purplebunny"){
 }*/
 ////////DATABASE//////////
+	
+						 if (command === "dbconninit") {
+	// Connection URL
+	const url = 'mongodb://Admin:hippopotomonstrosesquippedalaphobia1@ds235788.mlab.com:35788/daemonium';
+	// Database Name
+	const dbName = 'daemonium';
+	// Use connect method to connect to the server
+	MongoClient.connect(url, function(err, client) {
+		assert.equal(null, err);
+		message.channel.send("Connected successfully to server");
+		const db = client.db(dbName);
+		const insertDocuments = function(db, callback) {
+			// Get the documents collection
+			MongoClient.connect(url, function(err, client) {
+				const dbName = 'daemonium';
+				const collection = client.db(dbName).collection('daecade');
+				// Insert some documents
+				if (
+					collection.update(
+						{"users":{[message.author.id]:{$exists : true}}},
+						{
+						"users": {
+							[message.author.id]: {
+								"money": 1
+							}
+						}
+					}, function(err, result) {
+						assert.equal(err, null);
+						assert.equal(1, result.result.n);
+						assert.equal(1, result.ops.length);
+						message.channel.send("New user detected..... Inserted 1 document into the collection");
+						callback(result);
+					})
 
+				);
+			})
+		}
 	/*	const findDocuments = function(db, callback) {
 			// Get the documents collection
 			const url = 'mongodb://Admin:hippopotomonstrosesquippedalaphobia1@ds235788.mlab.com:35788/daemonium';
@@ -165,7 +163,6 @@ client.on("message", async message => {
 				assert.equal(null, err);
 				message.channel.send("Connected successfully to server");
 				const db = client.db(dbName);
-
 				const collection = client.db(dbName).collection('daecade');
 				// Find some documents
 				collection.find({
@@ -178,7 +175,6 @@ client.on("message", async message => {
 					});
 			});
 		}
-
 		findDocuments(db, function() {
 		message.channel.send("found")
 		
@@ -186,8 +182,10 @@ client.on("message", async message => {
 		insertDocuments(db, function() {
 			message.channel.send("User not found, entry added.")
 		})*/
-	
-		///This will eventually add 40k users to my db. Its aboutta get overloaded xD
+		client.close();
+	})
+}
+
 	 /*
       if(command ==="user"){
 const bud = require('basic-instagram-user-details');
@@ -217,7 +215,6 @@ const cookieStore = new FileCookieStore('./cookies.json')
 const cllient = new Instagram({ username, password, cookieStore })
   await cllient.login()
 const puppeteer = require('puppeteer');
-
 let scrape = async () => {
     const browser = await puppeteer.launch({headless: false});
     const page = await browser.newPage();
@@ -234,14 +231,12 @@ message.channel.send("complete?")
     
     browser.close();
     return result;
-
 scrape().then((value) => {
     console.log(value); // Success!
 });
 }
 }
 }
-
         if (command == "send") {
             var clockwork = require('clockwork')({
                 key: '32a2b445df35b881a9c20a746f98d07f7ab6d53f'
@@ -259,8 +254,6 @@ scrape().then((value) => {
                 }
             )
         }
-
-
 */
 
 		const sql = require("sqlite");
@@ -390,7 +383,6 @@ scrape().then((value) => {
 		                return
 		            }
 		            if (videoIndex == 2) {
-
 		                message.channel.send("***STAGE 2:*** \n You are at the door. You have two choices, \n 1) Open the door, and walk outside. \n 2)Go back ")
 		                try {
 		                    var opttsto = await message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 3, {
@@ -398,12 +390,10 @@ scrape().then((value) => {
 		                        time: 30000,
 		                        errors: ['time']
 		                    });
-
 		                } catch (err) {
 		                    console.error(err);
 		                    return message.channel.send('You took too long, or chose an invalid option. The nuclear blast envelops you, and your skin melts. Game Over...');
 		                }
-
 		                var opttstoIndex = parseInt(opttsto.first().content);
 		                if (opttstoIndex == 1) {
 		                    message.channel.send("You Walk Outside, you will have one quarter the usual time to make your moves until you find safehaven. You may \n 1) stay outside, \n 2) head back inside")
@@ -417,7 +407,6 @@ scrape().then((value) => {
 		                        console.error(err);
 		                        return message.channel.send('You took too long, or chose an invalid option. The nuclear blast envelops you, and your skin melts. Game Over...');
 		                    }
-
 		                    var aIndex = parseInt(a.first().content);
 		                    if (aIndex == 1) {
 		                        message.channel.send("In a state of paralysis, you stand with fear. The word grows brighter, hotter. The wall of head approaches you. You are flung into the air by a massive gust of wind. Moments later, your skin begins to boil, then burn. Turning black, before vanishing into the ashes around. Game Over...")
@@ -435,19 +424,14 @@ scrape().then((value) => {
 		                            console.error(err);
 		                            return message.channel.send('You took too long, or chose an invalid option. The nuclear blast envelops you, and your skin melts. Game Over...');
 		                        }
-
-
 		                        var aaIndex = parseInt(a.first().content);
-
 		                        if (aaIndex == 1) {
 		                            message.channel.send("You commit suicide. Game over...");
 		                            return
-
 		                        }
 		                        if (aaIndex == 2) {
 		                            message.channel.send("You arrive at the underground concrete bunker entrance.\n 1) You may choose to gather supplies, but your next move will have half the usual time to respond, \n 2)Or you can enter the bunker immediately.");
 		                            try {
-
 		                                var bb = await message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 3, {
 		                                    maxMatches: 1,
 		                                    time: 15000,
@@ -457,12 +441,10 @@ scrape().then((value) => {
 		                                console.error(err);
 		                                return message.channel.send('You took too long, or chose an invalid option. The nuclear blast envelops you, and your skin melts. Game Over...');
 		                            }
-
 		                            var bbIndex = parseInt(bb.first().content);
 		                            if (bbIndex == 1) {
 		                                message.channel.send("You grab a wooden plank, one pack of gauze, and 3 cans of food.You now enter the Bunker. Once you seal it shut, you begin to feel the floor rattle. The rattle turns into a roar. You fall down unable to keep your balance. Your supplies go all over the floor. After 3 minutes, the rumbling stops. You notice very faint cracks in the walls of the bunker. You have 3 choices, \n 1) sleep \n 2) Go upstairs again \n 3) explore");
 		                                try {
-
 		                                    var bbb = await message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 3, {
 		                                        maxMatches: 1,
 		                                        time: 45000,
@@ -472,13 +454,11 @@ scrape().then((value) => {
 		                                    console.error(err);
 		                                    return message.channel.send('You took too long, or chose an invalid option. The nuclear blast envelops you, and your skin melts. Game Over...');
 		                                }
-
 		                                var bbbIndex = parseInt(bbb.first().content);
 		                                if (bbbIndex === 1) {
 		                                    ///sleep
 		                                    message.channel.send("After all the chaos, you find your eyelids growing heavy. You place a roll of cloth on the stone floor, and you close your eyes. Images of today flashing across the back. Your mind races, *'Is my family alive' 'Is there anyone else?' 'What do I do now?' 'Is this it?' 'What about... Her...'* Gradually, your thoughts fade into darkness, and you fall asleep. 2x time bonus. answer increased to 60s for two turns. When you awake in the morning, you have two choices, \n 1) Go upstairs \n 2) Explore.")
 		                                    try {
-
 		                                        var sleep = await message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 3, {
 		                                            maxMatches: 1,
 		                                            time: 60000,
@@ -488,12 +468,10 @@ scrape().then((value) => {
 		                                        console.error(err);
 		                                        return message.channel.send('You took too long, or chose an invalid option. The nuclear blast envelops you, and your skin melts. Game Over...');
 		                                    }
-
 		                                    var sleepIndex = parseInt(sleep.first().content);
 		                                    if (sleepIndex == 1) {
 		                                        message.channel.send("You decide to open the vault doors. As soon as you do, air rushes in. You exit the vault. You notice the world glowing a faint green. **TIME REDUCED TO 10 SECOND DUE TO RADIOACTIVITY ☢** \n 1)Go back in \n 2) Stay.")
 		                                        try {
-
 		                                            var goup = await message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 3, {
 		                                                maxMatches: 1,
 		                                                time: 10000,
@@ -503,16 +481,13 @@ scrape().then((value) => {
 		                                            console.error(err);
 		                                            return message.channel.send('You took too long, or chose an invalid option. The nuclear blast envelops you, and your skin melts. Game Over...');
 		                                        }
-
 		                                        var goupIndex = parseInt(goup.first().content);
 		                                        if (goupIndex === 1) {
 		                                            message.channel.send("You return inside. But it is too late. You were outside too long. You feel your innards churning. Every aspect of life now seems more vivid. For a time. Then it all fades. Unable to focus on any object. Your vision turns dark. Jumpin in and out of focus. You collapse on the ground. Your resolve. Gone.")
-
 		                                        }
 		                                        if (goupIndex === 2) {
 		                                            message.channel.send("You choose to stay outside. Time reduced to 5 seconds.\n 1) stay\n 2) go inside")
 		                                            try {
-
 		                                                var stup = await message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 3, {
 		                                                    maxMatches: 1,
 		                                                    time: 5000,
@@ -522,7 +497,6 @@ scrape().then((value) => {
 		                                                console.error(err);
 		                                                return message.channel.send('You took too long, or chose an invalid option. The nuclear blast envelops you, and your skin melts. Game Over...');
 		                                            }
-
 		                                            var stupIndex = parseInt(stup.first().content);
 		                                            if (stupInedx == 1) {
 		                                                message.channel.send("You return inside. But it is too late. You were outside too long. You feel your innards churning. Every aspect of life now seems more vivid. For a time. Then it all fades. Unable to focus on any object. Your vision turns dark. Jumpin in and out of focus. You collapse on the ground. Your resolve. Gone.")
@@ -530,14 +504,12 @@ scrape().then((value) => {
 		                                            if (stupIndex == 2) {
 		                                                message.channel.send("Despite the gruesome agony you are enduring. You choose to remain. Your skin blisters. Your fingertips turn black. You can feel your tongue swelling in your mouth. Eyes bulging. Till eventually. YOu collapse, too weak to stay resolute.")
 		                                            }
-
 		                                        }
 		                                    }
 		                                    if (sleepIndex === 2) {
 		                                        //Xplore
 		                                        message.channel.send("You choose to explore the incomplete annoying ass game. Like ffs. this shit takes too long to make XD")
 		                                    }
-
 		                                }
 		                                if (bbIndex == 2) {
 		                                    message.channel.send("You enter the bunker, and just in time. You are thrown to the ground as a thunderous roar sounds overhead. You are underground, but you still hear the wood splintering overhead. This continues for several minutes, then the roar comes to a cease. You remain still. You look around the room and notice some small cracks in the cement walls. You have 3 choices.\n 1) Sleep \n 2) Go upstairs again, \n 3) explore the bunker.")
@@ -561,7 +533,6 @@ scrape().then((value) => {
 		                                console.error(err);
 		                                return message.channel.send('You took too long, or chose an invalid option. The nuclear blast envelops you, and your skin melts. Game Over...');
 		                            }
-
 		                            var bIndex = parseInt(b.first().content);
 		                            if (bIndex === 1) {
 		                                message.channel.send("***END OF CURRENT LINE***")
@@ -578,9 +549,6 @@ scrape().then((value) => {
 		                                    console.error(err);
 		                                    return message.channel.send('You took too long, or chose an invalid option. The nuclear blast envelops you, and your skin melts. Game Over...');
 		                                }
-
-
-
 		                                if (videoIndex == 4) {
 		                                    message.channel.send("You chose to stand around gawking like a moron. You will have half the usual time to respond to your next move. You may choose \n 1) to repeat this action, \n or head to the bunker.***END OF CURRENT LINE***")
 		                                    try {
@@ -600,7 +568,6 @@ scrape().then((value) => {
 		                }
 		            }
 		        }
-
 		*/
 
 		/*anti_spam(client, {
@@ -1692,7 +1659,6 @@ message.channel.send(ascii_to_hexa(texts));
                 .setTimestamp()
                 .setDescription(`**Action:** Un/mute\n**Target:** ${member.user.tag}\n**Moderator:** ${message.author.tag}\n**Reason:** ${reason}`);
             if (!message.guild.me.hasPermission('MANAGE_ROLES')) return message.reply('I do not have the correct permissions.').catch(console.error);
-
             if (member.roles.has(muteRole.id)) {
                 member.removeRole(muteRole).then(() => {
                         client.channels.get(modlog.id).send({
@@ -1708,7 +1674,6 @@ message.channel.send(ascii_to_hexa(texts));
                     })
                     .catch(e => console.error("Cannot add muted role: " + e));
             }
-
         };
         if (command === "unmute") {
             let guild = message.guild;
@@ -2349,7 +2314,7 @@ message.channel.send(ascii_to_hexa(texts));
 		////////////////////////////////////////////////////MUSIC//////////////////////////////////////////////////////////////////////
 		if (!message.content.startsWith(prefix)) return;
 		var searchString = args.slice(1).join(' ');
-		var urrl = args[1] ? args[1].replace(/<(.+)>/g, '$1') : '';
+		var url = args[1] ? args[1].replace(/<(.+)>/g, '$1') : '';
 		var serverQueue = queue.get(message.guild.id);
 
 		if (command === "play") {
@@ -2363,7 +2328,7 @@ message.channel.send(ascii_to_hexa(texts));
 				return message.channel.send('Error! Check my permissions!');
 			}
 			if (url.match(/^https?:\/\/(www.youtube.com|youtube.com)\/playlist(.*)$/)) {
-				var playlist = await youtube.getPlaylist(urrl);
+				var playlist = await youtube.getPlaylist(url);
 				var videos = await playlist.getVideos();
 				for (const video of Object.values(videos)) {
 					var video2 = await youtube.getVideoByID(video.id); // eslint-disable-line no-await-in-loop
