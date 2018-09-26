@@ -117,6 +117,7 @@ client.on("message", async message => {
 	    if(command=="purplebunny"){
 }*/
 ////////DATABASE//////////
+		 if(command === "dbconninit"){
 		const findDocuments = function(db, callback) {
   // Get the documents collection
 			const url = 'mongodb://Admin:hippopotomonstrosesquippedalaphobia1@ds235788.mlab.com:35788/daemonium';
@@ -157,7 +158,7 @@ const uuuser = "found"
     callback(result);
   })
   );}
- if(command === "dbconninit"){
+
 // Connection URL
 const url = 'mongodb://Admin:hippopotomonstrosesquippedalaphobia1@ds235788.mlab.com:35788/daemonium';
 // Database Name
