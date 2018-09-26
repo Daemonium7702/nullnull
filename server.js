@@ -117,6 +117,37 @@ client.on("message", async message => {
 	    if(command=="purplebunny"){
 }*/
 ////////DATABASE//////////
+	
+ if(command === "dbconninit"){
+// Connection URL
+const url = 'mongodb://Admin:hippopotomonstrosesquippedalaphobia1@ds235788.mlab.com:35788/daemonium';
+// Database Name
+const dbName = 'daemonium';
+// Use connect method to connect to the server
+MongoClient.connect(url, function(err, client) {
+  assert.equal(null, err);
+  message.channel.send("Connected successfully to server");
+  const db = client.db(dbName);
+		 const insertDocuments = function(db, callback) {
+				 const url = 'mongodb://Admin:hippopotomonstrosesquippedalaphobia1@ds235788.mlab.com:35788/daemonium';
+  // Get the documents collection
+				 MongoClient.connect(url, function(err, client) {
+				 const dbName = 'daemonium';
+  const collection = client.db(dbName).collection('daecade');
+  // Insert some documents
+			 if(
+  collection.insertMany([
+    {"users" :{[message.author.id]:{"money":1}} }
+  ], function(err, result) {
+    assert.equal(err, null);
+    assert.equal(3, result.result.n);
+    assert.equal(3, result.ops.length);
+    console.log("Inserted 3 documents into the collection");
+    callback(result);
+  })
+				 
+  );
+  })
 		const findDocuments = function(db, callback) {
   // Get the documents collection
 			const url = 'mongodb://Admin:hippopotomonstrosesquippedalaphobia1@ds235788.mlab.com:35788/daemonium';
@@ -138,42 +169,21 @@ const uuuser = "null"
 }else{
 const uuuser = "found"
 }
+	  if(uuuser == "found"){
+	  return message.channel.send("user found")
+	  }else{
+if(uuuser == "null"){
+insertDocuments()(db, function() {
+client.close()
+}
+}
+}
   });
 				 });
 }
-		 	 const insertDocuments = function(db, callback) {
-				 const url = 'mongodb://Admin:hippopotomonstrosesquippedalaphobia1@ds235788.mlab.com:35788/daemonium';
-  // Get the documents collection
-				 MongoClient.connect(url, function(err, client) {
-				 const dbName = 'daemonium';
-  const collection = client.db(dbName).collection('daecade');
-  // Insert some documents
-			 if(
-  collection.insertMany([
-    {"users" :{[message.author.id]:{"money":1}} }
-  ], function(err, result) {
-    assert.equal(err, null);
-    assert.equal(3, result.result.n);
-    assert.equal(3, result.ops.length);
-    console.log("Inserted 3 documents into the collection");
-    callback(result);
-  })
-				 
-  );
-  })
+		 	
 				 }
- if(command === "dbconninit"){
-// Connection URL
-const url = 'mongodb://Admin:hippopotomonstrosesquippedalaphobia1@ds235788.mlab.com:35788/daemonium';
-// Database Name
-const dbName = 'daemonium';
-// Use connect method to connect to the server
-MongoClient.connect(url, function(err, client) {
-  assert.equal(null, err);
-  message.channel.send("Connected successfully to server");
-  const db = client.db(dbName);
   findDocuments()(db, function() {
-	if(uuuser = "null"){
 insertDocuments()(db, function() {
 client.close();
 	message.channel.send("User not found, entry added.")
