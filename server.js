@@ -146,11 +146,10 @@ const uuuser = "found"
     assert.equal(3, result.ops.length);
     console.log("Inserted 3 documents into the collection");
     callback(result);
-  });
-}
+  })
+  );}
  if(command === "dbconninit"){
 // Connection URL
-
 const url = 'mongodb://Admin:hippopotomonstrosesquippedalaphobia1@ds235788.mlab.com:35788/daemonium';
 // Database Name
 const dbName = 'daemonium';
