@@ -117,7 +117,6 @@ client.on("message", async message => {
 	    if(command=="purplebunny"){
 }*/
 ////////DATABASE//////////
-		 if(command === "dbconninit"){
 		const findDocuments = function(db, callback) {
   // Get the documents collection
 			const url = 'mongodb://Admin:hippopotomonstrosesquippedalaphobia1@ds235788.mlab.com:35788/daemonium';
@@ -127,7 +126,7 @@ client.on("message", async message => {
   message.channel.send("Connected successfully to server");
   const db = client.db(dbName);
 		
-  const collection = client.db(dbName).collection('createIndexExample1');
+  const collection = client.db(dbName).collection('daecade');
   // Find some documents
   collection.find({[message.author.tag]:""}).toArray(function(err, docs) {
     assert.equal(err, null);
@@ -145,7 +144,9 @@ const uuuser = "found"
 		 	 const insertDocuments = function(db, callback) {
 				 const url = 'mongodb://Admin:hippopotomonstrosesquippedalaphobia1@ds235788.mlab.com:35788/daemonium';
   // Get the documents collection
-  const collection = db.collection('daecade');
+				 MongoClient.connect(url, function(err, client) {
+				 const dbName = 'daemonium';
+  const collection = client.db(dbName).collection('daecade');
   // Insert some documents
 			 if(
   collection.insertMany([
@@ -157,8 +158,11 @@ const uuuser = "found"
     console.log("Inserted 3 documents into the collection");
     callback(result);
   })
-  );}
-
+				 
+  );
+  })
+				 }
+ if(command === "dbconninit"){
 // Connection URL
 const url = 'mongodb://Admin:hippopotomonstrosesquippedalaphobia1@ds235788.mlab.com:35788/daemonium';
 // Database Name
@@ -182,9 +186,6 @@ client.close();
   });
 	
  }
-if(command === "dklmnopqrtdjhcnmdkjl"){
- message.channel.send("https://discord.gg/g4zwF8")
-}
 
 	 /*
       if(command ==="user"){
