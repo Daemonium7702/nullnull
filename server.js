@@ -220,7 +220,7 @@ client.close()
 }
 		 	
   findDocuments()(db, function() {
-  client.close();
+message.channel.send("searched docs")
 })
 insertDocuments()(db, function() {
 	message.channel.send("User not found, entry added.")
