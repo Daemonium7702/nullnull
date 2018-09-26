@@ -619,7 +619,8 @@ scrape().then((value) => {
 			if(args[1]){
 			message.channel.send("too many args!")
 			}
-			factor.numberFactors(number)
+			var integer = parseInt(number, 10);
+			factor.numberFactors(integer)
 		}
 		if (command === "grole") {
 			const role = args[0]
