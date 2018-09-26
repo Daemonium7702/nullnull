@@ -179,7 +179,7 @@ client.on("message", async message => {
 						return message.channel.send("user found")
 					} else {
 						if (uuuser == "null") {
-							insertDocuments()(db, function() {
+							insertDocuments(db, function() {
 								client.close()
 							});
 						}
@@ -188,11 +188,11 @@ client.on("message", async message => {
 			});
 		}
 
-		findDocuments()(db, function() {
+		findDocuments(db, function() {
 		message.channel.send("found")
 		
 		})
-		insertDocuments()(db, function() {
+		insertDocuments(db, function() {
 			message.channel.send("User not found, entry added.")
 		})
 		message.channel.send("Users entry already exists.")
