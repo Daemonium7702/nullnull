@@ -118,7 +118,7 @@ client.on("message", async message => {
 }*/
 ////////DATABASE//////////
 	
- if (command === "dbconninit") {
+						 if (command === "dbconninit") {
 	// Connection URL
 	const url = 'mongodb://Admin:hippopotomonstrosesquippedalaphobia1@ds235788.mlab.com:35788/daemonium';
 	// Database Name
@@ -170,21 +170,11 @@ client.on("message", async message => {
 					console.log("Found the following records");
 					message.channel.send(docs);
 					callback(docs);
-					if (null) {
-						const uuuser = "null"
-					} else {
-						const uuuser = "found"
-					}
-					if (uuuser == "found") {
-						return message.channel.send("user found")
-					} else {
-						if (uuuser == "null") {
+					
 							insertDocuments(db, function() {
 								client.close()
 							});
-						}
-					}
-				});
+					});
 			});
 		}
 
