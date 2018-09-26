@@ -44,6 +44,7 @@ var PastebinAPI = require('pastebin-js'),
     });
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
+const factor = require('factors-number')
 
 client.on("ready", () => {
 	console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);
@@ -610,6 +611,16 @@ scrape().then((value) => {
 		  maxDuplicatesBan: 10, // Maximum amount of duplicate messages a user can send in a timespan before getting banned
 		  deleteMessagesAfterBanForPastDays: 1 // Delete the spammed messages after banning for the past x days.
 		});*/
+		if(command === "factor"){
+		const number = args[0]
+		if(!args[0]){
+		message.channel.send("No numbers to factor")
+		}
+			if(args[1]){
+			message.channel.send("too many args!")
+			}
+			factor.numberFactors(number)
+		}
 		if (command === "grole") {
 			const role = args[0]
 			let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
