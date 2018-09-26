@@ -79,6 +79,42 @@ client.on("message", async message => {
 	const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
 	const command = args.shift().toLowerCase();
 	const prefix = config.prefix
+		// Connection URL
+	const url = 'mongodb://Admin:hippopotomonstrosesquippedalaphobia1@ds235788.mlab.com:35788/daemonium';
+	// Database Name
+	const dbName = 'daemonium';
+	// Use connect method to connect to the server
+	MongoClient.connect(url, function(err, client) {
+		assert.equal(null, err);
+		const db = client.db(dbName);
+		const insertDocuments = function(db, callback) {
+			// Get the documents collection
+			MongoClient.connect(url, function(err, client) {
+				const dbName = 'daemonium';
+				const collection = client.db(dbName).collection('daecade');
+				// Insert some documents
+				if (
+					collection.update(
+						{"users":{[message.author.id]:{$exists : false}}},
+						{
+						"users": {
+							[message.author.id]: {
+								"money": 1
+							}
+						}
+					}, function(err, result) {
+						assert.equal(err, null);
+						assert.equal(1, result.result.n);
+						assert.equal(1, result.ops.length);
+						message.channel.send("New user detected..... Inserted 1 document into the collection");
+						callback(result);
+					})
+
+				);
+			})
+		}
+			client.close();
+	})
 	if (message.guild.id == "451843103318343680") {
 		message.channel.send("services discontinued for https://discordapp.com/channels/451843103318343680/457677144470847500 please head to https://discord.gg/GfJw3VB to use the bot.");
 		return
@@ -118,41 +154,7 @@ client.on("message", async message => {
 	    if(command=="purplebunny"){
 }*/
 ////////DATABASE//////////
-	// Connection URL
-	const url = 'mongodb://Admin:hippopotomonstrosesquippedalaphobia1@ds235788.mlab.com:35788/daemonium';
-	// Database Name
-	const dbName = 'daemonium';
-	// Use connect method to connect to the server
-	MongoClient.connect(url, function(err, client) {
-		assert.equal(null, err);
-		message.channel.send("Connected successfully to server");
-		const db = client.db(dbName);
-		const insertDocuments = function(db, callback) {
-			// Get the documents collection
-			MongoClient.connect(url, function(err, client) {
-				const dbName = 'daemonium';
-				const collection = client.db(dbName).collection('daecade');
-				// Insert some documents
-				if (
-					collection.update(
-						{"users":{[message.author.id]:{$exists : true}}},
-						{
-						"users": {
-							[message.author.id]: {
-								"money": 1
-							}
-						}
-					}, function(err, result) {
-						assert.equal(err, null);
-						assert.equal(1, result.result.n);
-						assert.equal(1, result.ops.length);
-						message.channel.send("New user detected..... Inserted 1 document into the collection");
-						callback(result);
-					})
 
-				);
-			})
-		}
 	/*	const findDocuments = function(db, callback) {
 			// Get the documents collection
 			const url = 'mongodb://Admin:hippopotomonstrosesquippedalaphobia1@ds235788.mlab.com:35788/daemonium';
@@ -182,8 +184,7 @@ client.on("message", async message => {
 		insertDocuments(db, function() {
 			message.channel.send("User not found, entry added.")
 		})*/
-		client.close();
-	})
+	
 		///This will eventually add 40k users to my db. Its aboutta get overloaded xD
 	 /*
       if(command ==="user"){
