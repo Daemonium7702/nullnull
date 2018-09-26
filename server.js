@@ -620,8 +620,9 @@ scrape().then((value) => {
 			message.channel.send("too many args!")
 			}
 			var integer = parseInt(number, 10);
-			factor.numberFactors(integer)
-		}
+			const newmss = factor.numberFactors(integer)
+		message.channel.send(newmss)
+			}
 		if (command === "grole") {
 			const role = args[0]
 			let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
