@@ -170,10 +170,6 @@ client.on("message", async message => {
 					console.log("Found the following records");
 					message.channel.send(docs);
 					callback(docs);
-					
-							insertDocuments(db, function() {
-								client.close()
-							});
 					});
 			});
 		}
@@ -185,7 +181,6 @@ client.on("message", async message => {
 		insertDocuments(db, function() {
 			message.channel.send("User not found, entry added.")
 		})
-		message.channel.send("Users entry already exists.")
 		client.close();
 	})
 }
