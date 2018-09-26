@@ -176,6 +176,7 @@ if(uuuser == "null"){
 insertDocuments()(db, function() {
 client.close()
 }
+);
 }
 }
   });
@@ -184,18 +185,15 @@ client.close()
 		 	
 				 }
   findDocuments()(db, function() {
+  client.close();
+})
 insertDocuments()(db, function() {
-client.close();
 	message.channel.send("User not found, entry added.")
 })
-}else{
 	message.channel.send("Users entry already exists.")
 	client.close();
 }  
-})
-  });
-	
- }
+)}
 
 	 /*
       if(command ==="user"){
