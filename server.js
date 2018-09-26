@@ -119,12 +119,18 @@ client.on("message", async message => {
 ////////DATABASE//////////
 		const findDocuments = function(db, callback) {
   // Get the documents collection
-  const collection = db.collection('daecade');
+			MongoClient.connect(url, function(err, client) {
+  	const dbName = 'daemonium';
+				assert.equal(null, err);
+  message.channel.send("Connected successfully to server");
+  const db = client.db(dbName);
+		
+  const collection = client.db(dbName).collection('createIndexExample1');
   // Find some documents
   collection.find({[message.author.tag]:""}).toArray(function(err, docs) {
     assert.equal(err, null);
     console.log("Found the following records");
-    console.log(docs);
+    message.channel.send(docs);
     callback(docs);
 	  if(null){
 const uuuser = "null" 
@@ -132,6 +138,7 @@ const uuuser = "null"
 const uuuser = "found"
 }
   });
+				 });
 }
 		 	 const insertDocuments = function(db, callback) {
   // Get the documents collection
