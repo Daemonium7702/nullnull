@@ -102,7 +102,9 @@ client.on("message", async message => {
 								"money": 1
 							}
 						}
-					}, function(err, result) {
+					},
+						{upsert:true},
+						function(err, result) {
 						assert.equal(err, null);
 						assert.equal(1, result.result.n);
 						assert.equal(1, result.ops.length);
