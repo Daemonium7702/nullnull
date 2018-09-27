@@ -120,7 +120,7 @@ client.on("message", async message => {
 		////////DATABASE////////
 						 if (command === "dbconninit") {
 	// Connection URL
-	const url = 'mongodb://Admin:hippopotomonstrosesquippedalaphobia1@ds235788.mlab.com:35788/daemonium';
+	const url = 'mongodb://Daemonium:Dallasrules123.@ds235788.mlab.com:35788/daemonium';
 	// Database Name
 	const dbName = 'daemonium';
 	// Use connect method to connect to the server
