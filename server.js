@@ -37,11 +37,11 @@ const QrCode = require("qrcode-reader");
 const Parser = require('qrcode-image-parser');
 const prime = require('get-primes')
 var PastebinAPI = require('pastebin-js'),
-  pastebin = new PastebinAPI({
-      'api_dev_key' : '7d0884ae9f6fcda7dfe3feaed6349ac9',
-      'api_user_name' : 'DaemoniumDVMors',
-      'api_user_password' : 'Dallasrules123.'
-    });
+	pastebin = new PastebinAPI({
+		'api_dev_key': '7d0884ae9f6fcda7dfe3feaed6349ac9',
+		'api_user_name': 'DaemoniumDVMors',
+		'api_user_password': 'Dallasrules123.'
+	});
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
 const factor = require('factors-number')
@@ -118,80 +118,73 @@ client.on("message", async message => {
 	    if(command=="purplebunny"){	
 	    */
 		////////DATABASE////////
-						 if (command === "dbconninit") {
-	// Connection URL
-	const url = 'mongodb://testinguser:Dallasrules123.@ds235788.mlab.com:35788/daemonium';
-	// Database Name
-	const dbName = 'daemonium';
-	// Use connect method to connect to the server
-	MongoClient.connect(url, function(err, client) {
-		assert.equal(null, err);
-		message.channel.send("Connected successfully to server");
-		const db = client.db(dbName);
-		const insertDocuments = function(db, callback) {
-			// Get the documents collection
+		// Insert some documents 
+		if (command === "dbconninit") {
+			// Connection URL
+			const url = 'mongodb://testinguser:Dallasrules123.@ds235788.mlab.com:35788/daemonium';
+			// Database Name
+			const dbName = 'daemonium';
+			// Use connect method to connect to the server
 			MongoClient.connect(url, function(err, client) {
-				const dbName = 'daemonium';
-				const collection = client.db(dbName).collection('daecade');
-				// Insert some documents 
-								 if (command === "dbconninit") {
-	// Connection URL
-	const url = 'mongodb://testinguser:Dallasrules123.@ds235788.mlab.com:35788/daemonium';
-	// Database Name
-	const dbName = 'daemonium';
-	// Use connect method to connect to the server
-	MongoClient.connect(url, function(err, client) {
-		assert.equal(null, err);
-		message.channel.send("Connected successfully to server");
-		const db = client.db(dbName);
-		const insertDocuments = function(db, callback) {
-			// Get the documents collection
-			MongoClient.connect(url, function(err, client) {
-				const dbName = 'daemonium';
-				const collection = client.db(dbName).collection('daecade');
-				// Insert some documents 
-				collection.insert({
-				"users":{[message.author.id]:{$exists:false}},
-						"users": {
-							[message.author.id]: {
-								"money": 1
-							}
-						}
-					})
-			})
-		}
-				client.close();
-	})
-}
-	/*	const findDocuments = function(db, callback) {
-			// Get the documents collection
-			const url = 'mongodb://Admin:hippopotomonstrosesquippedalaphobia1@ds235788.mlab.com:35788/daemonium';
-			MongoClient.connect(url, function(err, client) {
-				const dbName = 'daemonium';
 				assert.equal(null, err);
 				message.channel.send("Connected successfully to server");
 				const db = client.db(dbName);
-				const collection = client.db(dbName).collection('daecade');
-				// Find some documents
-				collection.find({
-					[message.author.tag]: ""
-				}).toArray(function(err, docs) {
-					assert.equal(err, null);
-					console.log("Found the following records");
-					message.channel.send(docs);
-					callback(docs);
-					});
-			});
-		}
-		findDocuments(db, function() {
-		message.channel.send("found")
-		
-		})
-		insertDocuments(db, function() {
-			message.channel.send("User not found, entry added.")
-		})*/
+				const insertDocuments = function(db, callback) {
+					// Get the documents collection
+					MongoClient.connect(url, function(err, client) {
+						const dbName = 'daemonium';
+						const collection = client.db(dbName).collection('daecade');
+						// Insert some documents 
+						collection.insert({
+							"users": {
+								[message.author.id]: {
+									$exists: false
+								}
+							},
+							"users": {
+								[message.author.id]: {
+									"money": 1
 
-	 /*
+								}
+							}
+						})
+					})
+				}
+
+				client.close();
+			})
+		}
+
+
+		/*	const findDocuments = function(db, callback) {
+				// Get the documents collection
+				const url = 'mongodb://Admin:hippopotomonstrosesquippedalaphobia1@ds235788.mlab.com:35788/daemonium';
+				MongoClient.connect(url, function(err, client) {
+					const dbName = 'daemonium';
+					assert.equal(null, err);
+					message.channel.send("Connected successfully to server");
+					const db = client.db(dbName);
+					const collection = client.db(dbName).collection('daecade');
+					// Find some documents
+					collection.find({
+						[message.author.tag]: ""
+					}).toArray(function(err, docs) {
+						assert.equal(err, null);
+						console.log("Found the following records");
+						message.channel.send(docs);
+						callback(docs);
+						});
+				});
+			}
+			findDocuments(db, function() {
+			message.channel.send("found")
+			
+			})
+			insertDocuments(db, function() {
+				message.channel.send("User not found, entry added.")
+			})*/
+
+		/*
       if(command ==="user"){
 const bud = require('basic-instagram-user-details');
 		
@@ -585,18 +578,18 @@ scrape().then((value) => {
 		  maxDuplicatesBan: 10, // Maximum amount of duplicate messages a user can send in a timespan before getting banned
 		  deleteMessagesAfterBanForPastDays: 1 // Delete the spammed messages after banning for the past x days.
 		});*/
-		if(command === "factor"){
-		const number = args[0]
-		if(!args[0]){
-		message.channel.send("No numbers to factor")
-		}
-			if(args[1]){
-			message.channel.send("too many args!")
+		if (command === "factor") {
+			const number = args[0]
+			if (!args[0]) {
+				message.channel.send("No numbers to factor")
+			}
+			if (args[1]) {
+				message.channel.send("too many args!")
 			}
 			var integer = parseInt(number, 10);
 			const newmss = factor.numberFactors(integer)
-		message.channel.send(newmss)
-			}
+			message.channel.send(newmss)
+		}
 		if (command === "grole") {
 			const role = args[0]
 			let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
@@ -607,93 +600,93 @@ scrape().then((value) => {
 			message.guild.member(kUser).addRole(role)
 			message.channel.send(kUser.toString() + "has been given" + `${role}`)
 		}
-		if(command == "announcements"){
-message.channel.send("Update info 9.23.2018: New commands added. Reta, f2cipher, rot commands, hex commands, gprime, caesar ciphers, vig ciphers and more! Make sure to run .help often to see new commands!")
-}
-		if(command =="reta"){
+		if (command == "announcements") {
+			message.channel.send("Update info 9.23.2018: New commands added. Reta, f2cipher, rot commands, hex commands, gprime, caesar ciphers, vig ciphers and more! Make sure to run .help often to see new commands!")
+		}
+		if (command == "reta") {
 			message.channel.send("https://www.youtube.com/watch?v=Hds9tFMuU8o")
 		}
 		///some crypto///
-		if(command === "f2cipher"){
-const thmessage = args.join('')
-const a = thmessage.replace(/a/gi, "196418_1-");
-const b = a.replace(/b/gi, "121393_2-");
-const c = b.replace(/c/gi, "75025_3-")
-const d = c.replace(/d/gi, "46368_5-")
-const e = d.replace(/e/gi, "28657_8-")
-const f = e.replace(/f/gi, "17711_13-")
-const g = f.replace(/g/gi, "10946_21-")
-const h = g.replace(/h/gi, "6765_34-")
-const i = h.replace(/i/gi, "4181_55-")
-const j = i.replace(/j/gi, "2584_89-")
-const k = j.replace(/k/gi, "1597_144-")
-const l = k.replace(/l/gi, "987_233-")
-const m = l.replace(/m/gi, "610_377-")
-const n = m.replace(/n/gi, "377_610-")
-const o = n.replace(/o/gi, "233_987-")
-const p = o.replace(/p/gi, "144_1597-")
-const q = p.replace(/q/gi, "89_2584-")
-const r = q.replace(/r/gi, "55_4181-")
-const s = r.replace(/s/gi, "34_6765-")
-const t = s.replace(/t/gi, "21_10946-")
-const u = t.replace(/u/gi, "13_17711-")
-const v = u.replace(/v/gi, "8_28657-")
-const w = v.replace(/w/gi, "5_46368-")
-const x = w.replace(/x/gi, "3_75025-")
-const y = x.replace(/y/gi, "2_121393-")
-const z = y.replace(/z/gi, "1_196418-")
-const spacer = z.replace(/ /g, "|")
-message.channel.send(spacer)
+		if (command === "f2cipher") {
+			const thmessage = args.join('')
+			const a = thmessage.replace(/a/gi, "196418_1-");
+			const b = a.replace(/b/gi, "121393_2-");
+			const c = b.replace(/c/gi, "75025_3-")
+			const d = c.replace(/d/gi, "46368_5-")
+			const e = d.replace(/e/gi, "28657_8-")
+			const f = e.replace(/f/gi, "17711_13-")
+			const g = f.replace(/g/gi, "10946_21-")
+			const h = g.replace(/h/gi, "6765_34-")
+			const i = h.replace(/i/gi, "4181_55-")
+			const j = i.replace(/j/gi, "2584_89-")
+			const k = j.replace(/k/gi, "1597_144-")
+			const l = k.replace(/l/gi, "987_233-")
+			const m = l.replace(/m/gi, "610_377-")
+			const n = m.replace(/n/gi, "377_610-")
+			const o = n.replace(/o/gi, "233_987-")
+			const p = o.replace(/p/gi, "144_1597-")
+			const q = p.replace(/q/gi, "89_2584-")
+			const r = q.replace(/r/gi, "55_4181-")
+			const s = r.replace(/s/gi, "34_6765-")
+			const t = s.replace(/t/gi, "21_10946-")
+			const u = t.replace(/u/gi, "13_17711-")
+			const v = u.replace(/v/gi, "8_28657-")
+			const w = v.replace(/w/gi, "5_46368-")
+			const x = w.replace(/x/gi, "3_75025-")
+			const y = x.replace(/y/gi, "2_121393-")
+			const z = y.replace(/z/gi, "1_196418-")
+			const spacer = z.replace(/ /g, "|")
+			message.channel.send(spacer)
 		}
-			
-		
-		
-		
-		if(command === "gprime"){
+
+
+
+
+		if (command === "gprime") {
 			const num = args.join('')
-		if(!args){
-		message.channel.send("I need to know what number to stop looking for primes at.")
-		}
+			if (!args) {
+				message.channel.send("I need to know what number to stop looking for primes at.")
+			}
 			const primeNumbers = prime(num).toString();
 			const title = "sum numeros"
-message.channel.send(primeNumbers);
- pastebin
-    .createPaste({
-        text: primeNumbers,
-        title: title,
-        format: null,
-        privacy: 0,
-        expiration: 'N'
-    })
-    .then(function (data) {
-        // we have succesfully pasted it. Data contains the id
-        message.channel.send(data);
-    })
-    .fail(function (err) {
-        console.log(err);
-message.channel.send(err);
-    });
-			      }
-		if(command === "paste"){
-		const title = args[0]
-const fixruppr = args[0].length
-const text = args.join('').substr(fixruppr)
-  pastebin
-    .createPaste({
-        text: text,
-        title: title,
-        format: null,
-        privacy: 0,
-        expiration: 'N'
-    })
-    .then(function (data) {
-        // we have succesfully pasted it. Data contains the id
-        message.channel.send(data);
-    })
-    .fail(function (err) {
-        console.log(err);
-message.channel.send(err);
-    });
+			message.channel.send(primeNumbers);
+			pastebin
+				.createPaste({
+					text: primeNumbers,
+					title: title,
+					format: null,
+					privacy: 0,
+					expiration: 'N'
+				})
+				.then(function(data) {
+					// we have succesfully pasted it. Data contains the id
+					message.channel.send(data);
+				})
+				.fail(function(err) {
+					console.log(err);
+					message.channel.send(err);
+				});
+		}
+		if (command === "paste") {
+			const title = args[0]
+			const fixruppr = args[0].length
+			const text = args.join('').substr(fixruppr)
+			pastebin
+				.createPaste({
+					text: text,
+					title: title,
+					format: null,
+					privacy: 0,
+					expiration: 'N'
+				})
+				.then(function(data) {
+					// we have succesfully pasted it. Data contains the id
+					message.channel.send(data);
+				})
+				.fail(function(err) {
+					console.log(err);
+					message.channel.send(err);
+				});
 		}
 		/*
 		if(command === "qr"){
@@ -719,32 +712,30 @@ Jimp.read(buffer, (err, lenna) => {
 			
 		}
 		*/
-		
-		
-		if(command === "hexenc"){
-		
-		
-		function ascii_to_hexa(str)
-  {
-	var arr1 = [];
-	for (var n = 0, l = str.length; n < l; n ++) 
-     {
-		var hex = Number(str.charCodeAt(n)).toString(16);
-		arr1.push(hex);
-	 }
-	return arr1.join('');
-   }
-const texts = args.join(' ')
-message.channel.send(ascii_to_hexa(texts));
+
+
+		if (command === "hexenc") {
+
+
+			function ascii_to_hexa(str) {
+				var arr1 = [];
+				for (var n = 0, l = str.length; n < l; n++) {
+					var hex = Number(str.charCodeAt(n)).toString(16);
+					arr1.push(hex);
+				}
+				return arr1.join('');
+			}
+			const texts = args.join(' ')
+			message.channel.send(ascii_to_hexa(texts));
 		}
-		if(command == "hexdec"){
-		function hex2a(hexing) {
-    var hex = hexing.toString();
-    var str = '';
-    for (var i = 0; i < hex.length; i += 2)
-    str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
-    return str;
-}
+		if (command == "hexdec") {
+			function hex2a(hexing) {
+				var hex = hexing.toString();
+				var str = '';
+				for (var i = 0; i < hex.length; i += 2)
+					str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+				return str;
+			}
 			const texto = args.join(' ')
 			message.channel.send(hex2a(texto))
 		}
@@ -814,9 +805,9 @@ message.channel.send(ascii_to_hexa(texts));
 					args[0] = "a"
 				}
 
-				const caesarshiftt=Caesar.Cipher(shift).crypt(txt);
-				const caesarshift= caesarshiftt.substr(1)
-			message.channel.send(caesarshift)
+				const caesarshiftt = Caesar.Cipher(shift).crypt(txt);
+				const caesarshift = caesarshiftt.substr(1)
+				message.channel.send(caesarshift)
 			}
 		}
 		if (command === "caesardec") {
@@ -882,9 +873,9 @@ message.channel.send(ascii_to_hexa(texts));
 				} else if (args[0] = 26) {
 					args[0] = "a"
 				}
-				const newceass=Caesar.Decipher(shift).crypt(txt);
+				const newceass = Caesar.Decipher(shift).crypt(txt);
 				const newceas = newceass.substr(1);
-			message.channel.send(newceas)
+				message.channel.send(newceas)
 			}
 		}
 		if (command === "vigenc") {
@@ -896,8 +887,8 @@ message.channel.send(ascii_to_hexa(texts));
 			if (!phr) {
 				return message.channel.send("You must have a phrase! (usage: .vigenc pass text)")
 			}
-			const vigvig=Vigenere.Cipher(password).crypt(phr);
-		message.channel.send(vigvig)
+			const vigvig = Vigenere.Cipher(password).crypt(phr);
+			message.channel.send(vigvig)
 		}
 		if (command === "vigdec") {
 			const password = args[0];
@@ -909,47 +900,47 @@ message.channel.send(ascii_to_hexa(texts));
 				return message.channel.send("You must have a phrase! (usage: .vigdec pass text)")
 			}
 			const vigvg = Vigenere.Decipher(password).crypt(phr);
-		message.channel.send(vigvg)
+			message.channel.send(vigvg)
 		}
 		if (command === "rot5enc") {
 			const txt = args.join(' ')
 			const rfive = ROT5.Cipher().crypt(txt);
-		message.channel.send(rfive)
+			message.channel.send(rfive)
 		}
 		if (command === "rot13enc") {
 			const txt = args.join(' ')
 			const rthirteen = ROT13.Cipher().crypt(txt);
-		message.channel.send(rthirteen)
+			message.channel.send(rthirteen)
 		}
 		if (command === "rot18enc") {
 			const txt = args.join(' ')
 			const r18 = ROT18.Cipher().crypt(txt);
-		message.channel.send(r18)
+			message.channel.send(r18)
 		}
 		if (command === "rot47enc") {
 			const txt = args.join(' ')
 			const rr4 = ROT47.Cipher().crypt(txt);
-		message.channel.send(rr4)
+			message.channel.send(rr4)
 		}
 		if (command === "rot5dec") {
 			const txt = args.join(' ')
-			const rrr= ROT5.Decipher().crypt(txt);
-		message.channel.send(rrr)
+			const rrr = ROT5.Decipher().crypt(txt);
+			message.channel.send(rrr)
 		}
 		if (command === "rot13dec") {
 			const txt = args.join(' ')
-			const rrrr =ROT13.Decipher().crypt(txt);
-		message.channel.send(rrrr)
+			const rrrr = ROT13.Decipher().crypt(txt);
+			message.channel.send(rrrr)
 		}
 		if (command === "rot18dec") {
 			const txt = args.join(' ')
-			const rrrrr =ROT18.Decipher().crypt(txt);
-		message.channel.send(rrrrr)
+			const rrrrr = ROT18.Decipher().crypt(txt);
+			message.channel.send(rrrrr)
 		}
 		if (command === "rot47dec") {
 			const txt = args.join(' ')
-			const rrrrrr =ROT47.Decipher().crypt(txt);
-		message.channel.send(rrrrrr)
+			const rrrrrr = ROT47.Decipher().crypt(txt);
+			message.channel.send(rrrrrr)
 		}
 		if (command == "ttb64") {
 			const jj = args.join(' ');
@@ -2593,4 +2584,3 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
 	}
 });
 client.login(process.env.BOT_TOKEN);
-
