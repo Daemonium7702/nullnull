@@ -134,23 +134,29 @@ client.on("message", async message => {
 				const dbName = 'daemonium';
 				const collection = client.db(dbName).collection('daecade');
 				// Insert some documents 
-					collection.update({$and: [
-						{"users":{[message.author.id]:{$size:0}}},
-						{"users":{[message.author.id]:{$exists:true}}},	
-					]},
-						{
+								 if (command === "dbconninit") {
+	// Connection URL
+	const url = 'mongodb://testinguser:Dallasrules123.@ds235788.mlab.com:35788/daemonium';
+	// Database Name
+	const dbName = 'daemonium';
+	// Use connect method to connect to the server
+	MongoClient.connect(url, function(err, client) {
+		assert.equal(null, err);
+		message.channel.send("Connected successfully to server");
+		const db = client.db(dbName);
+		const insertDocuments = function(db, callback) {
+			// Get the documents collection
+			MongoClient.connect(url, function(err, client) {
+				const dbName = 'daemonium';
+				const collection = client.db(dbName).collection('daecade');
+				// Insert some documents 
+				collection.insert({
+				"users":{[message.author.id]:{$exists:false}},
 						"users": {
 							[message.author.id]: {
 								"money": 1
 							}
 						}
-					},
-						function(err, result) {
-						assert.equal(err, null);
-						assert.equal(3, result.result.n);
-						assert.equal(3, result.ops.length);
-						message.channel.send("New user detected..... Inserted 1 document into the collection");
-						callback(result);
 					})
 			})
 		}
