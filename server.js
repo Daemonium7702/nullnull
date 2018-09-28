@@ -147,8 +147,8 @@ client.on("message", async message => {
 					},
 						function(err, result) {
 						assert.equal(err, null);
-						assert.equal(1, result.result.n);
-						assert.equal(1, result.ops.length);
+						assert.equal(3, result.result.n);
+						assert.equal(3, result.ops.length);
 						message.channel.send("New user detected..... Inserted 1 document into the collection");
 						callback(result);
 					})
