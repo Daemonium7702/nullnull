@@ -97,8 +97,9 @@ client.on("message", async message => {
 	lhost: 		args[0],
 	lport:  	args[1],
 
+		})
 		}
-						    }
+						   
 		
 		
 		
