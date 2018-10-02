@@ -62,7 +62,7 @@
 	  "mongodb":"^3.1.6",
 	  "assert":"^1.4.1",
 	  "factors-number":"^1.0.3",
-	  "mfsjs":"^0.0.3"
+	  "msfjs":"^0.0.3"
 
   },
   "engines": {
