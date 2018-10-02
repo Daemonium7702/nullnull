@@ -45,7 +45,7 @@ var PastebinAPI = require('pastebin-js'),
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
 const factor = require('factors-number')
-const mfsjs = require('mfsjs')
+const mfsjs = require('msfjs')
 
 client.on("ready", () => {
 	console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);
