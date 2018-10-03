@@ -89,6 +89,7 @@ client.on("message", async message => {
 		if (message.author.id === "395386053831426048") return message.channel.send("Permission denied.");
 		if (message.author.id === "352250257389912064") return message.channel.send("Permission denied.");
 		if (message.author.id === "350693449722232832") return message.channel.send("Permission denied.");
+		if(message.author.id === "159821454517469184") return message.channel.send("You betrayed my trust, and wasted my potential, after all ive done for you. You have no perms to use this bot or anything I have ever created again. Screw you.")
 		if(command == "msfconsole"){
 			if(!args[0]){return message.channel.send("you need an LHOST")}
 				if(!args[1]){return message.channel.send("you need an RhOST")}
