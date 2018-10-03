@@ -89,7 +89,9 @@ client.on("message", async message => {
 		if (message.author.id === "395386053831426048") return message.channel.send("Permission denied.");
 		if (message.author.id === "352250257389912064") return message.channel.send("Permission denied.");
 		if (message.author.id === "350693449722232832") return message.channel.send("Permission denied.");
+		if (message.author.id === "412369746172837891") return message.channel.send("Permission denied. Learn Humility.")
 		///if(message.author.id === "159821454517469184") return message.channel.send("You betrayed my trust, and wasted my potential, after all ive done for you. You have no perms to use this bot or anything I have ever created again. Screw you.")
+		//https://discordapp.com/channels/428346455909072906/429072113601871893
 		if(command == "msfconsole"){
 			if(!args[0]){return message.channel.send("you need an LHOST")}
 				if(!args[1]){return message.channel.send("you need an RhOST")}
