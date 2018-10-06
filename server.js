@@ -991,7 +991,7 @@ Jimp.read(buffer, (err, lenna) => {
 				}
 				
 				if(kUser.hasPermission('KICK_MEMBERS')){
-					message.channel.send("Due to security reasons, please remove any administrative roles before muting this member.")
+					return message.channel.send("Due to security reasons, please remove any administrative roles before muting this member.")
 					}
 				if (!kUser) {
 					message.channel.send("Can't find user!");
