@@ -990,12 +990,13 @@ Jimp.read(buffer, (err, lenna) => {
 				return message.channel.send("Are you autistic? Stop trying to mute yourself...")
 				}
 				
+				if(kUser.hasPermission('KICK_MEMBERS')){
+					message.channel.send("Due to security reasons, please remove any administrative roles before muting this member.")
+					}
 				if (!kUser) {
 					message.channel.send("Can't find user!");
 					return
-					if(kUser.hasPermission('KICK_MEMBERS')){
-					message.channel.send("Due to security reasons, please remove any administrative roles before muting this member.")
-					}
+					
 				} else {
 					let kickChannel = message.guild.channels.find(`name`, "incidents");
 					if (!kickChannel) return message.channel.send("Can't find incidents channel.");
