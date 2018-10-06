@@ -986,9 +986,16 @@ Jimp.read(buffer, (err, lenna) => {
 				return
 			} else {
 				let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+				if(kUser.id == message.author.id){
+				return message.channel.send("Are you autistic? Stop trying to mute yourself...")
+				}
+				
 				if (!kUser) {
 					message.channel.send("Can't find user!");
 					return
+					if(kUser.hasPermission('KICK_MEMBERS')){
+					message.channel.send("Due to security reasons, please remove any administrative roles before muting this member.")
+					}
 				} else {
 					let kickChannel = message.guild.channels.find(`name`, "incidents");
 					if (!kickChannel) return message.channel.send("Can't find incidents channel.");
@@ -1641,7 +1648,7 @@ Jimp.read(buffer, (err, lenna) => {
 									message.reply('There was an error while sending your bug report to Daebot Support. Please try again later.');
 								} else {
 									resolve(res);
-									message.channel.send(`:white_check_mark: **${message.author.username}**, your bug report has successfully been submitted to Daebot Support for review. Thank you!.`);
+									message.channel.send(`:white_check_mark: **${message.author.username}**, your reply has been submitted sent. Thank you!.`);
 								}
 							});
 					});
