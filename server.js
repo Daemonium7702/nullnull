@@ -131,19 +131,8 @@ client.on("message", async message => {
 			const randomAnswer = await bluebunny[Math.floor(Math.random() * bluebunny.length)];
 			message.channel.send(bluebunny)
 		}
-		/*
-	    if(command=="greenbunny"){
-}
-	    if(command=="yellowbunny"){
-}
-	    if(command=="orangebunny"){
-	    }
-	    if(command=="redbunny"){
-}
-	    if(command=="purplebunny"){	
-	    */
-		////////DATABASE////////
-		// Insert some documents 
+	
+		////////DATABASE///////
 		if (command === "dbconninit") {
 			// Connection URL
 			const url = 'mongodb://testinguser:Dallasrules123.@ds235788.mlab.com:35788/daemonium';
