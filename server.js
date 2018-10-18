@@ -53,11 +53,11 @@ client.on("ready", () => {
 });
 client.on("guildCreate", guild => {
 	console.log(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
-	client.user.setGame(`on ${client.guilds.size} servers `);
+	client.user.setActivity(`on ${client.guilds.size} servers `);
 });
 client.on("guildDelete", guild => {
 	console.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
-	client.user.setGame(`on Dis Cord`);
+	client.user.setActivity(`on Dis Cord`);
 });
 client.on('guildMemberAdd', member => {
 
@@ -2289,8 +2289,10 @@ Jimp.read(buffer, (err, lenna) => {
 			message.channel.send(ascii);
 		};
 		if (command === "ss") {
-			const mss = args.join(" ");
-			client.user.setActivity(mss);
+			const mss = args.join('');
+			const tyype = args[0]
+			const msss = mss.replace('Watching','').replace('watching','').replace('Playing','').replace('playing','').replace('Streaming','').replace('streaming','')
+			client.user.setActivity(msss,tyype);
 			if (message.author.id === "347885325940424714") {
 				message.channel.send("Yes, my ***True Liege***");
 				return
