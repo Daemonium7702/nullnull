@@ -2291,8 +2291,8 @@ Jimp.read(buffer, (err, lenna) => {
 		if (command === "ss") {
 			const mss = args.join('');
 			const ttype = args[0]
-			const tyype = ttype.toUpperCase()
-			const msss = mss.replace('Watching','').replace('watching','').replace('Playing','').replace('playing','').replace('Listening','').replace('listening','')
+			const tyype = ttype.toUpperCase().toString()
+			const msss = mss.replace('Watching',' ').replace('watching',' ').replace('Playing',' ').replace('playing',' ').replace('Listening',' ').replace('listening',' ')
 			if(!mss || !ttype){
 message.channel.send("Please ensure you are using the command as so. .ss type text. EG: you can pick, Playing, Watching, or Listening. .ss playing with sum toyz")
 }else{
