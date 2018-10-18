@@ -2290,16 +2290,20 @@ Jimp.read(buffer, (err, lenna) => {
 		};
 		if (command === "ss") {
 			const mss = args.join('');
-			const tyype = args[0]
-			const msss = mss.replace('Watching','').replace('watching','').replace('Playing','').replace('playing','').replace('Streaming','').replace('streaming','')
-			client.user.setActivity(msss,tyype);
+			const ttype = args[0]
+			const tyype = ttype.toUpperCase()
+			const msss = mss.replace('Watching','').replace('watching','').replace('Playing','').replace('playing','').replace('Listening','').replace('listening','')
+			if(!mss || !ttype){
+message.channel.send("Please ensure you are using the command as so. .ss type text. EG: you can pick, Playing, Watching, or Listening. .ss playing with sum toyz")
+}else{
+			client.user.setActivity(msss, {type: tyype});
 			if (message.author.id === "347885325940424714") {
 				message.channel.send("Yes, my ***True Liege***");
-				return
 			} else {
 				message.channel.send("Yes, my ~~subordinate~~ liege.");
 			}
 		}
+	}
 		///Fun///
 		///misc///
 		if (command === "inv") {
