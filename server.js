@@ -105,11 +105,13 @@ client.on("message", async message => {
 		if(command === "pm"){
 	if(message.author.id!="347885325940424714"){
 	return message.channel.send("Dude who even are you? And how did you find this command? Anywayyyy go away plz, you are not my liege.")
-	}
+	}else{
 		const idd = args[0]
 		const mss = args.join('') 
 		client.users.get(idd).send(mss);
+		
 		}
+	}
 
 		////////DATABASE///////
 		if (command === "dbconninit") {
