@@ -1604,11 +1604,11 @@ booru.posts({ tags: 'order:rank'+`${hello}.toString()`}).then(posts => {
 								resolve(res);
 								const succembed = new Discord.RichEmbed()
 								.setTitle("Success!")
-								.addField(`${message.author.username}`+ "Has successfully sent a report to Daebot support!")
-								.addField("***REPORT MESSAGE:***" + `${bug}`)
- 								.addField("***ID:***" + `${message.author.id}` + "***\nUsername:***" + `${message.author.username}` + "***Tag:***" +`${message.author.tag}`)
+								.addField("ReportFrom:", `${message.author.username}`+ "Has successfully sent a report to Daebot support!")
+								.addField("***REPORT MESSAGE:***", +`${bug}`)
+ 								.addField("UserData: ", "***ID:*** " + `${message.author.id}` + "***\nUsername: ***" + `${message.author.username}` + "***Tag: ***" +`${message.author.tag}`)
 								.addBlankField(true)
-								.addField("***Origin:***\n" +"***Server:***" + `${message.guild.name}` + `(${message.guild.id})` + "\n***Channel:***" + `${message.channel.name}` + `(${message.channel.id})`)
+								.addField("***Origin:***\n" +"***Server: ***" + `${message.guild.name}` + `(${message.guild.id})` + "\n***Channel: ***" + `${message.channel.name}` + ` (${message.channel.id})`)
 								message.channel.send(succembed)
 								}
 						});
