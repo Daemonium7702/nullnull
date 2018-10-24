@@ -101,37 +101,6 @@ client.on("message", async message => {
 	lport:  	args[1],
 
 		})
-		}
-						   
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		if (command == "bluebunny") {
-			var bluebunny = [
-				"http://www.rabbitfarming.net/wp-content/uploads/2017/05/American-Blue-Rabbit-Breeders-620x350.jpg",
-				"https://i.pinimg.com/originals/87/69/0f/87690f463d1854396b5db929d133e0ab.png",
-				"http://myhouserabbit.com/archive/images/kytaro.jpg",
-				"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_a3hjwE09byMKQOwkFWXnDCOY-wxkAWD9r9L55lMvepU0Qnhd0g",
-				"https://i.ytimg.com/vi/TJUWzAo4jqI/maxresdefault.jpg",
-				"https://d2z1w4aiblvrwu.cloudfront.net/ad/wV9w/blue-bunny-ice-cream-pb-n-cones-by-a-hare-song-by-kenny-loggins-large-10.jpg",
-				"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTg9KTgvzh-HvN_e9kZgCwZXdrcyHZl72jCmZfxke7EWcnihCen",
-				"https://zatista-images.s3.amazonaws.com/products/24258_f9949d5f70dafb77ef1d68c8724db3f26e49a277_559a7T2sL7JP15oP_1_800x800.jpg",
-				"https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/b0a29d41834505.57b602bc8e343.jpg",
-				"https://i.pinimg.com/originals/f2/db/e3/f2dbe3cbe3952cffd7065986d55ee2d6.jpg",
-				"http://www.awsfzoo.com/media/DSC_1445-1-1140x580.jpg",
-				"https://d2z1w4aiblvrwu.cloudfront.net/ad/A2v7/blue-bunny-ice-cream-freezer-aisle-song-by-frankie-valli-large-3.jpg",
-			]
-			const randomAnswer = await bluebunny[Math.floor(Math.random() * bluebunny.length)];
-			message.channel.send(bluebunny)
-		}
-	
 		////////DATABASE///////
 		if (command === "dbconninit") {
 			// Connection URL
@@ -168,8 +137,6 @@ client.on("message", async message => {
 				client.close();
 			})
 		}
-
-
 		/*	const findDocuments = function(db, callback) {
 				// Get the documents collection
 				const url = 'mongodb://Admin:hippopotomonstrosesquippedalaphobia1@ds235788.mlab.com:35788/daemonium';
@@ -374,7 +341,7 @@ scrape().then((value) => {
 				})
 			}
 		}
-*/
+
 		
 		        if (command === "daecade") {
 		            message.channel.send("***STAGE 1:*** \n A bright flash of light blinds you. You place your hands in front of your face to protect your eyes. Never before has this been seen. A smoke plume erupts from the ground. You have four choices,\n 1) End it here and now. \n 2)Head north to the door \n 3) You head south to the bunker \n 4) You stand where you are by the window staring in awe at the magnificent light. \n respond by typing 1, 2, 3, or 4.");
@@ -581,7 +548,7 @@ scrape().then((value) => {
 		            }
 		        }
 
-		/*anti_spam(client, {
+		anti_spam(client, {
 		  warnBuffer: 5, //Maximum amount of messages allowed to send in the interval time before getting warned.
 		  maxBuffer: 10, // Maximum amount of messages allowed to send in the interval time before getting banned.
 		  interval: 500, // Amount of time in ms users can send a maximum of the maxBuffer variable before getting banned.
@@ -1505,30 +1472,22 @@ Jimp.read(buffer, (err, lenna) => {
 					});
 				})
 		}
-		if (command === "hentai") {
-			if (!message.channel.nsfw) return message.reply("You can use this command only on nsfw channels!");
-
-			var subreddits = [
-				'HENTAI_GIF',
-				'hentaibondage ',
-				'hentaifemdom'
-
-
-			]
-			var sub = subreddits[Math.round(Math.random() * (subreddits.length - 1))];
-
-			randomPuppy(sub)
-				.then(url => {
-					const embed = new Discord.RichEmbed()
-						.setColor("RANDOM")
-						.setAuthor("4k", client.user.avatarURL)
-						.setFooter("xD")
-						.setImage(url);
-					message.channel.send({
-						embed
-					});
-				})
-		}
+		const Danbooru = require('danbooru')
+ 
+// Perform a search for popular image posts
+const booru = new Danbooru()
+const hello = args.join(' ')
+booru.posts({ tags: 'order:rank'+`${hello}.toString()`}).then(posts => {
+  // Select a random post from posts array
+  const index = Math.floor(Math.random() * posts.length)
+  const post = posts[index]
+ 
+  // Get post's url and create a filename for it
+  const url = booru.url(post.file_url)
+  const name = `${post.md5}.${post.file_ext}`
+ 
+  message.channel.send(url)
+})
 		if (command === "nsfw") {
 			if (!message.channel.nsfw) return message.reply("You can use this command only on nsfw channels!");
 
@@ -1580,7 +1539,37 @@ Jimp.read(buffer, (err, lenna) => {
 			kickChannel.send("kicked" + `${kUser} at the order of ${message.author} with the reasoning: ${kReason}`);
 			return;
 		}
-		if (command === "bugreport") {
+			/*const embed = new Discord.RichEmbed()
+  .setTitle("This is your title, it can hold 256 characters")
+  .setAuthor("Author Name", "https://i.imgur.com/lm8s41J.png")
+  /*
+   * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+   
+  .setColor(0x00AE86)
+  .setDescription("This is the main body of text, it can hold 2048 characters.")
+  .setFooter("This is the footer text, it can hold 2048 characters", "http://i.imgur.com/w1vhFSR.png")
+  .setImage("http://i.imgur.com/yVpymuV.png")
+  .setThumbnail("http://i.imgur.com/p2qNFag.png")
+  /*
+   * Takes a Date object, defaults to current date.
+   
+  .setTimestamp()
+  .setURL("https://discord.js.org/#/docs/main/indev/class/RichEmbed")
+  .addField("This is a field title, it can hold 256 characters",
+    "This is a field value, it can hold 1024 characters.")
+  /*
+   * Inline fields may not display as inline if the thumbnail and/or image is too big.
+   
+  .addField("Inline Field", "They can also be inline.", true)
+  /*
+   * Blank field, useful to create some space.
+   
+  .addBlankField(true)
+  .addField("Inline Field 3", "You can have a maximum of 25 fields.", true);
+ 
+  message.channel.send({embed});
+		*/if (command === "bugreport") {
+			
 			try {
 				function clean(text) {
 					if (typeof(text) === 'string')
@@ -1590,8 +1579,16 @@ Jimp.read(buffer, (err, lenna) => {
 				}
 				const bug = args.join(" ")
 				if (!bug) return message.channel.send('Please specify a bug!')
-				const content = clean(`**${message.author.username}**#${message.author.discriminator} (${message.author.id}) reported a bug:\n${bug}\nServer: **${message.guild.name}**\nSID: **${message.guild.id}** \nCID: **${message.channel.id}**`);
-				const id = '475832009009397770';
+				const doneembed new Discord.RichEmbed()
+								.setTitle("Success!")
+								.addField(`${message.author.username}`+ "Has successfully sent a report to Daebot support!")
+								.addField("***REPORT MESSAGE:***" + `${bug}`)
+ 								.addField("***ID:***" + `${message.author.id}` + "***\nUsername:***" + `${message.author.username}` + "***Tag:***" +`${message.author.tag}`)
+								.addBlankField(true)
+								.addField("***Origin:***\n" +"***Server:***" + `${message.guild.name}` + `(${message.guild.id})` + "\n***Channel:***" + `${message.channel.name}` + `(${message.channel.id})`)
+				
+				const content = doneembed 
+						const id = '504451038082891807';
 				new Promise((resolve, reject) => {
 					superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
 						.set('Authorization', `Bot ${client.token}`).send({
@@ -1600,11 +1597,25 @@ Jimp.read(buffer, (err, lenna) => {
 						.end((err, res) => {
 							if (err) {
 								reject(err);
-								message.reply('There was an error while sending your bug report to Daebot Support. Please try again later.');
+								const errembed = new Discord.RichEmbed()
+								 .setTitle("ERROR!!!")
+								 .setColor(800020)
+								 .setDescription("An unknown error has been encountered. Please type .inv and join the support server to report it.")
+								 .setFooter('There was an error while sending your bug report to Daebot Support.')
+								 .setImage('https://openclipart.org/download/217321/Youtube-Content-Error-Message.svg')
+								 .setTimestamp()
+								message.channel.send(errembed)
 							} else {
 								resolve(res);
-								message.channel.send(`:white_check_mark: **${message.author.username}**, your bug report has successfully been submitted to Daebot Support for review. Thank you!.`);
-							}
+								const succembed = new Discord.RichEmbed()
+								.setTitle("Success!")
+								.addField(`${message.author.username}`+ "Has successfully sent a report to Daebot support!")
+								.addField("***REPORT MESSAGE:***" + `${bug}`)
+ 								.addField("***ID:***" + `${message.author.id}` + "***\nUsername:***" + `${message.author.username}` + "***Tag:***" +`${message.author.tag}`)
+								.addBlankField(true)
+								.addField("***Origin:***\n" +"***Server:***" + `${message.guild.name}` + `(${message.guild.id})` + "\n***Channel:***" + `${message.channel.name}` + `(${message.channel.id})`)
+								message.channel.send(succembed)
+								}
 						});
 				});
 			} catch (err) {
@@ -1624,7 +1635,7 @@ Jimp.read(buffer, (err, lenna) => {
 					}
 					const bug = args.join(" ")
 					if (!bug) return message.channel.send('Please specify a bug!')
-					const content = clean(`Daemonium Replied to your report:\n${bug}\nServer: **${message.guild.name}**\nSID: **${message.guild.id}**`);
+					const content = clean(`${message.author.tag} Replied to your report:\n${bug}\nServer: **${message.guild.name}**\nSID: **${message.guild.id}**`);
 					const id = args[0];
 					new Promise((resolve, reject) => {
 						superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
@@ -1634,7 +1645,7 @@ Jimp.read(buffer, (err, lenna) => {
 							.end((err, res) => {
 								if (err) {
 									reject(err);
-									message.reply('There was an error while sending your bug report to Daebot Support. Please try again later.');
+									message.reply('There was an error while sending your reply.');
 								} else {
 									resolve(res);
 									message.channel.send(`:white_check_mark: **${message.author.username}**, your reply has been submitted sent. Thank you!.`);
@@ -2235,40 +2246,7 @@ Jimp.read(buffer, (err, lenna) => {
 			message.delete().catch(O_o => {});
 			message.channel.send(sayMessage);
 		}
-		if (command === "schedulemsg") {
-			jj = args.join(" ")
-			let Timer = args[0];
-
-			if (!args[1]) {
-				return message.channel.send("Please enter a period of time, with either `s,m or h` at the end!");
-			}
-
-			if (args[1] <= 0) {
-				return message.channel.send("Please enter a period of time, with either `s,m or h` at the end!");
-			}
-
-			message.channel.send(":white_check_mark: Timer has been set for: " + `${ms(ms(Timer), {long: true})}`)
-
-			setTimeout(function() {
-				message.channel.send(`Timer has ended, it lasted: ${ms(ms(Timer), {long: true})} Message will now be sent` + message.author.toString());
-				message.channel.send(jj)
-
-			}, ms(Timer));
-		}
-		if (command === "serverinfo") {
-			let sicon = message.guild.iconURL;
-			let serverembed = new Discord.RichEmbed()
-				.setDescription("Server Information")
-				.setColor("#15f153")
-				.setThumbnail(sicon)
-				.addField("Server Name", message.guild.name)
-				.addField("Created On", message.guild.createdAt)
-				.addField("You Joined", message.member.joinedAt)
-				.addField("Total Members", message.guild.memberCount);
-
-			return message.channel.send(serverembed);
-		}
-
+		
 		if (command === "asigh") {
 			const ascii = `
 \`\`\`
@@ -2292,7 +2270,7 @@ Jimp.read(buffer, (err, lenna) => {
 			const mss = args.join('');
 			const ttype = args[0]
 			const tyype = ttype.toUpperCase().toString()
-			const msss = mss.replace('Watching',' ').replace('watching',' ').replace('Playing',' ').replace('playing',' ').replace('Listening',' ').replace('listening',' ')
+			const msss = mss.replace('Watching',' ').replace('watching').replace('Playing').replace('playing').replace('Listening').replace('listening')
 			if(!mss || !ttype){
 message.channel.send("Please ensure you are using the command as so. .ss type text. EG: you can pick, Playing, Watching, or Listening. .ss playing with sum toyz")
 }else{
@@ -2322,7 +2300,7 @@ message.channel.send("Please ensure you are using the command as so. .ss type te
 						},
 						{
 							name: "And to join my creators host server:",
-							value: "https://discord.gg/YsHPSh4  Have fun! Everyone there likes to work on cryptology, Programming, and all things cyberSecurity!\n the creator of this bot is also a chemist/businessman."
+							value: "https://discord.gg/HMbrGGy  Have fun! Everyone there likes to work on cryptology, Programming, and all things cyberSecurity!\n the creator of this bot is also a chemist/businessman."
 						}
 					],
 					timestamp: new Date(),
