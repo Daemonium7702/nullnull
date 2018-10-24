@@ -1005,7 +1005,7 @@ Jimp.read(buffer, (err, lenna) => {
 			.setColor("RANDOM")
 			.setAuthor("PONGGGG", client.user.avatarURL)
 			.setFooter("PONGGG")
-			.addField(" ", `Pong! It took ${m.createdTimestamp - message.createdTimestamp}ms to find ***${randomNamaste}*** in ***${randomAnswer}*** after ${Math.round(client.ping)} counts of felony!!` )
+			.addField(".", `Pong! It took ${m.createdTimestamp - message.createdTimestamp}ms to find ***${randomNamaste}*** in ***${randomAnswer}*** after ${Math.round(client.ping)} counts of felony!!` )
 				}))
 		};
 
