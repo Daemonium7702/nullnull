@@ -1580,16 +1580,9 @@ booru.posts({ tags: 'order:rank'+`${hello}.toString()`}).then(posts => {
 						return text;
 				}
 				const bug = args.join(" ")
-				if (!bug) return message.channel.send('Please specify a bug!')
-				const doneembed = new Discord.RichEmbed()
-								.setTitle("Success!")
-								.addField(`${message.author.username}`+ "Has successfully sent a report to Daebot support!")
-								.addField("***REPORT MESSAGE:***" + `${bug}`)
- 								.addField("***ID:***" + `${message.author.id}` + "***\nUsername:***" + `${message.author.username}` + "***Tag:***" +`${message.author.tag}`)
-								.addBlankField(true)
-								.addField("***Origin:***\n" +"***Server:***" + `${message.guild.name}` + `(${message.guild.id})` + "\n***Channel:***" + `${message.channel.name}` + `(${message.channel.id})`)
-				
-				const content = doneembed 
+				if (!bug) return message.channel.send('Please specify a bug!')		
+				const sendingstuff = "Success!\n"+`${message.author.username}`+ "Has successfully sent a report to Daebot support!"+	"***REPORT MESSAGE:***" + `${bug}`+"***ID:***" + `${message.author.id}` + "***\nUsername:***" + `${message.author.username}` + "***Tag:***" +`${message.author.tag}`+ "\n***Origin:***\n" +"***Server:***" + `${message.guild.name}` + `(${message.guild.id})` + "\n***Channel:***" + `${message.channel.name}` + `(${message.channel.id})`)
+						const content = sendingstuff
 						const id = '504451038082891807';
 				new Promise((resolve, reject) => {
 					superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
@@ -1604,7 +1597,7 @@ booru.posts({ tags: 'order:rank'+`${hello}.toString()`}).then(posts => {
 								 .setColor(800020)
 								 .setDescription("An unknown error has been encountered. Please type .inv and join the support server to report it.")
 								 .setFooter('There was an error while sending your bug report to Daebot Support.')
-								 .setImage('https://openclipart.org/download/217321/Youtube-Content-Error-Message.svg')
+								 .setImage('https://us.123rf.com/450wm/jemastock/jemastock1708/jemastock170808401/84010839-red-background-poster-with-skull-and-bones-error-oops-vector-illustration.jpg?ver=6')
 								 .setTimestamp()
 								message.channel.send(errembed)
 							} else {
