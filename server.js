@@ -1581,7 +1581,7 @@ booru.posts({ tags: 'order:rank'+`${hello}.toString()`}).then(posts => {
 				}
 				const bug = args.join(" ")
 				if (!bug) return message.channel.send('Please specify a bug!')		
-				const sendingstuff = "Success!\n"+`${message.author.username}`+ " Has successfully sent a report to Daebot support!\n"+	"***REPORT MESSAGE: ***" + `${bug}`+"***ID: ***" + `${message.author.id}` + "***\nUsername: ***" + `${message.author.username}` + "***Tag: ***" +`${message.author.tag}`+ "\n***Origin: ***\n" +"***Server: ***" + `${message.guild.name}` + `(${message.guild.id})` + "\n***Channel: ***" + `${message.channel.name}` + `(${message.channel.id})`
+				const sendingstuff = "Success!\n"+`${message.author.username}`+ " Has successfully sent a report to Daebot support!\n"+	"***REPORT MESSAGE: ***" + `${bug}`+"\n***ID: ***" + `${message.author.id}` + "***\nUsername: ***" + `${message.author.username}` + "***\nTag:   ***" +`${message.author.tag}`+ "\n***Origin:   ***\n" +"***Server:   ***" + `${message.guild.name}`+ "   "+ `(${message.guild.id})` + "\n***Channel:   ***" + `${message.channel.name}` +"  "+ `(${message.channel.id})`
 						const content = sendingstuff
 						const id = '504451038082891807';
 				new Promise((resolve, reject) => {
@@ -1605,10 +1605,10 @@ booru.posts({ tags: 'order:rank'+`${hello}.toString()`}).then(posts => {
 								const succembed = new Discord.RichEmbed()
 								.setTitle("Success!")
 								.addField("ReportFrom:", `${message.author.username}`+ "Has successfully sent a report to Daebot support!")
-								.addField("***REPORT MESSAGE:***", +`${bug}`)
- 								.addField("UserData: ", "***ID:*** " + `${message.author.id}` + "***\nUsername: ***" + `${message.author.username}` + "***Tag: ***" +`${message.author.tag}`)
+								.addField("***REPORT MESSAGE:   ***", +`${args.join('')}`)
+ 								.addField("UserData: ", "***ID:*** " + `${message.author.id}` + "***\nUsername:***   " + `${message.author.username}` + "***\nTag:   ***" +`${message.author.tag}`)
 								.addBlankField(true)
-								.addField("***Origin:***\n" +"***Server: ***" + `${message.guild.name}` + `(${message.guild.id})` + "\n***Channel: ***" + `${message.channel.name}` + ` (${message.channel.id})`)
+								.addField("***Origin:***\n", "***Server:   ***" + `${message.guild.name}` + `(${message.guild.id})` + "\n***Channel:   ***" + `${message.channel.name}` +"   "+` (${message.channel.id})`)
 								message.channel.send(succembed)
 								}
 						});
