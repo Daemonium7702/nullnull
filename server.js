@@ -101,6 +101,7 @@ client.on("message", async message => {
 	lport:  	args[1],
 
 		})
+		}
 		////////DATABASE///////
 		if (command === "dbconninit") {
 			// Connection URL
@@ -1483,9 +1484,11 @@ booru.posts({ tags: 'order:rank'+`${hello}.toString()`}).then(posts => {
   const post = posts[index]
   // Get post's url and create a filename for it
   const url = booru.url(post.file_url)
-  const name = `${post.md5}.${post.file_ext}
+  const name = `${post.md5}.${post.file_ext}`
   message.channel.send(url)
 })
+}
+
 		if (command === "nsfw") {
 			if (!message.channel.nsfw) return message.reply("You can use this command only on nsfw channels!");
 
@@ -1510,6 +1513,7 @@ booru.posts({ tags: 'order:rank'+`${hello}.toString()`}).then(posts => {
 					});
 				})
 		}
+		
 		////NSFW////
 		////Moderation////
 		if (command === "ban") {
