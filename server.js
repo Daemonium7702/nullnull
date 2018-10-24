@@ -999,13 +999,14 @@ Jimp.read(buffer, (err, lenna) => {
 			]
 			const randomAnswer = await answers[Math.floor(Math.random() * answers.length)];
 			const randomNamaste = await namaste[Math.floor(Math.random() * answers.length)];
-			const thisembed = new Discord.richEmbed()
+			m.edit(("", {
+				embed: new Discord.RichEmbed()
 			.setTitle("Pong")
 			.setColor("RANDOM")
 			.setAuthor("PONGGGG", client.user.avatarURL)
 			.setFooter("PONGGG")
 			.addField(`Pong! It took ${m.createdTimestamp - message.createdTimestamp}ms to find`,`***${randomNamaste}*** in ***${randomAnswer}*** after ${Math.round(client.ping)} counts of felony!!` )
-			m.edit(thisembed)
+				}))
 		};
 
 		if (command === "morly") {
