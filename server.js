@@ -1167,7 +1167,8 @@ Jimp.read(buffer, (err, lenna) => {
 	    bindex -= 1
 	    }else{
 		    return message.channel.send("No lesser page.")
-    }else{
+  }
+  }else{
 	    message.delete()
         // Stop navigating pages
     }
