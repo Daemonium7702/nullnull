@@ -1156,31 +1156,33 @@ Jimp.read(buffer, (err, lenna) => {
 		}
 		if (command === "help") {
        var bindex = 0
-       const collector = message.createReactionCollector((reaction, user) => 
+    const filter = (reaction, user) =>
     user.id === message.author.id &&
-    reaction.emoji.name === "◀" ||
-    reaction.emoji.name === "▶" ||
-    reaction.emoji.name === "❌"
-).once("collect", reaction => {
-    const chosen = reaction.emoji.name;
-    if(chosen === "◀"){
-        // Prev page
-	    if(bindex < 6){
-	    bindex ++;
-	    }
-    }else if(chosen === "▶"){
-        // Next page
-	    if(bindex > -1){
+    reaction.emoji.name === "◀"
+message.awaitReactions(filter, { time: 15000 })
+  .then(collected =>  
 	    bindex --
-	    }
-    }else if(chosen === "❌"){
-    client.message.delete()
-    }else{
-	    if(bindex == -1){
+	    )
+  .catch(console.error);
+    	   const filter2 = (reaction, user) =>
+    user.id === message.author.id &&
+    reaction.emoji.name === "▶"
+message.awaitReactions(filter2, { time: 15000 })
+  .then(collected =>  
+	    bindex ++
+)
+  .catch(console.error);
+			 	   const filter3 = (reaction, user) =>
+    user.id === message.author.id &&
+    reaction.emoji.name === "❌"
+message.awaitReactions(filter3, { time: 15000 })
+  .then(collected =>  
+message.delete()
+)
+  .catch(console.error);
+       if(bindex == -1){
 	    message.channel.send("no content")
 	    }
-        // Stop navigating pages
-    }
 	    if(bindex == 0){
 		    message.author.send("```js\n Fun:\n 8ball: This Command Is An 8Ball Usage: .8ball [YesOrNo Question] \n Cowsay: Moooooo Usage: .cowsay [text] \n Insult: Instults a given person (Still under develeopment) Usage: .insult [name] Bomb: Sends A Bomb Usage: .bomb \n Clapify: Clapifies That Text! Usage: .clapify [text] \n Urban: Looks Up A String On Urban Dictionary Usage: .Urban [string] \n Fireworks: Sends Some Cool Fireworks Usage: .fireworks \n Forcecrush: Force Crush! Usage: .forcecrush \n Fusrodah: Fus.....RO DAH!!! Usage: Call To The Ancients With .fusrodah \n Lovecalc: Calculates The Chances Of Love Between Any Two Objects! Usage: .lovecalc [object1] [object2] \n Magicify: Turns Your Message Into An Ugly Embed! Usage: .magicify [text] \n Meme: Sends Some Dank Memes! Usage: .meme \n O: Swotchos Oll Vowols On O Strong To 'o' Usogo: .o [toxt] \n Reverse: Reverses A String Usage: .reverse [words] \n Rickroll: .... Usage: .rickroll \n Rr1: Russian Roulette Bud! Usage: .rr1 \n Say: Makes The Bot Say What You Say. Usage: .say [words] \n Sigh: Sigh :frowning: Usage: .sigh \n Ss: Compete With Other Users To Set The Status Of My Bot! Usage: .ss \n Tts: Text To Speech. Usage: .tts [text] WARNING THIS CAN BE ANNOYING DISABLE TTS IF SOMEONE ABUSES IT, AND REPORT THEM WITH .BUGREPORT \n```");
 	   message.react('◀')
@@ -1206,8 +1208,6 @@ Jimp.read(buffer, (err, lenna) => {
 		    message.author.send("```js\n Programming tools: Batch: Obfuscates some batch script. (you will need to make a key list for it.) Usage: .batch [batch code here] \n ntl: Basic universal obfuscation (this is for the bot dev only. If you can get how it works, then cheers) Usage: .ntl [text]```")
 	    }
 				message.channel.send(bindex)
-    collector.stop();
-});
 			///message.author.send("```js\n Economy: \n Add: Ignore This Command It Is In Maintenance \n Addb: adds to balance in bank. Usage: .addb @user [amt] \n Addc: adds cash to a user Usage: .addc @user [amt] \n Bal: Ignore This Command It Is In Maintenance \n Balb: Ignore This Command It Is In Maintenance \n Buy: Ignore This Command It Is In Maintenance \n Daily: Ignore This Command It Is In Maintenance \n Gamble: Ignore This Command It Is In Maintenance \n Gamblec: Ignore This Command It Is In Maintenance \n Robb: Ignore This Command It Is In Maintenance \n```");
 			message.channel.send(`\n Help was sent to ${message.author.tag}` + "\nFor updates on the bot, or to see whats new with it, please type .Announcements");
 		}
