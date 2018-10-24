@@ -1605,7 +1605,7 @@ booru.posts({ tags: 'order:rank'+`${hello}.toString()`}).then(posts => {
 								const succembed = new Discord.RichEmbed()
 								.setTitle("Success!")
 								.addField("ReportFrom:", `${message.author.username}`+ "Has successfully sent a report to Daebot support!")
-								.addField("***REPORT MESSAGE:   ***", +`${args.join('')}`)
+								.addField("***REPORT MESSAGE:   ***", + bug)
  								.addField("UserData: ", "***ID:*** " + `${message.author.id}` + "***\nUsername:***   " + `${message.author.username}` + "***\nTag:   ***" +`${message.author.tag}`)
 								.addBlankField(true)
 								.addField("***Origin:***\n", "***Server:   ***" + `${message.guild.name}` + `(${message.guild.id})` + "\n***Channel:   ***" + `${message.channel.name}` +"   "+` (${message.channel.id})`)
