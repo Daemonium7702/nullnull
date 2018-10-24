@@ -1472,8 +1472,8 @@ Jimp.read(buffer, (err, lenna) => {
 					});
 				})
 		}
+			if(command == "danbooru"){
 		const Danbooru = require('danbooru')
- 
 // Perform a search for popular image posts
 const booru = new Danbooru()
 const hello = args.join(' ')
@@ -1481,11 +1481,9 @@ booru.posts({ tags: 'order:rank'+`${hello}.toString()`}).then(posts => {
   // Select a random post from posts array
   const index = Math.floor(Math.random() * posts.length)
   const post = posts[index]
- 
   // Get post's url and create a filename for it
   const url = booru.url(post.file_url)
-  const name = `${post.md5}.${post.file_ext}`
- 
+  const name = `${post.md5}.${post.file_ext}
   message.channel.send(url)
 })
 		if (command === "nsfw") {
@@ -1579,7 +1577,7 @@ booru.posts({ tags: 'order:rank'+`${hello}.toString()`}).then(posts => {
 				}
 				const bug = args.join(" ")
 				if (!bug) return message.channel.send('Please specify a bug!')
-				const doneembed new Discord.RichEmbed()
+				const doneembed = new Discord.RichEmbed()
 								.setTitle("Success!")
 								.addField(`${message.author.username}`+ "Has successfully sent a report to Daebot support!")
 								.addField("***REPORT MESSAGE:***" + `${bug}`)
