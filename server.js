@@ -1156,31 +1156,19 @@ Jimp.read(buffer, (err, lenna) => {
 		}
 		if (command === "help") {
        var bindex = 0
-    const filter = (reaction, user) =>
-    user.id === message.author.id &&
-    reaction.emoji.name === "◀"
-message.awaitReactions(filter, { time: 15000 })
-  .then(collected =>  
-	    bindex --
-	    )
-  .catch(console.error);
-    	   const filter2 = (reaction, user) =>
-    user.id === message.author.id &&
-    reaction.emoji.name === "▶"
-message.awaitReactions(filter2, { time: 15000 })
-  .then(collected =>  
-	    bindex ++
-)
-  .catch(console.error);
-			 	   const filter3 = (reaction, user) =>
-    user.id === message.author.id &&
-    reaction.emoji.name === "❌"
-message.awaitReactions(filter3, { time: 15000 })
-  .then(collected =>  
-message.delete()
-)
-  .catch(console.error);
-       if(bindex == -1){
+       message.channel.send("```js\n Fun:\n 8ball: This Command Is An 8Ball Usage: .8ball [YesOrNo Question] \n Cowsay: Moooooo Usage: .cowsay [text] \n Insult: Instults a given person (Still under develeopment) Usage: .insult [name] Bomb: Sends A Bomb Usage: .bomb \n Clapify: Clapifies That Text! Usage: .clapify [text] \n Urban: Looks Up A String On Urban Dictionary Usage: .Urban [string] \n Fireworks: Sends Some Cool Fireworks Usage: .fireworks \n Forcecrush: Force Crush! Usage: .forcecrush \n Fusrodah: Fus.....RO DAH!!! Usage: Call To The Ancients With .fusrodah \n Lovecalc: Calculates The Chances Of Love Between Any Two Objects! Usage: .lovecalc [object1] [object2] \n Magicify: Turns Your Message Into An Ugly Embed! Usage: .magicify [text] \n Meme: Sends Some Dank Memes! Usage: .meme \n O: Swotchos Oll Vowols On O Strong To 'o' Usogo: .o [toxt] \n Reverse: Reverses A String Usage: .reverse [words] \n Rickroll: .... Usage: .rickroll \n Rr1: Russian Roulette Bud! Usage: .rr1 \n Say: Makes The Bot Say What You Say. Usage: .say [words] \n Sigh: Sigh :frowning: Usage: .sigh \n Ss: Compete With Other Users To Set The Status Of My Bot! Usage: .ss \n Tts: Text To Speech. Usage: .tts [text] WARNING THIS CAN BE ANNOYING DISABLE TTS IF SOMEONE ABUSES IT, AND REPORT THEM WITH .BUGREPORT \n```")
+        .then(function (message) {
+			await message.react("◀")
+	await message.react("▶")
+       await message.react("❗")
+	       }).catch(function() {
+		message.channel.send("CHECK!")
+	       console.log("check!") //Something
+             });
+			const reactions = await message.awaitReactions(reaction => {
+       reaction.emoji.name == "◀";
+       }, {time:7000})
+      /* if(bindex == -1){
 	    message.channel.send("no content")
 	    }
 	    if(bindex == 0){
@@ -1210,7 +1198,7 @@ message.delete()
 				message.channel.send(bindex)
 			///message.author.send("```js\n Economy: \n Add: Ignore This Command It Is In Maintenance \n Addb: adds to balance in bank. Usage: .addb @user [amt] \n Addc: adds cash to a user Usage: .addc @user [amt] \n Bal: Ignore This Command It Is In Maintenance \n Balb: Ignore This Command It Is In Maintenance \n Buy: Ignore This Command It Is In Maintenance \n Daily: Ignore This Command It Is In Maintenance \n Gamble: Ignore This Command It Is In Maintenance \n Gamblec: Ignore This Command It Is In Maintenance \n Robb: Ignore This Command It Is In Maintenance \n```");
 			message.channel.send(`\n Help was sent to ${message.author.tag}` + "\nFor updates on the bot, or to see whats new with it, please type .Announcements");
-		}
+		}*/
 
 		if (command === "runict") {
 			const oldMessage = args.join(" ");
