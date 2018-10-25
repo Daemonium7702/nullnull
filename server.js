@@ -1189,7 +1189,12 @@ Jimp.read(buffer, (err, lenna) => {
     const filter = (reaction) => reaction.emoji.name === '▶';
     const collector = pollTitle.createReactionCollector(filter, { time: 15000 });
 			
-      collector.on('collect', r => console.log(`Collected ${r.emoji.name}`));
+      collector.on('collect', r => {
+	      console.log(`Collected ${r.emoji.name}`)
+	      if(r.emoji.name == '▶'){
+	      bindex ++
+	      }
+      });
       collector.on('end', collected => {
 	      if(collected.size >= 1){
 	      bindex ++
@@ -1198,7 +1203,12 @@ Jimp.read(buffer, (err, lenna) => {
   
     const filter1 = (reaction) => reaction.emoji.name === '◀';
     const collector1 = pollTitle.createReactionCollector(filter1, { time: 15000 });
-      collector1.on('collect', r => console.log(`Collected ${r.emoji.name}`));
+      collector1.on('collect', r => {
+	      console.log(`Collected ${r.emoji.name}`)
+	if(r.emoji.name == '◀'){
+	bindex --
+	}    
+      });
       collector1.on('end', collected => {
       		if(collected.size >=1){
 		bindex --
