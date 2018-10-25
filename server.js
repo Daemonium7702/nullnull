@@ -1169,7 +1169,8 @@ Jimp.read(buffer, (err, lenna) => {
 	       console.log("check!") //Something
              });
 			const reactions = await message.awaitReactions(reaction => reaction.emoji.name == back || reaction.emoji.name == next || reaction.emoji.name == end, {time:7000})
-			if(reactions.get(next).count-1 == 1){
+			console.log(reactions);
+			/*if(reactions.get(next).count-1 == 1){
 			bindex ++
 			}
 			if(reactions.get(back).count-1 == 1){
@@ -1177,7 +1178,7 @@ Jimp.read(buffer, (err, lenna) => {
 			}
 			if(reactions.get(end).count-1 == 1){
 			message.delete()
-			}
+			}*/
       if(bindex == -1){
 	    message.channel.send("no content")
 	    }
