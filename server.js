@@ -1198,7 +1198,7 @@ Jimp.read(buffer, (err, lenna) => {
 				message.channel.send(bindex)
 			///message.author.send("```js\n Economy: \n Add: Ignore This Command It Is In Maintenance \n Addb: adds to balance in bank. Usage: .addb @user [amt] \n Addc: adds cash to a user Usage: .addc @user [amt] \n Bal: Ignore This Command It Is In Maintenance \n Balb: Ignore This Command It Is In Maintenance \n Buy: Ignore This Command It Is In Maintenance \n Daily: Ignore This Command It Is In Maintenance \n Gamble: Ignore This Command It Is In Maintenance \n Gamblec: Ignore This Command It Is In Maintenance \n Robb: Ignore This Command It Is In Maintenance \n```");
 			message.channel.send(`\n Help was sent to ${message.author.tag}` + "\nFor updates on the bot, or to see whats new with it, please type .Announcements");
-		}*/
+		*/}
 
 		if (command === "runict") {
 			const oldMessage = args.join(" ");
