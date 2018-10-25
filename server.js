@@ -1159,17 +1159,51 @@ Jimp.read(buffer, (err, lenna) => {
        const back ="◀"
        const next = "▶"
        const end = "❗"
-       message.channel.send("```js\n Fun:\n 8ball: This Command Is An 8Ball Usage: .8ball [YesOrNo Question] \n Cowsay: Moooooo Usage: .cowsay [text] \n Insult: Instults a given person (Still under develeopment) Usage: .insult [name] Bomb: Sends A Bomb Usage: .bomb \n Clapify: Clapifies That Text! Usage: .clapify [text] \n Urban: Looks Up A String On Urban Dictionary Usage: .Urban [string] \n Fireworks: Sends Some Cool Fireworks Usage: .fireworks \n Forcecrush: Force Crush! Usage: .forcecrush \n Fusrodah: Fus.....RO DAH!!! Usage: Call To The Ancients With .fusrodah \n Lovecalc: Calculates The Chances Of Love Between Any Two Objects! Usage: .lovecalc [object1] [object2] \n Magicify: Turns Your Message Into An Ugly Embed! Usage: .magicify [text] \n Meme: Sends Some Dank Memes! Usage: .meme \n O: Swotchos Oll Vowols On O Strong To 'o' Usogo: .o [toxt] \n Reverse: Reverses A String Usage: .reverse [words] \n Rickroll: .... Usage: .rickroll \n Rr1: Russian Roulette Bud! Usage: .rr1 \n Say: Makes The Bot Say What You Say. Usage: .say [words] \n Sigh: Sigh :frowning: Usage: .sigh \n Ss: Compete With Other Users To Set The Status Of My Bot! Usage: .ss \n Tts: Text To Speech. Usage: .tts [text] WARNING THIS CAN BE ANNOYING DISABLE TTS IF SOMEONE ABUSES IT, AND REPORT THEM WITH .BUGREPORT \n```")
-        .then(function (message) {
-	 message.react(back)
-	 message.react(next)
-     message.react(end)
-	       }).catch(function() {
-		message.channel.send("CHECK!")
-	       console.log("check!") //Something
-             });
-			const reactions = await message.awaitReactions(reaction => reaction.emoji.name == back || reaction.emoji.name == next || reaction.emoji.name == end, {time:7000})
-			console.log(reactions.find(r  => r.emoji.name === next))
+       const funembed = new Discord.RichEmbed()
+			.setFooter("fun")
+			.setTitle("Fun Commands")
+			.addField("8ball:"," This Command Is An 8Ball Usage: .8ball [YesOrNo Question]")
+			.addField("Cowsay:", " Moooooo Usage: .cowsay [text]")
+			.addField("Insult:", " Instults a given person (Still under develeopment) Usage: .insult [name] ")
+			.addField("Bomb:", " Sends A Bomb Usage: .bomb")
+			.addField("Clapify:", " Clapifies That Text! Usage: .clapify [text]")
+			.addField("Urban:", " Looks Up A String On Urban Dictionary Usage: .Urban [string] ")
+			.addField("Fireworks:", " Sends Some Cool Fireworks Usage: .fireworks **This was requested by a user**")
+			.addField("Forcecrush:", " Force Crush! Usage: .forcecrush")
+			.addField("Fusrodah:", " Fus.....RO DAH!!! Usage: Call To The Ancients With .fusrodah")
+			.addField("Lovecalc:"," Calculates The Chances Of Love Between Any Two Objects! Usage: .lovecalc [object1] [object2] ")
+			.addField("Magicify: ", " Turns Your Message Into An Ugly Embed! Usage: .magicify [text] ")
+			.addField("Meme:", " Sends Some Dank Memes! Usage: .meme")
+			.addField("O:", " Swotchos Oll Vowols On O Strong To 'o' Usogo: .o [toxt] ***REQUESTED BY USER.... i dont know why though***")
+			.addField("Reverse:", " Reverses A String Usage: .reverse [words] ")
+			.addField("Rickroll:", ".... Usage: .rickroll ")
+			.addField("Say:", " Makes The Bot Say What You Say. Usage: .say [words] ")
+			.addField("asigh:", " :frowning: Usage: .asigh")
+			.addField("Ss", "Compete With Other Users To Set The Status Of My Bot! Usage: .ss")
+    const pollTitle = await message.channel.send({
+					embed: funembed
+				})
+      await pollTitle.react(back);
+      await pollTitle.react(next);
+      await pollTitle.react(end);
+    const filter = (reaction) => reaction.emoji.name === '▶';
+    const collector = pollTitle.createReactionCollector(filter, { time: 15000 });
+			
+      collector.on('collect', r => console.log(`Collected ${r.emoji.name}`));
+      collector.on('end', collected => {
+	      if(collected.size >= 1){
+	      bindex ++
+	      }
+});
+  
+    const filter1 = (reaction) => reaction.emoji.name === '◀';
+    const collector1 = pollTitle.createReactionCollector(filter1, { time: 15000 });
+      collector1.on('collect', r => console.log(`Collected ${r.emoji.name}`));
+      collector1.on('end', collected => {
+      		if(collected.size >=1){
+		bindex --
+		}
+      }));
 			/*if(reactions.get(next).count-1 == 1){
 			bindex ++
 			}
@@ -1182,11 +1216,30 @@ Jimp.read(buffer, (err, lenna) => {
       if(bindex == -1){
 	    message.channel.send("no content")
 	    }
+			const musicembed = new Discord.RichEmbed()
+			.setFooter("music")
+			.setTitle("Music Commands")
+			.addField("Np:"," Shows What Is Now Playing Usage: .np")
+			.addField("Pause:", " Pauses Music Usage: .pause")
+			.addField("Play:", " Plays Music. Usage: .play  [song Name], Then Select From List By Typing The Corresponding Number (e.g. For Song 2 Type 2) ")
+			.addField("Queue:", "Shows Music Queue Usage: .queue")
+			.addField("Resume:", " Resumes A Paused Song. Usage: .resume")
+			.addField("Skip:", " Skips A Song Usage: .skip")
+			.addField("Stop:", " Stops Music From Playing Usage: .stop")
+			.addField("Vol:", " Volume Usage: .vol [number]")
+			/////////////////////////////////////////////////
+			
+			//////////////////////////////////////////////////
+			
 	    if(bindex == 0){
-		    message.edit("```js\n Fun:\n 8ball: This Command Is An 8Ball Usage: .8ball [YesOrNo Question] \n Cowsay: Moooooo Usage: .cowsay [text] \n Insult: Instults a given person (Still under develeopment) Usage: .insult [name] Bomb: Sends A Bomb Usage: .bomb \n Clapify: Clapifies That Text! Usage: .clapify [text] \n Urban: Looks Up A String On Urban Dictionary Usage: .Urban [string] \n Fireworks: Sends Some Cool Fireworks Usage: .fireworks \n Forcecrush: Force Crush! Usage: .forcecrush \n Fusrodah: Fus.....RO DAH!!! Usage: Call To The Ancients With .fusrodah \n Lovecalc: Calculates The Chances Of Love Between Any Two Objects! Usage: .lovecalc [object1] [object2] \n Magicify: Turns Your Message Into An Ugly Embed! Usage: .magicify [text] \n Meme: Sends Some Dank Memes! Usage: .meme \n O: Swotchos Oll Vowols On O Strong To 'o' Usogo: .o [toxt] \n Reverse: Reverses A String Usage: .reverse [words] \n Rickroll: .... Usage: .rickroll \n Rr1: Russian Roulette Bud! Usage: .rr1 \n Say: Makes The Bot Say What You Say. Usage: .say [words] \n Sigh: Sigh :frowning: Usage: .sigh \n Ss: Compete With Other Users To Set The Status Of My Bot! Usage: .ss \n Tts: Text To Speech. Usage: .tts [text] WARNING THIS CAN BE ANNOYING DISABLE TTS IF SOMEONE ABUSES IT, AND REPORT THEM WITH .BUGREPORT \n```");
+		    pollTitle.edit({
+					embed: funembed
+				});
 	    }
 	    if(bindex == 1){
-		    message.edit("```js\n Music: \n Np: Shows What Is Now Playing Usage: .np \n Pause: Pauses Music Usage: .pause \n Play: Plays Music. Usage: .play [song Name], Then Select From List By Typing The Corresponding Number (e.g. For Song 2 Type 2) \n Queue: Shows Music Queue \n Resume: Resumes A Paused Song. Usage: .resume \n Skip: Skips A Song Usage: .skip \n Stop: Stops Music From Playing Usage: .stop \n Vol: Volume Usage: .vol [number] \n```")
+		  pollTitle.edit({
+					embed: musicembed
+				})
 	    }
 	    if(bindex == 2){
 		    message.edit("```js\n Moderation: Ban: Bans A User MOD ONLY Usage: .ban [@user] [Reason]\n Kick: Kicks A Member. Usage: .kick @member [reason]\n Purge: Deletes Messages MOD ONLY Usage: .purge [number<100]\n Report: Reports A Member Usage: .report [@member] [reason]\n Role: Ignore This Command It Is In Maintenance \n```");
