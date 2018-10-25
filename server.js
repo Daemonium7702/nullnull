@@ -1203,8 +1203,8 @@ Jimp.read(buffer, (err, lenna) => {
 		    message.author.send("```js\n Programming tools: Batch: Obfuscates some batch script. (you will need to make a key list for it.) Usage: .batch [batch code here] \n ntl: Basic universal obfuscation (this is for the bot dev only. If you can get how it works, then cheers) Usage: .ntl [text]```")
 	    }
 			///message.author.send("```js\n Economy: \n Add: Ignore This Command It Is In Maintenance \n Addb: adds to balance in bank. Usage: .addb @user [amt] \n Addc: adds cash to a user Usage: .addc @user [amt] \n Bal: Ignore This Command It Is In Maintenance \n Balb: Ignore This Command It Is In Maintenance \n Buy: Ignore This Command It Is In Maintenance \n Daily: Ignore This Command It Is In Maintenance \n Gamble: Ignore This Command It Is In Maintenance \n Gamblec: Ignore This Command It Is In Maintenance \n Robb: Ignore This Command It Is In Maintenance \n```");
-			message.channel.send(`For updates on the bot, or to see whats new with it, please type .Announcements");
-		*/}
+			message.channel.send(`For updates on the bot, or to see whats new with it, please type .Announcements`);
+		}
 
 		if (command === "runict") {
 			const oldMessage = args.join(" ");
