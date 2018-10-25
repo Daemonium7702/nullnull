@@ -1169,7 +1169,7 @@ Jimp.read(buffer, (err, lenna) => {
 	       console.log("check!") //Something
              });
 			const reactions = await message.awaitReactions(reaction => reaction.emoji.name == back || reaction.emoji.name == next || reaction.emoji.name == end, {time:7000})
-			console.log(reactions.find(r  => return r.emoji.name === next).count)
+			console.log(reactions.find(r  => r.emoji.name === next).count)
 			/*if(reactions.get(next).count-1 == 1){
 			bindex ++
 			}
