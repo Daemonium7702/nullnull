@@ -1203,7 +1203,7 @@ Jimp.read(buffer, (err, lenna) => {
       		if(collected.size >=1){
 		bindex --
 		}
-      }));
+      });
 			/*if(reactions.get(next).count-1 == 1){
 			bindex ++
 			}
