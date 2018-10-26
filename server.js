@@ -1191,28 +1191,19 @@ Jimp.read(buffer, (err, lenna) => {
 			
       collector.on('collect', r => {
 	      console.log(`Collected ${r.emoji.name}`)
-	      if(r.emoji.name == '▶'){
-	      bindex ++
-	      }
+	      bindex += 1
       });
       collector.on('end', collected => {
-	      if(collected.size >= 1){
-	      bindex ++
-	      }
 });
   
     const filter1 = (reaction) => reaction.emoji.name === '◀';
     const collector1 = pollTitle.createReactionCollector(filter1, { time: 15000 });
       collector1.on('collect', r => {
 	      console.log(`Collected ${r.emoji.name}`)
-	if(r.emoji.name == '◀'){
-	bindex --
-	}    
+	bindex -= 1
       });
       collector1.on('end', collected => {
-      		if(collected.size >=1){
-		bindex --
-		}
+		bindex -= 1
       });
 			/*if(reactions.get(next).count-1 == 1){
 			bindex ++
@@ -1224,7 +1215,9 @@ Jimp.read(buffer, (err, lenna) => {
 			message.delete()
 			}*/
       if(bindex == -1){
-	    message.channel.send("no content")
+	      bindex += 1
+	    }else if(bindex == 7){
+	    bindex -= 1
 	    }
 			const musicembed = new Discord.RichEmbed()
 			.setFooter("music")
