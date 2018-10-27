@@ -125,7 +125,6 @@ client.on("message", async message => {
 				console.log(err)
 			}
 		}
-	}
 	if (message.guild.id == "451843103318343680") {
 		message.channel.send("services discontinued for https://discordapp.com/channels/451843103318343680/457677144470847500 please head to https://discord.gg/GfJw3VB to use the bot.");
 		return
