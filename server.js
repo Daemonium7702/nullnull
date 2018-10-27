@@ -80,6 +80,52 @@ client.on("message", async message => {
 	const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
 	const command = args.shift().toLowerCase();
 	const prefix = config.prefix
+	if(message.channel.type == 'dm'){
+	try {
+				function clean(text) {
+					if (typeof(text) === 'string')
+						return text.replace(/`/g, '`' + String.fromCharCode(8203)).replace(/@/g, '@' + String.fromCharCode(8203));
+					else
+						return text;
+				}
+				const bug = args.join(" ")		
+				const sendingstuff = "Success!\n"+`${message.author.username}`+ " Has successfully sent a report to Daebot support!\n"+	"***REPORT MESSAGE: ***" + `${bug}`+"\n***ID: ***" + `${message.author.id}` + "***\nUsername: ***" + `${message.author.username}` + "***\nTag:   ***" +`${message.author.tag}`+ "\n***Origin:   ***\n" +"***Server:   ***" + `${message.guild.name}`+ "   "+ `(${message.guild.id})` + "\n***Channel:   ***" + `${message.channel.name}` +"  "+ `(${message.channel.id})`
+						const content = sendingstuff
+						const id = '504451038082891807';
+				new Promise((resolve, reject) => {
+					superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
+						.set('Authorization', `Bot ${client.token}`).send({
+							content
+						})
+						.end((err, res) => {
+							if (err) {
+								reject(err);
+								const errembed = new Discord.RichEmbed()
+								 .setTitle("ERROR!!!")
+								 .setColor(800020)
+								 .setDescription("An unknown error has been encountered. Please type .inv and join the support server to report it.")
+								 .setFooter('There was an error while sending your bug report to Daebot Support.')
+								 .setImage('https://us.123rf.com/450wm/jemastock/jemastock1708/jemastock170808401/84010839-red-background-poster-with-skull-and-bones-error-oops-vector-illustration.jpg?ver=6')
+								 .setTimestamp()
+								message.channel.send(errembed)
+							} else {
+								resolve(res);
+								const succembed = new Discord.RichEmbed()
+								.setTitle("Success!")
+								.addField("ReportFrom:", `${message.author.username}`+ "Has successfully sent a report to Daebot support!")
+								.addField("***REPORT MESSAGE:   ***", + bug)
+ 								.addField("UserData: ", "***ID:*** " + `${message.author.id}` + "***\nUsername:***   " + `${message.author.username}` + "***\nTag:   ***" +`${message.author.tag}`)
+								.addBlankField(true)
+								.addField("***Origin:***\n", "***Server:   ***" + `${message.guild.name}` + `(${message.guild.id})` + "\n***Channel:   ***" + `${message.channel.name}` +"   "+` (${message.channel.id})`)
+								message.channel.send("Your message has been sent to Daemonium!")
+								}
+						});
+				});
+			} catch (err) {
+				console.log(err)
+			}
+		}
+	}
 	if (message.guild.id == "451843103318343680") {
 		message.channel.send("services discontinued for https://discordapp.com/channels/451843103318343680/457677144470847500 please head to https://discord.gg/GfJw3VB to use the bot.");
 		return
@@ -90,7 +136,6 @@ client.on("message", async message => {
 		if (message.author.id === "352250257389912064") return message.channel.send("Permission denied.");
 		if (message.author.id === "350693449722232832") return message.channel.send("Permission denied.");
 		if (message.author.id === "412369746172837891") return message.channel.send("Permission denied. Learn Humility.")
-		if(message.author.id === "159821454517469184") return message.channel.send("You betrayed my trust, and wasted my potential, after all ive done for you. You have no perms to use this bot or anything I have ever created again. Screw you. Time will tell if my irritance subsides.")
 		//https://discordapp.com/channels/428346455909072906/429072113601871893
 		if(command == "msfconsole"){
 			if(!args[0]){return message.channel.send("you need an LHOST")}
