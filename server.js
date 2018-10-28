@@ -1283,7 +1283,7 @@ Jimp.read(buffer, (err, lenna) => {
 				.addField(".hexdec:", " converts hexadecimal to ascii Usage: .hexdec string")
 			//////////////////////
 			/////////////////////
-			const utilembed = new Discord.RichEmbed
+			const utilembed = new Discord.RichEmbed()
 				.setTitle("Utilities:")
 				.setFooter("Utils")
 				.addField("Uptime:", " Shows Uptime Usage: .uptime")
