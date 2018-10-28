@@ -1266,7 +1266,7 @@ Jimp.read(buffer, (err, lenna) => {
       collector.on('collect', r => {
 	      
 	      console.log(`Collected ${r.emoji.name}`)
-	    config.bindex += 1
+	    config.bindex = Math.floor(config.bindex + 1)
 	      fs.writeFile("./config.json", JSON.stringify(config), function (err) {
   if (err) return console.log(err);
   console.log(JSON.stringify(config));
@@ -1298,7 +1298,7 @@ Jimp.read(buffer, (err, lenna) => {
 		    message.edit("```js\n Programming tools: Batch: Obfuscates some batch script. (you will need to make a key list for it.) Usage: .batch [batch code here] \n ntl: Basic universal obfuscation (this is for the bot dev only. If you can get how it works, then cheers) Usage: .ntl [text]```")
 	    }
 	           if(config.bindex == 7){
-	      config.bindex -= 1 
+	      config.bindex = Math.floor(config.bindex - 1) 
 	    }
       });
       collector.on('end', collected => {
@@ -1309,9 +1309,9 @@ Jimp.read(buffer, (err, lenna) => {
       collector1.on('collect', r => {
 	     
 	      console.log(`Collected ${r.emoji.name}`)
-	   config.bindex -= 1
+	   config.bindex = Math.floor(config.bindex - 1)
 	      if(config.bindex == -1){
-		      config.bindex += 2
+		      config.bindex = Math.floor(config.bindex + 2)
     fs.writeFile("./config.json", JSON.stringify(config), function (err) {
   if (err) return console.log(err);
   console.log(JSON.stringify(config));
@@ -1350,7 +1350,7 @@ Jimp.read(buffer, (err, lenna) => {
 		    message.edit("```js\n Programming tools: Batch: Obfuscates some batch script. (you will need to make a key list for it.) Usage: .batch [batch code here] \n ntl: Basic universal obfuscation (this is for the bot dev only. If you can get how it works, then cheers) Usage: .ntl [text]```")
 	    }
 	           if(config.bindex == -1){
-	      config.bindex += 2
+	      config.bindex = Math.floor(config.bindex + 2)
 	    }
       });
       collector1.on('end', collected => {
