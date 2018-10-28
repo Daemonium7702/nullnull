@@ -80,8 +80,8 @@ client.on("message", async message => {
 	const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
 	const command = args.shift().toLowerCase();
 	const prefix = config.prefix
-	var bindex = require('./config.json');
-
+	var romeo = require('./config.json');
+	const bindex = config.bindex
 
 	if(message.channel.type == 'dm'){
 	try {
@@ -1254,7 +1254,7 @@ Jimp.read(buffer, (err, lenna) => {
       collector.on('collect', r => {
 	      
 	      console.log(`Collected ${r.emoji.name}`)
-	   bindex.forEach(function(binding){
+	   romeo.forEach(function(binding){
     binding.bindex += 1;
 });
 	        if(bindex == 0){
@@ -1294,7 +1294,7 @@ Jimp.read(buffer, (err, lenna) => {
       collector1.on('collect', r => {
 	     
 	      console.log(`Collected ${r.emoji.name}`)
-	   bindex.forEach(function(binding){
+	   romeo.forEach(function(binding){
     binding.bindex -= 1;
 });
 	        if(bindex == 0){
