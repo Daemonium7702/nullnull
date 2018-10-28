@@ -1323,7 +1323,7 @@ Jimp.read(buffer, (err, lenna) => {
 			await pollTitle.react(end);
 			const filter = (reaction) => reaction.emoji.name === '▶';
 			const collector = pollTitle.createReactionCollector(filter, {
-				time: 15000
+				time: 60000
 			});
 
 			collector.on('collect', r => {
@@ -1378,7 +1378,7 @@ Jimp.read(buffer, (err, lenna) => {
 
 			const filter1 = (reaction) => reaction.emoji.name === '◀';
 			const collector1 = pollTitle.createReactionCollector(filter1, {
-				time: 15000
+				time: 60000
 			});
 			collector1.on('collect', r => {
 
