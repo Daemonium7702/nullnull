@@ -1283,7 +1283,7 @@ Jimp.read(buffer, (err, lenna) => {
 				.addField(".hexdec:", " converts hexadecimal to ascii Usage: .hexdec string")
 			//////////////////////
 			/////////////////////
-			const utilembed = new Discord.richembed
+			const utilembed = new Discord.RichEmbed
 				.setTitle("Utilities:")
 				.setFooter("Utils")
 				.addField("Uptime:", " Shows Uptime Usage: .uptime")
@@ -1303,11 +1303,15 @@ Jimp.read(buffer, (err, lenna) => {
 				.addField("Translate:", " Translates Supplied Text. Usage: .translate [language To Translate TO] [text To Translate]")
 				.addField("Remspace:", " Removes all spaces from a string. Usage: .remspace [text]")
 				.addField(".gprime:", " gets all prime numbers up to the supplied value. Usage: .gprime number")
+			///////////////////
+			///////////////////
 			const progembed = new Discord.RichEmbed()
 				.setTitle("Programming tools:")
 				.setFooter("Programming")
 				.addField("Batch:", " Obfuscates some batch script. (you will need to make a key list for it.) Usage: .batch [batch code here]")
 				.addField("ntl:", " Basic universal obfuscation (this is for the bot dev only. If you can get how it works, then cheers) Usage: .ntl [text]")
+			///////////////////
+			///////////////////
 			const nsfwembed = new Discord.RichEmbed()
 				.setTitle("NSFW:")
 				.setFooter("NSFW")
