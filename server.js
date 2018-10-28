@@ -80,6 +80,7 @@ client.on("message", async message => {
 	const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
 	const command = args.shift().toLowerCase();
 	const prefix = config.prefix
+	const bindex = config.prefix
 	
 
 	if(message.channel.type == 'dm'){
@@ -1253,8 +1254,11 @@ Jimp.read(buffer, (err, lenna) => {
       collector.on('collect', r => {
 	      
 	      console.log(`Collected ${r.emoji.name}`)
-	   config.forEach(function(binding){
-    binding.bindex += 1;
+	    config.bindex -= 1
+	      fs.writeFile("./config.json", JSON.stringify(config), function (err) {
+  if (err) return console.log(err);
+  console.log(JSON.stringify(config));
+  console.log('writing to ' + "./config.json");
 });
 	        if(bindex == 0){
 		    pollTitle.edit({
@@ -1293,7 +1297,7 @@ Jimp.read(buffer, (err, lenna) => {
       collector1.on('collect', r => {
 	     
 	      console.log(`Collected ${r.emoji.name}`)
-	   config.bindex += 1
+	   config.bindex -= 1
 	      fs.writeFile("./config.json", JSON.stringify(config), function (err) {
   if (err) return console.log(err);
   console.log(JSON.stringify(config));
