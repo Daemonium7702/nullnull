@@ -1285,7 +1285,7 @@ Jimp.read(buffer, (err, lenna) => {
 	    if(config.bindex == 6){
 		    message.edit("```js\n Programming tools: Batch: Obfuscates some batch script. (you will need to make a key list for it.) Usage: .batch [batch code here] \n ntl: Basic universal obfuscation (this is for the bot dev only. If you can get how it works, then cheers) Usage: .ntl [text]```")
 	    }
-	           if(config.bindex == ){
+	           if(config.bindex == 7){
 	      config.bindex -= 1 
 	    }
       });
