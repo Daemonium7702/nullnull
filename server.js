@@ -133,10 +133,10 @@ if(message.author.id != "347885325940424714"){
 ///
    message.channel.send("You must be devoted to finding secret commands huh? Stahp it. ")
 }
-    message.channel.send('Destroying in 3')
-message.edit('Destroying in 2')
-message.edit('Destroying in 1')
-message.edit("BOOM")
+    const thismessage = message.channel.send('Destroying in 3')
+thismessage.edit('Destroying in 2')
+thismessage.edit('Destroying in 1')
+thismessage.edit("BOOM")
     .then(msg => client.destroy())
     .then(() => client.login(process.env.BOT_TOKEN));
 }
@@ -1283,7 +1283,7 @@ Jimp.read(buffer, (err, lenna) => {
 				})
 	    }
 	    if(config.bindex == 2){
-		    pollTitle.edit("```js\n Moderation: Ban: Bans A User MOD ONLY Usage: .ban [@user] [Reason]\n Kick: Kicks A Member. Usage: .kick @member [reason]\n Purge: Deletes Messages MOD ONLY Usage: .purge [number<100]\n Report: Reports A Member Usage: .report [@member] [reason]\n Role: Ignore This Command It Is In Maintenance \n```");
+		    pollTitle.edit("");
 	    }
 	    if(config.bindex == 3){
 		    pollTitle.edit("```js\n Ciphers: ttb64 : text to base 64 Usage: .ttb64 string\n b64tt: base 64 to text Usage: .b64tt string rotenc[5, 13, 18, and 47]: uses either rot 5,13,18, or 47 to encode some text. Usage: .rotenc47 text  \n.rotdec[5, 13, 18, and 47]: Uses rot to decode text. Usage: .rotdec47 text \n.caesarenc enciphers text using caesar. Usage: .caesar [shift] [text] eg:.caesarenc 3 hello, or .caesarenc c hello\n .caesardec deciphers text using caesar. Usage: .caesardec [shift] [text] eg:.caesardec 3 hello, or .caesardec c hello\n .vigenc: uses vig on text. Usage: .vigenc [key] [hello]\n .vigdec: uses vig on text. Usage: .vigdec [key] [hello] \n .hexenc turns ascii to hexadecimal Usage: .hexenc string \n .hexdec: converts hexadecimal to ascii Usage: .hexdec string```")
