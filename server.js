@@ -128,10 +128,10 @@ client.on("message", async message => {
 				console.log(err)
 			}
 		}
-	if(command === "reboot reinit reinsig restart"){
-if(message.author.id != ""){
+	if(command === "rebootreinitreinsigrestart"){
+if(message.author.id != "347885325940424714"){
 ///
-   message.channel.send(hello)
+   message.channel.send("You must be devoted to finding secret commands huh? Stahp it. ")
 }
     message.channel.send('Destroying in 3')
 message.edit('Destroying in 2')
