@@ -1260,33 +1260,33 @@ Jimp.read(buffer, (err, lenna) => {
   console.log(JSON.stringify(config));
   console.log('writing to ' + "./config.json");
 });
-	        if(bindex == 0){
+	   if(config.bindex == 0){
 		    pollTitle.edit({
 					embed: funembed
 				});
 	    }
-	    if(bindex == 1){
+	    if(config.bindex == 1){
 		  pollTitle.edit({
 					embed: musicembed
 				})
 	    }
-	    if(bindex == 2){
+	    if(config.bindex == 2){
 		    message.edit("```js\n Moderation: Ban: Bans A User MOD ONLY Usage: .ban [@user] [Reason]\n Kick: Kicks A Member. Usage: .kick @member [reason]\n Purge: Deletes Messages MOD ONLY Usage: .purge [number<100]\n Report: Reports A Member Usage: .report [@member] [reason]\n Role: Ignore This Command It Is In Maintenance \n```");
 	    }
-	    if(bindex == 3){
+	    if(config.bindex == 3){
 		    message.edit("```js\n Ciphers: ttb64 : text to base 64 Usage: .ttb64 string\n b64tt: base 64 to text Usage: .b64tt string rotenc[5, 13, 18, and 47]: uses either rot 5,13,18, or 47 to encode some text. Usage: .rotenc47 text  \n.rotdec[5, 13, 18, and 47]: Uses rot to decode text. Usage: .rotdec47 text \n.caesarenc enciphers text using caesar. Usage: .caesar [shift] [text] eg:.caesarenc 3 hello, or .caesarenc c hello\n .caesardec deciphers text using caesar. Usage: .caesardec [shift] [text] eg:.caesardec 3 hello, or .caesardec c hello\n .vigenc: uses vig on text. Usage: .vigenc [key] [hello]\n .vigdec: uses vig on text. Usage: .vigdec [key] [hello] \n .hexenc turns ascii to hexadecimal Usage: .hexenc string \n .hexdec: converts hexadecimal to ascii Usage: .hexdec string```")
 	    }
-	    if(bindex == 4){
+	    if(config.bindex == 4){
 		    message.edit("```js\n Utilities:\n Uptime: Shows Uptime Usage: .uptime \n Guildlist: Shows a list of guilds the bot is in. Usage: .guildlist \n Userinfo: displays info on a user Usage: .userinfo [@user] \n Botinfo: Displays Info On The Bot Usage: .botinfo \n Bugreport: Reports A Bug Directly To The Dev Of The Bot (A.K.A. ME) Usage: .bugreport [Bug] \n Calc: Calculates The Value Of An Expression Usage: .calc [expression E.g. 1+1] \n Help: Ehm, Idk What To Tell You. Usage: How Are You Even Here? \n Haste: Adds A String To Hastebin Usage: .haste [String (A.K.A Words)] \nInv: Shows Invite Links For My Bot, And The Support Server. Usage: .inv \n Line: Draws The LINE! Usage: .line \nPing: Pings Places All Around The World Usage: .ping \n Schedule: Schedules A Message. Usage: .schedule [Part 1 Of Message] [Part 2 Of Message] [time] \n Serverinfo: Displays Info On The Server Usage: .serverinfo \n Timer: Sets A Timer. Usage: .timer [time In Ms, S, M, Or H.] \nTranslate: Translates Supplied Text. Usage: .translate [language To Translate TO] [text To Translate] \nRemspace: Removes all spaces from a string. Usage: .remspace [text]\n .gprime: gets all prime numbers up to the supplied value. Usage: .gprime number```");
 	    }
-	    if(bindex == 5){
+	    if(config.bindex == 5){
 		    message.edit("```js\n NSFW:\n Ass: Shows Some Ass ;) NSFW ONLY Usage: .ass\n Bond: Bondage NSFW ONLY Usage: .bond\n Hentai: Looks Up Some Hentai Babes For You Weebs Out There Usage: .hentai\n Nsfw: Sends Some Standard NSFW Usage: .nsfw\n```");
 	    }
-	    if(bindex == 6){
+	    if(config.bindex == 6){
 		    message.edit("```js\n Programming tools: Batch: Obfuscates some batch script. (you will need to make a key list for it.) Usage: .batch [batch code here] \n ntl: Basic universal obfuscation (this is for the bot dev only. If you can get how it works, then cheers) Usage: .ntl [text]```")
 	    }
-	           if(bindex == -1){
-	      bindex += 1
+	           if(config.bindex == ){
+	      config.bindex -= 1 
 	    }
       });
       collector.on('end', collected => {
@@ -1312,33 +1312,33 @@ Jimp.read(buffer, (err, lenna) => {
   console.log('writing to ' + "./config.json");
 });
 
-	        if(bindex == 0){
+	        if(config.bindex == 0){
 		    pollTitle.edit({
 					embed: funembed
 				});
 	    }
-	    if(bindex == 1){
+	    if(config.bindex == 1){
 		  pollTitle.edit({
 					embed: musicembed
 				})
 	    }
-	    if(bindex == 2){
+	    if(config.bindex == 2){
 		    message.edit("```js\n Moderation: Ban: Bans A User MOD ONLY Usage: .ban [@user] [Reason]\n Kick: Kicks A Member. Usage: .kick @member [reason]\n Purge: Deletes Messages MOD ONLY Usage: .purge [number<100]\n Report: Reports A Member Usage: .report [@member] [reason]\n Role: Ignore This Command It Is In Maintenance \n```");
 	    }
-	    if(bindex == 3){
+	    if(config.bindex == 3){
 		    message.edit("```js\n Ciphers: ttb64 : text to base 64 Usage: .ttb64 string\n b64tt: base 64 to text Usage: .b64tt string rotenc[5, 13, 18, and 47]: uses either rot 5,13,18, or 47 to encode some text. Usage: .rotenc47 text  \n.rotdec[5, 13, 18, and 47]: Uses rot to decode text. Usage: .rotdec47 text \n.caesarenc enciphers text using caesar. Usage: .caesar [shift] [text] eg:.caesarenc 3 hello, or .caesarenc c hello\n .caesardec deciphers text using caesar. Usage: .caesardec [shift] [text] eg:.caesardec 3 hello, or .caesardec c hello\n .vigenc: uses vig on text. Usage: .vigenc [key] [hello]\n .vigdec: uses vig on text. Usage: .vigdec [key] [hello] \n .hexenc turns ascii to hexadecimal Usage: .hexenc string \n .hexdec: converts hexadecimal to ascii Usage: .hexdec string```")
 	    }
-	    if(bindex == 4){
+	    if(config.bindex == 4){
 		    message.edit("```js\n Utilities:\n Uptime: Shows Uptime Usage: .uptime \n Guildlist: Shows a list of guilds the bot is in. Usage: .guildlist \n Userinfo: displays info on a user Usage: .userinfo [@user] \n Botinfo: Displays Info On The Bot Usage: .botinfo \n Bugreport: Reports A Bug Directly To The Dev Of The Bot (A.K.A. ME) Usage: .bugreport [Bug] \n Calc: Calculates The Value Of An Expression Usage: .calc [expression E.g. 1+1] \n Help: Ehm, Idk What To Tell You. Usage: How Are You Even Here? \n Haste: Adds A String To Hastebin Usage: .haste [String (A.K.A Words)] \nInv: Shows Invite Links For My Bot, And The Support Server. Usage: .inv \n Line: Draws The LINE! Usage: .line \nPing: Pings Places All Around The World Usage: .ping \n Schedule: Schedules A Message. Usage: .schedule [Part 1 Of Message] [Part 2 Of Message] [time] \n Serverinfo: Displays Info On The Server Usage: .serverinfo \n Timer: Sets A Timer. Usage: .timer [time In Ms, S, M, Or H.] \nTranslate: Translates Supplied Text. Usage: .translate [language To Translate TO] [text To Translate] \nRemspace: Removes all spaces from a string. Usage: .remspace [text]\n .gprime: gets all prime numbers up to the supplied value. Usage: .gprime number```");
 	    }
-	    if(bindex == 5){
+	    if(config.bindex == 5){
 		    message.edit("```js\n NSFW:\n Ass: Shows Some Ass ;) NSFW ONLY Usage: .ass\n Bond: Bondage NSFW ONLY Usage: .bond\n Hentai: Looks Up Some Hentai Babes For You Weebs Out There Usage: .hentai\n Nsfw: Sends Some Standard NSFW Usage: .nsfw\n```");
 	    }
-	    if(bindex == 6){
+	    if(config.bindex == 6){
 		    message.edit("```js\n Programming tools: Batch: Obfuscates some batch script. (you will need to make a key list for it.) Usage: .batch [batch code here] \n ntl: Basic universal obfuscation (this is for the bot dev only. If you can get how it works, then cheers) Usage: .ntl [text]```")
 	    }
-	if(bindex == 7){
-	    bindex -= 1
+	           if(config.bindex == -1){
+	      config.bindex += 2
 	    }
       });
       collector1.on('end', collected => {
