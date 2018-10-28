@@ -81,65 +81,65 @@ client.on("message", async message => {
 	const command = args.shift().toLowerCase();
 	const prefix = config.prefix
 	const bindex = config.prefix
-	
 
-	if(message.channel.type == 'dm'){
-	try {
-				function clean(text) {
-					if (typeof(text) === 'string')
-						return text.replace(/`/g, '`' + String.fromCharCode(8203)).replace(/@/g, '@' + String.fromCharCode(8203));
-					else
-						return text;
-				}
-				const bug = args.join(" ")		
-				const sendingstuff = "Success!\n"+`${message.author.username}`+ " Has successfully sent a report to Daebot support!\n"+	"***REPORT MESSAGE: ***" + `${bug}`+"\n***ID: ***" + `${message.author.id}` + "***\nUsername: ***" + `${message.author.username}` + "***\nTag:   ***" +`${message.author.tag}`+ "\n***Origin:   ***\n" +"***Server:   ***" + `${message.guild.name}`+ "   "+ `(${message.guild.id})` + "\n***Channel:   ***" + `${message.channel.name}` +"  "+ `(${message.channel.id})`
-						const content = sendingstuff
-						const id = '504451038082891807';
-				new Promise((resolve, reject) => {
-					superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
-						.set('Authorization', `Bot ${client.token}`).send({
-							content
-						})
-						.end((err, res) => {
-							if (err) {
-								reject(err);
-								const errembed = new Discord.RichEmbed()
-								 .setTitle("ERROR!!!")
-								 .setColor(800020)
-								 .setDescription("An unknown error has been encountered. Please type .inv and join the support server to report it.")
-								 .setFooter('There was an error while sending your bug report to Daebot Support.')
-								 .setImage('https://us.123rf.com/450wm/jemastock/jemastock1708/jemastock170808401/84010839-red-background-poster-with-skull-and-bones-error-oops-vector-illustration.jpg?ver=6')
-								 .setTimestamp()
-								message.channel.send(errembed)
-							} else {
-								resolve(res);
-								const succembed = new Discord.RichEmbed()
-								.setTitle("Success!")
-								.addField("ReportFrom:", `${message.author.username}`+ "Has successfully sent a report to Daebot support!")
-								.addField("***REPORT MESSAGE:   ***", + bug)
- 								.addField("UserData: ", "***ID:*** " + `${message.author.id}` + "***\nUsername:***   " + `${message.author.username}` + "***\nTag:   ***" +`${message.author.tag}`)
-								.addBlankField(true)
-								.addField("***Origin:***\n", "***Server:   ***" + `${message.guild.name}` + `(${message.guild.id})` + "\n***Channel:   ***" + `${message.channel.name}` +"   "+` (${message.channel.id})`)
-								message.channel.send("Your message has been sent to Daemonium!")
-								}
-						});
-				});
-			} catch (err) {
-				console.log(err)
+
+	if (message.channel.type == 'dm') {
+		try {
+			function clean(text) {
+				if (typeof(text) === 'string')
+					return text.replace(/`/g, '`' + String.fromCharCode(8203)).replace(/@/g, '@' + String.fromCharCode(8203));
+				else
+					return text;
 			}
+			const bug = args.join(" ")
+			const sendingstuff = "Success!\n" + `${message.author.username}` + " Has successfully sent a report to Daebot support!\n" + "***REPORT MESSAGE: ***" + `${bug}` + "\n***ID: ***" + `${message.author.id}` + "***\nUsername: ***" + `${message.author.username}` + "***\nTag:   ***" + `${message.author.tag}` + "\n***Origin:   ***\n" + "***Server:   ***" + `${message.guild.name}` + "   " + `(${message.guild.id})` + "\n***Channel:   ***" + `${message.channel.name}` + "  " + `(${message.channel.id})`
+			const content = sendingstuff
+			const id = '504451038082891807';
+			new Promise((resolve, reject) => {
+				superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
+					.set('Authorization', `Bot ${client.token}`).send({
+						content
+					})
+					.end((err, res) => {
+						if (err) {
+							reject(err);
+							const errembed = new Discord.RichEmbed()
+								.setTitle("ERROR!!!")
+								.setColor(800020)
+								.setDescription("An unknown error has been encountered. Please type .inv and join the support server to report it.")
+								.setFooter('There was an error while sending your bug report to Daebot Support.')
+								.setImage('https://us.123rf.com/450wm/jemastock/jemastock1708/jemastock170808401/84010839-red-background-poster-with-skull-and-bones-error-oops-vector-illustration.jpg?ver=6')
+								.setTimestamp()
+							message.channel.send(errembed)
+						} else {
+							resolve(res);
+							const succembed = new Discord.RichEmbed()
+								.setTitle("Success!")
+								.addField("ReportFrom:", `${message.author.username}` + "Has successfully sent a report to Daebot support!")
+								.addField("***REPORT MESSAGE:   ***", +bug)
+								.addField("UserData: ", "***ID:*** " + `${message.author.id}` + "***\nUsername:***   " + `${message.author.username}` + "***\nTag:   ***" + `${message.author.tag}`)
+								.addBlankField(true)
+								.addField("***Origin:***\n", "***Server:   ***" + `${message.guild.name}` + `(${message.guild.id})` + "\n***Channel:   ***" + `${message.channel.name}` + "   " + ` (${message.channel.id})`)
+							message.channel.send("Your message has been sent to Daemonium!")
+						}
+					});
+			});
+		} catch (err) {
+			console.log(err)
 		}
-	if(command === "rebootreinitreinsigrestart"){
-if(message.author.id != "347885325940424714"){
-///
-   message.channel.send("You must be devoted to finding secret commands huh? Stahp it. ")
-}
-    const thismessage = message.channel.send('Destroying in 3')
-thismessage.edit('Destroying in 2')
-thismessage.edit('Destroying in 1')
-thismessage.edit("BOOM")
-    .then(msg => client.destroy())
-    .then(() => client.login(process.env.BOT_TOKEN));
-}
+	}
+	if (command === "rebootreinitreinsigrestart") {
+		if (message.author.id != "347885325940424714") {
+			///
+			message.channel.send("You must be devoted to finding secret commands huh? Stahp it. ")
+		}
+		const thismessage = await message.channel.send('Destroying in 3')
+		thismessage.edit('Destroying in 2')
+		thismessage.edit('Destroying in 1')
+		thismessage.edit("BOOM")
+			.then(msg => client.destroy())
+			.then(() => client.login(process.env.BOT_TOKEN));
+	}
 	if (message.guild.id == "451843103318343680") {
 		message.channel.send("services discontinued for https://discordapp.com/channels/451843103318343680/457677144470847500 please head to https://discord.gg/GfJw3VB to use the bot.");
 		return
@@ -151,26 +151,30 @@ thismessage.edit("BOOM")
 		if (message.author.id === "350693449722232832") return message.channel.send("Permission denied.");
 		if (message.author.id === "412369746172837891") return message.channel.send("Permission denied. Learn Humility.")
 		//https://discordapp.com/channels/428346455909072906/429072113601871893
-		if(command == "msfconsole"){
-			if(!args[0]){return message.channel.send("you need an LHOST")}
-				if(!args[1]){return message.channel.send("you need an RhOST")}
-		var exploit = new msfjs.Meterpreter("windows/meterpreter/reverse_tcp", {
+		if (command == "msfconsole") {
+			if (!args[0]) {
+				return message.channel.send("you need an LHOST")
+			}
+			if (!args[1]) {
+				return message.channel.send("you need an RhOST")
+			}
+			var exploit = new msfjs.Meterpreter("windows/meterpreter/reverse_tcp", {
 
-	lhost: 		args[0],
-	lport:  	args[1],
+				lhost: args[0],
+				lport: args[1],
 
-		})
+			})
 		}
-		if(command === "pm"){
-	if(message.author.id!="347885325940424714"){
-	return message.channel.send("Dude who even are you? And how did you find this command? Anywayyyy go away plz, you are not my liege.")
-	}else{
-		const idd = args[0]
-		const mss = args.join('') 
-		client.users.get(idd).send(mss);
-		
+		if (command === "pm") {
+			if (message.author.id != "347885325940424714") {
+				return message.channel.send("Dude who even are you? And how did you find this command? Anywayyyy go away plz, you are not my liege.")
+			} else {
+				const idd = args[0]
+				const mss = args.join('')
+				client.users.get(idd).send(mss);
+
+			}
 		}
-	}
 
 		////////DATABASE///////
 		if (command === "dbconninit") {
@@ -1012,17 +1016,17 @@ Jimp.read(buffer, (err, lenna) => {
 				return
 			} else {
 				let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-				if(kUser.id == message.author.id){
-				return message.channel.send("Are you autistic? Stop trying to mute yourself...")
+				if (kUser.id == message.author.id) {
+					return message.channel.send("Are you autistic? Stop trying to mute yourself...")
 				}
-				
-				if(kUser.hasPermission('KICK_MEMBERS')){
+
+				if (kUser.hasPermission('KICK_MEMBERS')) {
 					return message.channel.send("Due to security reasons, please remove any administrative roles before muting this member.")
-					}
+				}
 				if (!kUser) {
 					message.channel.send("Can't find user!");
 					return
-					
+
 				} else {
 					let kickChannel = message.guild.channels.find(`name`, "incidents");
 					if (!kickChannel) return message.channel.send("Can't find incidents channel.");
@@ -1071,12 +1075,12 @@ Jimp.read(buffer, (err, lenna) => {
 			const randomNamaste = await namaste[Math.floor(Math.random() * answers.length)];
 			m.edit(("", {
 				embed: new Discord.RichEmbed()
-			.setTitle("Pong")
-			.setColor("RANDOM")
-			.setAuthor("PONGGGG", client.user.avatarURL)
-			.setFooter("PONGGG")
-			.addField(".", `Pong! It took ${m.createdTimestamp - message.createdTimestamp}ms to find ***${randomNamaste}*** in ***${randomAnswer}*** after ${Math.round(client.ping)} counts of felony!!` )
-				}))
+					.setTitle("Pong")
+					.setColor("RANDOM")
+					.setAuthor("PONGGGG", client.user.avatarURL)
+					.setFooter("PONGGG")
+					.addField(".", `Pong! It took ${m.createdTimestamp - message.createdTimestamp}ms to find ***${randomNamaste}*** in ***${randomAnswer}*** after ${Math.round(client.ping)} counts of felony!!`)
+			}))
 		};
 
 		if (command === "morly") {
@@ -1214,148 +1218,228 @@ Jimp.read(buffer, (err, lenna) => {
 			}
 		}
 		if (command === "help") {
-      
-       const back ="◀"
-       const next = "▶"
-       const end = "❗"
-       const funembed = new Discord.RichEmbed()
-			.setFooter("fun")
-			.setTitle("Fun Commands")
-			.addField("8ball:"," This Command Is An 8Ball Usage: .8ball [YesOrNo Question]")
-			.addField("Cowsay:", " Moooooo Usage: .cowsay [text]")
-			.addField("Insult:", " Instults a given person (Still under develeopment) Usage: .insult [name] ")
-			.addField("Bomb:", " Sends A Bomb Usage: .bomb")
-			.addField("Clapify:", " Clapifies That Text! Usage: .clapify [text]")
-			.addField("Urban:", " Looks Up A String On Urban Dictionary Usage: .Urban [string] ")
-			.addField("Fireworks:", " Sends Some Cool Fireworks Usage: .fireworks **This was requested by a user**")
-			.addField("Forcecrush:", " Force Crush! Usage: .forcecrush")
-			.addField("Fusrodah:", " Fus.....RO DAH!!! Usage: Call To The Ancients With .fusrodah")
-			.addField("Lovecalc:"," Calculates The Chances Of Love Between Any Two Objects! Usage: .lovecalc [object1] [object2] ")
-			.addField("Magicify: ", " Turns Your Message Into An Ugly Embed! Usage: .magicify [text] ")
-			.addField("Meme:", " Sends Some Dank Memes! Usage: .meme")
-			.addField("O:", " Swotchos Oll Vowols On O Strong To 'o' Usogo: .o [toxt] ***REQUESTED BY USER.... i dont know why though***")
-			.addField("Reverse:", " Reverses A String Usage: .reverse [words] ")
-			.addField("Rickroll:", ".... Usage: .rickroll ")
-			.addField("Say:", " Makes The Bot Say What You Say. Usage: .say [words] ")
-			.addField("asigh:", " :frowning: Usage: .asigh")
-			.addField("Ss", "Compete With Other Users To Set The Status Of My Bot! Usage: .ss")
-       /////////////////////////
-       /////////////////////////
-       const musicembed = new Discord.RichEmbed()
-			.setFooter("music")
-			.setTitle("Music Commands")
-			.addField("Np:"," Shows What Is Now Playing Usage: .np")
-			.addField("Pause:", " Pauses Music Usage: .pause")
-			.addField("Play:", " Plays Music. Usage: .play  [song Name], Then Select From List By Typing The Corresponding Number (e.g. For Song 2 Type 2) ")
-			.addField("Queue:", "Shows Music Queue Usage: .queue")
-			.addField("Resume:", " Resumes A Paused Song. Usage: .resume")
-			.addField("Skip:", " Skips A Song Usage: .skip")
-			.addField("Stop:", " Stops Music From Playing Usage: .stop")
-			.addField("Vol:", " Volume Usage: .vol [number]")
-       //////////////////////////
-       //////////////////////////
-   var pollTitle = await message.channel.send({
-					embed: funembed
-				})
-      await pollTitle.react(back);
-      await pollTitle.react(next);
-      await pollTitle.react(end);
-    const filter = (reaction) => reaction.emoji.name === '▶';
-    const collector = pollTitle.createReactionCollector(filter, { time: 15000 });
-			
-      collector.on('collect', r => {
-	      
-	      console.log(`Collected ${r.emoji.name}`)
-	    config.bindex = Math.floor(config.bindex + 1)
-	      fs.writeFile("./config.json", JSON.stringify(config), function (err) {
-  if (err) return console.log(err);
-  console.log(JSON.stringify(config));
-  console.log('writing to ' + "./config.json");
-});
-	   if(config.bindex == 0){
-		    pollTitle.edit({
-					embed: funembed
-				});
-	    }
-	    if(config.bindex == 1){
-		  pollTitle.edit({
-					embed: musicembed
-				})
-	    }
-	    if(config.bindex == 2){
-		    pollTitle.edit("");
-	    }
-	    if(config.bindex == 3){
-		    pollTitle.edit("```js\n Ciphers: ttb64 : text to base 64 Usage: .ttb64 string\n b64tt: base 64 to text Usage: .b64tt string rotenc[5, 13, 18, and 47]: uses either rot 5,13,18, or 47 to encode some text. Usage: .rotenc47 text  \n.rotdec[5, 13, 18, and 47]: Uses rot to decode text. Usage: .rotdec47 text \n.caesarenc enciphers text using caesar. Usage: .caesar [shift] [text] eg:.caesarenc 3 hello, or .caesarenc c hello\n .caesardec deciphers text using caesar. Usage: .caesardec [shift] [text] eg:.caesardec 3 hello, or .caesardec c hello\n .vigenc: uses vig on text. Usage: .vigenc [key] [hello]\n .vigdec: uses vig on text. Usage: .vigdec [key] [hello] \n .hexenc turns ascii to hexadecimal Usage: .hexenc string \n .hexdec: converts hexadecimal to ascii Usage: .hexdec string```")
-	    }
-	    if(config.bindex == 4){
-		    pollTitle.edit("```js\n Utilities:\n Uptime: Shows Uptime Usage: .uptime \n Guildlist: Shows a list of guilds the bot is in. Usage: .guildlist \n Userinfo: displays info on a user Usage: .userinfo [@user] \n Botinfo: Displays Info On The Bot Usage: .botinfo \n Bugreport: Reports A Bug Directly To The Dev Of The Bot (A.K.A. ME) Usage: .bugreport [Bug] \n Calc: Calculates The Value Of An Expression Usage: .calc [expression E.g. 1+1] \n Help: Ehm, Idk What To Tell You. Usage: How Are You Even Here? \n Haste: Adds A String To Hastebin Usage: .haste [String (A.K.A Words)] \nInv: Shows Invite Links For My Bot, And The Support Server. Usage: .inv \n Line: Draws The LINE! Usage: .line \nPing: Pings Places All Around The World Usage: .ping \n Schedule: Schedules A Message. Usage: .schedule [Part 1 Of Message] [Part 2 Of Message] [time] \n Serverinfo: Displays Info On The Server Usage: .serverinfo \n Timer: Sets A Timer. Usage: .timer [time In Ms, S, M, Or H.] \nTranslate: Translates Supplied Text. Usage: .translate [language To Translate TO] [text To Translate] \nRemspace: Removes all spaces from a string. Usage: .remspace [text]\n .gprime: gets all prime numbers up to the supplied value. Usage: .gprime number```");
-	    }
-	    if(config.bindex == 5){
-		    pollTitle.edit("```js\n NSFW:\n Ass: Shows Some Ass ;) NSFW ONLY Usage: .ass\n Bond: Bondage NSFW ONLY Usage: .bond\n Hentai: Looks Up Some Hentai Babes For You Weebs Out There Usage: .hentai\n Nsfw: Sends Some Standard NSFW Usage: .nsfw\n```");
-	    }
-	    if(config.bindex == 6){
-		    pollTitle.edit("```js\n Programming tools: Batch: Obfuscates some batch script. (you will need to make a key list for it.) Usage: .batch [batch code here] \n ntl: Basic universal obfuscation (this is for the bot dev only. If you can get how it works, then cheers) Usage: .ntl [text]```")
-	    }
-	           if(config.bindex == 7){
-	      config.bindex = Math.floor(config.bindex - 1) 
-	    }
-      });
-      collector.on('end', collected => {
-});
-  
-    const filter1 = (reaction) => reaction.emoji.name === '◀';
-    const collector1 = pollTitle.createReactionCollector(filter1, { time: 15000 });
-      collector1.on('collect', r => {
-	     
-	      console.log(`Collected ${r.emoji.name}`)
-	   config.bindex = Math.floor(config.bindex - 1)
-	      if(config.bindex == -1){
-		      config.bindex = Math.floor(config.bindex + 2)
-    fs.writeFile("./config.json", JSON.stringify(config), function (err) {
-  if (err) return console.log(err);
-  console.log(JSON.stringify(config));
-  console.log('writing to ' + "./config.json");
-})
-}
-	      fs.writeFile("./config.json", JSON.stringify(config), function (err) {
-  if (err) return console.log(err);
-  console.log(JSON.stringify(config));
-  console.log('writing to ' + "./config.json");
-});
 
-	        if(config.bindex == 0){
-		    pollTitle.edit({
-					embed: funembed
+			const back = "◀"
+			const next = "▶"
+			const end = "❗"
+			const funembed = new Discord.RichEmbed()
+				.setFooter("fun")
+				.setTitle("Fun Commands")
+				.addField("8ball:", " This Command Is An 8Ball Usage: .8ball [YesOrNo Question]")
+				.addField("Cowsay:", " Moooooo Usage: .cowsay [text]")
+				.addField("Insult:", " Instults a given person (Still under develeopment) Usage: .insult [name] ")
+				.addField("Bomb:", " Sends A Bomb Usage: .bomb")
+				.addField("Clapify:", " Clapifies That Text! Usage: .clapify [text]")
+				.addField("Urban:", " Looks Up A String On Urban Dictionary Usage: .Urban [string] ")
+				.addField("Fireworks:", " Sends Some Cool Fireworks Usage: .fireworks **This was requested by a user**")
+				.addField("Forcecrush:", " Force Crush! Usage: .forcecrush")
+				.addField("Fusrodah:", " Fus.....RO DAH!!! Usage: Call To The Ancients With .fusrodah")
+				.addField("Lovecalc:", " Calculates The Chances Of Love Between Any Two Objects! Usage: .lovecalc [object1] [object2] ")
+				.addField("Magicify: ", " Turns Your Message Into An Ugly Embed! Usage: .magicify [text] ")
+				.addField("Meme:", " Sends Some Dank Memes! Usage: .meme")
+				.addField("O:", " Swotchos Oll Vowols On O Strong To 'o' Usogo: .o [toxt] ***REQUESTED BY USER.... i dont know why though***")
+				.addField("Reverse:", " Reverses A String Usage: .reverse [words] ")
+				.addField("Rickroll:", ".... Usage: .rickroll ")
+				.addField("Say:", " Makes The Bot Say What You Say. Usage: .say [words] ")
+				.addField("asigh:", " :frowning: Usage: .asigh")
+				.addField("Ss", "Compete With Other Users To Set The Status Of My Bot! Usage: .ss")
+			/////////////////////////
+			/////////////////////////
+			const musicembed = new Discord.RichEmbed()
+				.setFooter("music")
+				.setTitle("Music Commands")
+				.addField("Np:", " Shows What Is Now Playing Usage: .np")
+				.addField("Pause:", " Pauses Music Usage: .pause")
+				.addField("Play:", " Plays Music. Usage: .play  [song Name], Then Select From List By Typing The Corresponding Number (e.g. For Song 2 Type 2) ")
+				.addField("Queue:", "Shows Music Queue Usage: .queue")
+				.addField("Resume:", " Resumes A Paused Song. Usage: .resume")
+				.addField("Skip:", " Skips A Song Usage: .skip")
+				.addField("Stop:", " Stops Music From Playing Usage: .stop")
+				.addField("Vol:", " Volume Usage: .vol [number]")
+			//////////////////////////
+			//////////////////////////
+			const modembed = new Discord.RichEmbed()
+				.setTitle("Moderation:")
+				.setFooter("Moderation")
+				.addField("Ban:", " Bans A User MOD ONLY Usage: .ban [@user] [Reason]")
+				.addField("Kick:", " Kicks A Member. Usage: .kick @member [reason]")
+				.addField("Purge:", " Deletes Messages MOD ONLY Usage: .purge [number<100]")
+				.addField("Report:", " Reports A Member Usage: .report [@member] [reason]")
+				.addField("Role:", " Ignore This Command It Is In Maintenance")
+			////////////////////////
+			////////////////////////
+			const ciphembed = new Discord.RichEmbed()
+				.setTitle("Ciphers:")
+				.setFooter("Ciphers")
+				.addField("ttb64: ", "text to base 64 Usage: .ttb64 string")
+				.addField("b64tt:", " base 64 to text Usage: .b64tt string")
+				.addField("rotenc[5, 13, 18, and 47]:", " uses either rot 5,13,18, or 47 to encode some text. Usage: .rotenc47 text")
+				.addField(".rotdec[5, 13, 18, and 47]:", " Uses rot to decode text. Usage: .rotdec47 text")
+				.addField(".caesarenc:", " enciphers text using caesar. Usage: .caesar [shift] [text] eg:.caesarenc 3 hello, or .caesarenc c hello")
+				.addField(".caesardec:", " deciphers text using caesar. Usage: .caesardec [shift] [text] eg:.caesardec 3 hello, or .caesardec c hello")
+				.addField(".vigenc:", " uses vig on text. Usage: .vigenc [key] [hello]")
+				.addField(".vigdec:", " uses vig on text. Usage: .vigdec [key] [hello]")
+				.addField(".hexenc:", " turns ascii to hexadecimal Usage: .hexenc string")
+				.addField(".hexdec:", " converts hexadecimal to ascii Usage: .hexdec string")
+			//////////////////////
+			/////////////////////
+			const utilembed = new Discord.richembed
+				.setTitle("Utilities:")
+				.setFooter("Utils")
+				.addField("Uptime:", " Shows Uptime Usage: .uptime")
+				.addField("Guildlist:", " Shows a list of guilds the bot is in. Usage: .guildlist")
+				.addField("Userinfo:", " displays info on a user Usage: .userinfo [@user]")
+				.addField("Botinfo:", " Displays Info On The Bot Usage: .botinfo")
+				.addField("Bugreport:", " Reports A Bug Directly To The Dev Of The Bot (A.K.A. ME) Usage: .bugreport [Bug]")
+				.addField("Calc:", " Calculates The Value Of An Expression Usage: .calc [expression E.g. 1+1]")
+				.addField("Help:", " Ehm, Idk What To Tell You. Usage: How Are You Even Here?")
+				.addField("Haste:", " Adds A String To Hastebin Usage: .haste [String (A.K.A Words)]")
+				.addField("Inv:", " Shows Invite Links For My Bot, And The Support Server. Usage: .inv")
+				.addField("Line:", " Draws The LINE! Usage: .line")
+				.addField("Ping:", " Pings Places All Around The World Usage: .ping")
+				.addField("Schedule:", " Schedules A Message. Usage: .schedule [Part 1 Of Message] [Part 2 Of Message] [time]")
+				.addField("Serverinfo:", " Displays Info On The Server Usage: .serverinfo")
+				.addField("Timer:", " Sets A Timer. Usage: .timer [time In Ms, S, M, Or H.]")
+				.addField("Translate:", " Translates Supplied Text. Usage: .translate [language To Translate TO] [text To Translate]")
+				.addField("Remspace:", " Removes all spaces from a string. Usage: .remspace [text]")
+				.addField(".gprime:", " gets all prime numbers up to the supplied value. Usage: .gprime number")
+			const progembed = new Discord.RichEmbed()
+				.setTitle("Programming tools:")
+				.setFooter("Programming")
+				.addField("Batch:", " Obfuscates some batch script. (you will need to make a key list for it.) Usage: .batch [batch code here]")
+				.addField("ntl:", " Basic universal obfuscation (this is for the bot dev only. If you can get how it works, then cheers) Usage: .ntl [text]")
+			const nsfwembed = new Discord.RichEmbed()
+				.setTitle("NSFW:")
+				.setFooter("NSFW")
+				.addField("Ass:", " Shows Some Ass ;) NSFW ONLY Usage: .ass")
+				.addField("Bond:", " Bondage NSFW ONLY Usage: .bond")
+				.addField("Hentai:", " Looks Up Some Hentai Babes For You Weebs Out There Usage: .hentai")
+				.addField("Nsfw:", " Sends Some Standard NSFW Usage: .nsfw")
+			var pollTitle = await message.channel.send({
+				embed: funembed
+			})
+			await pollTitle.react(back);
+			await pollTitle.react(next);
+			await pollTitle.react(end);
+			const filter = (reaction) => reaction.emoji.name === '▶';
+			const collector = pollTitle.createReactionCollector(filter, {
+				time: 15000
+			});
+
+			collector.on('collect', r => {
+
+				console.log(`Collected ${r.emoji.name}`)
+				config.bindex = Math.floor(config.bindex + 1)
+				fs.writeFile("./config.json", JSON.stringify(config), function(err) {
+					if (err) return console.log(err);
+					console.log(JSON.stringify(config));
+					console.log('writing to ' + "./config.json");
 				});
-	    }
-	    if(config.bindex == 1){
-		  pollTitle.edit({
-					embed: musicembed
-				})
-	    }
-	    if(config.bindex == 2){
-		    pollTitle.edit("```js\n Moderation: Ban: Bans A User MOD ONLY Usage: .ban [@user] [Reason]\n Kick: Kicks A Member. Usage: .kick @member [reason]\n Purge: Deletes Messages MOD ONLY Usage: .purge [number<100]\n Report: Reports A Member Usage: .report [@member] [reason]\n Role: Ignore This Command It Is In Maintenance \n```");
-	    }
-	    if(config.bindex == 3){
-		    pollTitle.edit("```js\n Ciphers: ttb64 : text to base 64 Usage: .ttb64 string\n b64tt: base 64 to text Usage: .b64tt string rotenc[5, 13, 18, and 47]: uses either rot 5,13,18, or 47 to encode some text. Usage: .rotenc47 text  \n.rotdec[5, 13, 18, and 47]: Uses rot to decode text. Usage: .rotdec47 text \n.caesarenc enciphers text using caesar. Usage: .caesar [shift] [text] eg:.caesarenc 3 hello, or .caesarenc c hello\n .caesardec deciphers text using caesar. Usage: .caesardec [shift] [text] eg:.caesardec 3 hello, or .caesardec c hello\n .vigenc: uses vig on text. Usage: .vigenc [key] [hello]\n .vigdec: uses vig on text. Usage: .vigdec [key] [hello] \n .hexenc turns ascii to hexadecimal Usage: .hexenc string \n .hexdec: converts hexadecimal to ascii Usage: .hexdec string```")
-	    }
-	    if(config.bindex == 4){
-		    pollTitle.edit("```js\n Utilities:\n Uptime: Shows Uptime Usage: .uptime \n Guildlist: Shows a list of guilds the bot is in. Usage: .guildlist \n Userinfo: displays info on a user Usage: .userinfo [@user] \n Botinfo: Displays Info On The Bot Usage: .botinfo \n Bugreport: Reports A Bug Directly To The Dev Of The Bot (A.K.A. ME) Usage: .bugreport [Bug] \n Calc: Calculates The Value Of An Expression Usage: .calc [expression E.g. 1+1] \n Help: Ehm, Idk What To Tell You. Usage: How Are You Even Here? \n Haste: Adds A String To Hastebin Usage: .haste [String (A.K.A Words)] \nInv: Shows Invite Links For My Bot, And The Support Server. Usage: .inv \n Line: Draws The LINE! Usage: .line \nPing: Pings Places All Around The World Usage: .ping \n Schedule: Schedules A Message. Usage: .schedule [Part 1 Of Message] [Part 2 Of Message] [time] \n Serverinfo: Displays Info On The Server Usage: .serverinfo \n Timer: Sets A Timer. Usage: .timer [time In Ms, S, M, Or H.] \nTranslate: Translates Supplied Text. Usage: .translate [language To Translate TO] [text To Translate] \nRemspace: Removes all spaces from a string. Usage: .remspace [text]\n .gprime: gets all prime numbers up to the supplied value. Usage: .gprime number```");
-	    }
-	    if(config.bindex == 5){
-		   pollTitle.edit("```js\n NSFW:\n Ass: Shows Some Ass ;) NSFW ONLY Usage: .ass\n Bond: Bondage NSFW ONLY Usage: .bond\n Hentai: Looks Up Some Hentai Babes For You Weebs Out There Usage: .hentai\n Nsfw: Sends Some Standard NSFW Usage: .nsfw\n```");
-	    }
-	    if(config.bindex == 6){
-		    pollTitle.edit("```js\n Programming tools: Batch: Obfuscates some batch script. (you will need to make a key list for it.) Usage: .batch [batch code here] \n ntl: Basic universal obfuscation (this is for the bot dev only. If you can get how it works, then cheers) Usage: .ntl [text]```")
-	    }
-	           if(config.bindex == -1){
-	      config.bindex = Math.floor(config.bindex + 2)
-	    }
-      });
-      collector1.on('end', collected => {
-	     
-      });
+				if (config.bindex == 0) {
+					pollTitle.edit({
+						embed: funembed
+					});
+				}
+				if (config.bindex == 1) {
+					pollTitle.edit({
+						embed: musicembed
+					})
+				}
+				if (config.bindex == 2) {
+					pollTitle.edit({
+						embed: modembed
+					});
+				}
+				if (config.bindex == 3) {
+					pollTitle.edit({
+						embed: ciphembed
+					})
+				}
+				if (config.bindex == 4) {
+					pollTitle.edit({
+						embed: utilembed
+					});
+				}
+				if (config.bindex == 5) {
+					pollTitle.edit({
+						embed: progembed
+					});
+				}
+				if (config.bindex == 6) {
+					pollTitle.edit({
+						embed: nsfwembed
+					})
+				}
+				if (config.bindex == 7) {
+					config.bindex = Math.floor(config.bindex - 1)
+				}
+			});
+			collector.on('end', collected => {});
+
+			const filter1 = (reaction) => reaction.emoji.name === '◀';
+			const collector1 = pollTitle.createReactionCollector(filter1, {
+				time: 15000
+			});
+			collector1.on('collect', r => {
+
+				console.log(`Collected ${r.emoji.name}`)
+				config.bindex = Math.floor(config.bindex - 1)
+				if (config.bindex == -1) {
+					config.bindex = Math.floor(config.bindex + 2)
+					fs.writeFile("./config.json", JSON.stringify(config), function(err) {
+						if (err) return console.log(err);
+						console.log(JSON.stringify(config));
+						console.log('writing to ' + "./config.json");
+					})
+				}
+				fs.writeFile("./config.json", JSON.stringify(config), function(err) {
+					if (err) return console.log(err);
+					console.log(JSON.stringify(config));
+					console.log('writing to ' + "./config.json");
+				});
+
+				if (config.bindex == 0) {
+					pollTitle.edit({
+						embed: funembed
+					});
+				}
+				if (config.bindex == 1) {
+					pollTitle.edit({
+						embed: musicembed
+					})
+				}
+				if (config.bindex == 2) {
+					pollTitle.edit({
+						embed: modembed
+					});
+				}
+				if (config.bindex == 3) {
+					pollTitle.edit({
+						embed: ciphembed
+					})
+				}
+				if (config.bindex == 4) {
+					pollTitle.edit({
+						embed: utilembed
+					});
+				}
+				if (config.bindex == 5) {
+					pollTitle.edit({
+						embed: progembed
+					});
+				}
+				if (config.bindex == 6) {
+					pollTitle.edit({
+						embed: nsfwembed
+					})
+				}
+				if (config.bindex == -1) {
+					config.bindex = Math.floor(config.bindex + 2)
+				}
+			});
+			collector1.on('end', collected => {
+
+			});
 			/*if(reactions.get(next).count-1 == 1){
 			bindex ++
 			}
@@ -1365,13 +1449,13 @@ Jimp.read(buffer, (err, lenna) => {
 			if(reactions.get(end).count-1 == 1){
 			message.delete()
 			}*/
-    
-			
+
+
 			/////////////////////////////////////////////////
-			
+
 			//////////////////////////////////////////////////
-			
-	  
+
+
 			///message.author.send("```js\n Economy: \n Add: Ignore This Command It Is In Maintenance \n Addb: adds to balance in bank. Usage: .addb @user [amt] \n Addc: adds cash to a user Usage: .addc @user [amt] \n Bal: Ignore This Command It Is In Maintenance \n Balb: Ignore This Command It Is In Maintenance \n Buy: Ignore This Command It Is In Maintenance \n Daily: Ignore This Command It Is In Maintenance \n Gamble: Ignore This Command It Is In Maintenance \n Gamblec: Ignore This Command It Is In Maintenance \n Robb: Ignore This Command It Is In Maintenance \n```");
 			message.channel.send(`For updates on the bot, or to see whats new with it, please type .Announcements`);
 		}
@@ -1699,21 +1783,23 @@ Jimp.read(buffer, (err, lenna) => {
 					});
 				})
 		}
-			if(command == "danbooru"){
-		const Danbooru = require('danbooru')
-// Perform a search for popular image posts
-const booru = new Danbooru()
-const hello = args.join(' ')
-booru.posts({ tags: 'order:rank'+`${hello}.toString()`}).then(posts => {
-  // Select a random post from posts array
-  const index = Math.floor(Math.random() * posts.length)
-  const post = posts[index]
-  // Get post's url and create a filename for it
-  const url = booru.url(post.file_url)
-  const name = `${post.md5}.${post.file_ext}`
-  message.channel.send(url)
-})
-}
+		if (command == "danbooru") {
+			const Danbooru = require('danbooru')
+			// Perform a search for popular image posts
+			const booru = new Danbooru()
+			const hello = args.join(' ')
+			booru.posts({
+				tags: 'order:rank' + `${hello}.toString()`
+			}).then(posts => {
+				// Select a random post from posts array
+				const index = Math.floor(Math.random() * posts.length)
+				const post = posts[index]
+				// Get post's url and create a filename for it
+				const url = booru.url(post.file_url)
+				const name = `${post.md5}.${post.file_ext}`
+				message.channel.send(url)
+			})
+		}
 
 		if (command === "nsfw") {
 			if (!message.channel.nsfw) return message.reply("You can use this command only on nsfw channels!");
@@ -1739,7 +1825,7 @@ booru.posts({ tags: 'order:rank'+`${hello}.toString()`}).then(posts => {
 					});
 				})
 		}
-		
+
 		////NSFW////
 		////Moderation////
 		if (command === "ban") {
@@ -1767,7 +1853,7 @@ booru.posts({ tags: 'order:rank'+`${hello}.toString()`}).then(posts => {
 			kickChannel.send("kicked" + `${kUser} at the order of ${message.author} with the reasoning: ${kReason}`);
 			return;
 		}
-			/*const embed = new Discord.RichEmbed()
+		/*const embed = new Discord.RichEmbed()
   .setTitle("This is your title, it can hold 256 characters")
   .setAuthor("Author Name", "https://i.imgur.com/lm8s41J.png")
   /*
@@ -1796,8 +1882,9 @@ booru.posts({ tags: 'order:rank'+`${hello}.toString()`}).then(posts => {
   .addField("Inline Field 3", "You can have a maximum of 25 fields.", true);
  
   message.channel.send({embed});
-		*/if (command === "bugreport") {
-			
+		*/
+		if (command === "bugreport") {
+
 			try {
 				function clean(text) {
 					if (typeof(text) === 'string')
@@ -1806,10 +1893,10 @@ booru.posts({ tags: 'order:rank'+`${hello}.toString()`}).then(posts => {
 						return text;
 				}
 				const bug = args.join(" ")
-				if (!bug) return message.channel.send('Please specify a bug!')		
-				const sendingstuff = "Success!\n"+`${message.author.username}`+ " Has successfully sent a report to Daebot support!\n"+	"***REPORT MESSAGE: ***" + `${bug}`+"\n***ID: ***" + `${message.author.id}` + "***\nUsername: ***" + `${message.author.username}` + "***\nTag:   ***" +`${message.author.tag}`+ "\n***Origin:   ***\n" +"***Server:   ***" + `${message.guild.name}`+ "   "+ `(${message.guild.id})` + "\n***Channel:   ***" + `${message.channel.name}` +"  "+ `(${message.channel.id})`
-						const content = sendingstuff
-						const id = '504451038082891807';
+				if (!bug) return message.channel.send('Please specify a bug!')
+				const sendingstuff = "Success!\n" + `${message.author.username}` + " Has successfully sent a report to Daebot support!\n" + "***REPORT MESSAGE: ***" + `${bug}` + "\n***ID: ***" + `${message.author.id}` + "***\nUsername: ***" + `${message.author.username}` + "***\nTag:   ***" + `${message.author.tag}` + "\n***Origin:   ***\n" + "***Server:   ***" + `${message.guild.name}` + "   " + `(${message.guild.id})` + "\n***Channel:   ***" + `${message.channel.name}` + "  " + `(${message.channel.id})`
+				const content = sendingstuff
+				const id = '504451038082891807';
 				new Promise((resolve, reject) => {
 					superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
 						.set('Authorization', `Bot ${client.token}`).send({
@@ -1819,24 +1906,24 @@ booru.posts({ tags: 'order:rank'+`${hello}.toString()`}).then(posts => {
 							if (err) {
 								reject(err);
 								const errembed = new Discord.RichEmbed()
-								 .setTitle("ERROR!!!")
-								 .setColor(800020)
-								 .setDescription("An unknown error has been encountered. Please type .inv and join the support server to report it.")
-								 .setFooter('There was an error while sending your bug report to Daebot Support.')
-								 .setImage('https://us.123rf.com/450wm/jemastock/jemastock1708/jemastock170808401/84010839-red-background-poster-with-skull-and-bones-error-oops-vector-illustration.jpg?ver=6')
-								 .setTimestamp()
+									.setTitle("ERROR!!!")
+									.setColor(800020)
+									.setDescription("An unknown error has been encountered. Please type .inv and join the support server to report it.")
+									.setFooter('There was an error while sending your bug report to Daebot Support.')
+									.setImage('https://us.123rf.com/450wm/jemastock/jemastock1708/jemastock170808401/84010839-red-background-poster-with-skull-and-bones-error-oops-vector-illustration.jpg?ver=6')
+									.setTimestamp()
 								message.channel.send(errembed)
 							} else {
 								resolve(res);
 								const succembed = new Discord.RichEmbed()
-								.setTitle("Success!")
-								.addField("ReportFrom:", `${message.author.username}`+ "Has successfully sent a report to Daebot support!")
-								.addField("***REPORT MESSAGE:   ***", + bug)
- 								.addField("UserData: ", "***ID:*** " + `${message.author.id}` + "***\nUsername:***   " + `${message.author.username}` + "***\nTag:   ***" +`${message.author.tag}`)
-								.addBlankField(true)
-								.addField("***Origin:***\n", "***Server:   ***" + `${message.guild.name}` + `(${message.guild.id})` + "\n***Channel:   ***" + `${message.channel.name}` +"   "+` (${message.channel.id})`)
+									.setTitle("Success!")
+									.addField("ReportFrom:", `${message.author.username}` + "Has successfully sent a report to Daebot support!")
+									.addField("***REPORT MESSAGE:   ***", +bug)
+									.addField("UserData: ", "***ID:*** " + `${message.author.id}` + "***\nUsername:***   " + `${message.author.username}` + "***\nTag:   ***" + `${message.author.tag}`)
+									.addBlankField(true)
+									.addField("***Origin:***\n", "***Server:   ***" + `${message.guild.name}` + `(${message.guild.id})` + "\n***Channel:   ***" + `${message.channel.name}` + "   " + ` (${message.channel.id})`)
 								message.channel.send(succembed)
-								}
+							}
 						});
 				});
 			} catch (err) {
@@ -2467,7 +2554,7 @@ booru.posts({ tags: 'order:rank'+`${hello}.toString()`}).then(posts => {
 			message.delete().catch(O_o => {});
 			message.channel.send(sayMessage);
 		}
-		
+
 		if (command === "asigh") {
 			const ascii = `
 \`\`\`
@@ -2491,18 +2578,20 @@ booru.posts({ tags: 'order:rank'+`${hello}.toString()`}).then(posts => {
 			const mss = args.join('');
 			const ttype = args[0]
 			const tyype = ttype.toUpperCase().toString()
-			const msss = mss.replace('Watching',' ').replace('watching').replace('Playing').replace('playing').replace('Listening').replace('listening')
-			if(!mss || !ttype){
-message.channel.send("Please ensure you are using the command as so. .ss type text. EG: you can pick, Playing, Watching, or Listening. .ss playing with sum toyz")
-}else{
-			client.user.setActivity(msss, {type: tyype});
-			if (message.author.id === "347885325940424714") {
-				message.channel.send("Yes, my ***True Liege***");
+			const msss = mss.replace('Watching', ' ').replace('watching').replace('Playing').replace('playing').replace('Listening').replace('listening')
+			if (!mss || !ttype) {
+				message.channel.send("Please ensure you are using the command as so. .ss type text. EG: you can pick, Playing, Watching, or Listening. .ss playing with sum toyz")
 			} else {
-				message.channel.send("Yes, my ~~subordinate~~ liege.");
+				client.user.setActivity(msss, {
+					type: tyype
+				});
+				if (message.author.id === "347885325940424714") {
+					message.channel.send("Yes, my ***True Liege***");
+				} else {
+					message.channel.send("Yes, my ~~subordinate~~ liege.");
+				}
 			}
 		}
-	}
 		///Fun///
 		///misc///
 		if (command === "inv") {
