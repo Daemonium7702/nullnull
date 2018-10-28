@@ -1254,7 +1254,7 @@ Jimp.read(buffer, (err, lenna) => {
       collector.on('collect', r => {
 	      
 	      console.log(`Collected ${r.emoji.name}`)
-	    config.bindex -= 1
+	    config.bindex += 1
 	      fs.writeFile("./config.json", JSON.stringify(config), function (err) {
   if (err) return console.log(err);
   console.log(JSON.stringify(config));
@@ -1298,6 +1298,13 @@ Jimp.read(buffer, (err, lenna) => {
 	     
 	      console.log(`Collected ${r.emoji.name}`)
 	   config.bindex -= 1
+	      if(config.bindex == -1){
+		      config.bindex += 2
+    fs.writeFile("./config.json", JSON.stringify(config), function (err) {
+  if (err) return console.log(err);
+  console.log(JSON.stringify(config));
+  console.log('writing to ' + "./config.json");
+}
 	      fs.writeFile("./config.json", JSON.stringify(config), function (err) {
   if (err) return console.log(err);
   console.log(JSON.stringify(config));
