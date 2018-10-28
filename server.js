@@ -1304,12 +1304,14 @@ Jimp.read(buffer, (err, lenna) => {
   if (err) return console.log(err);
   console.log(JSON.stringify(config));
   console.log('writing to ' + "./config.json");
+})
 }
 	      fs.writeFile("./config.json", JSON.stringify(config), function (err) {
   if (err) return console.log(err);
   console.log(JSON.stringify(config));
   console.log('writing to ' + "./config.json");
 });
+
 	        if(bindex == 0){
 		    pollTitle.edit({
 					embed: funembed
