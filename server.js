@@ -80,6 +80,7 @@ client.on("message", async message => {
 	const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
 	const command = args.shift().toLowerCase();
 	const prefix = config.prefix
+	const bindex = config.bindex
 	if(message.channel.type == 'dm'){
 	try {
 				function clean(text) {
@@ -1249,8 +1250,7 @@ Jimp.read(buffer, (err, lenna) => {
     const collector = pollTitle.createReactionCollector(filter, { time: 15000 });
 			
       collector.on('collect', r => {
-	       var bindex = 0
-	    
+	      
 	      console.log(`Collected ${r.emoji.name}`)
 	      bindex += 1
 	        if(bindex == 0){
@@ -1288,7 +1288,7 @@ Jimp.read(buffer, (err, lenna) => {
     const filter1 = (reaction) => reaction.emoji.name === '◀';
     const collector1 = pollTitle.createReactionCollector(filter1, { time: 15000 });
       collector1.on('collect', r => {
-	       var bindex = 0
+	     
 	      console.log(`Collected ${r.emoji.name}`)
 	bindex -= 1
 	        if(bindex == 0){
