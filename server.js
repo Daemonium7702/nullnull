@@ -2416,9 +2416,9 @@ Jimp.read(buffer, (err, lenna) => {
 					let translation;
 
 					if (!Langs.includes(transArg)) return message.channel.send(`**Language not found.**`);
-					args = args.slice(transArg.length);
+					const theseargs = args.slice(transArg.length);
 
-					translate(args, {
+					translate(theseargs, {
 						to: transArg
 					}).then(res => {
 
