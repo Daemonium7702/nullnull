@@ -2389,8 +2389,6 @@ Jimp.read(buffer, (err, lenna) => {
 				} else {
 
 					let transArg = args[0].toLowerCase();
-
-					args = args.join(' ').slice(prefix.length);
 					let translation;
 
 					if (!Langs.includes(transArg)) return message.channel.send(`**Language not found.**`);
