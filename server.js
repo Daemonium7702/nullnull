@@ -2412,7 +2412,7 @@ Jimp.read(buffer, (err, lenna) => {
 
 				} else {
 
-					let transArg = args.join[0].toLowerCase();
+					let transArg = args[0].toLowerCase();
 					var theseargs = args.join('').slice(prefix.length);
 					let translation;
 
