@@ -78,7 +78,7 @@ client.on('guildMemberAdd', member => {
 		`I look into my crystal ball... and I see... ${member}! ... Hmm gues it wasn\'t that important after all.`
 		
 	]
-	const ramess = await rmess[Math.floor(Math.random() * answers.length)];
+	const ramess = rmess[Math.floor(Math.random() * answers.length)];
 			
 	channel.send(ramess);
 });
