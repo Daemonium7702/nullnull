@@ -2395,47 +2395,47 @@ Jimp.read(buffer, (err, lenna) => {
 			}, ms(Timer));
 		}
 		if (command === "translate") {
-			const Langs = ['afrikaans', 'albanian', 'amharic', 'arabic', 'armenian', 'azerbaijani', 'bangla', 'basque', 'belarusian', 'bengali', 'bosnian', 'bulgarian', 'burmese', 'catalan', 'cebuano', 'chichewa', 'chinese simplified', 'chinese traditional', 'corsican', 'croatian', 'czech', 'danish', 'dutch', 'english', 'esperanto', 'estonian', 'filipino', 'finnish', 'french', 'frisian', 'galician', 'georgian', 'german', 'greek', 'gujarati', 'haitian creole', 'hausa', 'hawaiian', 'hebrew', 'hindi', 'hmong', 'hungarian', 'icelandic', 'igbo', 'indonesian', 'irish', 'italian', 'japanese', 'javanese', 'kannada', 'kazakh', 'khmer', 'korean', 'kurdish (kurmanji)', 'kyrgyz', 'lao', 'latin', 'latvian', 'lithuanian', 'luxembourgish', 'macedonian', 'malagasy', 'malay', 'malayalam', 'maltese', 'maori', 'marathi', 'mongolian', 'myanmar (burmese)', 'nepali', 'norwegian', 'nyanja', 'pashto', 'persian', 'polish', 'portugese', 'punjabi', 'romanian', 'russian', 'samoan', 'scottish gaelic', 'serbian', 'sesotho', 'shona', 'sindhi', 'sinhala', 'slovak', 'slovenian', 'somali', 'spanish', 'sundanese', 'swahili', 'swedish', 'tajik', 'tamil', 'telugu', 'thai', 'turkish', 'ukrainian', 'urdu', 'uzbek', 'vietnamese', 'welsh', 'xhosa', 'yiddish', 'yoruba', 'zulu'];
-			if (args[0] === undefined) {
+		  if (args[0] === undefined) {
 
-				const embed = new Discord.RichEmbed()
-					.setColor("FFFFFF")
-					.setDescription("**Provide a language and some text for Daebot to translate.**\nUsage: `PREFIXX translate <language> <text>`");
+    const embed = new Discord.RichEmbed()
+    .setColor("FFFFFF")
+    .setDescription("**Provide a language and some text for bot to translate.**\nUsage: `PREFIXX translate <language> <text>`");
 
-				return message.channel.send(embed);
+    return message.channel.send(embed);
 
-			} else {
+  } else {
 
-				if (args[1] === undefined) {
+    if (args[1] === undefined) {
 
-					return message.channel.send('**Please give me something to translate.** `PREFIX translate <language> <text>`');
+      return message.channel.send('**Please give me something to translate.** `PREFIX translate <language> <text>`');
 
-				} else {
+    } else {
 
-					let transArg = args[0].toLowerCase();
-					var theseargs = args.join('').slice(prefix.length);
-					let translation;
+      let transArg = args[0].toLowerCase();
 
-					if (!Langs.includes(transArg)) return message.channel.send(`**Language not found.**`);
-					 theseargs = args.slice(transArg.length);
+      args = args.join(' ').slice(prefix.length);
+      let translation;
 
-					translate(theseargs, {
-						to: transArg
-					}).then(res => {
+      if (!Langs.includes(transArg)) return message.channel.send(`**Language not found.**`);
+      args = args.slice(transArg.length);
 
-						const embed = new Discord.RichEmbed()
-							.setDescription(res.text)
-							.setFooter(`english -> ${transArg}`)
-							.setColor(`RANDOM`);
-						return message.channel.send(embed);
+      translate(args, {to: transArg}).then(res => {
 
-					});
+        const embed = new Discord.RichEmbed()
+        .setDescription(res.text)
+        .setFooter(`english -> ${transArg}`)
+        .setColor(`RANDOM`);
+        return message.channel.send(embed);
 
-				}
+      });
 
-			}
+    }
 
-		}
+  }
+
+}
+
+
 
 		if (command === "tts") {
 			module.exports.run = (client, message, args) => {
