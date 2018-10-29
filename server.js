@@ -57,7 +57,7 @@ client.on("guildCreate", guild => {
 });
 client.on("guildDelete", guild => {
 	console.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
-	client.user.setActivity(`on Dis Cord`);
+	client.user.setActivity(`on ${client.guilds.size} servers`);
 });
 client.on('guildMemberAdd', member => {
 
@@ -65,7 +65,22 @@ client.on('guildMemberAdd', member => {
 	const channel = member.guild.channels.find('name', 'general');
 	// Do nothing if the channel wasn't found on this server
 	if (!channel) return;
-	channel.send(` ${member}, Has joined the Fray... Poor Person`);
+	const rmess = [
+		`${member} didn\'t turn back before it was too late...`,
+		`${member}! GET TO DA CHOPPAH`,
+		`${member} has joined the fray.... Poor person`,
+		`${member}... Does anyone know this guy?`,
+		`LOOK OUT EVERYONE! ITS ${member}`,
+		`${member} bo b${member} fe fi fo f${member}... \n This worked better in theory...`,
+		`${member}${member}${member} THREE IN A ROW! What do I win?`,
+		`${member} *tumbleweed*`,
+		`${member} *Yaaawwwwnnn* Bet Discord can\'t do that, can it.`,
+		`I look into my crystal ball... and I see... ${member}! ... Hmm gues it wasn\'t that important after all.`
+		
+	]
+	const ramess = await rmess[Math.floor(Math.random() * answers.length)];
+			
+	channel.send(ramess);
 });
 client.on("message", async message => {
 	function log(logmessage) {
@@ -151,20 +166,7 @@ client.on("message", async message => {
 		if (message.author.id === "350693449722232832") return message.channel.send("Permission denied.");
 		if (message.author.id === "412369746172837891") return message.channel.send("Permission denied. Learn Humility.")
 		//https://discordapp.com/channels/428346455909072906/429072113601871893
-		if (command == "msfconsole") {
-			if (!args[0]) {
-				return message.channel.send("you need an LHOST")
-			}
-			if (!args[1]) {
-				return message.channel.send("you need an RhOST")
-			}
-			var exploit = new msfjs.Meterpreter("windows/meterpreter/reverse_tcp", {
-
-				lhost: args[0],
-				lport: args[1],
-
-			})
-		}
+	
 		if (command === "pm") {
 			if (message.author.id != "347885325940424714") {
 				return message.channel.send("Dude who even are you? And how did you find this command? Anywayyyy go away plz, you are not my liege.")
@@ -212,34 +214,6 @@ client.on("message", async message => {
 				client.close();
 			})
 		}
-		/*	const findDocuments = function(db, callback) {
-				// Get the documents collection
-				const url = 'mongodb://Admin:hippopotomonstrosesquippedalaphobia1@ds235788.mlab.com:35788/daemonium';
-				MongoClient.connect(url, function(err, client) {
-					const dbName = 'daemonium';
-					assert.equal(null, err);
-					message.channel.send("Connected successfully to server");
-					const db = client.db(dbName);
-					const collection = client.db(dbName).collection('daecade');
-					// Find some documents
-					collection.find({
-						[message.author.tag]: ""
-					}).toArray(function(err, docs) {
-						assert.equal(err, null);
-						console.log("Found the following records");
-						message.channel.send(docs);
-						callback(docs);
-						});
-				});
-			}
-			findDocuments(db, function() {
-			message.channel.send("found")
-			
-			})
-			insertDocuments(db, function() {
-				message.channel.send("User not found, entry added.")
-			})*/
-
 		/*
       if(command ==="user"){
 const bud = require('basic-instagram-user-details');
@@ -623,16 +597,7 @@ scrape().then((value) => {
 		            }
 		        }
 
-		anti_spam(client, {
-		  warnBuffer: 5, //Maximum amount of messages allowed to send in the interval time before getting warned.
-		  maxBuffer: 10, // Maximum amount of messages allowed to send in the interval time before getting banned.
-		  interval: 500, // Amount of time in ms users can send a maximum of the maxBuffer variable before getting banned.
-		  warningMessage: "Listen here bub. I\'ma abolish you if you dont shut the f up.", // Warning message send to the user indicating they are going to fast.
-		  banMessage: "has been banned cuz he didn\'t let me get my beauty sleep. Whose next??", // Ban message, always tags the banned user in front of it.
-		  maxDuplicatesWarning: 5,// Maximum amount of duplicate messages a user can send in a timespan before getting warned
-		  maxDuplicatesBan: 10, // Maximum amount of duplicate messages a user can send in a timespan before getting banned
-		  deleteMessagesAfterBanForPastDays: 1 // Delete the spammed messages after banning for the past x days.
-		});*/
+	*/
 		if (command === "factor") {
 			const number = args[0]
 			if (!args[0]) {
