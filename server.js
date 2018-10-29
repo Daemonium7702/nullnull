@@ -66,15 +66,15 @@ client.on('guildMemberAdd', member => {
 	// Do nothing if the channel wasn't found on this server
 	if (!channel) return;
 	const rmess = [
-		`${member.tag} didn\'t turn back before it was too late...`,
-		`${member.tag}! GET TO DA CHOPPAH`,
-		`${member.tag} has joined the fray.... Poor person`,
-		`${member.tag}... Does anyone know this guy?`,
-		`LOOK OUT EVERYONE! ITS ${member.tag}`,
-		`${member.tag} bo b${member.tag} fe fi fo f${member.tag}... \n This worked better in theory...`,
-		`${member.tag}${member.tag}${member.tag} THREE IN A ROW! What do I win?`,
-		`${member.tag} *tumbleweed*`,
-		`${member.tag} *Yaaawwwwnnn* Bet Discord can\'t do that, can it.`,
+		`${member} didn\'t turn back before it was too late...`,
+		`${member}! GET TO DA CHOPPAH`,
+		`${member} has joined the fray.... Poor person`,
+		`${member}... Does anyone know this guy?`,
+		`LOOK OUT EVERYONE! ITS ${member}`,
+		`${member} bo b${member} fe fi fo f${member}... \n This worked better in theory...`,
+		`${member}${member}${member} THREE IN A ROW! What do I win?`,
+		`${member} *tumbleweed*`,
+		`${member} *Yaaawwwwnnn* Bet Discord can\'t do that, can it.`,
 		`I look into my crystal ball... and I see... ${member}! ... Hmm guess it wasn\'t that important after all.`
 		
 	]
