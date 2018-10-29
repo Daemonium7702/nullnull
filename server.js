@@ -96,7 +96,20 @@ client.on("message", async message => {
 	const command = args.shift().toLowerCase();
 	const prefix = config.prefix
 	const bindex = config.prefix
-
+if(command === "eval"){
+  if(message.author.id !== "347885325940424714") return;
+    try {
+      const code = args.join(" ");
+      let evaled = eval(code);
+ 
+      if (typeof evaled !== "string")
+        evaled = require("util").inspect(evaled);
+ 
+      message.channel.send(clean(evaled), {code:"xl"});
+    } catch (err) {
+      message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+    }
+}
 
 	if (message.channel.type == 'dm') {
 		try {
