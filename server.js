@@ -2412,11 +2412,12 @@ Jimp.read(buffer, (err, lenna) => {
 
 				} else {
 
-					let transArg = args[0].toLowerCase();
+					let transArg = args.join[0].toLowerCase();
+					var theseargs = args.join('').slice(prefix.length);
 					let translation;
 
 					if (!Langs.includes(transArg)) return message.channel.send(`**Language not found.**`);
-					const theseargs = args.slice(transArg.length);
+					 theseargs = args.slice(transArg.length);
 
 					translate(theseargs, {
 						to: transArg
