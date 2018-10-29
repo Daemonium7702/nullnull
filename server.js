@@ -98,7 +98,7 @@ client.on("message", async message => {
 	const bindex = config.prefix
 if(command === "eval"){
   if(message.author.id !== "347885325940424714"){
- return message.channel.send("USER NOT AUTHORIZED);
+ return message.channel.send("USER NOT AUTHORIZED");
 			     }
     try {
       const code = args.join(" ");
