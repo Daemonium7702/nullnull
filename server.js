@@ -75,7 +75,7 @@ client.on('guildMemberAdd', member => {
 		`${member.tag}${member.tag}${member.tag} THREE IN A ROW! What do I win?`,
 		`${member.tag} *tumbleweed*`,
 		`${member.tag} *Yaaawwwwnnn* Bet Discord can\'t do that, can it.`,
-		`I look into my crystal ball... and I see... ${member}! ... Hmm gues it wasn\'t that important after all.`
+		`I look into my crystal ball... and I see... ${member}! ... Hmm guess it wasn\'t that important after all.`
 		
 	]
 	const ramess = rmess[Math.floor(Math.random() * rmess.length)];
