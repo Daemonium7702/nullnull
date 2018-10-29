@@ -2395,6 +2395,7 @@ Jimp.read(buffer, (err, lenna) => {
 			}, ms(Timer));
 		}
 		if (command === "translate") {
+			
 		  if (args[0] === undefined) {
 
     const embed = new Discord.RichEmbed()
@@ -2413,13 +2414,13 @@ Jimp.read(buffer, (err, lenna) => {
 
       let transArg = args[0].toLowerCase();
 
-      args = args.join(' ').slice(prefix.length);
+      var jj = args.join(' ').slice(prefix.length);
       let translation;
 
       if (!Langs.includes(transArg)) return message.channel.send(`**Language not found.**`);
-      args = args.slice(transArg.length);
+      jj = args.slice(transArg.length);
 
-      translate(args, {to: transArg}).then(res => {
+      translate(jj, {to: transArg}).then(res => {
 
         const embed = new Discord.RichEmbed()
         .setDescription(res.text)
