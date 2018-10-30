@@ -1203,26 +1203,27 @@ Jimp.read(buffer, (err, lenna) => {
 			const next = "▶"
 			const end = "❗"
 			const funembed = new Discord.RichEmbed()
-				.setFooter("fun")
-				.setTitle("Fun Commands")
-				.addField("8ball:", " This Command Is An 8Ball Usage: .8ball [YesOrNo Question]",true)
-				.addField("Cowsay:", " Moooooo Usage: .cowsay [text]",true)
-				.addField("Insult:", " Instults a given person (Still under develeopment) Usage: .insult [name] ",true)
-				.addField("Bomb:", " Sends A Bomb Usage: .bomb",true)
-				.addField("Clapify:", " Clapifies That Text! Usage: .clapify [text]",true)
-				.addField("Urban:", " Looks Up A String On Urban Dictionary Usage: .Urban [string] ",true)
-				.addField("Fireworks:", " Sends Some Cool Fireworks Usage: .fireworks **This was requested by a user**",true)
-				.addField("Forcecrush:", " Force Crush! Usage: .forcecrush",true)
-				.addField("Fusrodah:", " Fus.....RO DAH!!! Usage: Call To The Ancients With .fusrodah",true)
-				.addField("Lovecalc:", " Calculates The Chances Of Love Between Any Two Objects! Usage: .lovecalc [object1] [object2] ",true)
-				.addField("Magicify: ", " Turns Your Message Into An Ugly Embed! Usage: .magicify [text] ",true)
-				.addField("Meme:", " Sends Some Dank Memes! Usage: .meme",true)
-				.addField("O:", " Swotchos Oll Vowols On O Strong To 'o' Usogo: .o [toxt] ***REQUESTED BY USER.... i dont know why though***",true)
-				.addField("Reverse:", " Reverses A String Usage: .reverse [words] ",true)
-				.addField("Rickroll:", ".... Usage: .rickroll ",true)
-				.addField("Say:", " Makes The Bot Say What You Say. Usage: .say [words] ",true)
-				.addField("asigh:", " :frowning: Usage: .asigh",true)
-				.addField("Ss", "Compete With Other Users To Set The Status Of My Bot! Usage: .ss",true)
+		.setFooter("fun")
+		.setTitle("Fun Commands")
+                .addField("8ball:", " This Command Is An 8Ball Usage: .8ball [YesOrNo Question]")
+                .addField("Cowsay:", " Moooooo Usage: .cowsay [text]")
+                .addField("Insult:", " Instults a given person (Still under develeopment) Usage: .insult [name] ")
+                .addField("Bomb:", " Sends A Bomb Usage: .bomb")
+                .addField("Clapify:", " Clapifies That Text! Usage: .clapify [text]")
+                .addField("Urban:", " Looks Up A String On Urban Dictionary Usage: .Urban [string] ")
+                .addField("Fireworks:", " Sends Some Cool Fireworks Usage: .fireworks This was requested by a user")
+                .addField("Forcecrush:", " Force Crush! Usage: .forcecrush")
+                .addField("Fusrodah:", " Fus.....RO DAH!!! Usage: Call To The Ancients With .fusrodah")
+                .addField("Lovecalc:", " Calculates The Chances Of Love Between Any Two Objects! Usage: .lovecalc [object1] [object2] ")
+                .addField("Magicify: ", " Turns Your Message Into An Ugly Embed! Usage: .magicify [text] ")
+                .addField("Meme:", " Sends Some Dank Memes! Usage: .meme")
+                .addField("O:", " Swotchos Oll Vowols On O Strong To 'o' Usogo: .o [toxt] REQUESTED BY USER.... i dont know why though")
+                .addField("Reverse:", " Reverses A String Usage: .reverse [words] ")
+                .addField("Rickroll:", ".... Usage: .rickroll ")
+                .addField("Say:", " Makes The Bot Say What You Say. Usage: .say [words] ")
+                .addField("asigh:", " :frowning: Usage: .asigh")
+                .addField("Ss", "Compete With Other Users To Set The Status Of My Bot! Usage: .ss")
+		.setColor("#660000")
 			/////////////////////////
 			/////////////////////////
 			const musicembed = new Discord.RichEmbed()
@@ -1421,6 +1422,16 @@ Jimp.read(buffer, (err, lenna) => {
 				}
 			});
 			collector1.on('end', collected => {
+
+			});
+			const filter2 = (reaction) => reaction.emoji.name === "❗";
+			const collector2 = pollTitle.createReactionCollector(filter2, {
+				time: 60000
+			});
+			collector2.on('collect', r => {
+pollTitle.delete();			
+})
+				   collector2.on('end', collected => {
 
 			});
 			/*if(reactions.get(next).count-1 == 1){
