@@ -67,15 +67,14 @@ client.on('guildMemberAdd', member => {
 	if (!channel) return;
 	const rmess = [
 		`${member} didn\'t turn back before it was too late...`,
-		`${member}! GET TO DA CHOPPAH`,
 		`${member} has joined the fray.... Poor person`,
 		`${member}... Does anyone know this guy?`,
-		`LOOK OUT EVERYONE! ITS ${member}`,
+		`I wish you luck ${member}...`,
 		`${member} bo b${member} fe fi fo f${member}... \n This worked better in theory...`,
-		`${member}${member}${member} THREE IN A ROW! What do I win?`,
+		`${member}${member}${member} three in a row! What do I win?`,
 		`${member} *tumbleweed*`,
 		`${member} *Yaaawwwwnnn* Bet Discord can\'t do that, can it.`,
-		`I look into my crystal ball... and I see... ${member}! ... Hmm guess it wasn\'t that important after all.`
+		`${member} seems lost out there!`
 		
 	]
 	const ramess = rmess[Math.floor(Math.random() * rmess.length)];
@@ -1978,7 +1977,7 @@ Jimp.read(buffer, (err, lenna) => {
    .addField("ID", message.guild.id, true)
    .addField("Name", message.guild.name, true)
    .addField("Owner", message.guild.owner.user.tag, true)
-   .addField("Region", message.guild.region, true)
+   .addField("Best Bot", "DaeBot... Without a doubt", true)
    .addField("Channels", message.guild.channels.size, true)
    .addField("Members", message.guild.memberCount, true)
    .addField("Not Bots", message.guild.memberCount - message.guild.members.filter(m => m.user.bot).size, true)
