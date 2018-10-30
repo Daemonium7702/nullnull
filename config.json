@@ -1,5 +1,6 @@
 {
 "prefix" : ".",
   "prefixx": "[~",
-  "bindex":"0"
+  "bindex":"0",
+"deleting":"0"
 }
