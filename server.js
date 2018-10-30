@@ -1198,7 +1198,7 @@ Jimp.read(buffer, (err, lenna) => {
 			}
 		}
 		if (command === "help") {
-
+config.mssauth = message.author.id
 			const back = "◀"
 			const next = "▶"
 			const end = "❗"
@@ -1311,7 +1311,9 @@ Jimp.read(buffer, (err, lenna) => {
 			});
 
 			collector.on('collect', r => {
-
+if(config.mssauth != message.author.id){
+return
+}else{
 				console.log(`Collected ${r.emoji.name}`)
 				config.bindex = Math.floor(config.bindex + 1)
 				fs.writeFile("./config.json", JSON.stringify(config), function(err) {
@@ -1357,6 +1359,7 @@ Jimp.read(buffer, (err, lenna) => {
 				if (config.bindex == 7) {
 					config.bindex = Math.floor(config.bindex - 1)
 				}
+}
 			});
 			collector.on('end', collected => {});
 
@@ -1365,7 +1368,9 @@ Jimp.read(buffer, (err, lenna) => {
 				time: 60000
 			});
 			collector1.on('collect', r => {
-
+if(config.mssauth != message.author.id){
+return
+}else{
 				console.log(`Collected ${r.emoji.name}`)
 				config.bindex = Math.floor(config.bindex - 1)
 				if (config.bindex == -1) {
@@ -1420,21 +1425,9 @@ Jimp.read(buffer, (err, lenna) => {
 				if (config.bindex == -1) {
 					config.bindex = Math.floor(config.bindex + 2)
 				}
+}
 			});
 			collector1.on('end', collected => {
-
-			});
-			const filter2 = (reaction) => reaction.emoji.name === "❗";
-			const collector2 = pollTitle.createReactionCollector(filter2, {
-				time: 60000
-			});
-			collector2.on('collect', r => {
-config.deleting = Math.floor(config.deleting + 1)		
-})
-if(config.deleting == 2){
-pollTitle.delete()
-}
-				   collector2.on('end', collected => {
 
 			});
 			/*if(reactions.get(next).count-1 == 1){
@@ -1453,7 +1446,6 @@ pollTitle.delete()
 			//////////////////////////////////////////////////
 
 
-			///message.author.send("```js\n Economy: \n Add: Ignore This Command It Is In Maintenance \n Addb: adds to balance in bank. Usage: .addb @user [amt] \n Addc: adds cash to a user Usage: .addc @user [amt] \n Bal: Ignore This Command It Is In Maintenance \n Balb: Ignore This Command It Is In Maintenance \n Buy: Ignore This Command It Is In Maintenance \n Daily: Ignore This Command It Is In Maintenance \n Gamble: Ignore This Command It Is In Maintenance \n Gamblec: Ignore This Command It Is In Maintenance \n Robb: Ignore This Command It Is In Maintenance \n```");
 			message.channel.send(`For updates on the bot, or to see whats new with it, please type .Announcements`);
 		}
 
