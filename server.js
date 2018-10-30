@@ -162,13 +162,14 @@ if(command === "eval"){
 		if (message.author.id != "347885325940424714") {
 			///
 			message.channel.send("You must be devoted to finding secret commands huh? Stahp it. ")
-		}
+		}else{
 		const thismessage = await message.channel.send('Destroying in 3')
 		thismessage.edit('Destroying in 2')
 		thismessage.edit('Destroying in 1')
 		thismessage.edit("BOOM")
 			.then(msg => client.destroy())
 			.then(() => client.login(process.env.BOT_TOKEN));
+	}
 	}
 	if (message.guild.id == "451843103318343680") {
 		message.channel.send("services discontinued for https://discordapp.com/channels/451843103318343680/457677144470847500 please head to https://discord.gg/GfJw3VB to use the bot.");
@@ -1205,84 +1206,83 @@ Jimp.read(buffer, (err, lenna) => {
 			const funembed = new Discord.RichEmbed()
 				.setFooter("fun")
 				.setTitle("Fun Commands")
-				.addField("8ball:", " This Command Is An 8Ball Usage: .8ball [YesOrNo Question]")
-				.addField("Cowsay:", " Moooooo Usage: .cowsay [text]")
-				.addField("Insult:", " Instults a given person (Still under develeopment) Usage: .insult [name] ")
-				.addField("Bomb:", " Sends A Bomb Usage: .bomb")
-				.addField("Clapify:", " Clapifies That Text! Usage: .clapify [text]")
-				.addField("Urban:", " Looks Up A String On Urban Dictionary Usage: .Urban [string] ")
-				.addField("Fireworks:", " Sends Some Cool Fireworks Usage: .fireworks **This was requested by a user**")
-				.addField("Forcecrush:", " Force Crush! Usage: .forcecrush")
-				.addField("Fusrodah:", " Fus.....RO DAH!!! Usage: Call To The Ancients With .fusrodah")
-				.addField("Lovecalc:", " Calculates The Chances Of Love Between Any Two Objects! Usage: .lovecalc [object1] [object2] ")
-				.addField("Magicify: ", " Turns Your Message Into An Ugly Embed! Usage: .magicify [text] ")
-				.addField("Meme:", " Sends Some Dank Memes! Usage: .meme")
-				.addField("O:", " Swotchos Oll Vowols On O Strong To 'o' Usogo: .o [toxt] ***REQUESTED BY USER.... i dont know why though***")
-				.addField("Reverse:", " Reverses A String Usage: .reverse [words] ")
-				.addField("Rickroll:", ".... Usage: .rickroll ")
-				.addField("Say:", " Makes The Bot Say What You Say. Usage: .say [words] ")
-				.addField("asigh:", " :frowning: Usage: .asigh")
-				.addField("Ss", "Compete With Other Users To Set The Status Of My Bot! Usage: .ss")
+				.addField("8ball:", " This Command Is An 8Ball Usage: .8ball [YesOrNo Question]",true)
+				.addField("Cowsay:", " Moooooo Usage: .cowsay [text]",true)
+				.addField("Insult:", " Instults a given person (Still under develeopment) Usage: .insult [name] ",true)
+				.addField("Bomb:", " Sends A Bomb Usage: .bomb",true)
+				.addField("Clapify:", " Clapifies That Text! Usage: .clapify [text]",true)
+				.addField("Urban:", " Looks Up A String On Urban Dictionary Usage: .Urban [string] ",true)
+				.addField("Fireworks:", " Sends Some Cool Fireworks Usage: .fireworks **This was requested by a user**",true)
+				.addField("Forcecrush:", " Force Crush! Usage: .forcecrush",true)
+				.addField("Fusrodah:", " Fus.....RO DAH!!! Usage: Call To The Ancients With .fusrodah",true)
+				.addField("Lovecalc:", " Calculates The Chances Of Love Between Any Two Objects! Usage: .lovecalc [object1] [object2] ",true)
+				.addField("Magicify: ", " Turns Your Message Into An Ugly Embed! Usage: .magicify [text] ",true)
+				.addField("Meme:", " Sends Some Dank Memes! Usage: .meme",true)
+				.addField("O:", " Swotchos Oll Vowols On O Strong To 'o' Usogo: .o [toxt] ***REQUESTED BY USER.... i dont know why though***",true)
+				.addField("Reverse:", " Reverses A String Usage: .reverse [words] ",true)
+				.addField("Rickroll:", ".... Usage: .rickroll ",true)
+				.addField("Say:", " Makes The Bot Say What You Say. Usage: .say [words] ",true)
+				.addField("asigh:", " :frowning: Usage: .asigh",true)
+				.addField("Ss", "Compete With Other Users To Set The Status Of My Bot! Usage: .ss",true)
 			/////////////////////////
 			/////////////////////////
 			const musicembed = new Discord.RichEmbed()
 				.setFooter("music")
 				.setTitle("Music Commands")
-				.addField("Np:", " Shows What Is Now Playing Usage: .np")
-				.addField("Pause:", " Pauses Music Usage: .pause")
-				.addField("Play:", " Plays Music. Usage: .play  [song Name], Then Select From List By Typing The Corresponding Number (e.g. For Song 2 Type 2) ")
-				.addField("Queue:", "Shows Music Queue Usage: .queue")
-				.addField("Resume:", " Resumes A Paused Song. Usage: .resume")
-				.addField("Skip:", " Skips A Song Usage: .skip")
-				.addField("Stop:", " Stops Music From Playing Usage: .stop")
-				.addField("Vol:", " Volume Usage: .vol [number]")
+				.addField("Np:", " Shows What Is Now Playing Usage: .np",true)
+				.addField("Pause:", " Pauses Music Usage: .pause",true)
+				.addField("Play:", " Plays Music. Usage: .play  [song Name], Then Select From List By Typing The Corresponding Number (e.g. For Song 2 Type 2) ",true)
+				.addField("Queue:", "Shows Music Queue Usage: .queue",true)
+				.addField("Resume:", " Resumes A Paused Song. Usage: .resume",true)
+				.addField("Skip:", " Skips A Song Usage: .skip",true)
+				.addField("Stop:", " Stops Music From Playing Usage: .stop",true)
+				.addField("Vol:", " Volume Usage: .vol [number]",true)
 			//////////////////////////
 			//////////////////////////
 			const modembed = new Discord.RichEmbed()
 				.setTitle("Moderation:")
 				.setFooter("Moderation")
-				.addField("Ban:", " Bans A User MOD ONLY Usage: .ban [@user] [Reason]")
-				.addField("Kick:", " Kicks A Member. Usage: .kick @member [reason]")
-				.addField("Purge:", " Deletes Messages MOD ONLY Usage: .purge [number<100]")
-				.addField("Report:", " Reports A Member Usage: .report [@member] [reason]")
-				.addField("Role:", " Ignore This Command It Is In Maintenance")
+				.addField("Ban:", " Bans A User MOD ONLY Usage: .ban [@user] [Reason]",true)
+				.addField("Kick:", " Kicks A Member. Usage: .kick @member [reason]",true)
+				.addField("Purge:", " Deletes Messages MOD ONLY Usage: .purge [number<100]",true)
+				.addField("Report:", " Reports A Member Usage: .report [@member] [reason]",true)
+				.addField("Role:", " Ignore This Command It Is In Maintenance",true)
 			////////////////////////
 			////////////////////////
 			const ciphembed = new Discord.RichEmbed()
 				.setTitle("Ciphers:")
 				.setFooter("Ciphers")
-				.addField("ttb64: ", "text to base 64 Usage: .ttb64 string")
-				.addField("b64tt:", " base 64 to text Usage: .b64tt string")
-				.addField("rotenc[5, 13, 18, and 47]:", " uses either rot 5,13,18, or 47 to encode some text. Usage: .rotenc47 text")
-				.addField(".rotdec[5, 13, 18, and 47]:", " Uses rot to decode text. Usage: .rotdec47 text")
-				.addField(".caesarenc:", " enciphers text using caesar. Usage: .caesar [shift] [text] eg:.caesarenc 3 hello, or .caesarenc c hello")
-				.addField(".caesardec:", " deciphers text using caesar. Usage: .caesardec [shift] [text] eg:.caesardec 3 hello, or .caesardec c hello")
-				.addField(".vigenc:", " uses vig on text. Usage: .vigenc [key] [hello]")
-				.addField(".vigdec:", " uses vig on text. Usage: .vigdec [key] [hello]")
-				.addField(".hexenc:", " turns ascii to hexadecimal Usage: .hexenc string")
-				.addField(".hexdec:", " converts hexadecimal to ascii Usage: .hexdec string")
+				.addField("ttb64: ", "text to base 64 Usage: .ttb64 string",true)
+				.addField("b64tt:", " base 64 to text Usage: .b64tt string",true)
+				.addField("rotenc[5, 13, 18, and 47]:", " uses either rot 5,13,18, or 47 to encode some text. Usage: .rotenc47 text",true)
+				.addField(".rotdec[5, 13, 18, and 47]:", " Uses rot to decode text. Usage: .rotdec47 text",true)
+				.addField(".caesarenc:", " enciphers text using caesar. Usage: .caesar [shift] [text] eg:.caesarenc 3 hello, or .caesarenc c hello",true)
+				.addField(".caesardec:", " deciphers text using caesar. Usage: .caesardec [shift] [text] eg:.caesardec 3 hello, or .caesardec c hello",true)
+				.addField(".vigenc:", " uses vig on text. Usage: .vigenc [key] [hello]",true)
+				.addField(".vigdec:", " uses vig on text. Usage: .vigdec [key] [hello]",true)
+				.addField(".hexenc:", " turns ascii to hexadecimal Usage: .hexenc string",true)
+				.addField(".hexdec:", " converts hexadecimal to ascii Usage: .hexdec string",true)
 			//////////////////////
 			/////////////////////
 			const utilembed = new Discord.RichEmbed()
 				.setTitle("Utilities:")
 				.setFooter("Utils")
-				.addField("Uptime:", " Shows Uptime Usage: .uptime")
-				.addField("Guildlist:", " Shows a list of guilds the bot is in. Usage: .guildlist")
-				.addField("Userinfo:", " displays info on a user Usage: .userinfo [@user]")
-				.addField("Botinfo:", " Displays Info On The Bot Usage: .botinfo")
-				.addField("Bugreport:", " Reports A Bug Directly To The Dev Of The Bot (A.K.A. ME) Usage: .bugreport [Bug]")
-				.addField("Calc:", " Calculates The Value Of An Expression Usage: .calc [expression E.g. 1+1]")
-				.addField("Help:", " Ehm, Idk What To Tell You. Usage: How Are You Even Here?")
-				.addField("Haste:", " Adds A String To Hastebin Usage: .haste [String (A.K.A Words)]")
-				.addField("Inv:", " Shows Invite Links For My Bot, And The Support Server. Usage: .inv")
-				.addField("Line:", " Draws The LINE! Usage: .line")
-				.addField("Ping:", " Pings Places All Around The World Usage: .ping")
-				.addField("Schedule:", " Schedules A Message. Usage: .schedule [Part 1 Of Message] [Part 2 Of Message] [time]")
-				.addField("Serverinfo:", " Displays Info On The Server Usage: .serverinfo")
-				.addField("Timer:", " Sets A Timer. Usage: .timer [time In Ms, S, M, Or H.]")
-				.addField("Translate:", " Translates Supplied Text. Usage: .translate [language To Translate TO] [text To Translate]")
-				.addField("Remspace:", " Removes all spaces from a string. Usage: .remspace [text]")
-				.addField(".gprime:", " gets all prime numbers up to the supplied value. Usage: .gprime number")
+				.addField("Uptime:", " Shows Uptime Usage: .uptime",true)
+				.addField("Guildlist:", " Shows a list of guilds the bot is in. Usage: .guildlist",true)
+				.addField("Userinfo:", " displays info on a user Usage: .userinfo [@user]",true)
+				.addField("Botinfo:", " Displays Info On The Bot Usage: .botinfo",true)
+				.addField("Bugreport:", " Reports A Bug Directly To The Dev Of The Bot (A.K.A. ME) Usage: .bugreport [Bug]",true)
+				.addField("Calc:", " Calculates The Value Of An Expression Usage: .calc [expression E.g. 1+1]",true)
+				.addField("Help:", " Ehm, Idk What To Tell You. Usage: How Are You Even Here?",true)
+				.addField("Haste:", " Adds A String To Hastebin Usage: .haste [String (A.K.A Words)]",true)
+				.addField("Inv:", " Shows Invite Links For My Bot, And The Support Server. Usage: .inv",true)
+				.addField("Line:", " Draws The LINE! Usage: .line",true)
+				.addField("Ping:", " Pings Places All Around The World Usage: .ping",true)
+				.addField("Schedule:", " Schedules A Message. Usage: .schedule [Part 1 Of Message] [Part 2 Of Message] [time]",true)
+				.addField("Serverinfo:", " Displays Info On The Server Usage: .serverinfo",true)
+				.addField("Timer:", " Sets A Timer. Usage: .timer [time In Ms, S, M, Or H.]",true)
+				.addField("Remspace:", " Removes all spaces from a string. Usage: .remspace [text]",true)
+				.addField(".gprime:", " gets all prime numbers up to the supplied value. Usage: .gprime number",true)
 			///////////////////
 			///////////////////
 			const progembed = new Discord.RichEmbed()
@@ -1295,10 +1295,10 @@ Jimp.read(buffer, (err, lenna) => {
 			const nsfwembed = new Discord.RichEmbed()
 				.setTitle("NSFW:")
 				.setFooter("NSFW")
-				.addField("Ass:", " Shows Some Ass ;) NSFW ONLY Usage: .ass")
-				.addField("Bond:", " Bondage NSFW ONLY Usage: .bond")
-				.addField("Hentai:", " Looks Up Some Hentai Babes For You Weebs Out There Usage: .hentai")
-				.addField("Nsfw:", " Sends Some Standard NSFW Usage: .nsfw")
+				.addField("Ass:", " Shows Some Ass ;) NSFW ONLY Usage: .ass",true)
+				.addField("Bond:", " Bondage NSFW ONLY Usage: .bond",true)
+				.addField("Hentai:", " Looks Up Some Hentai Babes For You Weebs Out There Usage: .hentai",true)
+				.addField("Nsfw:", " Sends Some Standard NSFW Usage: .nsfw",true)
 			var pollTitle = await message.channel.send({
 				embed: funembed
 			})
@@ -1973,7 +1973,7 @@ Jimp.read(buffer, (err, lenna) => {
    let serverembed = new Discord.RichEmbed()
    .setAuthor(message.guild.name, sicon)
    .setFooter(`Server Created On${day}.${month}.${year}`)
-   .setColor("#7289DA")
+   .setColor("#660000")
    .setThumbnail(sicon)
    .addField("ID", message.guild.id, true)
    .addField("Name", message.guild.name, true)
@@ -2394,50 +2394,6 @@ Jimp.read(buffer, (err, lenna) => {
 
 			}, ms(Timer));
 		}
-		if (command === "translate") {
-			
-		  if (args[0] === undefined) {
-
-    const embed = new Discord.RichEmbed()
-    .setColor("FFFFFF")
-    .setDescription("**Provide a language and some text for bot to translate.**\nUsage: `PREFIXX translate <language> <text>`");
-
-    return message.channel.send(embed);
-
-  } else {
-
-    if (args[1] === undefined) {
-
-      return message.channel.send('**Please give me something to translate.** `PREFIX translate <language> <text>`');
-
-    } else {
-
-      let transArg = args[0].toLowerCase();
-
-      var jj = args.join(' ').slice(prefix.length);
-      let translation;
-
-      if (!Langs.includes(transArg)) return message.channel.send(`**Language not found.**`);
-      jj = args.slice(transArg.length);
-
-      translate(jj, {to: transArg}).then(res => {
-
-        const embed = new Discord.RichEmbed()
-        .setDescription(res.text)
-        .setFooter(`english -> ${transArg}`)
-        .setColor(`RANDOM`);
-        return message.channel.send(embed);
-
-      });
-
-    }
-
-  }
-
-}
-
-
-
 		if (command === "tts") {
 			module.exports.run = (client, message, args) => {
 				const ra = args.join(" ");
