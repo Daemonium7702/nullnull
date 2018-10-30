@@ -1431,7 +1431,7 @@ Jimp.read(buffer, (err, lenna) => {
 			collector2.on('collect', r => {
 config.deleting = Math.floor(config.deleting + 1)		
 })
-if(config.deleting == 1){
+if(config.deleting == 2){
 pollTitle.delete()
 }
 				   collector2.on('end', collected => {
