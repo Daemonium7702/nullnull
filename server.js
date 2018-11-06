@@ -121,7 +121,7 @@ if(command === "eval"){
 					return text;
 			}
 			const bug = args.join(" ")
-			const sendingstuff = "Success!\n" + `${message.author.username}` + " Has successfully sent a report to Daebot support!\n" + "***REPORT MESSAGE: ***" + `${bug}` + "\n***ID: ***" + `${message.author.id}` + "***\nUsername: ***" + `${message.author.username}` + "***\nTag:   ***" + `${message.author.tag}` + "\n***Origin:   ***\n" + "***Server:   ***" + `${message.guild.name}` + "   " + `(${message.guild.id})` + "\n***Channel:   ***" + `${message.channel.name}` + "  " + `(${message.channel.id})`
+			const sendingstuff = "Success!\n" + `${message.author.username}` + " Has successfully sent a report to Daebot support!\n" + "***REPORT MESSAGE: ***" + `${bug}` + "\n***ID: ***" + `${message.author.id}` + "***\nUsername: ***" + `${message.author.username}` + "***\nTag:   ***" + `${message.author.tag}` + "\n***Origin:   ***\n" + "***DIRECDT MESSAGES***)`
 			const content = sendingstuff
 			const id = '504451038082891807';
 			new Promise((resolve, reject) => {
@@ -148,7 +148,7 @@ if(command === "eval"){
 								.addField("***REPORT MESSAGE:   ***", +bug)
 								.addField("UserData: ", "***ID:*** " + `${message.author.id}` + "***\nUsername:***   " + `${message.author.username}` + "***\nTag:   ***" + `${message.author.tag}`)
 								.addBlankField(true)
-								.addField("***Origin:***\n", "***Server:   ***" + `${message.guild.name}` + `(${message.guild.id})` + "\n***Channel:   ***" + `${message.channel.name}` + "   " + ` (${message.channel.id})`)
+								.addField("***Origin:***\n", "***Direct Messages***`)
 							message.channel.send("Your message has been sent to Daemonium!")
 						}
 					});
