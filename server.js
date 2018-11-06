@@ -124,7 +124,7 @@ if(command === "eval"){
 			const bug = nanargs.join(" ")
 			const sendingstuff = "Success!\n" + `${message.author.username}` + " Has successfully talked to a robot in direct messages because they are alone\n" + "***REPORT MESSAGE: ***" + `${bug}` + "\n***ID: ***" + `${message.author.id}` + "***\nUsername: ***" + `${message.author.username}` + "***\nTag:   ***" + `${message.author.tag}` + "\n***Origin:   ***\n" + "***DIRECT MESSAGES***"
 			const content = sendingstuff
-			const id = '504451038082891807';
+			const id = '504527886623965184';
 			new Promise((resolve, reject) => {
 				superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
 					.set('Authorization', `Bot ${client.token}`).send({
