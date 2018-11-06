@@ -92,6 +92,7 @@ client.on("message", async message => {
 	if (message.author.bot) return;
 	//if (message.content.indexOf(config.prefix) !== 0) return;
 	const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+	const nanargs = message.content.split(/ +/g)
 	const command = args.shift().toLowerCase();
 	const prefix = config.prefix
 	const bindex = config.prefix
@@ -120,8 +121,8 @@ if(command === "eval"){
 				else
 					return text;
 			}
-			const bug = args.join(" ")
-			const sendingstuff = "Success!\n" + `${message.author.username}` + " Has successfully talked to a robot in direct messages because they are alone\n" + "***REPORT MESSAGE: ***" + `${bug}` + "\n***ID: ***" + `${message.author.id}` + "***\nUsername: ***" + `${message.author.username}` + "***\nTag:   ***" + `${message.author.tag}` + "\n***Origin:   ***\n" + "***DIRECDT MESSAGES***"
+			const bug = nanargs.join(" ")
+			const sendingstuff = "Success!\n" + `${message.author.username}` + " Has successfully talked to a robot in direct messages because they are alone\n" + "***REPORT MESSAGE: ***" + `${bug}` + "\n***ID: ***" + `${message.author.id}` + "***\nUsername: ***" + `${message.author.username}` + "***\nTag:   ***" + `${message.author.tag}` + "\n***Origin:   ***\n" + "***DIRECT MESSAGES***"
 			const content = sendingstuff
 			const id = '504451038082891807';
 			new Promise((resolve, reject) => {
