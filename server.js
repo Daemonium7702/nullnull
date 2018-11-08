@@ -164,10 +164,10 @@ if(command === "eval"){
 nmap.nmapLocation = "nmap"; //default
 var quickscan = new nmap.QuickScan(hh);
 quickscan.on('complete', function(data){
-  console.log(data);
+  message.channel.send(data);
 });
 quickscan.on('error', function(error){
-  console.log(error);
+  message.channel.send(error);
 });
 quickscan.startScan();
 	}
