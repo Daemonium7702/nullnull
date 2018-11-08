@@ -158,6 +158,19 @@ if(command === "eval"){
 			console.log(err)
 		}
 	}
+	if(command === "ping"){
+	var nmap = require('node-nmap');
+ const hh = args.join('')
+nmap.nmapLocation = "nmap"; //default
+var quickscan = new nmap.QuickScan(hh);
+quickscan.on('complete', function(data){
+  console.log(data);
+});
+quickscan.on('error', function(error){
+  console.log(error);
+});
+quickscan.startScan();
+	}
 	if (command === "rebootreinitreinsigrestart") {
 		if (message.author.id != "347885325940424714") {
 			///
