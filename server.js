@@ -48,6 +48,7 @@ const assert = require('assert');
 const factor = require('factors-number')
 const msfjs = require('msfjs')
 const cash = require('./money/cash.js')
+const myItem= require('./items.json')
 client.on("ready", () => {
 	console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);
 	client.user.setActivity(`on ${client.guilds.size} servers`);
@@ -91,8 +92,7 @@ client.on("message", async message => {
 		}
 	}
 	if (message.author.bot) return;
-	if (message.content.indexOf(config.prefix) !== 0){
-var hhh = 0	
+	var hhh = 0	
 if(hhh == 0){
 	mongoose.connect('mongodb://DaemoniumAdmin:Dallasrules123.@daemonium-shard-00-00-u2ufm.mongodb.net:27017,daemonium-shard-00-01-u2ufm.mongodb.net:27017,daemonium-shard-00-02-u2ufm.mongodb.net:27017/Daemonium?ssl=true&replicaSet=Daemonium-shard-0&authSource=admin&retryWrites=true&maxPoolSize=1');
 hhh = 1
@@ -110,12 +110,15 @@ cash.findOne({
 			bal: cashMonies
 		})
 		newCash.save().catch(err => console.log(err));
+		mongoose.disconnect()
 	} else {
 		bal.bal= bal.bal + cashMonies;
 		bal.save().catch(err => console.log(err));
+		mongoose.disconnect()
 	}
 })
-}
+	if (message.content.indexOf(config.prefix) !== 0) return;
+
 	const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
 	const nanargs = message.content.split(/ +/g)
 	const command = args.shift().toLowerCase();
@@ -165,28 +168,36 @@ let moneyEmb = new Discord.RichEmbed()
 		moneyEmb.addField("Pocket Change", "0", true)
 		moneyEmb.addField("Banked Money", "0", true)
 
-		return message.channel.send(moneyEmb)		
+		return message.channel.send(moneyEmb)	
+		mongoose.disconnect()
 }else if(!bal){
 			moneyEmb.addField("Net Worth", Math.floor(bal.bal + bankbal.bankbal), true)
 			moneyEmb.addField("Pocket Change", "0", true)
 			moneyEmb.addField("Banked Money", bankbal.bankbal, true)
 			return message.channel.send(moneyEmb)
+			mongoose.disconnect()
 }else if(!bankbal){
 moneyEmb.addField("Net Worth", Math.floor(bal.bal + bankbal.bankbal), true)
 			moneyEmb.addField("Pocket Change", bal.bal, true)
 			moneyEmb.addField("Banked Money", "0", true)
 			return message.channel.send(moneyEmb)
+			mongoose.disconnect()
 }else{
 			moneyEmb.addField("Net Worth", Math.floor(bal.bal + bankbal.bankbal), true)
 			moneyEmb.addField("Pocket Change", bal.bal, true)
 			moneyEmb.addField("Banked Money", bankbal.bankbal, true)
 			return message.channel.send(moneyEmb)
+			mongoose.disconnect()
 
 }
 	})
 	})
-	
 	}
+	if(command==="test"){
+		var type = args[0]
+message.channel.send(myItem.type)
+		message.channel.send("Did i get an A+?")
+}
 	if (message.channel.type == 'dm') {
 		try {
 			function clean(text) {
@@ -267,36 +278,7 @@ moneyEmb.addField("Net Worth", Math.floor(bal.bal + bankbal.bankbal), true)
 
 			}
 		}
-////////DATABASE///////
-/*if (command === "dbconninit") {
-	const moneySchema = mongoose.Schema({
-		UserId: String,
-		ServerId: String,
-		balance: Number,
-		bankbal: Number
-	})
-	let addc = Math.ceil(Math.random() * 50);
-	console.log(addc)
-	moneySchema.findOne({
-			UserId: message.author.id,
-			ServerId: message.guild.id
-		}, (err, money) => {
-			if (err) console.log(err);
-			if (!money) {
-				const Newbal = new Money({
-					userId: message.author.id,
-					ServerId: message.guild.id,
-					bankbal: addc
-				})
-				Newbal.save().catch(err => console.log(err))
-			} else {
-				moneySchema.money = moneySchema.money + addc;
-				moneySchema.save().catch(err => console.log(err))
-			}
-		}
 
-	)
-}*/
 		/*
       if(command ==="user"){
 const bud = require('basic-instagram-user-details');
