@@ -146,6 +146,13 @@ cash.findOne({
 	ServerId: message.guild.id
 
 },(err, bal) => {
+	cash.findOne({
+
+	UserId: message.author.id,
+
+	ServerId: message.guild.id
+
+},(err, bankbal) => {	
 
 	if (err) console.log(err)
 
@@ -165,7 +172,8 @@ let moneyEmb = new Discord.RichEmbed()
 			moneyEmb.addField("Banked Money", bankbal.bankbal, true)
 			return message.channel.send(moneyEmb)
 }
-})
+}
+		     })
 	}
 	if (message.channel.type == 'dm') {
 		try {
