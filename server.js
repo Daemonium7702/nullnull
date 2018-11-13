@@ -92,14 +92,12 @@ client.on("message", async message => {
 	}
 	if (message.author.bot) return;
 	if (message.content.indexOf(config.prefix) !== 0){
-if(message.author.id == "347885325940424714"){
 var hhh = 0	
 if(hhh == 0){
 	mongoose.connect('mongodb://DaemoniumAdmin:Dallasrules123.@daemonium-shard-00-00-u2ufm.mongodb.net:27017,daemonium-shard-00-01-u2ufm.mongodb.net:27017,daemonium-shard-00-02-u2ufm.mongodb.net:27017/Daemonium?ssl=true&replicaSet=Daemonium-shard-0&authSource=admin&retryWrites=true&maxPoolSize=1');
 hhh = 1
 }
 let cashMonies = Math.ceil(math.random() * 10)
-message.channel.send(cashMonies)
 cash.findOne({
 	UserId: message.author.id,
 	ServerId: message.guild.id
@@ -117,7 +115,6 @@ cash.findOne({
 		bal.save().catch(err => console.log(err));
 	}
 })
-}
 }
 	const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
 	const nanargs = message.content.split(/ +/g)
