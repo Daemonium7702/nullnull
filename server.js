@@ -113,8 +113,8 @@ cash.findOne({
 		})
 		newCash.save().catch(err => console.log(err));
 	} else {
-		cash.bal = cash.bal + cashMonies;
-		cash.save().catch(err => console.log(err));
+		bal.bal= bal.bal + cashMonies;
+		bal.save().catch(err => console.log(err));
 	}
 })
 }
