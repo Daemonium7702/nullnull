@@ -42,7 +42,7 @@ var PastebinAPI = require('pastebin-js'),
 		'api_user_name': 'DaemoniumDVMors',
 		'api_user_password': 'Dallasrules123.'
 	});
-const MongoClient = require('mongodb').MongoClient;
+const mongoose = require('mongoose');
 
 const assert = require('assert');
 const factor = require('factors-number')
@@ -91,7 +91,39 @@ client.on("message", async message => {
 		}
 	}
 	if (message.author.bot) return;
-	if (message.content.indexOf(config.prefix) !== 0) return;
+	mongoose.connect('mongodb://Dbdbdb:Dallasrules123.@ds235788.mlab.com:35788/daemonium');
+	if (message.content.indexOf(config.prefix) !== 0){
+		if(message.author.id == '347885325940424714'){
+	const moneySchema = mongoose.Schema({
+		UserId: String,
+		ServerId: String,
+		balance: Number,
+		bankbal: Number
+	})
+	let addc = Math.ceil(Math.random() * 50);
+	console.log(addc)
+		message.channel.send(addc)
+	moneySchema.findOne({
+			UserId: message.author.id,
+			ServerId: message.guild.id
+		}, (err, money) => {
+			if (err) console.log(err);
+			if (!money) {
+				const Newbal = new Money({
+					userId: message.author.id,
+					ServerId: message.guild.id,
+					bankbal: addc
+				})
+				Newbal.save().catch(err => console.log(err))
+			} else {
+				moneySchema.money = moneySchema.money + addc;
+				moneySchema.save().catch(err => console.log(err))
+			}
+		}
+
+	)
+}	
+}
 	const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
 	const nanargs = message.content.split(/ +/g)
 	const command = args.shift().toLowerCase();
@@ -194,43 +226,36 @@ if(command === "eval"){
 
 			}
 		}
-
-		////////DATABASE///////
-		if (command === "dbconninit") {
-			// Connection URL
-			const url = 'mongodb://Dbdbdb:Dallasrules123.@ds235788.mlab.com:35788/daemonium';
-			// Database Name
-			const dbName = 'daemonium';
-			// Use connect method to connect to the server
-			MongoClient.connect(url, function(err, client) {
-				assert.equal(null, err);
-				message.channel.send("Connected successfully to server");
-				const db = client.db(dbName);
-				const insertDocuments = function(db, callback) {
-					// Get the documents collection
-					MongoClient.connect(url, function(err, client) {
-						const dbName = 'daemonium';
-						const collection = client.db(dbName).collection('daecade');
-						// Insert some documents 
-						collection.insert({
-							"users": {
-								[message.author.id]: {
-									$exists: false
-								}
-							},
-							"users": {
-								[message.author.id]: {
-									"money": 1
-
-								}
-							}
-						})
-					})
-				}
-
-				client.close();
-			})
+////////DATABASE///////
+/*if (command === "dbconninit") {
+	const moneySchema = mongoose.Schema({
+		UserId: String,
+		ServerId: String,
+		balance: Number,
+		bankbal: Number
+	})
+	let addc = Math.ceil(Math.random() * 50);
+	console.log(addc)
+	moneySchema.findOne({
+			UserId: message.author.id,
+			ServerId: message.guild.id
+		}, (err, money) => {
+			if (err) console.log(err);
+			if (!money) {
+				const Newbal = new Money({
+					userId: message.author.id,
+					ServerId: message.guild.id,
+					bankbal: addc
+				})
+				Newbal.save().catch(err => console.log(err))
+			} else {
+				moneySchema.money = moneySchema.money + addc;
+				moneySchema.save().catch(err => console.log(err))
+			}
 		}
+
+	)
+}*/
 		/*
       if(command ==="user"){
 const bud = require('basic-instagram-user-details');
