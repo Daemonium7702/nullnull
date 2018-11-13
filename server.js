@@ -198,7 +198,7 @@ if(command === "eval"){
 		////////DATABASE///////
 		if (command === "dbconninit") {
 			// Connection URL
-			const url = 'mongodb://Damonium:Dallasrules123.@ds235788.mlab.com:35788/daemonium';
+			const url = 'mongodb://testinguser:Dallasrules123@ds235788.mlab.com:35788/daemonium';
 			// Database Name
 			const dbName = 'daemonium';
 			// Use connect method to connect to the server
