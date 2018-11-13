@@ -114,6 +114,7 @@ Money.findOne({
 	}
 })
 }
+}
 	const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
 	const nanargs = message.content.split(/ +/g)
 	const command = args.shift().toLowerCase();
@@ -2885,4 +2886,3 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
 	}
 });
 client.login(process.env.BOT_TOKEN);
-
