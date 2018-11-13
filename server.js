@@ -98,7 +98,7 @@ if(hhh == 0){
 	mongoose.connect('mongodb://DaemoniumAdmin:Dallasrules123.@daemonium-shard-00-00-u2ufm.mongodb.net:27017,daemonium-shard-00-01-u2ufm.mongodb.net:27017,daemonium-shard-00-02-u2ufm.mongodb.net:27017/Daemonium?ssl=true&replicaSet=Daemonium-shard-0&authSource=admin&retryWrites=true&maxPoolSize=1');
 hhh = 1
 }
-let cashMonies = Math.ceil(math.random() * 50)
+let cashMonies = Math.ceil(math.random() * 10)
 message.channel.send(cashMonies)
 cash.findOne({
 	UserId: message.author.id,
@@ -140,7 +140,36 @@ if(command === "eval"){
       message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
     }
 }
+///econ///
+	if(command === "bal"){
+cash.findOne({
 
+	UserId: message.author.id,
+
+	ServerId: message.guild.id
+
+},(err, bal) => {
+
+	if (err) console.log(err)
+
+let moneyEmb = new Discord.RichEmbed()
+.setTitle('Balance')
+.setColor("#660000")
+.setThumbnail(client.displayAvatarURL)
+	if (!bal) {
+		moneyEmb.addField("Net Worth", "0", true)
+		moneyEmb.addField("Pocket Change", "0", true)
+		moneyEmb.addField("Banked Money", "0", true)
+
+		return message.channel.send(moneyEmb)		
+}else{
+			moneyEmb.addField("Net Worth", Math.floor(bal.bal + bankbal.bankbal), true)
+			moneyEmb.addField("Pocket Change", bal.bal, true)
+			moneyEmb.addField("Banked Money", bankbal.bankbal, true)
+			return message.channel.send(moneyEmb)
+}
+})
+	}
 	if (message.channel.type == 'dm') {
 		try {
 			function clean(text) {
@@ -321,114 +350,7 @@ scrape().then((value) => {
         }
 */
 
-		/*const sql = require("sqlite");
-		sql.open("./cash.sqlite");
-
-		sql.get(`SELECT * FROM money WHERE userId ="${message.author.id}"`).then(row => {
-			if (!row) {
-				sql.run("INSERT INTO money (userId, cash, bank) VALUES (?, ?, ?)", [message.author.id, 1, 0]);
-			} else {
-				let cBank = Math.floor(0.1 * Math.sqrt(row.cash + 1));
-				if (cBank > row.cash) {
-					row.bank = cBank;
-					sql.run(`UPDATE money SET cash = ${row.cash + 1}, bank = ${row.bank} WHERE userId = ${message.author.id}`);
-					message.reply(`You've Now got **${cBank}**! What a rich boi?`);
-				}
-				sql.run(`UPDATE money SET cash = ${row.cash + 1} WHERE userId = ${message.author.id}`);
-			}
-		}).catch(() => {
-			console.error;
-			sql.run("CREATE TABLE IF NOT EXISTS money (userId TEXT, cash INTEGER, bank INTEGER)").then(() => {
-				sql.run("INSERT INTO money (userId, cash, bank) VALUES (?, ?, ?)", [message.author.id, 1, 0]);
-			});
-		});
-
-		if (command === "balc") {
-			sql.get(`SELECT * FROM money WHERE userId ="${message.author.id}"`).then(row => {
-				if (!row) return message.reply("Your pocket money is 0");
-				message.reply(`You have ${row.cash} in cash, GLORiOUS`);
-			});
-		}
-
-		if (command === "balb") {
-			sql.get(`SELECT * FROM money WHERE userId ="${message.author.id}"`).then(row => {
-				if (!row) return message.reply("You're broke as hell!");
-				message.reply(`you have banked a total of ${row.bank}!`);
-
-			})
-		}
-		if (command === "addc") {
-			if (message.author.id != "347885325940424714") {
-				message.channel.send("Ok so like, this is embarrasing, ik. but i forgot how to check members for permissions. so youre gonna have to sit here for a min.")
-				return
-			} else {
-
-				const camt = args[1]
-				let defineduser = message.mentions.users.first() || message.author;
-				defineduser = defineduser.id;
-				sql.get(`SELECT * FROM money WHERE userId ="${defineduser}"`).then(row => {
-					if (!row) {
-						sql.run("INSERT INTO money (userId, cash, bank) VALUES (?, ?, ?)", [defineduser, 1, 0]);
-					} else {
-						const rrow = parseInt(row.cash)
-						const ccrow = parseInt(camt)
-						console.log(`${row.cash}`)
-						console.log(`${rrow}`)
-						sql.run(`UPDATE money SET cash = ${rrow + ccrow} WHERE userId = ${defineduser}`);
-						message.channel.send("added " + `${camt}` + " dollars to" + "<@" + `${defineduser}` + ">");
-					}
-				})
-			}
-		}
-
-
-		if (command === "addb") {
-			if (message.author.id != "347885325940424714") {
-				message.channel.send("Ok so like, this is embarrasing, ik. but i forgot how to check members for permissions. so youre gonna have to sit here for a min.")
-				return
-			} else {
-
-				const camt = args[1]
-				let defineduser = message.mentions.users.first() || message.author;
-				defineduser = defineduser.id;
-				sql.get(`SELECT * FROM money WHERE userId ="${defineduser}"`).then(row => {
-					if (!row) {
-						sql.run("INSERT INTO money (userId, cash, bank) VALUES (?, ?, ?)", [defineduser, 1, 0]);
-					} else {
-						const rrow = parseInt(row.bank)
-						console.log(`${row.bank}`)
-						console.log(`${rrow}`)
-						sql.run(`UPDATE money SET bank = ${rrow + camt} WHERE userId = ${defineduser}`);
-						message.channel.send("added " + `${camt}` + " dollars to" + "<@" + `${defineduser}` + ">");
-					}
-				})
-			}
-		}
-		if (command === "deposit") {
-			if (message.author.id != "347885325940424714") {
-				message.channel.send("Ok so like, this is embarrasing, ik. but i forgot how to check members for permissions. so youre gonna have to sit here for a min.")
-				return
-			} else {
-				sql.get(`SELECT * FROM money WHERE userId ="${message.author.id}"`).then(row => {
-					if (!row) {
-						sql.run("INSERT INTO money (userId, cash, bank) VALUES (?, ?, ?)", [message.author.id, 1, 0]);
-					} else {
-						const rrow = parseInt(row.cash)
-						const brow = parseInt(row.bank)
-						console.log(`${row.bank}`);
-						console.log(`${brow}`);
-						console.log(`${row.cash}`);
-						console.log(`${rrow}`);
-						sql.run(`UPDATE money SET bank = ${rrow + brow} WHERE userId = ${message.author.id}`);
-						sql.run(`UPDATE money SET cash = ${rrow - rrow} WHERE userId = ${message.author.id}`)
-						message.channel.send("Added all money to bank. Your balance is now" + `${row.bank}`)
-
-					}
-				})
-			}
-		}
-
-		
+		/*
 		        if (command === "daecade") {
 		            message.channel.send("***STAGE 1:*** \n A bright flash of light blinds you. You place your hands in front of your face to protect your eyes. Never before has this been seen. A smoke plume erupts from the ground. You have four choices,\n 1) End it here and now. \n 2)Head north to the door \n 3) You head south to the bunker \n 4) You stand where you are by the window staring in awe at the magnificent light. \n respond by typing 1, 2, 3, or 4.");
 		            try {
