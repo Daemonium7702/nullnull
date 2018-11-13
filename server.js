@@ -108,7 +108,7 @@ cash.findOne({
 	if (!bal) {
 		const newCash = new cash({
 			UserId: message.author.id,
-			serverId: message.guild.id,
+			ServerId: message.guild.id,
 			bal: cashMonies
 		})
 		newCash.save().catch(err => console.log(err));
