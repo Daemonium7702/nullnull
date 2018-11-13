@@ -47,7 +47,7 @@ const mongoose = require('mongoose');
 const assert = require('assert');
 const factor = require('factors-number')
 const msfjs = require('msfjs')
-const cash = require('../money/cash.js)
+const cash = require('../money/cash.js')
 client.on("ready", () => {
 	console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);
 	client.user.setActivity(`on ${client.guilds.size} servers`);
@@ -91,7 +91,7 @@ client.on("message", async message => {
 		}
 	}
 	if (message.author.bot) return;
-	mongoose.connect('mongodb://DaemoniumAdmin:Dallasrules123.@daemonium-shard-00-00-u2ufm.mongodb.net:27017,daemonium-shard-00-01-u2ufm.mongodb.net:27017,daemonium-shard-00-02-u2ufm.mongodb.net:27017/test?ssl=true&replicaSet=Daemonium-shard-0&authSource=admin&retryWrites=true');
+	mongoose.connect('mongodb://DaemoniumAdmin:hippopotomontrosesquippedalaphobia@daemonium-shard-00-00-u2ufm.mongodb.net:27017,daemonium-shard-00-01-u2ufm.mongodb.net:27017,daemonium-shard-00-02-u2ufm.mongodb.net:27017/test?ssl=true&replicaSet=Daemonium-shard-0&authSource=admin&retryWrites=true');
 	if (message.content.indexOf(config.prefix) !== 0){
 if(message.author.id == "347885325940424714"){
 let cashMonies = Math.ceil(math.random() * 50)
