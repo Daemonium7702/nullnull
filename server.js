@@ -47,7 +47,7 @@ const mongoose = require('mongoose');
 const assert = require('assert');
 const factor = require('factors-number')
 const msfjs = require('msfjs')
-
+const cash = require('../money/cash.js)
 client.on("ready", () => {
 	console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);
 	client.user.setActivity(`on ${client.guilds.size} servers`);
@@ -93,36 +93,26 @@ client.on("message", async message => {
 	if (message.author.bot) return;
 	mongoose.connect('mongodb://DaemoniumAdmin:Dallasrules123.@daemonium-shard-00-00-u2ufm.mongodb.net:27017,daemonium-shard-00-01-u2ufm.mongodb.net:27017,daemonium-shard-00-02-u2ufm.mongodb.net:27017/test?ssl=true&replicaSet=Daemonium-shard-0&authSource=admin&retryWrites=true');
 	if (message.content.indexOf(config.prefix) !== 0){
-		if(message.author.id == '347885325940424714'){
-	const moneySchema = mongoose.Schema({
-		UserId: String,
-		ServerId: String,
-		balance: Number,
-		bankbal: Number
-	})
-	let addc = Math.ceil(Math.random() * 50);
-	console.log(addc)
-		message.channel.send(addc)
-	moneySchema.findOne({
+if(message.author.id == "347885325940424714"){
+let cashMonies = Math.ceil(math.random() * 50)
+message.channel.send(cashMonies)
+Money.findOne({
+	UserId: message.author.id,
+	ServerId: message.guild.id
+}, (err, bal) => {
+	if (err) console.log(err)
+	if (!bal) {
+		const newMonies = new Money({
 			UserId: message.author.id,
-			ServerId: message.guild.id
-		}, (err, money) => {
-			if (err) console.log(err);
-			if (!money) {
-				const Newbal = new Money({
-					userId: message.author.id,
-					ServerId: message.guild.id,
-					bankbal: addc
-				})
-				Newbal.save().catch(err => console.log(err))
-			} else {
-				moneySchema.money = moneySchema.money + addc;
-				moneySchema.save().catch(err => console.log(err))
-			}
-		}
-
-	)
-}	
+			serverId: message.guild.id,
+			bal: cashMonies
+		})
+		newMoney.save().catch(err => console.log(err));
+	} else {
+		bal.bal = bal.bal + cashMonies;
+		bal.save().catch(err => console.log(err));
+	}
+})
 }
 	const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
 	const nanargs = message.content.split(/ +/g)
