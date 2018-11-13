@@ -158,19 +158,6 @@ if(command === "eval"){
 			console.log(err)
 		}
 	}
-	if(command === "ping"){
-	var nmap = require('node-nmap');
- const hh = args.join('')
-nmap.nmapLocation = "nmap"; //default
-var quickscan = new nmap.QuickScan(hh);
-quickscan.on('complete', function(data){
-  message.channel.send(data);
-});
-quickscan.on('error', function(error){
-  message.channel.send(error);
-});
-quickscan.startScan();
-	}
 	if (command === "rebootreinitreinsigrestart") {
 		if (message.author.id != "347885325940424714") {
 			///
@@ -201,7 +188,7 @@ quickscan.startScan();
 				return message.channel.send("Dude who even are you? And how did you find this command? Anywayyyy go away plz, you are not my liege.")
 			} else {
 				const idd = args[0]
-				const mss = args.join('')
+				const mss = args.join('').substr(message.author.id.length)
 				client.users.get(idd).send(mss);
 
 			}
@@ -210,7 +197,7 @@ quickscan.startScan();
 		////////DATABASE///////
 		if (command === "dbconninit") {
 			// Connection URL
-			const url = 'mongodb://testinguser:Dallasrules123.@ds235788.mlab.com:35788/daemonium';
+			const url = 'mongodb://testinguser:Dallasrules123.>@ds235788.mlab.com:35788/daemonium';
 			// Database Name
 			const dbName = 'daemonium';
 			// Use connect method to connect to the server
