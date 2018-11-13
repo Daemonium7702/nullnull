@@ -100,18 +100,18 @@ hhh = 1
 }
 let cashMonies = Math.ceil(math.random() * 50)
 message.channel.send(cashMonies)
-Money.findOne({
+cash.findOne({
 	UserId: message.author.id,
 	ServerId: message.guild.id
 }, (err, bal) => {
 	if (err) console.log(err)
 	if (!bal) {
-		const newMonies = new Money({
+		const newMonies = new cash({
 			UserId: message.author.id,
 			serverId: message.guild.id,
 			bal: cashMonies
 		})
-		newMoney.save().catch(err => console.log(err));
+		newcash.save().catch(err => console.log(err));
 	} else {
 		bal.bal = bal.bal + cashMonies;
 		bal.save().catch(err => console.log(err));
