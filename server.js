@@ -43,6 +43,7 @@ var PastebinAPI = require('pastebin-js'),
 		'api_user_password': 'Dallasrules123.'
 	});
 const MongoClient = require('mongodb').MongoClient;
+
 const assert = require('assert');
 const factor = require('factors-number')
 const msfjs = require('msfjs')
