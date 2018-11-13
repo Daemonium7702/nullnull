@@ -91,9 +91,13 @@ client.on("message", async message => {
 		}
 	}
 	if (message.author.bot) return;
-	mongoose.connect('mongodb://DaemoniumAdmin:Dallasrules123.@daemonium-shard-00-00-u2ufm.mongodb.net:27017,daemonium-shard-00-01-u2ufm.mongodb.net:27017,daemonium-shard-00-02-u2ufm.mongodb.net:27017/test?ssl=true&replicaSet=Daemonium-shard-0&authSource=admin&retryWrites=true');
 	if (message.content.indexOf(config.prefix) !== 0){
 if(message.author.id == "347885325940424714"){
+var hhh = 0	
+if(hhh == 0){
+	mongoose.connect('mongodb://DaemoniumAdmin:Dallasrules123.@daemonium-shard-00-00-u2ufm.mongodb.net:27017,daemonium-shard-00-01-u2ufm.mongodb.net:27017,daemonium-shard-00-02-u2ufm.mongodb.net:27017/test?ssl=true&replicaSet=Daemonium-shard-0&authSource=admin&retryWrites=true');
+hhh = 1
+}
 let cashMonies = Math.ceil(math.random() * 50)
 message.channel.send(cashMonies)
 Money.findOne({
