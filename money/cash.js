@@ -6,4 +6,4 @@
 		bankbal: Number
 	})
 
-module.exports = mongoose.model("Money", moneySchema)
+module.exports = mongoose.model("cash", moneySchema)
