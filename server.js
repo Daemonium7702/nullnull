@@ -182,6 +182,7 @@ moneyEmb.addField("Net Worth", Math.floor(bal.bal + bankbal.bankbal), true)
 			moneyEmb.addField("Banked Money", bankbal.bankbal, true)
 			return message.channel.send(moneyEmb)
 
+}
 	})
 	})
 	
