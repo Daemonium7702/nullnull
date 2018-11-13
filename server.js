@@ -47,7 +47,7 @@ const mongoose = require('mongoose');
 const assert = require('assert');
 const factor = require('factors-number')
 const msfjs = require('msfjs')
-const cash = require('../money/cash.js')
+const cash = require('./money/cash.js')
 client.on("ready", () => {
 	console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);
 	client.user.setActivity(`on ${client.guilds.size} servers`);
