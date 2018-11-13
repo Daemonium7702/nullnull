@@ -172,8 +172,9 @@ let moneyEmb = new Discord.RichEmbed()
 			moneyEmb.addField("Banked Money", bankbal.bankbal, true)
 			return message.channel.send(moneyEmb)
 }
-}
-		     })
+	})
+	})
+	
 	}
 	if (message.channel.type == 'dm') {
 		try {
