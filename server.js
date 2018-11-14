@@ -92,8 +92,18 @@ client.on("message", async message => {
 		}
 	}
 	if (message.author.bot) return;
-	mongoose.connect('mongodb://DaemoniumAdmin:Dallasrules123.@daemonium-shard-00-00-u2ufm.mongodb.net:27017,daemonium-shard-00-01-u2ufm.mongodb.net:27017,daemonium-shard-00-02-u2ufm.mongodb.net:27017/Daemonium?ssl=true&replicaSet=Daemonium-shard-0&authSource=admin&retryWrites=true&maxPoolSize=10', { useNewUrlParser: true, poolSize: 10  });
-let cashMonies = Math.ceil(math.random() * 10)
+const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+	const nanargs = message.content.split(/ +/g)
+	const command = args.shift().toLowerCase();
+	const prefix = config.prefix
+	const bindex = config.prefix
+
+	if(command == "dbcon"){
+if(message.author.id == "347885325940424714"){
+mongoose.connect('mongodb://DaemoniumAdmin:Dallasrules123.@daemonium-shard-00-00-u2ufm.mongodb.net:27017,daemonium-shard-00-01-u2ufm.mongodb.net:27017,daemonium-shard-00-02-u2ufm.mongodb.net:27017/Daemonium?ssl=true&replicaSet=Daemonium-shard-0&authSource=admin&retryWrites=true&maxPoolSize=10', { useNewUrlParser: true, poolSize: 10  });
+}
+}
+	let cashMonies = Math.ceil(math.random() * 10)
 cash.findOne({
 	UserId: message.author.id,
 	ServerId: message.guild.id
@@ -131,13 +141,9 @@ cash.findOne({
 mongoose.connection.close()
 }
 })
+	
 	if (message.content.indexOf(config.prefix) !== 0) return;
 
-	const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
-	const nanargs = message.content.split(/ +/g)
-	const command = args.shift().toLowerCase();
-	const prefix = config.prefix
-	const bindex = config.prefix
 if(command === "eval"){
   if(message.author.id !== "347885325940424714"){
  return message.channel.send("USER NOT AUTHORIZED");
