@@ -10,4 +10,4 @@ const mongoose = require("mongoose")
 		  username: String
 	})
 
-module.exports = mongoose.model("inven", moneySchema)
+module.exports = mongoose.model("inven", invenSchema)
