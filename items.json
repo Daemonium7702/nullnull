@@ -6,9 +6,17 @@
 "desc":"You are a millionaire!"
 },
 	"IHaveMoney":{
-		"name":"IHaveMoney",
+		"name":"RichBoi",
 		"type":"Role",
-		"price":"$500",
+		"price":"500",
 		"desc":"You had $500"
+	},
+"BoiWithADollar":{
+	"name":"BoiWithADollar",
+	"price":"1"
+},
+	"Skull":{
+	"name":"Skull",
+	"price":"350"
 	}
 }
