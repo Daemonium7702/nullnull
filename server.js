@@ -124,7 +124,29 @@ client.on("message", async message => {
 			bal.save().catch(err => console.log(err));
 		}
 	})
-	if (command === "deposit") {
+	
+	if (message.content.indexOf(config.prefix) !== 0) return;
+
+	if (command === "eval") {
+		if (message.author.id !== "347885325940424714") {
+			return message.channel.send("USER NOT AUTHORIZED");
+		}
+		try {
+			const code = args.join(" ");
+			let evaled = eval(code);
+
+			if (typeof evaled !== "string")
+				evaled = require("util").inspect(evaled);
+
+			message.channel.send(clean(evaled), {
+				code: "xl"
+			});
+		} catch (err) {
+			message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+		}
+	}
+	///econ///
+if (command === "deposit") {
 		cash.findOne({
 			UserId: message.author.id,
 			ServerId: message.guild.id
@@ -174,27 +196,6 @@ client.on("message", async message => {
 		})
 	}
 
-	if (message.content.indexOf(config.prefix) !== 0) return;
-
-	if (command === "eval") {
-		if (message.author.id !== "347885325940424714") {
-			return message.channel.send("USER NOT AUTHORIZED");
-		}
-		try {
-			const code = args.join(" ");
-			let evaled = eval(code);
-
-			if (typeof evaled !== "string")
-				evaled = require("util").inspect(evaled);
-
-			message.channel.send(clean(evaled), {
-				code: "xl"
-			});
-		} catch (err) {
-			message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
-		}
-	}
-	///econ///
 	if (command === "bal") {
 		cash.findOne({
 
@@ -242,6 +243,38 @@ client.on("message", async message => {
 			})
 		})
 	}
+if(command == "rob"){
+let robUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+var thisid = robUser.id
+let robAmt = Math.ceil(math.random() * 100)
+	cash.findOne({
+		UserId: thisid,
+		ServerId: message.guild.id
+	}, (err, bal) => {
+		if (err) console.log(err)
+		if (!bal || bal == 0) {
+			message.channel.send("User has no money!")
+		} else {
+			bal.bal = bal.bal - robAmt ;
+			bal.save().catch(err => console.log(err));
+		}
+		});
+cash.findOne({
+		UserId: message.author.id,
+		ServerId: message.guild.id
+	}, (err, bal) => {
+		if (err) console.log(err)
+		if (!bal) {
+			message.channel.send("Cant rob a guy if you aint got a place to put the money my dude, try talkin a bit first.")
+		} else {
+			bal.bal = bal.bal + robAmt ;
+message.channel.send(`You stole **${robAmt}** dollars from <@${robUser.id}>`)
+			bal.save().catch(err => console.log(err));
+		}
+	})
+
+}
+
 	if (command === "test") {
 		var type = args[0]
 		message.channel.send(myItem.type)
