@@ -54,6 +54,30 @@ client.on("ready", () => {
 	console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);
 	client.user.setActivity(`on ${client.guilds.size} servers`);
 });
+client.on('guildMemberAdd', member => {
+
+	// Send the message to a designated channel on a server:
+	const channel = member.guild.channels.find('name', 'general');
+	// Do nothing if the channel wasn't found on this server
+	if (!channel) return
+if(client.guild.id == "110373943822540800") return
+	if(client.guild.id == "475831159209852928") return
+	const rmess = [
+		`${member} didn\'t turn back before it was too late...`,
+		`${member} has joined the fray.... Poor person`,
+		`${member}... Does anyone know this guy?`,
+		`I wish you luck ${member}...`,
+		`${member} bo b${member} fe fi fo f${member}... \n This worked better in theory...`,
+		`${member}${member}${member} three in a row! What do I win?`,
+		`${member} *tumbleweed*`,
+		`${member} *Yaaawwwwnnn* Bet Discord can\'t do that, can it.`,
+		`${member} seems lost out there!`
+
+	]
+	const ramess = rmess[Math.floor(Math.random() * rmess.length)];
+
+	channel.send(ramess);
+});
 client.on("guildDelete", guild => {
 	console.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
 	client.user.setActivity(`on ${client.guilds.size} servers`);
@@ -73,30 +97,7 @@ client.on("message", async message => {
 	const prefix = config.prefix
 	const bindex = config.prefix
 
-client.on('guildMemberAdd', member => {
 
-	// Send the message to a designated channel on a server:
-	const channel = member.guild.channels.find('name', 'general');
-	// Do nothing if the channel wasn't found on this server
-	if (!channel) return
-if(message.guild.id == "110373943822540800") return
-	
-	const rmess = [
-		`${member} didn\'t turn back before it was too late...`,
-		`${member} has joined the fray.... Poor person`,
-		`${member}... Does anyone know this guy?`,
-		`I wish you luck ${member}...`,
-		`${member} bo b${member} fe fi fo f${member}... \n This worked better in theory...`,
-		`${member}${member}${member} three in a row! What do I win?`,
-		`${member} *tumbleweed*`,
-		`${member} *Yaaawwwwnnn* Bet Discord can\'t do that, can it.`,
-		`${member} seems lost out there!`
-
-	]
-	const ramess = rmess[Math.floor(Math.random() * rmess.length)];
-
-	channel.send(ramess);
-});
 	if (command == "dbcon") {
 		if (message.author.id != "347885325940424714") {
 			return message.channel.send("Unauthorized");
