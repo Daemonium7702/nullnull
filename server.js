@@ -697,7 +697,19 @@ scrape().then((value) => {
 			message.channel.send(kUser.toString() + "has been given" + `${role}`)
 		}
 		if (command == "announcements") {
-			message.channel.send("Update info 11.13.2019:\n Help command updated\n database added\n .bal and .deposit currency commands added.\n Currency System added!\n More cipher commands added.\n Improved overal interface for multiple commands.\n Added interactivity to help command")
+			var version = "11.13.2018"
+			const annembed = new Discord.RichEmbed()
+			.setTitle('Announcements')
+			.addField(version, true)
+			.addField("Help command updated", true)
+			.addField("database added", true)
+			.addField(".bal, .rob, .leader and .deposit currency commands added", true)
+			.addField("Currency System added!", true)
+			.addField("More cipher commands added.", true)
+			.addField("Improved overal interface for multiple commands.", true)
+			.addField("Added interactivity to help command",true)
+			.setColor("#660000")
+			message.channel.send(annembed)
 		}
 		if (command == "reta") {
 			message.channel.send("https://www.youtube.com/watch?v=Hds9tFMuU8o")
@@ -1246,6 +1258,8 @@ Jimp.read(buffer, (err, lenna) => {
 				.setTitle("Economy Commands")
 				.addField("Bal:", " Shows net worth, cash, and banked cash Usage: .bal", true)
 				.addField("Deposit:", " Deposits Cash to bank Usage: .deposit", true)
+				.addField("Rob:", " Robs a person. This is in development. make sure to deposit to protect against robbers Usage: .rob @user", true)
+				.addField("Leader:", " leaderboard Usage: .leader", true)	
 				.setColor("#660000")
 			/////////////////////////
 			const musicembed = new Discord.RichEmbed()
