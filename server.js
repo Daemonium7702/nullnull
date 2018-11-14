@@ -60,8 +60,8 @@ client.on('guildMemberAdd', member => {
 	const channel = member.guild.channels.find('name', 'general');
 	// Do nothing if the channel wasn't found on this server
 	if (!channel) return
-if(client.guild.id == "110373943822540800") return
-	if(client.guild.id == "475831159209852928") return
+if(channel.id == "110373943822540800") return
+	if(channel.id == "475831159209852931") return
 	const rmess = [
 		`${member} didn\'t turn back before it was too late...`,
 		`${member} has joined the fray.... Poor person`,
