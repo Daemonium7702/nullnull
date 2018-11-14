@@ -2,5 +2,6 @@
 "prefix" : ".",
   "prefixx": "[~",
   "bindex":"0",
-"mssauth":"0"
+"mssauth":"0",
+"backupVal":"0"
 }
