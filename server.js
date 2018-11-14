@@ -247,7 +247,7 @@ if(command == "rob"){
 let robUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
 var thisid = robUser.id
 let robAmt = Math.ceil(math.random() * 100)
-let backupVal = 0	
+var backupVal = 0	
 cash.findOne({
 		UserId: thisid,
 		ServerId: message.guild.id
