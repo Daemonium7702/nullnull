@@ -299,13 +299,13 @@ message.channel.send(`You stole **${robAmt}** dollars from <@${robUser.id}>`)
             cashbed.setColor("#660000")
             for (i = 0; i < res.length; i++) {
                 let memberz = res[i].username
-                cashbed.addField(`${i + 1}. ${memberz}`,`*Balance: * ${res[i].bal}`)
+                cashbed.addField(`${i + 1}. ${memberz}`,`*Balance:*   ${res[i].bankbal}`)
             }
         } else {
             cashbed.setColor("#660000")
             for (i = 0; i < 10; i++) {
                 let memberz = res[i].username
-                cashbed.addField(`${i + 1}. ${memberz}`, `*Balance: * ${res[i].bal}`)
+                cashbed.addField(`${i + 1}. ${memberz}`, `*Balance:*   ${res[i].bankbal}`)
             }
             message.channel.send(cashbed)
         }
