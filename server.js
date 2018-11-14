@@ -284,31 +284,31 @@ message.channel.send(`You stole **${robAmt}** dollars from <@${robUser.id}>`)
 }
 	if (command == "leader") {
 	cash.find({
-		exists: 1
-	}).sort([
-		['bankbal', 'descending']
-	]).exec((err, res) => {
-		if (err) console.log(err);
-		let cashbed = new Discord.RichEmbed()
-			.setTitle("Leaderboard")
-		if (res.length == 0) {
-			cashbed.setColor("RED");
-			cashbed.addField("NO DATA", "Please type in chat to earn money")
-		} else if (res.length < 10) {
-			cashbed.setColor("#660000")
-			for (i = 0; i < res.length; i++) {
-				let members = message.guild.members.get(res[1].userID)
-				cashbed.addField(`${i + 1}. ${member.name.username}`, `*Balance: * ${res[i].bal}`)
-			}
-		} else {
-			cashbed.setColor("#660000")
-			for (i = 0; i < 10; i++) {
-				let members = message.guild.members.get(res[1].userID)
-				cashbed.addField(`${i + 1}. ${members.name.username}`, `*Balance: * ${res[i].bal}`)
-			}
-			message.channel.send(cashbed)
-		}
-	})
+        exists: 1
+    }).sort([
+        ['bankbal', 'descending']
+    ]).exec((err, res) => {
+        if (err) console.log(err);
+        let cashbed = new Discord.RichEmbed()
+            .setTitle("Leaderboard")
+        if (res.length == 0) {
+            cashbed.setColor("RED");
+            cashbed.addField("NO DATA", "Please type in chat to earn money")
+        } else if (res.length < 10) {
+            cashbed.setColor("#660000")
+            for (i = 0; i < res.length; i++) {
+                let memberz = message.guild.members.get(res[1].userID)
+                cashbed.addField(`${i + 1}. ${memberz.name.username}`, `*Balance: * ${res[i].bal}`)
+            }
+        } else {
+            cashbed.setColor("#660000")
+            for (i = 0; i < 10; i++) {
+                let memberz = message.guild.members.get(res[1].userID)
+                cashbed.addField(`${i + 1}. ${memberz.name.username}`, `*Balance: * ${res[i].bal}`)
+            }
+            message.channel.send(cashbed)
+        }
+    })
 }
 	if (command === "test") {
 		var type = args[0]
