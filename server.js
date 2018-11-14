@@ -247,7 +247,8 @@ if(command == "rob"){
 let robUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
 var thisid = robUser.id
 let robAmt = Math.ceil(math.random() * 100)
-	cash.findOne({
+let backupVal = 0	
+cash.findOne({
 		UserId: thisid,
 		ServerId: message.guild.id
 	}, (err, bal) => {
@@ -255,8 +256,14 @@ let robAmt = Math.ceil(math.random() * 100)
 		if (!bal || bal == 0) {
 			message.channel.send("User has no money!")
 		} else {
+if(robAmt > bal.bal){
+backupVal = bal.bal
+bal.bal = bal.bal - backupVal ;
+bal.save().catch(err => console.log(err));
+}else{
 			bal.bal = bal.bal - robAmt ;
 			bal.save().catch(err => console.log(err));
+}
 		}
 		});
 cash.findOne({
@@ -267,9 +274,15 @@ cash.findOne({
 		if (!bal) {
 			message.channel.send("Cant rob a guy if you aint got a place to put the money my dude, try talkin a bit first.")
 		} else {
+			if(backupVal = 0){
 			bal.bal = bal.bal + robAmt ;
 message.channel.send(`You stole **${robAmt}** dollars from <@${robUser.id}>`)
 			bal.save().catch(err => console.log(err));
+		}else{
+bal.bal = bal.bal + backupVal ;
+message.channel.send(`You stole **${backupVal}** dollars from <@${robUser.id}>`)
+			bal.save().catch(err => console.log(err));
+}
 		}
 	})
 
