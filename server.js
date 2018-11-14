@@ -48,7 +48,7 @@ const assert = require('assert');
 const factor = require('factors-number')
 const msfjs = require('msfjs')
 const cash = require('./money/cash.js')
-const myItem= require('./items.json')
+const myItem = require('./items.json')
 client.on("ready", () => {
 	console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);
 	client.user.setActivity(`on ${client.guilds.size} servers`);
@@ -73,10 +73,10 @@ client.on('guildMemberAdd', member => {
 		`${member} *tumbleweed*`,
 		`${member} *Yaaawwwwnnn* Bet Discord can\'t do that, can it.`,
 		`${member} seems lost out there!`
-		
+
 	]
 	const ramess = rmess[Math.floor(Math.random() * rmess.length)];
-			
+
 	channel.send(ramess);
 });
 client.on("message", async message => {
@@ -88,135 +88,165 @@ client.on("message", async message => {
 		}
 	}
 	if (message.author.bot) return;
-const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+	const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
 	const nanargs = message.content.split(/ +/g)
 	const command = args.shift().toLowerCase();
 	const prefix = config.prefix
 	const bindex = config.prefix
 
-	if(command == "dbcon"){
-if(message.author.id != "347885325940424714"){
- return message.channel.send("Unauthorized");
-}else{
-mongoose.connect('mongodb://DaemoniumAdmin:Dallasrules123.@daemonium-shard-00-00-u2ufm.mongodb.net:27017,daemonium-shard-00-01-u2ufm.mongodb.net:27017,daemonium-shard-00-02-u2ufm.mongodb.net:27017/Daemonium?ssl=true&replicaSet=Daemonium-shard-0&authSource=admin&retryWrites=true&maxPoolSize=10', { useNewUrlParser: true, poolSize: 10  });
-message.channel.send("Aye Aye my liege.")
-}
-}
-	let cashMonies = Math.ceil(math.random() * 10)
-cash.findOne({
-	UserId: message.author.id,
-	ServerId: message.guild.id
-}, (err, bal) => {
-	if (err) console.log(err)
-	if (!bal) {
-		const newCash = new cash({
-			UserId: message.author.id,
-			ServerId: message.guild.id,
-			bal: cashMonies,
-			bankbal: 0
-		})
-		newCash.save().catch(err => console.log(err));
-	} else {
-		bal.bal= bal.bal + cashMonies;
-		bal.save().catch(err => console.log(err));
+	if (command == "dbcon") {
+		if (message.author.id != "347885325940424714") {
+			return message.channel.send("Unauthorized");
+		} else {
+			mongoose.connect('mongodb://DaemoniumAdmin:Dallasrules123.@daemonium-shard-00-00-u2ufm.mongodb.net:27017,daemonium-shard-00-01-u2ufm.mongodb.net:27017,daemonium-shard-00-02-u2ufm.mongodb.net:27017/Daemonium?ssl=true&replicaSet=Daemonium-shard-0&authSource=admin&retryWrites=true&maxPoolSize=10', {
+				useNewUrlParser: true,
+				poolSize: 10
+			});
+			message.channel.send("Aye Aye my liege.")
+		}
 	}
-})
-cash.findOne({
-	UserId: message.author.id,
-	ServerId: message.guild.id
-}, (err, bankbal) => {
-	if (err) console.log(err)
-	if (!bankbal) {
-		const newBank = new cash({
+	let cashMonies = Math.ceil(math.random() * 10)
+	cash.findOne({
+		UserId: message.author.id,
+		ServerId: message.guild.id
+	}, (err, bal) => {
+		if (err) console.log(err)
+		if (!bal) {
+			const newCash = new cash({
+				UserId: message.author.id,
+				ServerId: message.guild.id,
+				bal: cashMonies,
+				bankbal: 0
+			})
+			newCash.save().catch(err => console.log(err));
+		} else {
+			bal.bal = bal.bal + cashMonies;
+			bal.save().catch(err => console.log(err));
+		}
+	})
+	if (command === "deposit") {
+		cash.findOne({
 			UserId: message.author.id,
-			ServerId: message.guild.id,
-			bal: cashMonies,
-			bankbal: 1
-		})
-		newBank.save().catch(err => console.log(err));
-			}else{
+			ServerId: message.guild.id
+		}, (err, bankbal) => {
+			if (err) console.log(err)
+			cash.findOne({
+				UserId: message.author.id,
+				ServerId: message.guild.id
+			}, (errr, bal) => {
+				if (bal.bal == 0) {
+					return message.channel.send("You have no pocket change!")
+				} else {
 
-bankbal.bankbal = bankbal.bankbal
-bankbal.save().catch(err => console.log(err))
-}
-})
-	
+					bankbal.bankbal = bankbal.bankbal + bal.bal
+					bankbal.save().catch(err => console.log(err))
+					bal.bal = bal.bal - bal.bal
+					bal.save().catch(errr => console.log(err))
+					let moneyEmb = new Discord.RichEmbed()
+						.setTitle('Balance After Deposit')
+						.setColor("#660000")
+						.setThumbnail(client.displayAvatarURL)
+					if (!bal && !bankbal) {
+						moneyEmb.addField("Net Worth", "0", true)
+						moneyEmb.addField("Pocket Change", "0", true)
+						moneyEmb.addField("Banked Money", "0", true)
+						return message.channel.send(moneyEmb)
+					} else if (!bal) {
+						moneyEmb.addField("Net Worth", Math.floor(bal.bal + bankbal.bankbal), true)
+						moneyEmb.addField("Pocket Change", "0", true)
+						moneyEmb.addField("Banked Money", bankbal.bankbal, true)
+						return message.channel.send(moneyEmb)
+					} else if (!bankbal) {
+						moneyEmb.addField("Net Worth", Math.floor(bal.bal + bankbal.bankbal), true)
+						moneyEmb.addField("Pocket Change", bal.bal, true)
+						moneyEmb.addField("Banked Money", "0", true)
+						return message.channel.send(moneyEmb)
+					} else {
+						moneyEmb.addField("Net Worth", Math.floor(bal.bal + bankbal.bankbal), true)
+						moneyEmb.addField("Pocket Change", bal.bal, true)
+						moneyEmb.addField("Banked Money", bankbal.bankbal, true)
+						return message.channel.send(moneyEmb)
+
+					}
+
+				}
+			})
+		})
+	}
+
 	if (message.content.indexOf(config.prefix) !== 0) return;
 
-if(command === "eval"){
-  if(message.author.id !== "347885325940424714"){
- return message.channel.send("USER NOT AUTHORIZED");
-			     }
-    try {
-      const code = args.join(" ");
-      let evaled = eval(code);
- 
-      if (typeof evaled !== "string")
-        evaled = require("util").inspect(evaled);
- 
-      message.channel.send(clean(evaled), {code:"xl"});
-    } catch (err) {
-      message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
-    }
-}
-///econ///
-	if(command === "bal"){
-cash.findOne({
+	if (command === "eval") {
+		if (message.author.id !== "347885325940424714") {
+			return message.channel.send("USER NOT AUTHORIZED");
+		}
+		try {
+			const code = args.join(" ");
+			let evaled = eval(code);
 
-	UserId: message.author.id,
+			if (typeof evaled !== "string")
+				evaled = require("util").inspect(evaled);
 
-	ServerId: message.guild.id
-
-},(err, bal) => {
-	cash.findOne({
-
-	UserId: message.author.id,
-
-	ServerId: message.guild.id
-
-},(err, bankbal) => {	
-
-	if (err) console.log(err)
-
-let moneyEmb = new Discord.RichEmbed()
-.setTitle('Balance')
-.setColor("#660000")
-.setThumbnail(client.displayAvatarURL)
-	if (!bal && !bankbal) {
-		moneyEmb.addField("Net Worth", "0", true)
-		moneyEmb.addField("Pocket Change", "0", true)
-		moneyEmb.addField("Banked Money", "0", true)
-
-		return message.channel.send(moneyEmb)	
-		mongoose.connectin.close()
-}else if(!bal){
-			moneyEmb.addField("Net Worth", Math.floor(bal.bal + bankbal.bankbal), true)
-			moneyEmb.addField("Pocket Change", "0", true)
-			moneyEmb.addField("Banked Money", bankbal.bankbal, true)
-			return message.channel.send(moneyEmb)
-			mongoose.disconnect()
-}else if(!bankbal){
-moneyEmb.addField("Net Worth", Math.floor(bal.bal + bankbal.bankbal), true)
-			moneyEmb.addField("Pocket Change", bal.bal, true)
-			moneyEmb.addField("Banked Money", "0", true)
-			return message.channel.send(moneyEmb)
-			mongoose.disconnect()
-}else{
-			moneyEmb.addField("Net Worth", Math.floor(bal.bal + bankbal.bankbal), true)
-			moneyEmb.addField("Pocket Change", bal.bal, true)
-			moneyEmb.addField("Banked Money", bankbal.bankbal, true)
-			return message.channel.send(moneyEmb)
-			mongoose.disconnect()
-
-}
-	})
-	})
+			message.channel.send(clean(evaled), {
+				code: "xl"
+			});
+		} catch (err) {
+			message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+		}
 	}
-	if(command==="test"){
+	///econ///
+	if (command === "bal") {
+		cash.findOne({
+
+			UserId: message.author.id,
+
+			ServerId: message.guild.id
+
+		}, (err, bal) => {
+			cash.findOne({
+
+				UserId: message.author.id,
+
+				ServerId: message.guild.id
+
+			}, (err, bankbal) => {
+
+				if (err) console.log(err)
+
+				let moneyEmb = new Discord.RichEmbed()
+					.setTitle('Balance')
+					.setColor("#660000")
+					.setThumbnail(client.displayAvatarURL)
+				if (!bal && !bankbal) {
+					moneyEmb.addField("Net Worth", "0", true)
+					moneyEmb.addField("Pocket Change", "0", true)
+					moneyEmb.addField("Banked Money", "0", true)
+					return message.channel.send(moneyEmb)
+				} else if (!bal) {
+					moneyEmb.addField("Net Worth", Math.floor(bal.bal + bankbal.bankbal), true)
+					moneyEmb.addField("Pocket Change", "0", true)
+					moneyEmb.addField("Banked Money", bankbal.bankbal, true)
+					return message.channel.send(moneyEmb)
+				} else if (!bankbal) {
+					moneyEmb.addField("Net Worth", Math.floor(bal.bal + bankbal.bankbal), true)
+					moneyEmb.addField("Pocket Change", bal.bal, true)
+					moneyEmb.addField("Banked Money", "0", true)
+					return message.channel.send(moneyEmb)
+				} else {
+					moneyEmb.addField("Net Worth", Math.floor(bal.bal + bankbal.bankbal), true)
+					moneyEmb.addField("Pocket Change", bal.bal, true)
+					moneyEmb.addField("Banked Money", bankbal.bankbal, true)
+					return message.channel.send(moneyEmb)
+
+				}
+			})
+		})
+	}
+	if (command === "test") {
 		var type = args[0]
-message.channel.send(myItem.type)
+		message.channel.send(myItem.type)
 		message.channel.send("Did i get an A+?")
-}
+	}
 	if (message.channel.type == 'dm') {
 		try {
 			function clean(text) {
@@ -266,14 +296,14 @@ message.channel.send(myItem.type)
 		if (message.author.id != "347885325940424714") {
 			///
 			message.channel.send("You must be devoted to finding secret commands huh? Stahp it. ")
-		}else{
-		const thismessage = await message.channel.send('Destroying in 3')
-		thismessage.edit('Destroying in 2')
-		thismessage.edit('Destroying in 1')
-		thismessage.edit("BOOM")
-			.then(msg => client.destroy())
-			.then(() => client.login(process.env.BOT_TOKEN));
-	}
+		} else {
+			const thismessage = await message.channel.send('Destroying in 3')
+			thismessage.edit('Destroying in 2')
+			thismessage.edit('Destroying in 1')
+			thismessage.edit("BOOM")
+				.then(msg => client.destroy())
+				.then(() => client.login(process.env.BOT_TOKEN));
+		}
 	}
 	if (message.guild.id == "451843103318343680") {
 		message.channel.send("services discontinued for https://discordapp.com/channels/451843103318343680/457677144470847500 please head to https://discord.gg/GfJw3VB to use the bot.");
@@ -286,7 +316,7 @@ message.channel.send(myItem.type)
 		if (message.author.id === "350693449722232832") return message.channel.send("Permission denied.");
 		if (message.author.id === "412369746172837891") return message.channel.send("Permission denied. Learn Humility.")
 		//https://discordapp.com/channels/428346455909072906/429072113601871893
-	
+
 		if (command === "pm") {
 			if (message.author.id != "347885325940424714") {
 				return message.channel.send("Dude who even are you? And how did you find this command? Anywayyyy go away plz, you are not my liege.")
@@ -1160,91 +1190,91 @@ Jimp.read(buffer, (err, lenna) => {
 			}
 		}
 		if (command === "help") {
-config.mssauth = message.author.id
+			config.mssauth = message.author.id
 			const back = "◀"
 			const next = "▶"
 			const end = "❗"
 			const funembed = new Discord.RichEmbed()
-		.setFooter("fun")
-		.setTitle("Fun Commands")
-                .addField("8ball:", " This Command Is An 8Ball Usage: .8ball [YesOrNo Question]")
-                .addField("Cowsay:", " Moooooo Usage: .cowsay [text]")
-                .addField("Insult:", " Instults a given person (Still under develeopment) Usage: .insult [name] ")
-                .addField("Bomb:", " Sends A Bomb Usage: .bomb")
-                .addField("Clapify:", " Clapifies That Text! Usage: .clapify [text]")
-                .addField("Urban:", " Looks Up A String On Urban Dictionary Usage: .Urban [string] ")
-                .addField("Fireworks:", " Sends Some Cool Fireworks Usage: .fireworks This was requested by a user")
-                .addField("Forcecrush:", " Force Crush! Usage: .forcecrush")
-                .addField("Fusrodah:", " Fus.....RO DAH!!! Usage: Call To The Ancients With .fusrodah")
-                .addField("Lovecalc:", " Calculates The Chances Of Love Between Any Two Objects! Usage: .lovecalc [object1] [object2] ")
-                .addField("Magicify: ", " Turns Your Message Into An Ugly Embed! Usage: .magicify [text] ")
-                .addField("Meme:", " Sends Some Dank Memes! Usage: .meme")
-                .addField("O:", " Swotchos Oll Vowols On O Strong To 'o' Usogo: .o [toxt] REQUESTED BY USER.... i dont know why though")
-                .addField("Reverse:", " Reverses A String Usage: .reverse [words] ")
-                .addField("Rickroll:", ".... Usage: .rickroll ")
-                .addField("Say:", " Makes The Bot Say What You Say. Usage: .say [words] ")
-                .addField("asigh:", " :frowning: Usage: .asigh")
-                .addField("Ss", "Compete With Other Users To Set The Status Of My Bot! Usage: .ss")
-		.setColor("#660000")
+				.setFooter("fun")
+				.setTitle("Fun Commands")
+				.addField("8ball:", " This Command Is An 8Ball Usage: .8ball [YesOrNo Question]")
+				.addField("Cowsay:", " Moooooo Usage: .cowsay [text]")
+				.addField("Insult:", " Instults a given person (Still under develeopment) Usage: .insult [name] ")
+				.addField("Bomb:", " Sends A Bomb Usage: .bomb")
+				.addField("Clapify:", " Clapifies That Text! Usage: .clapify [text]")
+				.addField("Urban:", " Looks Up A String On Urban Dictionary Usage: .Urban [string] ")
+				.addField("Fireworks:", " Sends Some Cool Fireworks Usage: .fireworks This was requested by a user")
+				.addField("Forcecrush:", " Force Crush! Usage: .forcecrush")
+				.addField("Fusrodah:", " Fus.....RO DAH!!! Usage: Call To The Ancients With .fusrodah")
+				.addField("Lovecalc:", " Calculates The Chances Of Love Between Any Two Objects! Usage: .lovecalc [object1] [object2] ")
+				.addField("Magicify: ", " Turns Your Message Into An Ugly Embed! Usage: .magicify [text] ")
+				.addField("Meme:", " Sends Some Dank Memes! Usage: .meme")
+				.addField("O:", " Swotchos Oll Vowols On O Strong To 'o' Usogo: .o [toxt] REQUESTED BY USER.... i dont know why though")
+				.addField("Reverse:", " Reverses A String Usage: .reverse [words] ")
+				.addField("Rickroll:", ".... Usage: .rickroll ")
+				.addField("Say:", " Makes The Bot Say What You Say. Usage: .say [words] ")
+				.addField("asigh:", " :frowning: Usage: .asigh")
+				.addField("Ss", "Compete With Other Users To Set The Status Of My Bot! Usage: .ss")
+				.setColor("#660000")
 			/////////////////////////
 			/////////////////////////
 			const musicembed = new Discord.RichEmbed()
 				.setFooter("music")
 				.setTitle("Music Commands")
-				.addField("Np:", " Shows What Is Now Playing Usage: .np",true)
-				.addField("Pause:", " Pauses Music Usage: .pause",true)
-				.addField("Play:", " Plays Music. Usage: .play  [song Name], Then Select From List By Typing The Corresponding Number (e.g. For Song 2 Type 2) ",true)
-				.addField("Queue:", "Shows Music Queue Usage: .queue",true)
-				.addField("Resume:", " Resumes A Paused Song. Usage: .resume",true)
-				.addField("Skip:", " Skips A Song Usage: .skip",true)
-				.addField("Stop:", " Stops Music From Playing Usage: .stop",true)
-				.addField("Vol:", " Volume Usage: .vol [number]",true)
+				.addField("Np:", " Shows What Is Now Playing Usage: .np", true)
+				.addField("Pause:", " Pauses Music Usage: .pause", true)
+				.addField("Play:", " Plays Music. Usage: .play  [song Name], Then Select From List By Typing The Corresponding Number (e.g. For Song 2 Type 2) ", true)
+				.addField("Queue:", "Shows Music Queue Usage: .queue", true)
+				.addField("Resume:", " Resumes A Paused Song. Usage: .resume", true)
+				.addField("Skip:", " Skips A Song Usage: .skip", true)
+				.addField("Stop:", " Stops Music From Playing Usage: .stop", true)
+				.addField("Vol:", " Volume Usage: .vol [number]", true)
 			//////////////////////////
 			//////////////////////////
 			const modembed = new Discord.RichEmbed()
 				.setTitle("Moderation:")
 				.setFooter("Moderation")
-				.addField("Ban:", " Bans A User MOD ONLY Usage: .ban [@user] [Reason]",true)
-				.addField("Kick:", " Kicks A Member. Usage: .kick @member [reason]",true)
-				.addField("Purge:", " Deletes Messages MOD ONLY Usage: .purge [number<100]",true)
-				.addField("Report:", " Reports A Member Usage: .report [@member] [reason]",true)
-				.addField("Role:", " Ignore This Command It Is In Maintenance",true)
+				.addField("Ban:", " Bans A User MOD ONLY Usage: .ban [@user] [Reason]", true)
+				.addField("Kick:", " Kicks A Member. Usage: .kick @member [reason]", true)
+				.addField("Purge:", " Deletes Messages MOD ONLY Usage: .purge [number<100]", true)
+				.addField("Report:", " Reports A Member Usage: .report [@member] [reason]", true)
+				.addField("Role:", " Ignore This Command It Is In Maintenance", true)
 			////////////////////////
 			////////////////////////
 			const ciphembed = new Discord.RichEmbed()
 				.setTitle("Ciphers:")
 				.setFooter("Ciphers")
-				.addField("ttb64: ", "text to base 64 Usage: .ttb64 string",true)
-				.addField("b64tt:", " base 64 to text Usage: .b64tt string",true)
-				.addField("rotenc[5, 13, 18, and 47]:", " uses either rot 5,13,18, or 47 to encode some text. Usage: .rotenc47 text",true)
-				.addField(".rotdec[5, 13, 18, and 47]:", " Uses rot to decode text. Usage: .rotdec47 text",true)
-				.addField(".caesarenc:", " enciphers text using caesar. Usage: .caesar [shift] [text] eg:.caesarenc 3 hello, or .caesarenc c hello",true)
-				.addField(".caesardec:", " deciphers text using caesar. Usage: .caesardec [shift] [text] eg:.caesardec 3 hello, or .caesardec c hello",true)
-				.addField(".vigenc:", " uses vig on text. Usage: .vigenc [key] [hello]",true)
-				.addField(".vigdec:", " uses vig on text. Usage: .vigdec [key] [hello]",true)
-				.addField(".hexenc:", " turns ascii to hexadecimal Usage: .hexenc string",true)
-				.addField(".hexdec:", " converts hexadecimal to ascii Usage: .hexdec string",true)
+				.addField("ttb64: ", "text to base 64 Usage: .ttb64 string", true)
+				.addField("b64tt:", " base 64 to text Usage: .b64tt string", true)
+				.addField("rotenc[5, 13, 18, and 47]:", " uses either rot 5,13,18, or 47 to encode some text. Usage: .rotenc47 text", true)
+				.addField(".rotdec[5, 13, 18, and 47]:", " Uses rot to decode text. Usage: .rotdec47 text", true)
+				.addField(".caesarenc:", " enciphers text using caesar. Usage: .caesar [shift] [text] eg:.caesarenc 3 hello, or .caesarenc c hello", true)
+				.addField(".caesardec:", " deciphers text using caesar. Usage: .caesardec [shift] [text] eg:.caesardec 3 hello, or .caesardec c hello", true)
+				.addField(".vigenc:", " uses vig on text. Usage: .vigenc [key] [hello]", true)
+				.addField(".vigdec:", " uses vig on text. Usage: .vigdec [key] [hello]", true)
+				.addField(".hexenc:", " turns ascii to hexadecimal Usage: .hexenc string", true)
+				.addField(".hexdec:", " converts hexadecimal to ascii Usage: .hexdec string", true)
 			//////////////////////
 			/////////////////////
 			const utilembed = new Discord.RichEmbed()
 				.setTitle("Utilities:")
 				.setFooter("Utils")
-				.addField("Uptime:", " Shows Uptime Usage: .uptime",true)
-				.addField("Guildlist:", " Shows a list of guilds the bot is in. Usage: .guildlist",true)
-				.addField("Userinfo:", " displays info on a user Usage: .userinfo [@user]",true)
-				.addField("Botinfo:", " Displays Info On The Bot Usage: .botinfo",true)
-				.addField("Bugreport:", " Reports A Bug Directly To The Dev Of The Bot (A.K.A. ME) Usage: .bugreport [Bug]",true)
-				.addField("Calc:", " Calculates The Value Of An Expression Usage: .calc [expression E.g. 1+1]",true)
-				.addField("Help:", " Ehm, Idk What To Tell You. Usage: How Are You Even Here?",true)
-				.addField("Haste:", " Adds A String To Hastebin Usage: .haste [String (A.K.A Words)]",true)
-				.addField("Inv:", " Shows Invite Links For My Bot, And The Support Server. Usage: .inv",true)
-				.addField("Line:", " Draws The LINE! Usage: .line",true)
-				.addField("Ping:", " Pings Places All Around The World Usage: .ping",true)
-				.addField("Schedule:", " Schedules A Message. Usage: .schedule [Part 1 Of Message] [Part 2 Of Message] [time]",true)
-				.addField("Serverinfo:", " Displays Info On The Server Usage: .serverinfo",true)
-				.addField("Timer:", " Sets A Timer. Usage: .timer [time In Ms, S, M, Or H.]",true)
-				.addField("Remspace:", " Removes all spaces from a string. Usage: .remspace [text]",true)
-				.addField(".gprime:", " gets all prime numbers up to the supplied value. Usage: .gprime number",true)
+				.addField("Uptime:", " Shows Uptime Usage: .uptime", true)
+				.addField("Guildlist:", " Shows a list of guilds the bot is in. Usage: .guildlist", true)
+				.addField("Userinfo:", " displays info on a user Usage: .userinfo [@user]", true)
+				.addField("Botinfo:", " Displays Info On The Bot Usage: .botinfo", true)
+				.addField("Bugreport:", " Reports A Bug Directly To The Dev Of The Bot (A.K.A. ME) Usage: .bugreport [Bug]", true)
+				.addField("Calc:", " Calculates The Value Of An Expression Usage: .calc [expression E.g. 1+1]", true)
+				.addField("Help:", " Ehm, Idk What To Tell You. Usage: How Are You Even Here?", true)
+				.addField("Haste:", " Adds A String To Hastebin Usage: .haste [String (A.K.A Words)]", true)
+				.addField("Inv:", " Shows Invite Links For My Bot, And The Support Server. Usage: .inv", true)
+				.addField("Line:", " Draws The LINE! Usage: .line", true)
+				.addField("Ping:", " Pings Places All Around The World Usage: .ping", true)
+				.addField("Schedule:", " Schedules A Message. Usage: .schedule [Part 1 Of Message] [Part 2 Of Message] [time]", true)
+				.addField("Serverinfo:", " Displays Info On The Server Usage: .serverinfo", true)
+				.addField("Timer:", " Sets A Timer. Usage: .timer [time In Ms, S, M, Or H.]", true)
+				.addField("Remspace:", " Removes all spaces from a string. Usage: .remspace [text]", true)
+				.addField(".gprime:", " gets all prime numbers up to the supplied value. Usage: .gprime number", true)
 			///////////////////
 			///////////////////
 			const progembed = new Discord.RichEmbed()
@@ -1257,10 +1287,10 @@ config.mssauth = message.author.id
 			const nsfwembed = new Discord.RichEmbed()
 				.setTitle("NSFW:")
 				.setFooter("NSFW")
-				.addField("Ass:", " Shows Some Ass ;) NSFW ONLY Usage: .ass",true)
-				.addField("Bond:", " Bondage NSFW ONLY Usage: .bond",true)
-				.addField("Hentai:", " Looks Up Some Hentai Babes For You Weebs Out There Usage: .hentai",true)
-				.addField("Nsfw:", " Sends Some Standard NSFW Usage: .nsfw",true)
+				.addField("Ass:", " Shows Some Ass ;) NSFW ONLY Usage: .ass", true)
+				.addField("Bond:", " Bondage NSFW ONLY Usage: .bond", true)
+				.addField("Hentai:", " Looks Up Some Hentai Babes For You Weebs Out There Usage: .hentai", true)
+				.addField("Nsfw:", " Sends Some Standard NSFW Usage: .nsfw", true)
 			var pollTitle = await message.channel.send({
 				embed: funembed
 			})
@@ -1273,55 +1303,55 @@ config.mssauth = message.author.id
 			});
 
 			collector.on('collect', r => {
-if(config.mssauth != message.author.id){
-return
-}else{
-				console.log(`Collected ${r.emoji.name}`)
-				config.bindex = Math.floor(config.bindex + 1)
-				fs.writeFile("./config.json", JSON.stringify(config), function(err) {
-					if (err) return console.log(err);
-					console.log(JSON.stringify(config));
-					console.log('writing to ' + "./config.json");
-				});
-				if (config.bindex == 0) {
-					pollTitle.edit({
-						embed: funembed
+				if (config.mssauth != message.author.id) {
+					return
+				} else {
+					console.log(`Collected ${r.emoji.name}`)
+					config.bindex = Math.floor(config.bindex + 1)
+					fs.writeFile("./config.json", JSON.stringify(config), function(err) {
+						if (err) return console.log(err);
+						console.log(JSON.stringify(config));
+						console.log('writing to ' + "./config.json");
 					});
+					if (config.bindex == 0) {
+						pollTitle.edit({
+							embed: funembed
+						});
+					}
+					if (config.bindex == 1) {
+						pollTitle.edit({
+							embed: musicembed
+						})
+					}
+					if (config.bindex == 2) {
+						pollTitle.edit({
+							embed: modembed
+						});
+					}
+					if (config.bindex == 3) {
+						pollTitle.edit({
+							embed: ciphembed
+						})
+					}
+					if (config.bindex == 4) {
+						pollTitle.edit({
+							embed: utilembed
+						});
+					}
+					if (config.bindex == 5) {
+						pollTitle.edit({
+							embed: progembed
+						});
+					}
+					if (config.bindex == 6) {
+						pollTitle.edit({
+							embed: nsfwembed
+						})
+					}
+					if (config.bindex == 7) {
+						config.bindex = Math.floor(config.bindex - 1)
+					}
 				}
-				if (config.bindex == 1) {
-					pollTitle.edit({
-						embed: musicembed
-					})
-				}
-				if (config.bindex == 2) {
-					pollTitle.edit({
-						embed: modembed
-					});
-				}
-				if (config.bindex == 3) {
-					pollTitle.edit({
-						embed: ciphembed
-					})
-				}
-				if (config.bindex == 4) {
-					pollTitle.edit({
-						embed: utilembed
-					});
-				}
-				if (config.bindex == 5) {
-					pollTitle.edit({
-						embed: progembed
-					});
-				}
-				if (config.bindex == 6) {
-					pollTitle.edit({
-						embed: nsfwembed
-					})
-				}
-				if (config.bindex == 7) {
-					config.bindex = Math.floor(config.bindex - 1)
-				}
-}
 			});
 			collector.on('end', collected => {});
 
@@ -1330,64 +1360,64 @@ return
 				time: 60000
 			});
 			collector1.on('collect', r => {
-if(config.mssauth != message.author.id){
-return
-}else{
-				console.log(`Collected ${r.emoji.name}`)
-				config.bindex = Math.floor(config.bindex - 1)
-				if (config.bindex == -1) {
-					config.bindex = Math.floor(config.bindex + 2)
+				if (config.mssauth != message.author.id) {
+					return
+				} else {
+					console.log(`Collected ${r.emoji.name}`)
+					config.bindex = Math.floor(config.bindex - 1)
+					if (config.bindex == -1) {
+						config.bindex = Math.floor(config.bindex + 2)
+						fs.writeFile("./config.json", JSON.stringify(config), function(err) {
+							if (err) return console.log(err);
+							console.log(JSON.stringify(config));
+							console.log('writing to ' + "./config.json");
+						})
+					}
 					fs.writeFile("./config.json", JSON.stringify(config), function(err) {
 						if (err) return console.log(err);
 						console.log(JSON.stringify(config));
 						console.log('writing to ' + "./config.json");
-					})
-				}
-				fs.writeFile("./config.json", JSON.stringify(config), function(err) {
-					if (err) return console.log(err);
-					console.log(JSON.stringify(config));
-					console.log('writing to ' + "./config.json");
-				});
+					});
 
-				if (config.bindex == 0) {
-					pollTitle.edit({
-						embed: funembed
-					});
+					if (config.bindex == 0) {
+						pollTitle.edit({
+							embed: funembed
+						});
+					}
+					if (config.bindex == 1) {
+						pollTitle.edit({
+							embed: musicembed
+						})
+					}
+					if (config.bindex == 2) {
+						pollTitle.edit({
+							embed: modembed
+						});
+					}
+					if (config.bindex == 3) {
+						pollTitle.edit({
+							embed: ciphembed
+						})
+					}
+					if (config.bindex == 4) {
+						pollTitle.edit({
+							embed: utilembed
+						});
+					}
+					if (config.bindex == 5) {
+						pollTitle.edit({
+							embed: progembed
+						});
+					}
+					if (config.bindex == 6) {
+						pollTitle.edit({
+							embed: nsfwembed
+						})
+					}
+					if (config.bindex == -1) {
+						config.bindex = Math.floor(config.bindex + 2)
+					}
 				}
-				if (config.bindex == 1) {
-					pollTitle.edit({
-						embed: musicembed
-					})
-				}
-				if (config.bindex == 2) {
-					pollTitle.edit({
-						embed: modembed
-					});
-				}
-				if (config.bindex == 3) {
-					pollTitle.edit({
-						embed: ciphembed
-					})
-				}
-				if (config.bindex == 4) {
-					pollTitle.edit({
-						embed: utilembed
-					});
-				}
-				if (config.bindex == 5) {
-					pollTitle.edit({
-						embed: progembed
-					});
-				}
-				if (config.bindex == 6) {
-					pollTitle.edit({
-						embed: nsfwembed
-					})
-				}
-				if (config.bindex == -1) {
-					config.bindex = Math.floor(config.bindex + 2)
-				}
-}
 			});
 			collector1.on('end', collected => {
 
@@ -1931,30 +1961,30 @@ return
 
 			return message.channel.send(botembed);
 		}
-		if(command == "serverinfo"){	
-  let online = message.guild.members.filter(member => member.user.presence.status !== 'offline');
-  let day = message.guild.createdAt.getDate()
-  let month = 1 + message.guild.createdAt.getMonth()
-  let year = message.guild.createdAt.getFullYear()
-   let sicon = message.guild.iconURL;
-   let serverembed = new Discord.RichEmbed()
-   .setAuthor(message.guild.name, sicon)
-   .setFooter(`Server Created On${day}.${month}.${year}`)
-   .setColor("#660000")
-   .setThumbnail(sicon)
-   .addField("ID", message.guild.id, true)
-   .addField("Name", message.guild.name, true)
-   .addField("Owner", message.guild.owner.user.tag, true)
-   .addField("Best Bot", "DaeBot... Without a doubt", true)
-   .addField("Channels", message.guild.channels.size, true)
-   .addField("Members", message.guild.memberCount, true)
-   .addField("Not Bots", message.guild.memberCount - message.guild.members.filter(m => m.user.bot).size, true)
-   .addField("Bots", message.guild.members.filter(m => m.user.bot).size, true)
-   .addField("Users Online", online.size, true)
-   .addField("Roles", message.guild.roles.size, true);
-   message.channel.send(serverembed);
+		if (command == "serverinfo") {
+			let online = message.guild.members.filter(member => member.user.presence.status !== 'offline');
+			let day = message.guild.createdAt.getDate()
+			let month = 1 + message.guild.createdAt.getMonth()
+			let year = message.guild.createdAt.getFullYear()
+			let sicon = message.guild.iconURL;
+			let serverembed = new Discord.RichEmbed()
+				.setAuthor(message.guild.name, sicon)
+				.setFooter(`Server Created On${day}.${month}.${year}`)
+				.setColor("#660000")
+				.setThumbnail(sicon)
+				.addField("ID", message.guild.id, true)
+				.addField("Name", message.guild.name, true)
+				.addField("Owner", message.guild.owner.user.tag, true)
+				.addField("Best Bot", "DaeBot... Without a doubt", true)
+				.addField("Channels", message.guild.channels.size, true)
+				.addField("Members", message.guild.memberCount, true)
+				.addField("Not Bots", message.guild.memberCount - message.guild.members.filter(m => m.user.bot).size, true)
+				.addField("Bots", message.guild.members.filter(m => m.user.bot).size, true)
+				.addField("Users Online", online.size, true)
+				.addField("Roles", message.guild.roles.size, true);
+			message.channel.send(serverembed);
 
-}
+		}
 		/*
         if (command === "mute") {
             let reason = args.slice(1).join(' ');
