@@ -114,11 +114,9 @@ cash.findOne({
 			bal: cashMonies
 		})
 		newCash.save().catch(err => console.log(err));
-		mongoose.connection.close()
 	} else {
 		bal.bal= bal.bal + cashMonies;
 		bal.save().catch(err => console.log(err));
-		mongoose.connection.close()
 	}
 })
 cash.findOne({
@@ -134,9 +132,7 @@ cash.findOne({
 			bankbal: 0
 		})
 		newCash.save().catch(err => console.log(err));
-		mongoose.connection.close()
-	}else{
-mongoose.connection.close()
+			}else{
 }
 })
 	
