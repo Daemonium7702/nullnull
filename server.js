@@ -224,7 +224,7 @@ if (command === "deposit") {
 					moneyEmb.addField("Banked Money", "0", true)
 					return message.channel.send(moneyEmb)
 				} else if (!bal) {
-					moneyEmb.addField("Net Worth", Math.floor(bal.bal + bankbal.bankbal), true)
+					moneyEmb.addField("Net Worth", Math.floor(bankbal.bankbal), true)
 					moneyEmb.addField("Pocket Change", "0", true)
 					moneyEmb.addField("Banked Money", bankbal.bankbal, true)
 					return message.channel.send(moneyEmb)
