@@ -628,7 +628,7 @@ scrape().then((value) => {
 			message.channel.send(kUser.toString() + "has been given" + `${role}`)
 		}
 		if (command == "announcements") {
-			message.channel.send("Update info 9.23.2018: New commands added. Reta, f2cipher, rot commands, hex commands, gprime, caesar ciphers, vig ciphers and more! Make sure to run .help often to see new commands!")
+			message.channel.send("Update info 11.13.2019:\n Help command updated\n database added\n .bal and .deposit currency commands added.\n Currency System added!\n More cipher commands added.\n Improved overal interface for multiple commands.\n Added interactivity to help command")
 		}
 		if (command == "reta") {
 			message.channel.send("https://www.youtube.com/watch?v=Hds9tFMuU8o")
@@ -1098,52 +1098,7 @@ Jimp.read(buffer, (err, lenna) => {
 			message.channel.send(space);
 		}
 
-		if (command == "alg") {
-			const variable = args[0]
-			if (!args[0]) {
-				message.channel.send("Please enter a variable to solve for! If you have no variable, please enter variable value eqn (x 4 5x^30)")
-			}
-			if (!args) {
-				message.channel.send("Please enter a variable and eqn for me to solve. ```Example: \n  .alg y mx+b-y \n Output: mx+b \n Example 2: \n 4 x 1+x \n Output: 5```")
-			}
-			const value = args[1]
-			const vc1 = args.join(" ")
-			var check = 0
-			var a = (vc1.match(/a/g) || []).length;
-			var b = (vc1.match(/b/g) || []).length;
-			var c = (vc1.match(/c/g) || []).length;
-			var d = (vc1.match(/a/g) || []).length;
-			var e = (vc1.match(/a/g) || []).length;
-			var f = (vc1.match(/a/g) || []).length;
-			var g = (vc1.match(/a/g) || []).length;
-			var h = (vc1.match(/a/g) || []).length;
-			var i = (vc1.match(/a/g) || []).length;
-			var j = (vc1.match(/a/g) || []).length;
-			var k = (vc1.match(/a/g) || []).length;
-			var l = (vc1.match(/a/g) || []).length;
-			var m = (vc1.match(/a/g) || []).length;
-			var n = (vc1.match(/a/g) || []).length;
-			var o = (vc1.match(/a/g) || []).length;
-			var p = (vc1.match(/a/g) || []).length;
-			var q = (vc1.match(/a/g) || []).length;
-			var r = (vc1.match(/a/g) || []).length;
-			var s = (vc1.match(/a/g) || []).length;
-			var t = (vc1.match(/a/g) || []).length;
-			var u = (vc1.match(/a/g) || []).length;
-			var v = (vc1.match(/a/g) || []).length;
-			var w = (vc1.match(/a/g) || []).length;
-			var x = (vc1.match(/a/g) || []).length;
-			var y = (vc1.match(/a/g) || []).length;
-			var z = (vc1.match(/a/g) || []).length;
-			check = a + b + c + d + e + f + g + h + i + j + k + l + m + n + o + p + q + r + s + t + u + v + w + x + y + z
-			if (!args[2]) {
-				console.log(CQ(vc1).solve(variable))
-				message.channel.send("Logged answer for variable solve.")
-			} else {
-				console.log(CQ(vc1).nsolve(value, variable))
-				message.channel.send("Logged answer for numerical solve.")
-			}
-		}
+		
 		if (command === "uptime") {
 			message.channel.send("The uptime is **" + moment.duration(client.uptime).format(' D [days], H [hrs], m [mins], s [secs]') + "**")
 		}
@@ -1217,6 +1172,12 @@ Jimp.read(buffer, (err, lenna) => {
 				.addField("Ss", "Compete With Other Users To Set The Status Of My Bot! Usage: .ss")
 				.setColor("#660000")
 			/////////////////////////
+			const econembed = new Discord.RichEmbed()
+				.setFooter("Economy(FINALLY)")
+				.setTitle("Economy Commands")
+				.addField("Bal:", " Shows net worth, cash, and banked cash Usage: .bal", true)
+				.addField("Deposit:", " Deposits Cash to bank Usage: .deposit", true)
+				.setColor("#660000")
 			/////////////////////////
 			const musicembed = new Discord.RichEmbed()
 				.setFooter("music")
@@ -1229,6 +1190,7 @@ Jimp.read(buffer, (err, lenna) => {
 				.addField("Skip:", " Skips A Song Usage: .skip", true)
 				.addField("Stop:", " Stops Music From Playing Usage: .stop", true)
 				.addField("Vol:", " Volume Usage: .vol [number]", true)
+				.setColor("#660000")
 			//////////////////////////
 			//////////////////////////
 			const modembed = new Discord.RichEmbed()
@@ -1239,7 +1201,8 @@ Jimp.read(buffer, (err, lenna) => {
 				.addField("Purge:", " Deletes Messages MOD ONLY Usage: .purge [number<100]", true)
 				.addField("Report:", " Reports A Member Usage: .report [@member] [reason]", true)
 				.addField("Role:", " Ignore This Command It Is In Maintenance", true)
-			////////////////////////
+				.setColor("#660000")
+////////////////////////
 			////////////////////////
 			const ciphembed = new Discord.RichEmbed()
 				.setTitle("Ciphers:")
@@ -1254,6 +1217,7 @@ Jimp.read(buffer, (err, lenna) => {
 				.addField(".vigdec:", " uses vig on text. Usage: .vigdec [key] [hello]", true)
 				.addField(".hexenc:", " turns ascii to hexadecimal Usage: .hexenc string", true)
 				.addField(".hexdec:", " converts hexadecimal to ascii Usage: .hexdec string", true)
+				.setColor("#660000")
 			//////////////////////
 			/////////////////////
 			const utilembed = new Discord.RichEmbed()
@@ -1275,6 +1239,7 @@ Jimp.read(buffer, (err, lenna) => {
 				.addField("Timer:", " Sets A Timer. Usage: .timer [time In Ms, S, M, Or H.]", true)
 				.addField("Remspace:", " Removes all spaces from a string. Usage: .remspace [text]", true)
 				.addField(".gprime:", " gets all prime numbers up to the supplied value. Usage: .gprime number", true)
+				.setColor("#660000")
 			///////////////////
 			///////////////////
 			const progembed = new Discord.RichEmbed()
@@ -1282,6 +1247,7 @@ Jimp.read(buffer, (err, lenna) => {
 				.setFooter("Programming")
 				.addField("Batch:", " Obfuscates some batch script. (you will need to make a key list for it.) Usage: .batch [batch code here]")
 				.addField("ntl:", " Basic universal obfuscation (this is for the bot dev only. If you can get how it works, then cheers) Usage: .ntl [text]")
+				.setColor("#660000")
 			///////////////////
 			///////////////////
 			const nsfwembed = new Discord.RichEmbed()
@@ -1291,6 +1257,7 @@ Jimp.read(buffer, (err, lenna) => {
 				.addField("Bond:", " Bondage NSFW ONLY Usage: .bond", true)
 				.addField("Hentai:", " Looks Up Some Hentai Babes For You Weebs Out There Usage: .hentai", true)
 				.addField("Nsfw:", " Sends Some Standard NSFW Usage: .nsfw", true)
+				.setColor("#660000")
 			var pollTitle = await message.channel.send({
 				embed: funembed
 			})
@@ -1349,8 +1316,13 @@ Jimp.read(buffer, (err, lenna) => {
 						})
 					}
 					if (config.bindex == 7) {
-						config.bindex = Math.floor(config.bindex - 1)
+						pollTitle.edit({
+							embed:econembed
+						})
 					}
+					if(config.bindex == 8){
+						congif.bindex = Math.floor(config.bindex -1)
+}
 				}
 			});
 			collector.on('end', collected => {});
@@ -1412,6 +1384,11 @@ Jimp.read(buffer, (err, lenna) => {
 					if (config.bindex == 6) {
 						pollTitle.edit({
 							embed: nsfwembed
+						})
+					}
+					if (config.bindex == 7) {
+						pollTitle.edit({
+							embed:econembed
 						})
 					}
 					if (config.bindex == -1) {
