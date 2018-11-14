@@ -304,7 +304,7 @@ message.channel.send(`You stole **${robAmt}** dollars from <@${robUser.id}>`)
 			cashbed.setColor("#660000")
 			for (i = 0; i < 10; i++) {
 				let members = message.guild.members.get(res[1].userID)
-				cashbed.addField(`${i + 1}. ${member.name.username}`, `*Balance: * ${res[i].bal}`)
+				cashbed.addField(`${i + 1}. ${members.name.username}`, `*Balance: * ${res[i].bal}`)
 			}
 			message.channel.send(cashbed)
 		}
