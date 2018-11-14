@@ -256,6 +256,7 @@ cash.findOne({
 		if (!bal || bal == 0) {
 			message.channel.send("User has no money!")
 		} else {
+backupVal = bal.bal
 if(robAmt > bal.bal){
 backupVal = Math.floor(backupVal + bal.bal)
 bal.bal = bal.bal - backupVal;
