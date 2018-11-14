@@ -280,8 +280,7 @@ cash.findOne({
 message.channel.send(`You stole **${robAmt}** dollars from <@${robUser.id}>`)
 			bal.save().catch(err => console.log(err));
 }
-		}
-	})
+		})
 }
 	if (command == "leader") {
 	cash.find({
