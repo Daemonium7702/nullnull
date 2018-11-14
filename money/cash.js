@@ -3,7 +3,8 @@
 		UserId: String,
 		ServerId: String,
 		bal: Number,
-		bankbal: Number
+		bankbal: Number,
+		exists: Number
 	})
 
 module.exports = mongoose.model("cash", moneySchema)
