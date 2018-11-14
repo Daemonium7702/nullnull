@@ -92,11 +92,7 @@ client.on("message", async message => {
 		}
 	}
 	if (message.author.bot) return;
-	var hhh = 0	
-if(hhh == 0){
 	mongoose.connect('mongodb://DaemoniumAdmin:Dallasrules123.@daemonium-shard-00-00-u2ufm.mongodb.net:27017,daemonium-shard-00-01-u2ufm.mongodb.net:27017,daemonium-shard-00-02-u2ufm.mongodb.net:27017/Daemonium?ssl=true&replicaSet=Daemonium-shard-0&authSource=admin&retryWrites=true&maxPoolSize=10', { useNewUrlParser: true });
-hhh = 1
-}
 let cashMonies = Math.ceil(math.random() * 10)
 cash.findOne({
 	UserId: message.author.id,
@@ -110,12 +106,30 @@ cash.findOne({
 			bal: cashMonies
 		})
 		newCash.save().catch(err => console.log(err));
-		mongoose.disconnect()
+		mongoose.connection.close()
 	} else {
 		bal.bal= bal.bal + cashMonies;
 		bal.save().catch(err => console.log(err));
-		mongoose.disconnect()
+		mongoose.connection.close()
 	}
+})
+cash.findOne({
+	UserId: message.author.id,
+	ServerId: message.guild.id
+}, (err, bankbal) => {
+	if (err) console.log(err)
+	if (!bankbal) {
+		const newCash = new cash({
+			UserId: message.author.id,
+			ServerId: message.guild.id,
+			bal: cashMonies,
+			bankbal: 0
+		})
+		newCash.save().catch(err => console.log(err));
+		mongoose.connection.close()
+	}else{
+mongoose.connection.close()
+}
 })
 	if (message.content.indexOf(config.prefix) !== 0) return;
 
@@ -169,7 +183,7 @@ let moneyEmb = new Discord.RichEmbed()
 		moneyEmb.addField("Banked Money", "0", true)
 
 		return message.channel.send(moneyEmb)	
-		mongoose.disconnect()
+		mongoose.connectin.close()
 }else if(!bal){
 			moneyEmb.addField("Net Worth", Math.floor(bal.bal + bankbal.bankbal), true)
 			moneyEmb.addField("Pocket Change", "0", true)
