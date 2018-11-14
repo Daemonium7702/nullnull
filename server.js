@@ -130,7 +130,7 @@ cash.findOne({
 			UserId: message.author.id,
 			ServerId: message.guild.id,
 			bal: cashMonies,
-			bankbal: 0
+			bankbal: 1
 		})
 		newBank.save().catch(err => console.log(err));
 			}
