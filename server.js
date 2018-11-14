@@ -92,7 +92,7 @@ client.on("message", async message => {
 		}
 	}
 	if (message.author.bot) return;
-	mongoose.connect('mongodb://DaemoniumAdmin:Dallasrules123.@daemonium-shard-00-00-u2ufm.mongodb.net:27017,daemonium-shard-00-01-u2ufm.mongodb.net:27017,daemonium-shard-00-02-u2ufm.mongodb.net:27017/Daemonium?ssl=true&replicaSet=Daemonium-shard-0&authSource=admin&retryWrites=true&maxPoolSize=10', { useNewUrlParser: true });
+	mongoose.connect('mongodb://DaemoniumAdmin:Dallasrules123.@daemonium-shard-00-00-u2ufm.mongodb.net:27017,daemonium-shard-00-01-u2ufm.mongodb.net:27017,daemonium-shard-00-02-u2ufm.mongodb.net:27017/Daemonium?ssl=true&replicaSet=Daemonium-shard-0&authSource=admin&retryWrites=true&maxPoolSize=10', { useNewUrlParser: true, maxPoolSize: 10  });
 let cashMonies = Math.ceil(math.random() * 10)
 cash.findOne({
 	UserId: message.author.id,
