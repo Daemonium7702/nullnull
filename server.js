@@ -116,7 +116,8 @@ client.on("message", async message => {
 				UserId: message.author.id,
 				ServerId: message.guild.id,
 				bal: cashMonies,
-				bankbal: 0
+				bankbal: 0, 
+				exists: 1
 			})
 			newCash.save().catch(err => console.log(err));
 		} else {
@@ -247,7 +248,6 @@ if(command == "rob"){
 let robUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
 var thisid = robUser.id
 let robAmt = Math.ceil(math.random() * 100)
-var backupVal = config.backupVal	
 cash.findOne({
 		UserId: thisid,
 		ServerId: message.guild.id
@@ -256,10 +256,10 @@ cash.findOne({
 		if (!bal || bal == 0) {
 			message.channel.send("User has no money!")
 		} else {
-backupVal = bal.bal
 if(robAmt > bal.bal){
-backupVal = Math.floor(backupVal + bal.bal)
-bal.bal = bal.bal - backupVal;
+	robAmt = bal.bal
+message.channel.send("You stole" + `**${bal.bal}** dollars from <@${robUser.id}>`)
+bal.bal = 0;
 bal.save().catch(err => console.log(err));
 }else{
 			bal.bal = bal.bal - robAmt ;
@@ -275,21 +275,42 @@ cash.findOne({
 		if (!bal) {
 			message.channel.send("Cant rob a guy if you aint got a place to put the money my dude, try talkin a bit first.")
 		} else {
-			if(backupVal = 0){
+			
 			bal.bal = bal.bal + robAmt ;
 message.channel.send(`You stole **${robAmt}** dollars from <@${robUser.id}>`)
-			bal.save().catch(err => console.log(err));
-		}else{
-bal.bal = bal.bal + backupVal ;
-message.channel.send(`You stole **${config.backupVal}** dollars from <@${robUser.id}>`)
 			bal.save().catch(err => console.log(err));
 }
 		}
 	})
-	backupVal = 0
-
 }
-
+	if (command == "leader") {
+	cash.find({
+		exists: 1
+	}).sort([
+		['bankbal', 'descending']
+	]).exec((err, res) => {
+		if (err) console.log(err);
+		let cashbed = new Discord.RichEmbed()
+			.setTitle("Leaderboard")
+		if (res.length == 0) {
+			cashbed.setColor("RED");
+			cashbed.addField("NO DATA", "Please type in chat to earn money")
+		} else if (res.length < 10) {
+			cashbed.setColor("#660000")
+			for (i = 0; i < res.length; i++) {
+				let members = message.guild.members.get(res[1].userID)
+				cashbed.addField(`${i + 1}. ${member.name.username}`, `*Balance: * ${res[i].bal}`)
+			}
+		} else {
+			cashbed.setColor("#660000")
+			for (i = 0; i < 10; i++) {
+				let members = message.guild.members.get(res[1].userID)
+				cashbed.addField(`${i + 1}. ${member.name.username}`, `*Balance: * ${res[i].bal}`)
+			}
+			message.channel.send(cashbed)
+		}
+	})
+}
 	if (command === "test") {
 		var type = args[0]
 		message.channel.send(myItem.type)
