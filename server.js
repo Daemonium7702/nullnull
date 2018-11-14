@@ -142,8 +142,8 @@ client.on("message", async message => {
     				Skull: 0,
 				exists: 1,
 				username: message.author.tag
-			newInven.save().catch(err => console.log(err));	
-			})
+				})
+			newInven.save().catch(err => console.log(err));
 			}
 			})
 			
