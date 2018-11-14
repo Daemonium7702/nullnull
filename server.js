@@ -257,8 +257,8 @@ cash.findOne({
 			message.channel.send("User has no money!")
 		} else {
 if(robAmt > bal.bal){
-backupVal = bal.bal
-bal.bal = bal.bal - backupVal ;
+backupVal = Math.floor(backupVal + bal.bal)
+bal.bal = bal.bal - backupVal;
 bal.save().catch(err => console.log(err));
 }else{
 			bal.bal = bal.bal - robAmt ;
@@ -280,7 +280,7 @@ message.channel.send(`You stole **${robAmt}** dollars from <@${robUser.id}>`)
 			bal.save().catch(err => console.log(err));
 		}else{
 bal.bal = bal.bal + backupVal ;
-message.channel.send(`You stole **${backupVal}** dollars from <@${robUser.id}>`)
+message.channel.send(`You stole **${config.backupVal}** dollars from <@${robUser.id}>`)
 			bal.save().catch(err => console.log(err));
 }
 		}
