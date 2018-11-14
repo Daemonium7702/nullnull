@@ -98,7 +98,7 @@ client.on("message", async message => {
 		if (message.author.id != "347885325940424714") {
 			return message.channel.send("Unauthorized");
 		} else {
-			mongoose.connect('mongodb://DaemoniumAdmin:Dallasrules123.@daemonium-shard-00-00-u2ufm.mongodb.net:27017,daemonium-shard-00-01-u2ufm.mongodb.net:27017,daemonium-shard-00-02-u2ufm.mongodb.net:27017/Daemonium?ssl=true&replicaSet=Daemonium-shard-0&authSource=admin&retryWrites=true&maxPoolSize=10', {
+			mongoose.connect(process.env.dburl, {
 				useNewUrlParser: true,
 				poolSize: 10
 			});
