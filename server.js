@@ -117,7 +117,8 @@ client.on("message", async message => {
 				ServerId: message.guild.id,
 				bal: cashMonies,
 				bankbal: 0, 
-				exists: 1
+				exists: 1,
+				username: message.author.tag
 			})
 			newCash.save().catch(err => console.log(err));
 		} else {
@@ -297,14 +298,14 @@ message.channel.send(`You stole **${robAmt}** dollars from <@${robUser.id}>`)
         } else if (res.length < 10) {
             cashbed.setColor("#660000")
             for (i = 0; i < res.length; i++) {
-                let memberz = message.guild.members.get(res[1].userID)
-                cashbed.addField(`${i + 1}. ${memberz.name.username}`, `*Balance: * ${res[i].bal}`)
+                let memberz = res[1].username
+                cashbed.addField(${i + 1}. ${memberz}, *Balance: * ${res[i].bal})
             }
         } else {
             cashbed.setColor("#660000")
             for (i = 0; i < 10; i++) {
-                let memberz = message.guild.members.get(res[1].userID)
-                cashbed.addField(`${i + 1}. ${memberz.name.username}`, `*Balance: * ${res[i].bal}`)
+                let memberz = res[1].username
+                cashbed.addField(${i + 1}. ${memberz}, *Balance: * ${res[i].bal})
             }
             message.channel.send(cashbed)
         }
