@@ -204,7 +204,7 @@ if(sindex == 1){
 					bal.save().catch(errr => console.log(err))
 const thisRole = message.guild.roles.find('name', 'Millionaire')
 					if(!thisRole){
-						client.guild.createRole({
+						guild.createRole({
   name: 'Milionaires',
   color: '#ffd700',
 }) 
@@ -238,7 +238,7 @@ const thisRole = message.guild.roles.find('name', 'Millionaire')
 					bal.save().catch(errr => console.log(err))
 const thatRole = message.guild.roles.find('name', 'RichBoi')
 					if(!thatRole){
-						client.guild.createRole({
+						guild.createRole({
   name: 'RichBoi',
   color: '#00802b',
 })
@@ -272,7 +272,7 @@ const thatRole = message.guild.roles.find('name', 'RichBoi')
 					bal.save().catch(errr => console.log(err))
 const thattRole = message.guild.roles.find('name', 'BoiWithADollar')
 					if(!thattRole){
-						client.guild.createRole({
+						guild.createRole({
   name: 'BoiWithADollar',
   color: '#ffffff',
 })
