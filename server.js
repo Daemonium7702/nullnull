@@ -58,12 +58,29 @@ client.on("guildDelete", guild => {
 	console.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
 	client.user.setActivity(`on ${client.guilds.size} servers`);
 });
+client.on("message", async message => {
+	function log(logmessage) {
+		if (message.guild.channels.has(logChannel)) {
+			message.guild.channels.get(logChannel).send({
+				embed: logmessage
+			}).then().catch(err => console.log(err));
+		}
+	}
+	if (message.author.bot) return;
+	const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+	const nanargs = message.content.split(/ +/g)
+	const command = args.shift().toLowerCase();
+	const prefix = config.prefix
+	const bindex = config.prefix
+
 client.on('guildMemberAdd', member => {
 
 	// Send the message to a designated channel on a server:
 	const channel = member.guild.channels.find('name', 'general');
 	// Do nothing if the channel wasn't found on this server
-	if (!channel) return;
+	if (!channel) return
+if(message.guild.id == "110373943822540800") return
+	
 	const rmess = [
 		`${member} didn\'t turn back before it was too late...`,
 		`${member} has joined the fray.... Poor person`,
@@ -80,21 +97,6 @@ client.on('guildMemberAdd', member => {
 
 	channel.send(ramess);
 });
-client.on("message", async message => {
-	function log(logmessage) {
-		if (message.guild.channels.has(logChannel)) {
-			message.guild.channels.get(logChannel).send({
-				embed: logmessage
-			}).then().catch(err => console.log(err));
-		}
-	}
-	if (message.author.bot) return;
-	const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
-	const nanargs = message.content.split(/ +/g)
-	const command = args.shift().toLowerCase();
-	const prefix = config.prefix
-	const bindex = config.prefix
-
 	if (command == "dbcon") {
 		if (message.author.id != "347885325940424714") {
 			return message.channel.send("Unauthorized");
