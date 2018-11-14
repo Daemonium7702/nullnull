@@ -126,15 +126,14 @@ cash.findOne({
 }, (err, bankbal) => {
 	if (err) console.log(err)
 	if (!bankbal) {
-		const newCash = new cash({
+		const newBank = new cash({
 			UserId: message.author.id,
 			ServerId: message.guild.id,
 			bal: cashMonies,
 			bankbal: 0
 		})
-		newCash.save().catch(err => console.log(err));
-			}else{
-}
+		newBank.save().catch(err => console.log(err));
+			}
 })
 	
 	if (message.content.indexOf(config.prefix) !== 0) return;
