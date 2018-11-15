@@ -53,6 +53,10 @@ const inven = require('./money/inven.js')
 client.on("ready", () => {
 	console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);
 	client.user.setActivity(`on ${client.guilds.size} servers`);
+	mongoose.connect(process.env.dburl, {
+				useNewUrlParser: true,
+				poolSize: 10
+			});
 });
 client.on('guildMemberAdd', member => {
 
@@ -130,25 +134,7 @@ client.on("message", async message => {
 			bal.save().catch(err => console.log(err));
 		}
 	})
-	inven.findOne({
-		UserId: message.author.id,
-		ServerId: message.guild.id
-	}, (err, exists) => {
-		if (err) console.log(err)
-		if (!exists) {
-			const newInven = new inven({
-				UserId: message.author.id,
-				ServerId: message.guild.id,
-				Millionaire: 0,
-    				RichBoi: 0,
-    				BoiWithADollar: 0,
-    				Skull: 0,
-				exists: 1,
-				username: message.author.tag
-				})
-			newInven.save().catch(err => console.log(err));
-			}
-			})
+
 			
 	if (message.content.indexOf(config.prefix) !== 0) return;
 
@@ -171,137 +157,7 @@ client.on("message", async message => {
 			message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
 		}
 	}
-	///econ///
-if (command == "shop"){
-const shopembed = new Discord.RichEmbed()
-	.setTitle("Shop")
-	.setFooter("Shop")
-	.addField("1 Millionaire: $1,000,000")
-	.addField("2 RichBoi: $500")
-	.addField("3 BoiWithADollar: $1")
-	.addField("4 Skull: $350")
-	.addField("Pick a number, 1, 2, 3, or 4" );
-	message.channel.send(shopembed);
-	 try {
-		                var response = await message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 5, {
-		                    maxMatches: 1,
-		                    time: 40000,
-		                    errors: ['time']
-		                });
-		            } catch (err) {
-		                console.error(err);
-		                console.log(response);
-		                return message.channel.send('No or invalid value entered, closing shop.');
-		            }
-		            var sindex = parseInt(response.first().content);
-if(sindex == 1){
-	var price = myItem.Millionaire.price
-			cash.findOne({
-				UserId: message.author.id,
-				ServerId: message.guild.id
-			}, (errr, bal) => {
-				if (bal.bal < price) {
-					return message.channel.send("You don't have enough!")
-				} else {
-					bal.bal = bal.bal - price
-					bal.save().catch(errr => console.log(err))
-const thisRole = message.guild.roles.find('name', 'Millionaire')
-					if(!thisRole){
-						guild.createRole({
-  name: 'Milionaires',
-  color: '#ffd700',
-}) 
-						message.author.addRole(thisRole)
-					}
-				}
-				inven.findOne({
-				UserId: message.author.id,
-				ServerId: message.guild.id
-			}, (errr, Millionaire) => {
-				if (!Millionaire) {
-					return message.channel.send("You don't have an inventory!")
-				} else {
-					Millionaire.Millionaire = 1
-					Millionaire.save().catch(errr => console.log(err))
-				}
-										message.channel.send("Bought!")
 
-				})
-	})
-}else if(sindex == 2){
-		var price = myItem.IHaveMoney.price
-			cash.findOne({
-				UserId: message.author.id,
-				ServerId: message.guild.id
-			}, (errr, bal) => {
-				if (bal.bal < price) {
-					return message.channel.send("You don't have enough!")
-				} else {
-					bal.bal = bal.bal - price
-					bal.save().catch(errr => console.log(err))
-const thatRole = message.guild.roles.find('name', 'RichBoi')
-					if(!thatRole){
-						guild.createRole({
-  name: 'RichBoi',
-  color: '#00802b',
-})
-						message.author.addRole(thatRole)
-								}
-				}
-				inven.findOne({
-				UserId: message.author.id,
-				ServerId: message.guild.id
-			}, (errr, RichBoi) => {
-				if (!RichBoi) {
-					return message.channel.send("You don't have an inventory!")
-				} else {
-					RichBoi.RichBoi = 1
-					RichBoi.save().catch(errr => console.log(err))
-				}
-										message.channel.send("Bought!")
-
-				})
-	})
-}else if(sindex == 3){
-	var price = myItem.BoiWithADollar.price
-			cash.findOne({
-				UserId: message.author.id,
-				ServerId: message.guild.id
-			}, (errr, bal) => {
-				if (bal.bal < price) {
-					return message.channel.send("You don't have enough!")
-				} else {
-					bal.bal = bal.bal - price
-					bal.save().catch(errr => console.log(err))
-const thattRole = message.guild.roles.find('name', 'BoiWithADollar')
-					if(!thattRole){
-						guild.createRole({
-  name: 'BoiWithADollar',
-  color: '#ffffff',
-})
-						message.author.addRole(thattRole)
-									}
-				}
-				inven.findOne({
-				UserId: message.author.id,
-				ServerId: message.guild.id
-			}, (errr, BoiWithADollar) => {
-				if (!BoiWithADollar) {
-					return message.channel.send("You don't have an inventory!")
-				} else {
-					BoiWithADollar.BoiWithADollar = 1
-					BoiWithADollar.save().catch(errr => console.log(err))
-				}
-					message.channel.send("Bought!")
-				})
-	})
-			
-}else if(sindex == 4){
-message.channel.send("Out Of Stock")
-}else{
-return message.channel.send("error!")
-}
-}
 if (command === "deposit") {
 		cash.findOne({
 			UserId: message.author.id,
@@ -413,9 +269,10 @@ cash.findOne({
 		} else {
 if(robAmt > bal.bal){
 	robAmt = bal.bal
-message.channel.send("You stole" + `**${bal.bal}** dollars from <@${robUser.id}>`)
+message.channel.send("You stole" + `** ${bal.bal}** dollars from <@${robUser.id}>`)
 bal.bal = 0;
 bal.save().catch(err => console.log(err));
+	return
 }else{
 			bal.bal = bal.bal - robAmt ;
 			bal.save().catch(err => console.log(err));
