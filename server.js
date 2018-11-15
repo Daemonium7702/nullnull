@@ -120,8 +120,9 @@ return message.channel.send("too many arguments!")
 			Prefix.Prefix = newPref
 			Prefix.save().catch(err => console.log(err));
 }
+const prefix = Prefix.Prefix
 		}
-		const prefix = Prefix.Prefix
+		
 	
 	})
 	const bindex = config.prefix
