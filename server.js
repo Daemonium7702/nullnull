@@ -109,7 +109,9 @@ client.on("message", async message => {
 				Prefix: prefixbase
 			})
 			newPref.save().catch(err => console.log(err));
-		} else if(command == "prefix"){
+			var prefix = "."
+		} else{ 
+		if(command == "prefix"){
 			var newPref = args[0]
 			if(!args[0]){
 			return message.channel.send("No prefix specified!")
@@ -120,9 +122,9 @@ return message.channel.send("too many arguments!")
 			Prefix.Prefix = newPref
 			Prefix.save().catch(err => console.log(err));
 }
-const prefix = Prefix.Prefix
+var prefix = Prefix.Prefix
 		}
-		
+		}
 	
 	})
 	const bindex = config.prefix
