@@ -190,7 +190,46 @@ const prefix = Prefix.Prefix
 			message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
 		}
 	}
+if(command == "pay"){
+	let robUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+	if (!robUser) return message.channel.send("Can't find user!");
+var thisid = robUser.id
+if(!args[0]){
+return message.channel.send("Please specify a person")
+}else if(!args[1]){
+return message.channel.send("Please specify an amount")
+}else{
+	if(args[1].isNaN()){
+	return message.channel.send("Not a number!")
+	}else{
+	cash.findOne({
+		UserId: thisid,
+		ServerId: message.guild.id
+	}, (err, bal) => {
+		if (err) console.log(err)
+		if (!bal) {
+		message.channel.send("User Has NO account!")
+		} else {
+			bal.bal = bal.bal + args[1];
+			bal.save().catch(err => console.log(err));
+		}
+	})
+	cash.findOne({
+	UserId: message.author.id,
+		ServerId: message.guild.id
+	}, (err, bal) =>{
+	if(err) console.log(err)
+		if(!bal){
+		message.channel.send("You do not have enough money!")
+		}else{
+		bal.bal = bal.bal - args[1]
+			bal.save().catch(err => console.log(err))
+		}
+	})
 
+}
+}
+}
 if (command === "deposit") {
 		cash.findOne({
 			UserId: message.author.id,
