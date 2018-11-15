@@ -99,7 +99,7 @@ client.on("message", async message => {
 	const nanargs = message.content.split(/ +/g)
 	const command = args.shift().toLowerCase();
 	const prefixbase = "."
-	prefConf.findOne({
+/*	prefConf.findOne({
 	ServerId: message.guild.id
 	}, (err, Prefix) => {
 		if (err) console.log(err)
@@ -132,8 +132,8 @@ const prefix = Prefix.Prefix
 		if (err) console.log(err)
 	const prefix = Prefix.Prefix
 		})
+*/const prefix = config.prefix
 	const bindex = config.prefix
-
 
 	if (command == "dbcon") {
 		if (message.author.id != "347885325940424714") {
