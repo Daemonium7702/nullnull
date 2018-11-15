@@ -374,10 +374,10 @@ message.channel.send(`You stole **${robAmt}** dollars from <@${robUser.id}>`)
 	}
 	if(command == "howgayis"){
 let hgay = Math.ceil(math.random() * 100)
-if(!args[1]){
+if(!args[0]){
 message.channel.send("Please supply some context.")
 }else{
-message.channel.send(args[1] + `is ${hgay}% gay`)
+message.channel.send(args[0] + ` is ${hgay}% gay`)
 }
 }
 	if (command === "rebootreinitreinsigrestart") {
