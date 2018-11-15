@@ -122,11 +122,16 @@ return message.channel.send("too many arguments!")
 			Prefix.Prefix = newPref
 			Prefix.save().catch(err => console.log(err));
 }
-var prefix = Prefix.Prefix
+const prefix = Prefix.Prefix
 		}
 		}
-	
 	})
+	const prefix = prefConf.findOne({
+	ServerId: message.guild.id
+	}, (err, Prefix) => {
+		if (err) console.log(err)
+	const prefix = Prefix.Prefix
+		})
 	const bindex = config.prefix
 
 
