@@ -203,7 +203,6 @@ return message.channel.send("Please mention a user")
 if(!args[1]){
 return message.channel.send("Please specify an amount")
 }else{
-if
 cash.findOne({
 		UserId: thisid,
 		ServerId: message.guild.id
