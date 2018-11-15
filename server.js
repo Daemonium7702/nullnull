@@ -372,6 +372,14 @@ message.channel.send(`You stole **${robAmt}** dollars from <@${robUser.id}>`)
 			console.log(err)
 		}
 	}
+	if(command == "howgayis"){
+let hgay = Math.ceil(math.random() * 100)
+if(!args[1]){
+message.channel.send("Please supply some context.")
+}else{
+message.channel.send(args[1] + `is ${hgay}% gay`)
+}
+}
 	if (command === "rebootreinitreinsigrestart") {
 		if (message.author.id != "347885325940424714") {
 			///
