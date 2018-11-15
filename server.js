@@ -49,7 +49,7 @@ const factor = require('factors-number')
 const msfjs = require('msfjs')
 const cash = require('./money/cash.js')
 const myItem = require('./items.json')
-const inven = require('./money/inven.js')
+const prefConf = require('./money/prefix.js');
 client.on("ready", () => {
 	console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);
 	client.user.setActivity(`on ${client.guilds.size} servers`);
@@ -98,7 +98,32 @@ client.on("message", async message => {
 	const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
 	const nanargs = message.content.split(/ +/g)
 	const command = args.shift().toLowerCase();
-	const prefix = config.prefix
+	const prefixbase = "."
+	prefConf.findOne({
+	ServerId: message.guild.id
+	}, (err, Prefix) => {
+		if (err) console.log(err)
+		if (!Prefix) {
+			const newPref = new prefConf({
+				ServerId: message.guild.id,
+				Prefix: prefixbase
+			})
+			newPref.save().catch(err => console.log(err));
+		} else if(command == "prefix"){
+			var newPref = args[0]
+			if(!args[0]){
+			return message.channel.send("No prefix specified!")
+			}else if(args[1]){
+return message.channel.send("too many arguments!")
+}else{
+			message.channel.send()
+			Prefix.Prefix = newPref
+			Prefix.save().catch(err => console.log(err));
+}
+		}
+		const prefix = Prefix.Prefix
+	
+	})
 	const bindex = config.prefix
 
 
