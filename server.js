@@ -164,7 +164,7 @@ client.on("message", async message => {
 			})
 			newCash.save().catch(err => console.log(err));
 		} else {
-			bal.bal = bal.bal + cashMonies;
+			bal.bal = Math.floor(bal.bal + cashMonies);
 			bal.save().catch(err => console.log(err));
 		}
 	})
@@ -215,7 +215,7 @@ client.on("message", async message => {
 							if (payAmt > bal.bal) {
 								return message.channel.send("You cant afford to do that!")
 							} else {
-								bal.bal = bal.bal - payAmt;
+								bal.bal = Math.floor(bal.bal - payAmt);
 								bal.save().catch(err => console.log(err));
 								console.log("paid")
 							}
@@ -230,7 +230,7 @@ client.on("message", async message => {
 							message.channel.send("Cant pay a guy if you aint got a place to put the money my dude, try talkin a bit first.")
 						} else {
 
-							bal.bal = bal.bal + payAmt;
+							bal.bal = Math.floor(bal.bal + payAmt);
 							message.channel.send(`You paid **$ ${payAmt}** to <@${robUser.id}>`)
 							bal.save().catch(err => console.log(err));
 						}
