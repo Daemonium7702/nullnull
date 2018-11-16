@@ -205,7 +205,7 @@ client.on("message", async message => {
 					return message.channel.send("Please specify an amount")
 				} else {
 					cash.findOne({
-						UserId: thisid,
+						UserId: message.author.id,
 						ServerId: message.guild.id
 					}, (err, bal) => {
 						if (err) console.log(err)
@@ -215,13 +215,14 @@ client.on("message", async message => {
 							if (payAmt > bal.bal) {
 								return message.channel.send("You cant afford to do that!")
 							} else {
-								bal.bal = bal.bal + payAmt;
+								bal.bal = bal.bal - payAmt;
 								bal.save().catch(err => console.log(err));
+								console.log("paid")
 							}
 						}
 					});
 					cash.findOne({
-						UserId: message.author.id,
+						UserId: thisid,
 						ServerId: message.guild.id
 					}, (err, bal) => {
 						if (err) console.log(err)
@@ -229,7 +230,7 @@ client.on("message", async message => {
 							message.channel.send("Cant pay a guy if you aint got a place to put the money my dude, try talkin a bit first.")
 						} else {
 
-							bal.bal = bal.bal - payAmt;
+							bal.bal = bal.bal + payAmt;
 							message.channel.send(`You paid **$ ${payAmt}** to <@${robUser.id}>`)
 							bal.save().catch(err => console.log(err));
 						}
@@ -286,8 +287,56 @@ client.on("message", async message => {
 				}
 			})
 		})
-	}
+	}	
+	if (command === "withdraw") {
+		cash.findOne({
+			UserId: message.author.id,
+			ServerId: message.guild.id
+		}, (err, bal) => {
+			if (err) console.log(err)
+			cash.findOne({
+				UserId: message.author.id,
+				ServerId: message.guild.id
+			}, (errr, bankbal) => {
+				if (bankbal.bankbal == 0) {
+					return message.channel.send("You have no pocket change!")
+				} else {
 
+					bal.bal = bal.bal + bankbal.bankbal
+					bal.save().catch(err => console.log(err))
+					bankbal.bankbal = bankbal.bankbal - bankbal.bankbal
+					bankbal.save().catch(errr => console.log(err))
+					let moneyEmb = new Discord.RichEmbed()
+						.setTitle('Balance After Deposit')
+						.setColor("#660000")
+						.setThumbnail(client.displayAvatarURL)
+					if (!bal && !bankbal) {
+						moneyEmb.addField("Net Worth", "0", true)
+						moneyEmb.addField("Pocket Change", "0", true)
+						moneyEmb.addField("Banked Money", "0", true)
+						return message.channel.send(moneyEmb)
+					} else if (!bal) {
+						moneyEmb.addField("Net Worth", Math.floor(bal.bal + bankbal.bankbal), true)
+						moneyEmb.addField("Pocket Change", "0", true)
+						moneyEmb.addField("Banked Money", bankbal.bankbal, true)
+						return message.channel.send(moneyEmb)
+					} else if (!bankbal) {
+						moneyEmb.addField("Net Worth", Math.floor(bal.bal + bankbal.bankbal), true)
+						moneyEmb.addField("Pocket Change", bal.bal, true)
+						moneyEmb.addField("Banked Money", "0", true)
+						return message.channel.send(moneyEmb)
+					} else {
+						moneyEmb.addField("Net Worth", Math.floor(bal.bal + bankbal.bankbal), true)
+						moneyEmb.addField("Pocket Change", bal.bal, true)
+						moneyEmb.addField("Banked Money", bankbal.bankbal, true)
+						return message.channel.send(moneyEmb)
+
+					}
+
+				}
+			})
+		})
+	}
 	if (command === "bal") {
 		cash.findOne({
 
