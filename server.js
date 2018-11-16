@@ -229,8 +229,9 @@ client.on("message", async message => {
 						if (!bal) {
 							message.channel.send("Cant pay a guy if you aint got a place to put the money my dude, try talkin a bit first.")
 						} else {
-
-							bal.bal = Math.floor(bal.bal + payAmt);
+							var NewBal = parseInt(bal.bal)
+							var NewAmt = parseInt(payAmt)
+							bal.bal = NewBal + NewAmt
 							message.channel.send(`You paid **$ ${payAmt}** to <@${robUser.id}>`)
 							bal.save().catch(err => console.log(err));
 						}
