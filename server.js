@@ -388,9 +388,9 @@ client.on("message", async message => {
 	}
 	if (command == "rob") {
 		let robUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-		var thisid = robUser.id
+		let thisid = robUser.id
 		if (thisid == message.author.id) {
-			return message.channel.send("Bruh, did you just try to rob yourself?")
+		 message.channel.send("Bruh, did you just try to rob yourself?")
 		} else {
 			let robAmt = Math.ceil(math.random() * 100)
 			cash.findOne({
