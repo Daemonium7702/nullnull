@@ -232,8 +232,8 @@ client.on("message", async message => {
 							var NewBal = parseInt(bal.bal)
 							var NewAmt = parseInt(payAmt)
 							bal.bal = NewBal + NewAmt
-							message.channel.send(`You paid **$ ${payAmt}** to <@${robUser.id}>`)
 							bal.save().catch(err => console.log(err));
+							message.channel.send(`You paid **$ ${payAmt}** to <@${robUser.id}>`)
 						}
 					})
 				}
