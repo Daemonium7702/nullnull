@@ -54,9 +54,9 @@ client.on("ready", () => {
 	console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);
 	client.user.setActivity(`on ${client.guilds.size} servers`);
 	mongoose.connect(process.env.dburl, {
-				useNewUrlParser: true,
-				poolSize: 10
-			});
+		useNewUrlParser: true,
+		poolSize: 10
+	});
 });
 client.on('guildMemberAdd', member => {
 
@@ -64,8 +64,8 @@ client.on('guildMemberAdd', member => {
 	const channel = member.guild.channels.find('name', 'general');
 	// Do nothing if the channel wasn't found on this server
 	if (!channel) return
-if(channel.id == "110373943822540800") return
-	if(channel.id == "475831159209852931") return
+	if (channel.id == "110373943822540800") return
+	if (channel.id == "475831159209852931") return
 	const rmess = [
 		`${member} didn\'t turn back before it was too late...`,
 		`${member} has joined the fray.... Poor person`,
@@ -99,40 +99,41 @@ client.on("message", async message => {
 	const nanargs = message.content.split(/ +/g)
 	const command = args.shift().toLowerCase();
 	const prefixbase = "."
-/*	prefConf.findOne({
-	ServerId: message.guild.id
-	}, (err, Prefix) => {
-		if (err) console.log(err)
-		if (!Prefix) {
-			const newPref = new prefConf({
-				ServerId: message.guild.id,
-				Prefix: prefixbase
-			})
-			newPref.save().catch(err => console.log(err));
-			var prefix = "."
-		} else{ 
-		if(command == "prefix"){
-			var newPref = args[0]
-			if(!args[0]){
-			return message.channel.send("No prefix specified!")
-			}else if(args[1]){
-return message.channel.send("too many arguments!")
-}else{
-			message.channel.send()
-			Prefix.Prefix = newPref
-			Prefix.save().catch(err => console.log(err));
-}
-const prefix = Prefix.Prefix
-		}
-		}
-	})
-	const prefix = prefConf.findOne({
-	ServerId: message.guild.id
-	}, (err, Prefix) => {
-		if (err) console.log(err)
+	/*	prefConf.findOne({
+		ServerId: message.guild.id
+		}, (err, Prefix) => {
+			if (err) console.log(err)
+			if (!Prefix) {
+				const newPref = new prefConf({
+					ServerId: message.guild.id,
+					Prefix: prefixbase
+				})
+				newPref.save().catch(err => console.log(err));
+				var prefix = "."
+			} else{ 
+			if(command == "prefix"){
+				var newPref = args[0]
+				if(!args[0]){
+				return message.channel.send("No prefix specified!")
+				}else if(args[1]){
+	return message.channel.send("too many arguments!")
+	}else{
+				message.channel.send()
+				Prefix.Prefix = newPref
+				Prefix.save().catch(err => console.log(err));
+	}
 	const prefix = Prefix.Prefix
+			}
+			}
 		})
-*/const prefix = config.prefix
+		const prefix = prefConf.findOne({
+		ServerId: message.guild.id
+		}, (err, Prefix) => {
+			if (err) console.log(err)
+		const prefix = Prefix.Prefix
+			})
+	*/
+	const prefix = config.prefix
 	const bindex = config.prefix
 
 	if (command == "dbcon") {
@@ -157,7 +158,7 @@ const prefix = Prefix.Prefix
 				UserId: message.author.id,
 				ServerId: message.guild.id,
 				bal: cashMonies,
-				bankbal: 0, 
+				bankbal: 0,
 				exists: 1,
 				username: message.author.tag
 			})
@@ -168,7 +169,7 @@ const prefix = Prefix.Prefix
 		}
 	})
 
-			
+
 	if (message.content.indexOf(config.prefix) !== 0) return;
 
 	if (command === "eval") {
@@ -176,7 +177,7 @@ const prefix = Prefix.Prefix
 			return message.channel.send("USER NOT AUTHORIZED");
 		}
 		try {
-		
+
 			const code = args.join(" ");
 			let evaled = eval(code);
 
@@ -190,58 +191,54 @@ const prefix = Prefix.Prefix
 			message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
 		}
 	}
-if(command == "pay"){
-let robUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-var thisid = robUser.id
-if(thisid == message.author.id){
-return message.channel.send("Bruh, did you just try to pay yourself? Get outta here with that.")
-}else{
-let payAmt =  args[1]
-if(!robUser){
-return message.channel.send("Please mention a user")
-}else{
-if(!args[1]){
-return message.channel.send("Please specify an amount")
-}else{
-cash.findOne({
-		UserId: thisid,
-		ServerId: message.guild.id
-	}, (err, bal) => {
-		if (err) console.log(err)
-		if (!bal || bal == 0) {
-			message.channel.send("User has no money!")
+	if (command == "pay") {
+		let robUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+		var thisid = robUser.id
+		if (thisid == message.author.id) {
+			return message.channel.send("Bruh, did you just try to pay yourself? Get outta here with that.")
 		} else {
-if(payAmt > bal.bal){
-	payAmt = bal.bal
-message.channel.send("You paid" + `<@${robUser.id}>  **$ ${bal.bal}**`)
-bal.bal = 0;
-bal.save().catch(err => console.log(err));
-	return
-}else{
-			bal.bal = bal.bal + payAmt ;
-			bal.save().catch(err => console.log(err));
-}
+			let payAmt = args[1]
+			if (!robUser) {
+				return message.channel.send("Please mention a user")
+			} else {
+				if (!args[1]) {
+					return message.channel.send("Please specify an amount")
+				} else {
+					cash.findOne({
+						UserId: thisid,
+						ServerId: message.guild.id
+					}, (err, bal) => {
+						if (err) console.log(err)
+						if (!bal || bal == 0) {
+							message.channel.send("User has no money!")
+						} else {
+							if (payAmt > bal.bal) {
+								return message.channel.send("You cant afford to do that!")
+							} else {
+								bal.bal = bal.bal + payAmt;
+								bal.save().catch(err => console.log(err));
+							}
+						}
+					});
+					cash.findOne({
+						UserId: message.author.id,
+						ServerId: message.guild.id
+					}, (err, bal) => {
+						if (err) console.log(err)
+						if (!bal) {
+							message.channel.send("Cant pay a guy if you aint got a place to put the money my dude, try talkin a bit first.")
+						} else {
+
+							bal.bal = bal.bal - payAmt;
+							message.channel.send(`You paid **$ ${payAmt}** to <@${robUser.id}>`)
+							bal.save().catch(err => console.log(err));
+						}
+					})
+				}
+			}
 		}
-		});
-cash.findOne({
-		UserId: message.author.id,
-		ServerId: message.guild.id
-	}, (err, bal) => {
-		if (err) console.log(err)
-		if (!bal) {
-			message.channel.send("Cant rob a guy if you aint got a place to put the money my dude, try talkin a bit first.")
-		} else {
-			
-			bal.bal = bal.bal - payAmt ;
-message.channel.send(`You stole **${payAmt}** dollars from <@${robUser.id}>`)
-			bal.save().catch(err => console.log(err));
-}
-})
-}
-}
-}
-}
-if (command === "deposit") {
+	}
+	if (command === "deposit") {
 		cash.findOne({
 			UserId: message.author.id,
 			ServerId: message.guild.id
@@ -338,77 +335,77 @@ if (command === "deposit") {
 			})
 		})
 	}
-if(command == "rob"){
-let robUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-var thisid = robUser.id
-if(thisid == message.author.id){
-return message.channel.send("Bruh, did you just try to rob yourself?")
-}else{
-let robAmt = Math.ceil(math.random() * 100)
-cash.findOne({
-		UserId: thisid,
-		ServerId: message.guild.id
-	}, (err, bal) => {
-		if (err) console.log(err)
-		if (!bal || bal == 0) {
-			message.channel.send("User has no money!")
+	if (command == "rob") {
+		let robUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+		var thisid = robUser.id
+		if (thisid == message.author.id) {
+			return message.channel.send("Bruh, did you just try to rob yourself?")
 		} else {
-if(robAmt > bal.bal){
-	robAmt = bal.bal
-message.channel.send("You stole" + `** ${bal.bal}** dollars from <@${robUser.id}>`)
-bal.bal = 0;
-bal.save().catch(err => console.log(err));
-	return
-}else{
-			bal.bal = bal.bal - robAmt ;
-			bal.save().catch(err => console.log(err));
-}
+			let robAmt = Math.ceil(math.random() * 100)
+			cash.findOne({
+				UserId: thisid,
+				ServerId: message.guild.id
+			}, (err, bal) => {
+				if (err) console.log(err)
+				if (!bal || bal == 0) {
+					message.channel.send("User has no money!")
+				} else {
+					if (robAmt > bal.bal) {
+						robAmt = bal.bal
+						message.channel.send("You stole" + `** ${bal.bal}** dollars from <@${robUser.id}>`)
+						bal.bal = 0;
+						bal.save().catch(err => console.log(err));
+						return
+					} else {
+						bal.bal = bal.bal - robAmt;
+						bal.save().catch(err => console.log(err));
+					}
+				}
+			});
+			cash.findOne({
+				UserId: message.author.id,
+				ServerId: message.guild.id
+			}, (err, bal) => {
+				if (err) console.log(err)
+				if (!bal) {
+					message.channel.send("Cant rob a guy if you aint got a place to put the money my dude, try talkin a bit first.")
+				} else {
+
+					bal.bal = bal.bal + robAmt;
+					message.channel.send(`You stole **${robAmt}** dollars from <@${robUser.id}>`)
+					bal.save().catch(err => console.log(err));
+				}
+			})
 		}
-		});
-cash.findOne({
-		UserId: message.author.id,
-		ServerId: message.guild.id
-	}, (err, bal) => {
-		if (err) console.log(err)
-		if (!bal) {
-			message.channel.send("Cant rob a guy if you aint got a place to put the money my dude, try talkin a bit first.")
-		} else {
-			
-			bal.bal = bal.bal + robAmt ;
-message.channel.send(`You stole **${robAmt}** dollars from <@${robUser.id}>`)
-			bal.save().catch(err => console.log(err));
-}
-		})
-}
-}
+	}
 	if (command == "leader") {
-	cash.find({
-        exists: 1
-    }).sort([
-        ['bankbal', 'descending']
-    ]).exec((err, res) => {
-        if (err) console.log(err);
-        let cashbed = new Discord.RichEmbed()
-            .setTitle("Leaderboard")
-        if (res.length == 0) {
-            cashbed.setColor("RED");
-            cashbed.addField("NO DATA", "Please type in chat to earn money")
-        } else if (res.length < 10) {
-            cashbed.setColor("#660000")
-            for (i = 0; i < res.length; i++) {
-                let memberz = res[i].username
-                cashbed.addField(`${i + 1}. ${memberz}`,`*Balance:*   ${res[i].bankbal}`)
-            }
-        } else {
-            cashbed.setColor("#660000")
-            for (i = 0; i < 10; i++) {
-                let memberz = res[i].username
-                cashbed.addField(`${i + 1}. ${memberz}`, `*Balance:*   ${res[i].bankbal}`)
-            }
-            message.channel.send(cashbed)
-        }
-    })
-}
+		cash.find({
+			exists: 1
+		}).sort([
+			['bankbal', 'descending']
+		]).exec((err, res) => {
+			if (err) console.log(err);
+			let cashbed = new Discord.RichEmbed()
+				.setTitle("Leaderboard")
+			if (res.length == 0) {
+				cashbed.setColor("RED");
+				cashbed.addField("NO DATA", "Please type in chat to earn money")
+			} else if (res.length < 10) {
+				cashbed.setColor("#660000")
+				for (i = 0; i < res.length; i++) {
+					let memberz = res[i].username
+					cashbed.addField(`${i + 1}. ${memberz}`, `*Balance:*   ${res[i].bankbal}`)
+				}
+			} else {
+				cashbed.setColor("#660000")
+				for (i = 0; i < 10; i++) {
+					let memberz = res[i].username
+					cashbed.addField(`${i + 1}. ${memberz}`, `*Balance:*   ${res[i].bankbal}`)
+				}
+				message.channel.send(cashbed)
+			}
+		})
+	}
 	if (command === "test") {
 		var type = args[0]
 		message.channel.send(myItem.type)
@@ -459,14 +456,14 @@ message.channel.send(`You stole **${robAmt}** dollars from <@${robUser.id}>`)
 			console.log(err)
 		}
 	}
-	if(command == "howgayis"){
-let hgay = Math.ceil(math.random() * 100)
-if(!args[0]){
-message.channel.send("Please supply some context.")
-}else{
-message.channel.send(args[0] + ` is ${hgay}% gay`)
-}
-}
+	if (command == "howgayis") {
+		let hgay = Math.ceil(math.random() * 100)
+		if (!args[0]) {
+			message.channel.send("Please supply some context.")
+		} else {
+			message.channel.send(args[0] + ` is ${hgay}% gay`)
+		}
+	}
 	if (command === "rebootreinitreinsigrestart") {
 		if (message.author.id != "347885325940424714") {
 			///
@@ -805,16 +802,16 @@ scrape().then((value) => {
 		if (command == "announcements") {
 			var version = "11.13.2018"
 			const annembed = new Discord.RichEmbed()
-			.setTitle('Announcements')
-			.addField(version, true)
-			.addField("Help command updated", true)
-			.addField("database added", true)
-			.addField(".bal, .rob, .leader and .deposit currency commands added", true)
-			.addField("Currency System added!", true)
-			.addField("More cipher commands added.", true)
-			.addField("Improved overal interface for multiple commands.", true)
-			.addField("Added interactivity to help command",true)
-			.setColor("#660000")
+				.setTitle('Announcements')
+				.addField(version, true)
+				.addField("Help command updated", true)
+				.addField("database added", true)
+				.addField(".bal, .rob, .leader and .deposit currency commands added", true)
+				.addField("Currency System added!", true)
+				.addField("More cipher commands added.", true)
+				.addField("Improved overal interface for multiple commands.", true)
+				.addField("Added interactivity to help command", true)
+				.setColor("#660000")
 			message.channel.send(annembed)
 		}
 		if (command == "reta") {
@@ -1285,7 +1282,7 @@ Jimp.read(buffer, (err, lenna) => {
 			message.channel.send(space);
 		}
 
-		
+
 		if (command === "uptime") {
 			message.channel.send("The uptime is **" + moment.duration(client.uptime).format(' D [days], H [hrs], m [mins], s [secs]') + "**")
 		}
@@ -1365,7 +1362,7 @@ Jimp.read(buffer, (err, lenna) => {
 				.addField("Bal:", " Shows net worth, cash, and banked cash Usage: .bal", true)
 				.addField("Deposit:", " Deposits Cash to bank Usage: .deposit", true)
 				.addField("Rob:", " Robs a person. This is in development. make sure to deposit to protect against robbers Usage: .rob @user", true)
-				.addField("Leader:", " leaderboard Usage: .leader", true)	
+				.addField("Leader:", " leaderboard Usage: .leader", true)
 				.setColor("#660000")
 			/////////////////////////
 			const musicembed = new Discord.RichEmbed()
@@ -1391,7 +1388,7 @@ Jimp.read(buffer, (err, lenna) => {
 				.addField("Report:", " Reports A Member Usage: .report [@member] [reason]", true)
 				.addField("Role:", " Ignore This Command It Is In Maintenance", true)
 				.setColor("#660000")
-////////////////////////
+			////////////////////////
 			////////////////////////
 			const ciphembed = new Discord.RichEmbed()
 				.setTitle("Ciphers:")
@@ -1506,12 +1503,12 @@ Jimp.read(buffer, (err, lenna) => {
 					}
 					if (config.bindex == 7) {
 						pollTitle.edit({
-							embed:econembed
+							embed: econembed
 						})
 					}
-					if(config.bindex == 8){
-						congif.bindex = Math.floor(config.bindex -1)
-}
+					if (config.bindex == 8) {
+						congif.bindex = Math.floor(config.bindex - 1)
+					}
 				}
 			});
 			collector.on('end', collected => {});
@@ -1577,7 +1574,7 @@ Jimp.read(buffer, (err, lenna) => {
 					}
 					if (config.bindex == 7) {
 						pollTitle.edit({
-							embed:econembed
+							embed: econembed
 						})
 					}
 					if (config.bindex == -1) {
@@ -2558,10 +2555,10 @@ Jimp.read(buffer, (err, lenna) => {
 			}, ms(Timer));
 		}
 		if (command === "tts") {
-				const ra = args.join(" ");
-				message.channel.send(ra, {
-					tts: true
-				});
+			const ra = args.join(" ");
+			message.channel.send(ra, {
+				tts: true
+			});
 		}
 
 		if (command === "o") {
