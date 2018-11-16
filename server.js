@@ -164,7 +164,7 @@ client.on("message", async message => {
 			})
 			newCash.save().catch(err => console.log(err));
 		} else {
-			bal.bal = Math.floor(bal.bal + cashMonies);
+			bal.bal = bal.bal + cashMonies
 			bal.save().catch(err => console.log(err));
 		}
 	})
@@ -215,7 +215,7 @@ client.on("message", async message => {
 							if (payAmt > bal.bal) {
 								return message.channel.send("You cant afford to do that!")
 							} else {
-								bal.bal = Math.floor(bal.bal - payAmt);
+								bal.bal = bal.bal - payAmt
 								bal.save().catch(err => console.log(err));
 								console.log("paid")
 							}
