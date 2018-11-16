@@ -193,16 +193,17 @@ client.on("message", async message => {
 	}
 	if (command == "pay") {
 		let robUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-		var thisid = robUser.id
-		if (thisid == message.author.id) {
-			return message.channel.send("Bruh, did you just try to pay yourself? Get outta here with that.")
+		let thisid = robUser.id;
+		if (thisid === message.author.id) {
+		 message.channel.send("Bruh, did you just try to pay yourself? Get outta here with that.");
+		
 		} else {
-			let payAmt = args[1]
+			let payAmt = args[1];
 			if (!robUser) {
-				return message.channel.send("Please mention a user")
+			 message.channel.send("Please mention a user");
 			} else {
 				if (!args[1]) {
-					return message.channel.send("Please specify an amount")
+				message.channel.send("Please specify an amount");
 				} else {
 					cash.findOne({
 						UserId: message.author.id,
@@ -210,10 +211,10 @@ client.on("message", async message => {
 					}, (err, bal) => {
 						if (err) console.log(err)
 						if (!bal || bal == 0) {
-							message.channel.send("User has no money!")
+						return	message.channel.send("User has no money!");
 						} else {
 							if (payAmt > bal.bal) {
-								return message.channel.send("You cant afford to do that!")
+								return message.channel.send("You cant afford to do that!");
 							} else {
 								bal.bal = bal.bal - payAmt
 								bal.save().catch(err => console.log(err));
