@@ -398,7 +398,7 @@ client.on("message", async message => {
 			}, (err, bal) => {
 				if (err) console.log(err)
 				if (!bal || bal == 0) {
-					message.channel.send("User has no money!")
+					return message.channel.send("User has no money!")
 				} else {
 					if (robAmt > bal.bal) {
 						robAmt = bal.bal
@@ -418,7 +418,7 @@ client.on("message", async message => {
 			}, (err, bal) => {
 				if (err) console.log(err)
 				if (!bal) {
-					message.channel.send("Cant rob a guy if you aint got a place to put the money my dude, try talkin a bit first.")
+					return message.channel.send("Cant rob a guy if you aint got a place to put the money my dude, try talkin a bit first.")
 				} else {
 
 					bal.bal = bal.bal + robAmt;
