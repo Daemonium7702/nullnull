@@ -340,7 +340,10 @@ client.on("message", async message => {
 		})
 	}
 	if (command === "bal") {
-		cash.findOne({
+		let robUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+		let thisid = robUser.id;
+		if (!thisid) {
+			cash.findOne({
 
 			UserId: message.author.id,
 
@@ -385,6 +388,54 @@ client.on("message", async message => {
 				}
 			})
 		})
+		 return
+		}else{
+		cash.findOne({
+
+			UserId: thisid,
+
+			ServerId: message.guild.id
+
+		}, (err, bal) => {
+			cash.findOne({
+
+				UserId: thisid,
+
+				ServerId: message.guild.id
+
+			}, (err, bankbal) => {
+
+				if (err) console.log(err)
+
+				let moneyEmb = new Discord.RichEmbed()
+					.setTitle('Balance')
+					.setColor("#660000")
+					.setThumbnail(client.displayAvatarURL)
+				if (!bal && !bankbal) {
+					moneyEmb.addField(`${message.author.tag}\'s` + "Net Worth", "0", true)
+					moneyEmb.addField("Pocket Change", "0", true)
+					moneyEmb.addField("Banked Money", "0", true)
+					return message.channel.send(moneyEmb)
+				} else if (!bal) {
+					moneyEmb.addField(`${message.author.tag}\'s`+ "Net Worth", Math.floor(bankbal.bankbal), true)
+					moneyEmb.addField("Pocket Change", "0", true)
+					moneyEmb.addField("Banked Money", bankbal.bankbal, true)
+					return message.channel.send(moneyEmb)
+				} else if (!bankbal) {
+					moneyEmb.addField(`${message.author.tag}\'s` + "Net Worth", Math.floor(bal.bal + bankbal.bankbal), true)
+					moneyEmb.addField("Pocket Change", bal.bal, true)
+					moneyEmb.addField("Banked Money", "0", true)
+					return message.channel.send(moneyEmb)
+				} else {
+					moneyEmb.addField(`${message.author.tag}\'s` + "Net Worth", Math.floor(bal.bal + bankbal.bankbal), true)
+					moneyEmb.addField("Pocket Change", bal.bal, true)
+					moneyEmb.addField("Banked Money", bankbal.bankbal, true)
+					return message.channel.send(moneyEmb)
+
+				}
+			})
+		})
+		}
 	}
 	if (command == "rob") {
 		let robUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
