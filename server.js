@@ -18,8 +18,9 @@ const google = require('google');
 const profanities = require('profanities');
 const YouTube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
-const youtube = new YouTube(process.env.YT_API);
+const youtube = new YouTube("AIzaSyB23US7bJ7DJvqt_qTPZaXAdy9RV2GKJxgAIzaSyB23US7bJ7DJvqt_qTPZaXAdy9RV2GKJxg");
 const queue = new Map();
+const talkedRecently = new Set();
 const moment = require('moment');
 require('moment-duration-format');
 const meme = require('memejs');
@@ -53,7 +54,7 @@ const prefConf = require('./money/prefix.js');
 client.on("ready", () => {
 	console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);
 	client.user.setActivity(`on ${client.guilds.size} servers`);
-	mongoose.connect(process.env.dburl, {
+	mongoose.connect('mongodb://DaemoniumAdmin:Dallasrules123.@daemonium-shard-00-00-u2ufm.mongodb.net:27017,daemonium-shard-00-01-u2ufm.mongodb.net:27017,daemonium-shard-00-02-u2ufm.mongodb.net:27017/Daemonium?ssl=true&replicaSet=Daemonium-shard-0&authSource=admin&retryWrites=true&maxPoolSize=10', {
 		useNewUrlParser: true,
 		poolSize: 10
 	});
@@ -140,7 +141,7 @@ client.on("message", async message => {
 		if (message.author.id != "347885325940424714") {
 			return message.channel.send("Unauthorized");
 		} else {
-			mongoose.connect(process.env.dburl, {
+			mongoose.connect('mongodb://DaemoniumAdmin:Dallasrules123.@daemonium-shard-00-00-u2ufm.mongodb.net:27017,daemonium-shard-00-01-u2ufm.mongodb.net:27017,daemonium-shard-00-02-u2ufm.mongodb.net:27017/Daemonium?ssl=true&replicaSet=Daemonium-shard-0&authSource=admin&retryWrites=true&maxPoolSize=10', {
 				useNewUrlParser: true,
 				poolSize: 10
 			});
@@ -444,7 +445,16 @@ if (command === "bal") {
 		}
 	}
 	if (command == "rob") {
-		let robUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+	    if (talkedRecently.has(message.author.id)) {
+            message.channel.send("Wait 1 minute before getting typing this again. - " + message.author);
+    } else {
+
+           // the user can type the command ... your command code goes here :)
+
+        // Adds the user to the set so that they can't talk for a minute
+        talkedRecently.add(messasge.author.id);
+        setTimeout(() => {
+			let robUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
 		let thisid = robUser.id
 		if(robUser.bot) return;
 		if (thisid == message.author.id) {
@@ -493,8 +503,12 @@ if (command === "bal") {
 				}
 			})
 			});
-		
 		}
+          // Removes the user from the set after a minute
+          talkedRecently.delete(message.author.id);
+        }, 360000);
+    }
+		
 	}
 	if (command == "leader") {
 		cash.find({
@@ -591,7 +605,7 @@ if (command === "bal") {
 			thismessage.edit('Destroying in 2')
 			thismessage.edit('Destroying in 1')
 			thismessage.edit("BOOM")
-				.then(msg => client.destroy())
+				.then(message => client.destroy())
 				.then(() => client.login(process.env.BOT_TOKEN));
 		}
 	}
@@ -2588,11 +2602,11 @@ Jimp.read(buffer, (err, lenna) => {
 		}
 
 		if (command === "magicify") {
-			const annoyingmsg = args.join(" ");
+			const annoyingmessage = args.join(" ");
 			let reportEmbed = new Discord.RichEmbed()
 				.setDescription("Embedded message!")
 				.setColor("#15f153")
-				.addField("Message:", annoyingmsg)
+				.addField("Message:", annoyingmessage)
 				.addField("Channel", message.channel)
 				.addField("Time", message.createdAt)
 			message.delete().catch(O_o => {});
@@ -2697,16 +2711,16 @@ Jimp.read(buffer, (err, lenna) => {
 		if (command === "purge") {
 			const user = message.mentions.users.first();
 			if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send('Sorry, you don\'t have permission to delete or purge messages!')
-				.then(msg => msg.delete({
+				.then(message => message.delete({
 					timeout: 100000
 				}));
 			const amount = !!parseInt(message.content.split(' ')[1]) ? parseInt(message.content.split(' ')[1]) : parseInt(message.content.split(' ')[2])
 			if (!amount) return message.channel.send('Specify an amount of messages to delete or purge!')
-				.then(msg => msg.delete({
+				.then(message => message.delete({
 					timeout: 100000
 				}));
 			if (!amount && !user) return message.channel.send('Specify a user and amount, or just an amount, of messages to delete or purge!')
-				.then(msg => msg.delete({
+				.then(message => message.delete({
 					timeout: 100000
 				}));
 			message.channel.fetchMessages({
