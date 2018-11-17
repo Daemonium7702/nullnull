@@ -194,6 +194,9 @@ client.on("message", async message => {
 	if (command == "pay") {
 		let robUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
 		let thisid = robUser.id;
+		if(robUser.bot){
+		return message.channel.send("'Pleeeaasse dont pay the bots' -- Daemonium   ..... I disagree.")
+		}
 		if (thisid === message.author.id) {
 		 message.channel.send("Bruh, did you just try to pay yourself? Get outta here with that.");
 		
@@ -221,22 +224,24 @@ client.on("message", async message => {
 								console.log("paid")
 							}
 						}
-					});
-					cash.findOne({
+						
+						cash.findOne({
 						UserId: thisid,
 						ServerId: message.guild.id
-					}, (err, bal) => {
+					}, (err, ball) => {
 						if (err) console.log(err)
-						if (!bal) {
+						if (!ball) {
 							message.channel.send("Cant pay a guy if you aint got a place to put the money my dude, try talkin a bit first.")
 						} else {
-							var NewBal = parseInt(bal.bal)
+							var NewBal = parseInt(ball.ball)
 							var NewAmt = parseInt(payAmt)
-							bal.bal = NewBal + NewAmt
-							bal.save().catch(err => console.log(err));
+							ball.ball = NewBal + NewAmt
+							ball.save().catch(err => console.log(err));
 							message.channel.send(`You paid **$ ${payAmt}** to <@${robUser.id}>`)
 						}
 					})
+					});
+					
 				}
 			}
 		}
@@ -482,7 +487,7 @@ client.on("message", async message => {
 
 					ball.ball = ball.ball + robAmt;
 					message.channel.send(`You stole **${robAmt}** dollars from <@${robUser.id}>`)
-					bal.save().catch(err => console.log(err));
+					ball.save().catch(err => console.log(err));
 				}
 				}
 			})
