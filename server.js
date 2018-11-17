@@ -506,6 +506,24 @@ if (command === "bal") {
     }
 		
 	}
+	if (command == "announcements") {
+			var version = "11.17.2018"
+			const annembed = new Discord.RichEmbed()
+				.setTitle('Announcements')
+				.addField(version, true)
+				.addField("Updated","Help command", true)
+				.addField("Added","database", true)
+				.addField("Added", ".bal, .rob, .leader and .deposit currency commands", true)
+				.addField("Added", "Currency System!", true)
+				.addField("Added", "cipher commands.", true)
+				.addField("Added", "cooldowns for some commands.", true)	
+				.addField("Improved","overal interface for multiple commands.", true)
+				.addField("IM SORRY!","I had to reset the balances of everyone due to a vulnerability found."
+				.addField("Added", "interactivity to help command", true)
+			
+				.setColor("#660000")
+			message.channel.send(annembed)
+		}
 	if (command == "leader") {
 		cash.find({
 			exists: 1
@@ -927,21 +945,7 @@ scrape().then((value) => {
 			message.guild.member(kUser).addRole(role)
 			message.channel.send(kUser.toString() + "has been given" + `${role}`)
 		}
-		if (command == "announcements") {
-			var version = "11.13.2018"
-			const annembed = new Discord.RichEmbed()
-				.setTitle('Announcements')
-				.addField(version, true)
-				.addField("Help command updated", true)
-				.addField("database added", true)
-				.addField(".bal, .rob, .leader and .deposit currency commands added", true)
-				.addField("Currency System added!", true)
-				.addField("More cipher commands added.", true)
-				.addField("Improved overal interface for multiple commands.", true)
-				.addField("Added interactivity to help command", true)
-				.setColor("#660000")
-			message.channel.send(annembed)
-		}
+		
 		if (command == "reta") {
 			message.channel.send("https://www.youtube.com/watch?v=Hds9tFMuU8o")
 		}
