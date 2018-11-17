@@ -149,9 +149,7 @@ client.on("message", async message => {
 			message.channel.send("Aye Aye my liege.")
 		}
 	}
-	 if (talkCdown.has(message.author.id)) {
-          return
-    } else {
+	let thisvar=0
 	let cashMonies = Math.ceil(math.random() * 30)
 	cash.findOne({
 		UserId: message.author.id,
@@ -172,13 +170,7 @@ client.on("message", async message => {
 			bal.bal = bal.bal + cashMonies
 			bal.save().catch(err => console.log(err));
 		}
-	})
-	    talkCdown.add(message.author.id);
-        setTimeout(() => {
-          talkCdown.delete(message.author.id);
-        }, 60000);
-	    }
-    
+})
 
 
 	if (message.content.indexOf(config.prefix) !== 0) return;
