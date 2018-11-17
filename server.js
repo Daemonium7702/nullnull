@@ -152,7 +152,7 @@ client.on("message", async message => {
 	 if (talkCdown.has(message.author.id)) {
           return
     } else {
-	let cashMonies = Math.ceil(math.random() * 10)
+	let cashMonies = Math.ceil(math.random() * 30)
 	cash.findOne({
 		UserId: message.author.id,
 		ServerId: message.guild.id
