@@ -341,8 +341,9 @@ client.on("message", async message => {
 	}
 	if (command === "bal") {
 		let robUser = message.guild.member(message.mentions.users.first());
+		if(robUser.bot)  return;
 		let thisid = robUser.id;
-		if (!robUser) {
+		if (!args[0]) {
 			cash.findOne({
 
 			UserId: message.author.id,
@@ -411,22 +412,22 @@ client.on("message", async message => {
 					.setColor("#660000")
 					.setThumbnail(client.displayAvatarURL)
 				if (!bal && !bankbal) {
-					moneyEmb.addField(`${robUser.tag}\'s ` + "Net Worth", "0", true)
+					moneyEmb.addField(`<@${thisid}>\'s ` + "Net Worth", "0", true)
 					moneyEmb.addField("Pocket Change", "0", true)
 					moneyEmb.addField("Banked Money", "0", true)
 					return message.channel.send(moneyEmb)
 				} else if (!bal) {
-					moneyEmb.addField(`${robUser.tag}\'s `+ "Net Worth", Math.floor(bankbal.bankbal), true)
+					moneyEmb.addField(`<@${thisid}>\'s `+ "Net Worth", Math.floor(bankbal.bankbal), true)
 					moneyEmb.addField("Pocket Change", "0", true)
 					moneyEmb.addField("Banked Money", bankbal.bankbal, true)
 					return message.channel.send(moneyEmb)
 				} else if (!bankbal) {
-					moneyEmb.addField(`${robUser.tag}\'s ` + "Net Worth", Math.floor(bal.bal + bankbal.bankbal), true)
+					moneyEmb.addField(`<@${thisid}>\'s ` + "Net Worth", Math.floor(bal.bal + bankbal.bankbal), true)
 					moneyEmb.addField("Pocket Change", bal.bal, true)
 					moneyEmb.addField("Banked Money", "0", true)
 					return message.channel.send(moneyEmb)
 				} else {
-					moneyEmb.addField(`${robUser.tag}\'s ` + "Net Worth", Math.floor(bal.bal + bankbal.bankbal), true)
+					moneyEmb.addField(`<@${thisid}>\'s ` + "Net Worth", Math.floor(bal.bal + bankbal.bankbal), true)
 					moneyEmb.addField("Pocket Change", bal.bal, true)
 					moneyEmb.addField("Banked Money", bankbal.bankbal, true)
 					return message.channel.send(moneyEmb)
@@ -439,6 +440,7 @@ client.on("message", async message => {
 	if (command == "rob") {
 		let robUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
 		let thisid = robUser.id
+		if(robUser.bot) return;
 		if (thisid == message.author.id) {
 		 message.channel.send("Bruh, did you just try to rob yourself?")
 		} else {
@@ -463,22 +465,29 @@ client.on("message", async message => {
 						bal.save().catch(err => console.log(err));
 					}
 				}
-			});
-			cash.findOne({
+					cash.findOne({
 				UserId: message.author.id,
 				ServerId: message.guild.id
-			}, (err, bal) => {
+			}, (err, ball) => {
 				if (err) console.log(err)
-				if (!bal) {
+				if (!ball) {
 					 message.channel.send("Cant rob a guy if you aint got a place to put the money my dude, try talkin a bit first.")
 				return
 				} else {
+					if(bal.bal == 0 || !bal){
+					message.channel.send("User has no money!")
+					ball.ball = ball.ball + bal.bal
+					
+					}else{
 
-					bal.bal = bal.bal + robAmt;
+					ball.ball = ball.ball + robAmt;
 					message.channel.send(`You stole **${robAmt}** dollars from <@${robUser.id}>`)
 					bal.save().catch(err => console.log(err));
 				}
+				}
 			})
+			});
+		
 		}
 	}
 	if (command == "leader") {
