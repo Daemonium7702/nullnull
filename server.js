@@ -346,7 +346,7 @@ client.on("message", async message => {
 	}
 if (command === "bal") {
 		let robUser = message.guild.member(message.mentions.users.first());
-		let thisid = robUser.id;
+		
 		if (!robUser) {
 		console.log("test")
 			cash.findOne({
@@ -395,6 +395,7 @@ if (command === "bal") {
 			})
 		})
 		}else{
+			let thisid = robUser.id;
 		cash.findOne({
 
 			UserId: thisid,
