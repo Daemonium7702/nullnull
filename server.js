@@ -518,8 +518,7 @@ if (command === "bal") {
 				.addField("Added", "cipher commands.", true)
 				.addField("Added", "cooldowns for some commands.", true)	
 				.addField("Improved","overal interface for multiple commands.", true)
-				.addField("IM SORRY!","I had to reset the balances of everyone due to a vulnerability found."
-				.addField("Added", "interactivity to help command", true)
+				.addField("IM SORRY!","I had to reset the balances of everyone due to a vulnerability found.", true)				.addField("Added", "interactivity to help command", true)
 			
 				.setColor("#660000")
 			message.channel.send(annembed)
