@@ -452,7 +452,7 @@ if (command === "bal") {
            // the user can type the command ... your command code goes here :)
 
         // Adds the user to the set so that they can't talk for a minute
-        talkedRecently.add(messasge.author.id);
+        talkedRecently.add(message.author.id);
         setTimeout(() => {
 			let robUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
 		let thisid = robUser.id
