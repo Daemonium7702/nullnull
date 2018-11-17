@@ -173,11 +173,12 @@ client.on("message", async message => {
 			bal.save().catch(err => console.log(err));
 		}
 	})
-	    }
-        talkCdown.add(message.author.id);
+	    talkCdown.add(message.author.id);
         setTimeout(() => {
           talkCdown.delete(message.author.id);
         }, 60000);
+	    }
+    
 
 
 	if (message.content.indexOf(config.prefix) !== 0) return;
