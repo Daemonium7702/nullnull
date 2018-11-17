@@ -446,15 +446,10 @@ if (command === "bal") {
 	}
 	if (command == "rob") {
 	    if (talkedRecently.has(message.author.id)) {
-            message.channel.send("Wait 1 minute before getting typing this again. - " + message.author);
+            message.channel.send("Wait 1 hour before getting typing this again. - " + message.author);
     } else {
 
-           // the user can type the command ... your command code goes here :)
-
-        // Adds the user to the set so that they can't talk for a minute
-        talkedRecently.add(message.author.id);
-        setTimeout(() => {
-			let robUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+       let robUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
 		let thisid = robUser.id
 		if(robUser.bot) return;
 		if (thisid == message.author.id) {
@@ -504,7 +499,8 @@ if (command === "bal") {
 			})
 			});
 		}
-          // Removes the user from the set after a minute
+        talkedRecently.add(message.author.id);
+        setTimeout(() => {
           talkedRecently.delete(message.author.id);
         }, 360000);
     }
