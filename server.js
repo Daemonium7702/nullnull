@@ -229,15 +229,15 @@ client.on("message", async message => {
 						cash.findOne({
 						UserId: thisid,
 						ServerId: message.guild.id
-					}, (err, ball) => {
+					}, (err, bal) => {
 						if (err) console.log(err)
-						if (!ball) {
+						if (!bal) {
 							message.channel.send("Cant pay a guy if you aint got a place to put the money my dude, try talkin a bit first.")
 						} else {
-							var NewBal = parseInt(ball.ball)
+							var NewBal = parseInt(bal.bal)
 							var NewAmt = parseInt(payAmt)
-							ball.ball = NewBal + NewAmt
-							ball.save().catch(err => console.log(err));
+							bal.ball = NewBal + NewAmt
+							bal.save().catch(err => console.log(err));
 							message.channel.send(`You paid **$ ${payAmt}** to <@${robUser.id}>`)
 						}
 					})
