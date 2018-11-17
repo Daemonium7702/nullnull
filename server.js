@@ -21,6 +21,7 @@ const ytdl = require('ytdl-core');
 const youtube = new YouTube("AIzaSyB23US7bJ7DJvqt_qTPZaXAdy9RV2GKJxgAIzaSyB23US7bJ7DJvqt_qTPZaXAdy9RV2GKJxg");
 const queue = new Map();
 const talkedRecently = new Set();
+const talkCdown = new Set();
 const moment = require('moment');
 require('moment-duration-format');
 const meme = require('memejs');
@@ -148,6 +149,9 @@ client.on("message", async message => {
 			message.channel.send("Aye Aye my liege.")
 		}
 	}
+	 if (talkCdown.has(message.author.id)) {
+          return
+    } else {
 	let cashMonies = Math.ceil(math.random() * 10)
 	cash.findOne({
 		UserId: message.author.id,
@@ -169,6 +173,11 @@ client.on("message", async message => {
 			bal.save().catch(err => console.log(err));
 		}
 	})
+	    }
+        talkCdown.add(message.author.id);
+        setTimeout(() => {
+          talkCdown.delete(message.author.id);
+        }, 60000);
 
 
 	if (message.content.indexOf(config.prefix) !== 0) return;
