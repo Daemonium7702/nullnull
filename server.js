@@ -344,11 +344,11 @@ client.on("message", async message => {
 			})
 		})
 	}
-	if (command === "bal") {
+if (command === "bal") {
 		let robUser = message.guild.member(message.mentions.users.first());
-		if(robUser.bot)  return;
 		let thisid = robUser.id;
-		if (!args[0]) {
+		if (!robUser) {
+		console.log("test")
 			cash.findOne({
 
 			UserId: message.author.id,
