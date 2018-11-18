@@ -197,7 +197,7 @@ message.channel.send("are you sure you would like to opt in" + `${message.channe
 		Active: 1
 	}, (err, ServerId, Active) => {
 		if (err) message.channel.send(err)
-		if (!ServerId || Active ) {
+		if (!ServerId || !Active ) {
 			const newRing = new ring({
 				ServerId: message.guild.id,
 				ChannelId: message.channel.id,
@@ -207,11 +207,12 @@ message.channel.send("are you sure you would like to opt in" + `${message.channe
 			newRing.save().catch(err => console.log(err));
 		} else {
 		message.channel.send("This server already exists in the database!")
-		}
+			return		
+}
 })
 						
 						
-						return;
+				
 		            }else{
 		            if (optin == 2) {
 						message.channel.send("Opt-in denied. Cancelling addition to database.")
