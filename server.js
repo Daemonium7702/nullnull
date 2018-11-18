@@ -197,7 +197,7 @@ message.channel.send("are you sure you would like to opt in" + `${message.channe
 		Active: 1
 	}, (err, ServerId, Active) => {
 		if (err) message.channel.send(err)
-		if (!ServerId || !Active ) {
+		if (!Active ) {
 			const newRing = new ring({
 				ServerId: message.guild.id,
 				ChannelId: message.channel.id,
@@ -220,31 +220,20 @@ message.channel.send("are you sure you would like to opt in" + `${message.channe
 					}
 				}
 				if(command == "talkphone"){
-		ring.find({
-			exists: 1
-		}).sort([
-			['ServerId', 'descending']
-		]).exec((err, res) => {
-			if (err) console.log(err);
-			message.channel.send(res.length)
-				var datajs = {}
-				datajs.table = []
-		if (res.length == 0) {
-				message.channel.send("NO DATA Please type in chat to earn money")
-			} else{
-				for (i = 0; i < res.length; i++) {
-						var ovbbj = {
-						Server : res[i].ServerId
-					}
-				datajs.table.push(ovbbj)
-				}
-				fs.writeFile ("calls.json", JSON.stringify(datajs), function(err) {
-				if (err) throw err;
-			console.log('complete');
-			} 
-		)}
+		ring.count().exec(function(err, count){
 
-			});
+  var random = ring.floor(ring.random() * count);
+
+  ring.findOne({
+  ServerId:$all
+  }).skip(random).exec(
+    function (err, result) {
+message.channel.send(result)
+      // result is random 
+
+  });
+
+});
 	}
 				/////// THERE IS NOW A PHONE!!!! NAAAAANNNNIIIIIIII??????//////
 
