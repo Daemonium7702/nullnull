@@ -52,6 +52,7 @@ const msfjs = require('msfjs')
 const cash = require('./money/cash.js')
 const myItem = require('./items.json')
 const prefConf = require('./money/prefix.js');
+const ring = require('./money/ringring.js')
 client.on("ready", () => {
 	console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);
 	client.user.setActivity(`on ${client.guilds.size} servers`);
@@ -174,7 +175,80 @@ client.on("message", async message => {
 
 
 	if (message.content.indexOf(config.prefix) !== 0) return;
+/////// THERE IS NOW A PHONE!!!! NAAAAANNNNIIIIIIII??????//////
+if(command == "phoneopt"){
+message.channel.send("are you sure you would like to opt in" + `${message.channnel.name}` + " in " + `${message.guild.name}?` + "this action is not reversable, or at the moment changable.")
 
+	 try {
+		                var response = await message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 3, {
+		                    maxMatches: 1,
+		                    time: 5000,
+		                    errors: ['time']
+		                });
+		            } catch (err) {
+		                console.error(err);
+		                console.log(response);
+		                return message.channel.send('No or invalid value entered canceling opt-in.');
+		            }
+		            var optin = parseInt(response.first().content);
+		            if (optin == 1) {
+		                message.channel.send("Opt-in confirmed, now adding this channel " + `${message.channel.id}` + " and this server " + `${message.guild.id}` + " to the database.");
+	ring.find({
+		Active: 1
+	}, (err, ServerId) => {
+		if (err) message.channel.send(err)
+		if (!ServerId) {
+			const newRing = new ring({
+				ServerId: message.guild.id,
+				ChannelId: message.channel.id,
+				Active: 1,
+				Talking: 0
+			})
+			newRing.save().catch(err => console.log(err));
+		} else {
+		message.channel.send("This server already exists in the database!")
+		}
+})
+						
+						
+						return;
+		            }else{
+		            if (optin == 2) {
+						message.channel.send("Opt-in denied. Cancelling addition to database.")
+					}
+					}
+				}
+				if(command == "talkphone"){
+		ring.find({
+			exists: 1
+		}).sort([
+			['ServerId', 'descending']
+		]).exec((err, res) => {
+			if (err) console.log(err);
+				var datajs = {}
+				datajs.table = []
+
+});	
+		if (res.length == 0) {
+				message.channel.send("NO DATA", "Please type in chat to earn money")
+			} else{
+				for (i = 0; i < res.length; i++) {
+						var ovbbj = {
+						Server : res[i].ServerId
+					}
+				datajs.table.push(ovbbj)
+				}
+				fs.writeFile ("calls.json", JSON.stringify(datajs), function(err) {
+				if (err) throw err;
+			console.log('complete');
+			} 
+		)}
+		
+	}
+				/////// THERE IS NOW A PHONE!!!! NAAAAANNNNIIIIIIII??????//////
+
+				
+				
 	if (command === "eval") {
 		if (message.author.id !== "347885325940424714") {
 			return message.channel.send("USER NOT AUTHORIZED");
@@ -468,38 +542,41 @@ if (command === "bal") {
 					return
 				} else {
 					if (robAmt > bal.bal) {
-						robAmt = bal.bal
+						config.robBal = bal.bal
 						message.channel.send("You stole" + `** ${bal.bal}** dollars from <@${robUser.id}>`)
 						bal.bal = 0;
 						bal.save().catch(err => console.log(err));
 						return
 					} else {
+					config.robBal = robAmt
 						bal.bal = bal.bal - robAmt;
 						bal.save().catch(err => console.log(err));
 					}
-				}
+				}});
 					cash.findOne({
 				UserId: message.author.id,
 				ServerId: message.guild.id
-			}, (err, ball) => {
+			}, (err, bal) => {
 				if (err) console.log(err)
-				if (!ball) {
+				if (!bal) {
 					 message.channel.send("Cant rob a guy if you aint got a place to put the money my dude, try talkin a bit first.")
 				return
 				} else {
 					if(bal.bal == 0 || !bal){
 					message.channel.send("User has no money!")
-					ball.ball = ball.ball + bal.bal
-					
+					bal.bal = bal.bal + config.robBal
+					bal.save().catch(err => console.log(err))
+					return
 					}else{
 
-					ball.ball = ball.ball + robAmt;
+					bal.bal = bal.bal + config.robBal;
 					message.channel.send(`You stole **${robAmt}** dollars from <@${robUser.id}>`)
-					ball.save().catch(err => console.log(err));
+					bal.save().catch(err => console.log(err));
+					config.robBal = 0
 				}
 				}
 			})
-			});
+			
 		}
         talkedRecently.add(message.author.id);
         setTimeout(() => {
@@ -552,11 +629,6 @@ if (command === "bal") {
 				message.channel.send(cashbed)
 			}
 		})
-	}
-	if (command === "test") {
-		var type = args[0]
-		message.channel.send(myItem.type)
-		message.channel.send("Did i get an A+?")
 	}
 	if (message.channel.type == 'dm') {
 		try {
@@ -824,7 +896,7 @@ scrape().then((value) => {
 		                                    }
 		                                    var sleepIndex = parseInt(sleep.first().content);
 		                                    if (sleepIndex == 1) {
-		                                        message.channel.send("You decide to open the vault doors. As soon as you do, air rushes in. You exit the vault. You notice the world glowing a faint green. **TIME REDUCED TO 10 SECOND DUE TO RADIOACTIVITY ☢** \n 1)Go back in \n 2) Stay.")
+		                                        message.channel.send("You decide to open the vault doors. As soon as you do, air rushes in. You exit the vault. You notice the world glowing a faint green. **TIME REDUCED TO 10 SECOND DUE TO RADIOACTIVITY ?** \n 1)Go back in \n 2) Stay.")
 		                                        try {
 		                                            var goup = await message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 3, {
 		                                                maxMatches: 1,
@@ -1355,7 +1427,7 @@ Jimp.read(buffer, (err, lenna) => {
 			const namaste = [
 				"A dog",
 				"Jeff",
-				"A ••••• wit a rocket launcha",
+				"A â€¢â€¢â€¢â€¢â€¢ wit a rocket launcha",
 				"The lost land of Atlantis",
 				"That one guy",
 				"My money",
@@ -1463,9 +1535,9 @@ Jimp.read(buffer, (err, lenna) => {
 		}
 		if (command === "help") {
 			config.mssauth = message.author.id
-			const back = "◀"
-			const next = "▶"
-			const end = "❗"
+			const back = "?"
+			const next = "?"
+			const end = "?"
 			const funembed = new Discord.RichEmbed()
 				.setFooter("fun")
 				.setTitle("Fun Commands")
@@ -1583,7 +1655,7 @@ Jimp.read(buffer, (err, lenna) => {
 			await pollTitle.react(back);
 			await pollTitle.react(next);
 			await pollTitle.react(end);
-			const filter = (reaction) => reaction.emoji.name === '▶';
+			const filter = (reaction) => reaction.emoji.name === '?';
 			const collector = pollTitle.createReactionCollector(filter, {
 				time: 60000
 			});
@@ -1646,7 +1718,7 @@ Jimp.read(buffer, (err, lenna) => {
 			});
 			collector.on('end', collected => {});
 
-			const filter1 = (reaction) => reaction.emoji.name === '◀';
+			const filter1 = (reaction) => reaction.emoji.name === '?';
 			const collector1 = pollTitle.createReactionCollector(filter1, {
 				time: 60000
 			});
@@ -1736,90 +1808,89 @@ Jimp.read(buffer, (err, lenna) => {
 
 			message.channel.send(`For updates on the bot, or to see whats new with it, please type .Announcements`);
 		}
-
 		if (command === "runict") {
 			const oldMessage = args.join(" ");
-			const a = oldMessage.replace(/ᚪ/g, " A ");
-			const a1 = a.replace(/ᚫ/g, " AESC ");
-			const a2 = a1.replace(/ᛉ/g, " ALGIZ/EOLHX ");
-			const a3 = a2.replace(/ᚨ/g, " A ");
-			const a4 = a3.replace(/ᛒ/g, " B ");
-			const a5 = a4.replace(/ᛍ/g, " C ");
-			const a6 = a5.replace(/ᛣ/g, " CALC ");
-			const a7 = a6.replace(/ᛤ/g, " CEALC ")
-			const a8 = a7.replace(/ᚳ/g, " CEN ");
-			const a9 = a8.replace(/ᛢ/g, " CWEORTH ");
-			const a10 = a9.replace(/ᛑ/g, " D ");
-			const b1 = a10.replace(/ᛞ/g, " D ");
-			const b2 = b1.replace(/ᛛ/g, " DottedL ");
-			const b3 = b2.replace(/ᛀ/g, " DottedN ");
-			const b4 = b3.replace(/ᛔ/g, " DottedP ");
-			const b5 = b4.replace(/ᛂ/g, " E ");
-			const b6 = b5.replace(/ᛠ/g, " EAR ");
-			const b7 = b6.replace(/ᛖ/g, " E ");
-			const b8 = b7.replace(/ᚶ/g, " ENG ");
-			const b9 = b8.replace(/ᚧ/g, " ETH ");
-			const b10 = b9.replace(/ᚠ/g, " F ");
-			const c1 = b10.replace(/ᚵ/g, " G ");
-			const c2 = c1.replace(/ᚸ/g, " GAR ");
-			const c3 = c2.replace(/ᚷ/g, " G ");
-			const c4 = c3.replace(/ᛄ/g, " ?? ");
-			const c5 = c4.replace(/ᚻ/g, " H ");
-			const c6 = c5.replace(/ᚺ/g, " H ");
-			const c7 = c6.replace(/ᛨ/g, " YR ");
-			const c8 = c7.replace(/ᛝ/g, " ING ");
-			const c9 = c8.replace(/ᛜ/g, " INGWAZ ");
-			const c10 = c9.replace(/ᛡ/g, " IOR ");
-			const d1 = c10.replace(/ᛁ/g, " I ");
-			const d2 = d1.replace(/ᛇ/g, " IWAZ/EOH ");
-			const d3 = d2.replace(/ᛃ/g, " J ");
-			const d4 = d3.replace(/ᚴ/g, " K ");
-			const d5 = d4.replace(/ᚲ/g, " KAUNA ");
-			const d6 = d5.replace(/ᛚ/g, " L ");
-			const d7 = d6.replace(/ᛅ/g, " AE ");
-			const d8 = d7.replace(/ᚼ/g, " H ");
-			const d9 = d8.replace(/ᛘ/g, " M ");
-			const d10 = d9.replace(/ᚬ/g, " O ");
-			const e1 = d10.replace(/ᛦ/g, " YR ");
-			const e2 = e1.replace(/ᛗ/g, " M ");
-			const e3 = e2.replace(/ᚾ/g, " N ");
-			const e4 = e3.replace(/ᚮ/g, " O ");
-			const e5 = e4.replace(/ᚯ/g, " OE ");
-			const e6 = e5.replace(/ᚰ/g, " ON ");
-			const e7 = e6.replace(/ᛕ/g, " P ");
-			const e8 = e7.replace(/ᚩ/g, " O ");
-			const e9 = e8.replace(/ᛟ/g, " O ");
-			const e10 = e9.replace(/ᛈ/g, " P ");
-			const f1 = e10.replace(/ᛩ/g, " Q ");
-			const f2 = f1.replace(/ᚱ/g, " R ");
-			const f3 = f2.replace(/ᛆ/g, " AR/A ");
-			const f4 = f3.replace(/ᛓ/g, " BJARKAN/B ");
-			const f5 = f4.replace(/ᚽ/g, " HAGALL/H ");
-			const f6 = f5.replace(/ᛙ/g, " M ");
-			const f7 = f6.replace(/ᚿ/g, " N ");
-			const f8 = f7.replace(/ᚭ/g, " O ");
-			const f9 = f8.replace(/ᛌ/g, " S ");
-			const f10 = f9.replace(/ᛐ/g, " TYR/T ");
-			const g1 = f10.replace(/ᛧ/g, " YR ");
-			const g2 = g1.replace(/ᛋ/g, " S ");
-			const g3 = g2.replace(/ᛊ/g, " SOWILO/S ");
-			const g4 = g3.replace(/ᛥ/g, " STAN ");
-			const g5 = g4.replace(/ᚦ/g, " TH ");
-			const g6 = g5.replace(/ᛏ/g, " TIWAZ/TIR/TYR/T ");
-			const g7 = g6.replace(/ᚢ/g, " URUZ/UR/U ");
-			const g8 = g7.replace(/ᚡ/g, " V ");
-			const g9 = g8.replace(/ᚥ/g, " W ");
-			const g10 = g9.replace(/ᚹ/g, " WUNJO/WYNN/W ");
-			const h1 = g10.replace(/ᛪ/g, " X ");
-			const h2 = h1.replace(/ᚤ/g, " Y ");
-			const h3 = h2.replace(/ᚣ/g, " YR ");
-			const h4 = h3.replace(/ᛎ/g, " Z ");
-			const h5 = h4.replace(/᛬/g, " : ");
-			const h6 = h5.replace(/᛫/g, " . ");
-			const h7 = h6.replace(/ᛮ/g, " 17 ");
-			const h8 = h7.replace(/ᛯ/g, " 18 ");
-			const h9 = h8.replace(/ᛰ/g, " 19 ");
-			const h10 = h9.replace(/᛭/g, " + ");
+			const a = oldMessage.replace(/ášª/g, " A ");
+			const a1 = a.replace(/áš«/g, " AESC ");
+			const a2 = a1.replace(/á›‰/g, " ALGIZ/EOLHX ");
+			const a3 = a2.replace(/áš¨/g, " A ");
+			const a4 = a3.replace(/á›’/g, " B ");
+			const a5 = a4.replace(/á›/g, " C ");
+			const a6 = a5.replace(/á›£/g, " CALC ");
+			const a7 = a6.replace(/á›¤/g, " CEALC ")
+			const a8 = a7.replace(/áš³/g, " CEN ");
+			const a9 = a8.replace(/á›¢/g, " CWEORTH ");
+			const a10 = a9.replace(/á›‘/g, " D ");
+			const b1 = a10.replace(/á›ž/g, " D ");
+			const b2 = b1.replace(/á››/g, " DottedL ");
+			const b3 = b2.replace(/á›€/g, " DottedN ");
+			const b4 = b3.replace(/á›”/g, " DottedP ");
+			const b5 = b4.replace(/á›‚/g, " E ");
+			const b6 = b5.replace(/á› /g, " EAR ");
+			const b7 = b6.replace(/á›–/g, " E ");
+			const b8 = b7.replace(/áš¶/g, " ENG ");
+			const b9 = b8.replace(/áš§/g, " ETH ");
+			const b10 = b9.replace(/áš /g, " F ");
+			const c1 = b10.replace(/ášµ/g, " G ");
+			const c2 = c1.replace(/áš¸/g, " GAR ");
+			const c3 = c2.replace(/áš·/g, " G ");
+			const c4 = c3.replace(/á›„/g, " ?? ");
+			const c5 = c4.replace(/áš»/g, " H ");
+			const c6 = c5.replace(/ášº/g, " H ");
+			const c7 = c6.replace(/á›¨/g, " YR ");
+			const c8 = c7.replace(/á›/g, " ING ");
+			const c9 = c8.replace(/á›œ/g, " INGWAZ ");
+			const c10 = c9.replace(/á›¡/g, " IOR ");
+			const d1 = c10.replace(/á›/g, " I ");
+			const d2 = d1.replace(/á›‡/g, " IWAZ/EOH ");
+			const d3 = d2.replace(/á›ƒ/g, " J ");
+			const d4 = d3.replace(/áš´/g, " K ");
+			const d5 = d4.replace(/áš²/g, " KAUNA ");
+			const d6 = d5.replace(/á›š/g, " L ");
+			const d7 = d6.replace(/á›…/g, " AE ");
+			const d8 = d7.replace(/áš¼/g, " H ");
+			const d9 = d8.replace(/á›˜/g, " M ");
+			const d10 = d9.replace(/áš¬/g, " O ");
+			const e1 = d10.replace(/á›¦/g, " YR ");
+			const e2 = e1.replace(/á›—/g, " M ");
+			const e3 = e2.replace(/áš¾/g, " N ");
+			const e4 = e3.replace(/áš®/g, " O ");
+			const e5 = e4.replace(/áš¯/g, " OE ");
+			const e6 = e5.replace(/áš°/g, " ON ");
+			const e7 = e6.replace(/á›•/g, " P ");
+			const e8 = e7.replace(/áš©/g, " O ");
+			const e9 = e8.replace(/á›Ÿ/g, " O ");
+			const e10 = e9.replace(/á›ˆ/g, " P ");
+			const f1 = e10.replace(/á›©/g, " Q ");
+			const f2 = f1.replace(/áš±/g, " R ");
+			const f3 = f2.replace(/á›†/g, " AR/A ");
+			const f4 = f3.replace(/á›“/g, " BJARKAN/B ");
+			const f5 = f4.replace(/áš½/g, " HAGALL/H ");
+			const f6 = f5.replace(/á›™/g, " M ");
+			const f7 = f6.replace(/áš¿/g, " N ");
+			const f8 = f7.replace(/áš­/g, " O ");
+			const f9 = f8.replace(/á›Œ/g, " S ");
+			const f10 = f9.replace(/á›/g, " TYR/T ");
+			const g1 = f10.replace(/á›§/g, " YR ");
+			const g2 = g1.replace(/á›‹/g, " S ");
+			const g3 = g2.replace(/á›Š/g, " SOWILO/S ");
+			const g4 = g3.replace(/á›¥/g, " STAN ");
+			const g5 = g4.replace(/áš¦/g, " TH ");
+			const g6 = g5.replace(/á›/g, " TIWAZ/TIR/TYR/T ");
+			const g7 = g6.replace(/áš¢/g, " URUZ/UR/U ");
+			const g8 = g7.replace(/áš¡/g, " V ");
+			const g9 = g8.replace(/áš¥/g, " W ");
+			const g10 = g9.replace(/áš¹/g, " WUNJO/WYNN/W ");
+			const h1 = g10.replace(/á›ª/g, " X ");
+			const h2 = h1.replace(/áš¤/g, " Y ");
+			const h3 = h2.replace(/áš£/g, " YR ");
+			const h4 = h3.replace(/á›Ž/g, " Z ");
+			const h5 = h4.replace(/á›¬/g, " : ");
+			const h6 = h5.replace(/á›«/g, " . ");
+			const h7 = h6.replace(/á›®/g, " 17 ");
+			const h8 = h7.replace(/á›¯/g, " 18 ");
+			const h9 = h8.replace(/á›°/g, " 19 ");
+			const h10 = h9.replace(/á›­/g, " + ");
 			message.channel.send(h10);
 			hastebin(h10, "js").then(r => {
 				var hastLink = r
@@ -2509,7 +2580,7 @@ Jimp.read(buffer, (err, lenna) => {
 					timestamp: new Date(),
 					footer: {
 						icon_url: client.user.avatarURL,
-						text: "© DeathBot"
+						text: "Â© DeathBot"
 					}
 				}
 			});
@@ -2870,7 +2941,7 @@ Jimp.read(buffer, (err, lenna) => {
 					timestamp: new Date(),
 					footer: {
 						icon_url: client.user.avatarURL,
-						text: "©DaeBot"
+						text: "Â©DaeBot"
 					}
 				}
 			});
