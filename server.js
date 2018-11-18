@@ -230,7 +230,7 @@ message.channel.send("are you sure you would like to opt in" + `${message.channe
 
 	
 		if (res.length == 0) {
-				message.channel.send("NO DATA", "Please type in chat to earn money")
+				message.channel.send("NO DATA Please type in chat to earn money")
 			} else{
 				for (i = 0; i < res.length; i++) {
 						var ovbbj = {
