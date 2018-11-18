@@ -226,10 +226,9 @@ message.channel.send("are you sure you would like to opt in" + `${message.channe
 			['ServerId', 'descending']
 		]).exec((err, res) => {
 			if (err) console.log(err);
+			message.channel.send(res.length)
 				var datajs = {}
 				datajs.table = []
-
-	
 		if (res.length == 0) {
 				message.channel.send("NO DATA Please type in chat to earn money")
 			} else{
