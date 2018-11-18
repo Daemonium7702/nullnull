@@ -195,9 +195,9 @@ message.channel.send("are you sure you would like to opt in" + `${message.channe
 		                message.channel.send("Opt-in confirmed, now adding this channel " + `${message.channel.id}` + " and this server " + `${message.guild.id}` + " to the database.");
 	ring.find({
 		Active: 1
-	}, (err, ServerId) => {
+	}, (err, ServerId, Active) => {
 		if (err) message.channel.send(err)
-		if (!ServerId) {
+		if (!ServerId || Active ) {
 			const newRing = new ring({
 				ServerId: message.guild.id,
 				ChannelId: message.channel.id,
