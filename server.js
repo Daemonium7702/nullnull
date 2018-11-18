@@ -177,7 +177,7 @@ client.on("message", async message => {
 	if (message.content.indexOf(config.prefix) !== 0) return;
 /////// THERE IS NOW A PHONE!!!! NAAAAANNNNIIIIIIII??????//////
 if(command == "phoneopt"){
-message.channel.send("are you sure you would like to opt in" + `${message.channnel.name}` + " in " + `${message.guild.name}?` + "this action is not reversable, or at the moment changable.")
+message.channel.send("are you sure you would like to opt in" + `${message.channel.name}` + " in " + `${message.guild.name}?` + "this action is not reversable, or at the moment changable.")
 
 	 try {
 		                var response = await message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 3, {
