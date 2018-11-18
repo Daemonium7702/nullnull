@@ -228,7 +228,7 @@ message.channel.send("are you sure you would like to opt in" + `${message.channe
 				var datajs = {}
 				datajs.table = []
 
-});	
+	
 		if (res.length == 0) {
 				message.channel.send("NO DATA", "Please type in chat to earn money")
 			} else{
@@ -243,7 +243,8 @@ message.channel.send("are you sure you would like to opt in" + `${message.channe
 			console.log('complete');
 			} 
 		)}
-		
+
+			});
 	}
 				/////// THERE IS NOW A PHONE!!!! NAAAAANNNNIIIIIIII??????//////
 
