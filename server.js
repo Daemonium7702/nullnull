@@ -151,7 +151,7 @@ client.on("message", async message => {
 		}
 	}
 	let thisvar=0
-	    if (talkedRecently.has(message.author.id)) {
+	    if (talkCdown.has(message.author.id)) {
             message.channel.send("Wait 1 hour before getting typing this again. - " + message.author);
     } else {
 	let cashMonies = Math.ceil(math.random() * 30)
@@ -176,9 +176,9 @@ client.on("message", async message => {
 		}
 })
     
-     talkedRecently.add(message.author.id);
+     talkCdown.add(message.author.id);
         setTimeout(() => {
-          talkedRecently.delete(message.author.id);
+          talkCdown.delete(message.author.id);
         }, 60000);
     }
 
