@@ -151,6 +151,9 @@ client.on("message", async message => {
 		}
 	}
 	let thisvar=0
+	    if (talkedRecently.has(message.author.id)) {
+            message.channel.send("Wait 1 hour before getting typing this again. - " + message.author);
+    } else {
 	let cashMonies = Math.ceil(math.random() * 30)
 	cash.findOne({
 		UserId: message.author.id,
@@ -172,7 +175,12 @@ client.on("message", async message => {
 			bal.save().catch(err => console.log(err));
 		}
 })
-
+    
+     talkedRecently.add(message.author.id);
+        setTimeout(() => {
+          talkedRecently.delete(message.author.id);
+        }, 60000);
+    }
 
 	if (message.content.indexOf(config.prefix) !== 0) return;
 /////// THERE IS NOW A PHONE!!!! NAAAAANNNNIIIIIIII??????//////
@@ -512,7 +520,7 @@ if (command === "bal") {
 	}
 	if (command == "rob") {
 	    if (talkedRecently.has(message.author.id)) {
-            message.channel.send("Wait 1 hour before getting typing this again. - " + message.author);
+            message.channel.send("Wait 10 mins before getting typing this again. - " + message.author);
     } else {
 
        let robUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
@@ -571,7 +579,7 @@ if (command === "bal") {
         talkedRecently.add(message.author.id);
         setTimeout(() => {
           talkedRecently.delete(message.author.id);
-        }, 360000);
+        }, 600000);
     }
 		
 	}
