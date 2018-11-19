@@ -152,7 +152,7 @@ client.on("message", async message => {
 	}
 	let thisvar=0
 	    if (talkCdown.has(message.author.id)) {
-            message.channel.send("Wait 1 hour before getting typing this again. - " + message.author);
+          console.log("working")
     } else {
 	let cashMonies = Math.ceil(math.random() * 30)
 	cash.findOne({
