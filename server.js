@@ -175,6 +175,32 @@ client.on("message", async message => {
 			bal.save().catch(err => console.log(err));
 		}
 })
+	    lvl.findOne({
+		UserId: message.author.id,
+		ServerId: message.guild.id
+	}, (err, exp, lvl) => {
+		if (err) console.log(err)
+		if (!exp) {
+			const newExp = new lvl({
+				UserId: message.author.id,
+				ServerId: message.guild.id,
+				exp: 0,
+				lvl: 0,
+				exists: 1,
+				username: message.author.tag
+			})
+			newExp.save().catch(err => console.log(err));
+		} else {
+			const myLevel = Math.floor(0.1 * Math.sqrt(exp.exp));
+			 if(lvl.lvl < myLevel) {
+     				 lvl.lvl = lvl.lvl++;
+				 lvl.save().catch(err => console.log(err));
+				
+    }
+			exp.exp = exp.exp + cashMonies
+			exp.save().catch(err => console.log(err));
+		}
+})
     
      talkCdown.add(message.author.id);
         setTimeout(() => {
@@ -183,6 +209,88 @@ client.on("message", async message => {
     }
 
 	if (message.content.indexOf(config.prefix) !== 0) return;
+if (command === "bal") {
+		let robUser = message.guild.member(message.mentions.users.first());
+		
+		if (!robUser) {
+		console.log("test")
+			lvl.findOne({
+
+			UserId: message.author.id,
+
+			ServerId: message.guild.id
+
+		}, (err, lvl, exp) => {
+			
+
+				if (err) console.log(err)
+
+				let moneyEmb = new Discord.RichEmbed()
+					.setTitle('Level')
+					.setColor("#660000")
+					.setThumbnail(client.displayAvatarURL)
+				if (!exp && !lvl) {
+					moneyEmb.addField("Experience ", "0", true)
+					moneyEmb.addField("Level ", "0", true)
+					return message.channel.send(moneyEmb)
+				} else if (!exp) {
+					moneyEmb.addField("Experience", "0", true)
+					moneyEmb.addField("Level", lvl.lvl, true)
+					return message.channel.send(moneyEmb)
+				} else if (!lvl) {
+					moneyEmb.addField("Experience", exp.exp, true)
+					moneyEmb.addField("Level", "0", true)
+					return message.channel.send(moneyEmb)
+				} else {
+					moneyEmb.addField("Experience", exp.exp, true)
+					moneyEmb.addField("Level", lvl.lvl, true)
+					return message.channel.send(moneyEmb)
+
+				}
+		})
+		}else{
+			let thisid = robUser.id;
+		lvl.findOne({
+
+			UserId: thisid,
+
+			ServerId: message.guild.id
+
+		}, (err, lvl, exp) => {
+			
+				if (err) console.log(err)
+
+				let moneyEmb = new Discord.RichEmbed()
+					.setTitle('Level')
+					.setColor("#660000")
+					.setThumbnail(client.displayAvatarURL)
+				if (!exp && !lvl) {
+					moneyEmb.addField("<@"+`${thisid}>`+"\'s " + "Lvl","****", true)
+					moneyEmb.addField("Experience", "0", true)
+					moneyEmb.addField("Level", "0", true)
+					return message.channel.send(moneyEmb)
+				} else if (!exp) {
+					moneyEmb.addField("<@"+`${thisid}>`+"\'s " + "Lvl","****", true)
+					moneyEmb.addField("Experience", "0", true)
+					moneyEmb.addField("Level", lvl.lvl, true)
+					return message.channel.send(moneyEmb)
+				} else if (!lvl) {
+					moneyEmb.addField("<@"+`${thisid}>`+"\'s " + "Lvl","****", true)
+					moneyEmb.addField("Experience", exp.exp, true)
+					moneyEmb.addField("Level", "0", true)
+					return message.channel.send(moneyEmb)
+				} else {
+					moneyEmb.addField("<@"+`${thisid}>`+"\'s " + "Lvl","****", true)
+					moneyEmb.addField("Experience", exp.exp, true)
+					moneyEmb.addField("Level", lvl.lvl, true)
+					return message.channel.send(moneyEmb)
+
+				}
+		})
+		}
+	}
+
+
 /////// THERE IS NOW A PHONE!!!! NAAAAANNNNIIIIIIII??????//////
 if(command == "phoneopt"){
 message.channel.send("are you sure you would like to opt in" + `${message.channel.name}` + " in " + `${message.guild.name}?` + "this action is not reversable, or at the moment changable.")
