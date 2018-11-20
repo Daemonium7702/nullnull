@@ -52,7 +52,8 @@ const msfjs = require('msfjs')
 const cash = require('./money/cash.js')
 const myItem = require('./items.json')
 const prefConf = require('./money/prefix.js');
-const ring = require('./money/ringring.js')
+const ring = require('./money/ringring.js');
+const leveling = require('./money/lvl.js')
 client.on("ready", () => {
 	console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);
 	client.user.setActivity(`on ${client.guilds.size} servers`);
@@ -176,7 +177,7 @@ client.on("message", async message => {
 			bal.save().catch(err => console.log(err));
 		}
 })
-	    lvl.findOne({
+	    leveling.findOne({
 		UserId: message.author.id,
 		ServerId: message.guild.id
 	}, (err, exp, lvl) => {
@@ -215,7 +216,7 @@ if (command === "lvl") {
 		
 		if (!robUser) {
 		console.log("test")
-			lvl.findOne({
+			leveling.findOne({
 
 			UserId: message.author.id,
 
@@ -251,7 +252,7 @@ if (command === "lvl") {
 		})
 		}else{
 			let thisid = robUser.id;
-		lvl.findOne({
+		leveling.findOne({
 
 			UserId: thisid,
 
