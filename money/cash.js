@@ -5,6 +5,7 @@
 		bal: Number,
 		bankbal: Number,
 		exists: Number,
+		  hints: Number,
 		  username: String
 	})
 
