@@ -193,12 +193,24 @@ client.on("message", async message => {
 			})
 			newExp.save().catch(err => console.log(err));
 		} else {
+			if (!lvl) {
+			const newExp = new leveling({
+				UserId: message.author.id,
+				ServerId: message.guild.id,
+				exp: 1,
+				lvl: 1,
+				exists: 1,
+				username: message.author.tag
+			})
+			newExp.save().catch(err => console.log(err));
+		} else {
 			const myLevel = Math.floor(0.1 * Math.sqrt(exp.exp));
 			 if(lvl.lvl < myLevel) {
      				 lvl.lvl = lvl.lvl++;
 				 lvl.save().catch(err => console.log(err));
 				
-    }
+			 }    
+}
 			exp.exp = exp.exp + 1
 			exp.save().catch(err => console.log(err));
 		}
