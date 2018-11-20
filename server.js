@@ -199,7 +199,7 @@ client.on("message", async message => {
 				 lvl.save().catch(err => console.log(err));
 				
     }
-			exp.exp = exp.exp + cashMonies
+			exp.exp = exp.exp + 1
 			exp.save().catch(err => console.log(err));
 		}
 })
