@@ -166,6 +166,7 @@ client.on("message", async message => {
 				ServerId: message.guild.id,
 				bal: cashMonies,
 				bankbal: 0,
+				hints: 0,
 				exists: 1,
 				username: message.author.tag
 			})
@@ -209,7 +210,7 @@ client.on("message", async message => {
     }
 
 	if (message.content.indexOf(config.prefix) !== 0) return;
-if (command === "bal") {
+if (command === "lvl") {
 		let robUser = message.guild.member(message.mentions.users.first());
 		
 		if (!robUser) {
@@ -429,6 +430,19 @@ message.channel.send(result)
 			}
 		}
 	}
+if(command == "hints"){
+	cash.findOne({
+			UserId: message.author.id,
+			ServerId: message.guild.id
+		}, (err, hints) => {
+		if (err) console.log(err)
+		if (hints.hints == 0) {
+					return message.channel.send("You have no hints!!")
+				} else {
+					message.channel.send(`You have ${hints.hints}`)
+				}					
+	})
+}
 	if (command === "deposit") {
 		cash.findOne({
 			UserId: message.author.id,
