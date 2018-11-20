@@ -186,8 +186,8 @@ client.on("message", async message => {
 			const newExp = new leveling({
 				UserId: message.author.id,
 				ServerId: message.guild.id,
-				exp: 0,
-				lvl: 0,
+				exp: 1,
+				lvl: 1,
 				exists: 1,
 				username: message.author.tag
 			})
