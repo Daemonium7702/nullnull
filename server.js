@@ -183,7 +183,7 @@ client.on("message", async message => {
 	}, (err, exp, lvl) => {
 		if (err) console.log(err)
 		if (!exp) {
-			const newExp = new lvl({
+			const newExp = new leveling({
 				UserId: message.author.id,
 				ServerId: message.guild.id,
 				exp: 0,
