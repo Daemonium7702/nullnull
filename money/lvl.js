@@ -3,7 +3,7 @@ const mongoose = require("mongoose")
 		UserId: String,
 		ServerId: String,
 		exp: Number,
-		level: Number,
+		lvl: Number,
 		exists: Number,
 		  username: String
 	})
