@@ -2,8 +2,8 @@ const mongoose = require("mongoose")
 	  const lvlSchema = mongoose.Schema({
 		UserId: String,
 		ServerId: String,
-		bal: Number,
-		bankbal: Number,
+		exp: Number,
+		level: Number,
 		exists: Number,
 		  username: String
 	})
