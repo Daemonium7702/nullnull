@@ -8,4 +8,4 @@ const mongoose = require("mongoose")
 		  username: String
 	})
 
-module.exports = mongoose.model("lvl", moneySchema)
+module.exports = mongoose.model("lvl", lvlSchema)
