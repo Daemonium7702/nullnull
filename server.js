@@ -153,7 +153,7 @@ client.on("message", async message => {
 	}
 	let thisvar=0
 	    if (talkCdown.has(message.author.id)) {
-          console.log("working")
+         ////Null
     } else {
 	let cashMonies = Math.ceil(math.random() * 30)
 	cash.findOne({
@@ -193,7 +193,7 @@ client.on("message", async message => {
 			})
 			newExp.save().catch(err => console.log(err));
 		} else {
-			if (!lvl) {
+			if (!exp) {
 			const newExp = new leveling({
 				UserId: message.author.id,
 				ServerId: message.guild.id,
@@ -223,6 +223,15 @@ client.on("message", async message => {
     }
 
 	if (message.content.indexOf(config.prefix) !== 0) return;
+	if(command == "Level"){    
+		leveling.findOne({
+		UserId: message.author.id,
+		ServerId: message.guild.id
+	}, (err, exp, lvl) => {
+		if (err) console.log(err)
+	message.channel.send(lvl.lvl)
+		})
+		}
 if (command === "lvl") {
 		let robUser = message.guild.member(message.mentions.users.first());
 		
@@ -248,7 +257,7 @@ if (command === "lvl") {
 					moneyEmb.addField("Level ", "0", true)
 					return message.channel.send(moneyEmb)
 				} else if (!exp) {
-					moneyEmb.addField("Experience", "0", true)
+					moneyEmb.addField("Experience:this embed is a test. To determine err.", "0", true)
 					moneyEmb.addField("Level", lvl.lvl, true)
 					return message.channel.send(moneyEmb)
 				} else if (!lvl) {
