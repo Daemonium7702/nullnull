@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
++*/const Discord = require("discord.js");
 const client = new Discord.Client({disableEveryone:true});
 const config = require("./config.json");
 const randomPuppy = require('random-puppy');
@@ -398,7 +398,16 @@ message.channel.send(result)
 			message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
 		}
 	}
-	if (command == "pay") {
+	if(command == "confighint"){
+	cash.update(
+     {exists: 1}, 
+     {hints : 0},
+     {multi:true}, 
+       function(err, numberAffected){  
+       message.channel.send(numberAffected)
+       });
+	}
+		if (command == "pay") {
 		let robUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
 		let thisid = robUser.id;
 		if(robUser.bot){
