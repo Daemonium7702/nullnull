@@ -257,16 +257,16 @@ if (command === "lvl") {
 					moneyEmb.addField("Experience ", "0", true)
 					moneyEmb.addField("Level ", "0", true)
 					return message.channel.send(moneyEmb)
-				} else if (!exp) {
+				} else if (!lvl.exp) {
 					moneyEmb.addField("Experience:this embed is a test. To determine err.", "0", true)
 					moneyEmb.addField("Level", lvl.lvl, true)
 					return message.channel.send(moneyEmb)
 				} else if (!lvl) {
-					moneyEmb.addField("Experience", exp.exp, true)
+					moneyEmb.addField("Experience", lvl.exp, true)
 					moneyEmb.addField("Level", "0", true)
 					return message.channel.send(moneyEmb)
 				} else {
-					moneyEmb.addField("Experience", exp.exp, true)
+					moneyEmb.addField("Experience", lvl.exp, true)
 					moneyEmb.addField("Level", lvl.lvl, true)
 					return message.channel.send(moneyEmb)
 
