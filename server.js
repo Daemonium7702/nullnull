@@ -374,7 +374,7 @@ message.channel.send(result)
 			UserId: message.author.id,
 			ServerId: message.guild.id
 		}, (err, bal, bankbal, hints, UserId) => {
-		var price = Math.floor(bal.bal+bal.bank.bal *0.1 + bal.hints - 0.00001*bal.UserId.toString())
+		var price = Math.floor(bal.bal+bal.bankbal *0.1 + bal.hints - 0.00001*bal.UserId.toString())
 			message.channel.send("Hints are expensive! Right now they are..." + `${price}`)
 			}	
 	if (command === "eval") {
