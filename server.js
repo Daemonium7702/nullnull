@@ -399,7 +399,7 @@ message.channel.send(result)
 		}
 	}
 	if(command == "confighint"){
-	cash.update(
+	cash.updateMany(
      {exists: 1}, 
      {hints : 0},
      {multi:true}, 
