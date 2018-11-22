@@ -369,14 +369,64 @@ message.channel.send(result)
 				/////// THERE IS NOW A PHONE!!!! NAAAAANNNNIIIIIIII??????//////
 
 				
-			if(command == "buyhint"){
+				if(command == "buyhint"){
 	cash.findOne({
 			UserId: message.author.id,
 			ServerId: message.guild.id
-		}, (err, bal, bankbal, hints, UserId) => {
+		}, async(err, bal, bankbal, hints, UserId) => {
 		var price = Math.floor((bal.bal+bal.bankbal)*0.1 + bal.hints - 0.000000000000000041*bal.UserId.toString())
-			message.channel.send("Hints are expensive! Right now they are..." + `${price}`)
-			}	)
+			message.channel.send("Hints are expensive! Right now they are..." + `${price}` +" Are you sure you want to purchase one? type 1 for yes 2 for no");
+					 try {
+		                var response = await message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 3, {
+		                    maxMatches: 1,
+		                    time: 5000,
+		                    errors: ['time']
+		                });
+		            } catch (err) {
+		                console.error(err);
+		                console.log(response);
+		                return message.channel.send('No or invalid value entered canceling order.');
+		            }
+		            var option = parseInt(response.first().content);
+		            if (option == 1) {
+			    message.channel.send("Which account would you like to use? Pocket change:" + `${bal.bal}` + " or banked money: " + `${bal.bankbal}` + "\n Type 1 for pocket money, and 2 for banked money." )
+			    	 try {
+		                var response = await message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 3, {
+		                    maxMatches: 1,
+		                    time: 5000,
+		                    errors: ['time']
+		                });
+		            } catch (err) {
+		                console.error(err);
+		                console.log(response);
+		                return message.channel.send('No or invalid value entered canceling order.');
+		            }
+		            var optiont = parseInt(response.first().content);
+		            if (optiont == 1) {
+			    message.channel.send("Processing order with pocket change...")
+				    if(price > bal.bal){
+				    return message.channel.send("Insufficient balance! cancelling order...")
+				    }else{
+				    	    bal.bal = bal.bal - price
+					    bal.hints = bal.hints + 1
+					    bal.save().catch(err => console.log(err))
+				    message.channel.send("Order complete! You have " + `${bal.hints}` + " hints!")
+				    }
+			    }else if(optiont == 2){
+			    message.channel.send("processing order with banked money...")
+				    if(price > bal.bankbal){
+				    return message.channel.send("Insufficient balance! cancelling order...")
+				    }else{
+					 bal.bankbal = bal.bankbal - price
+					 bal.hints = bal.hints + 1
+					 bal.save().catch(err => console.log(err))
+					    message.channel.send("Order complete! You have " + `${bal.hints}` + " hints!")
+				    }
+			    }
+			    }else if(option == 2){
+			    message.channel.send("Understood, cancelling order.")
+			    }
+	})
 			}
 	if (command === "eval") {
 		if (message.author.id !== "347885325940424714") {
