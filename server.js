@@ -369,7 +369,7 @@ message.channel.send(result)
 				/////// THERE IS NOW A PHONE!!!! NAAAAANNNNIIIIIIII??????//////
 
 				
-			if(command == "Buyhint"){
+			if(command == "buyhint"){
 	cash.findOne({
 			UserId: message.author.id,
 			ServerId: message.guild.id
