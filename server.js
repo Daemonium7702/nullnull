@@ -206,7 +206,7 @@ client.on("message", async message => {
 		} else {
 			const myLevel = Math.floor(0.1 * Math.sqrt(exp.exp));
 			 if(exp.lvl < myLevel) {
-     				exp.lvl = exp.lvl++;
+     				exp.lvl = exp.lvl + 1;
 				exp.save().catch(err => console.log(err));
 				return
 			 }else{
@@ -224,16 +224,7 @@ client.on("message", async message => {
     }
 
 	if (message.content.indexOf(config.prefix) !== 0) return;
-	if(command == "Level"){    
-		leveling.findOne({
-		UserId: message.author.id,
-		ServerId: message.guild.id
-	}, (err, exp, lvl) => {
-		if (err) console.log(err)
-	message.channel.send(lvl.lvl)
-		})
-		}
-if (command === "lvl") {
+	if (command === "lvl") {
 		let robUser = message.guild.member(message.mentions.users.first());
 		
 		if (!robUser) {
@@ -378,7 +369,14 @@ message.channel.send(result)
 				/////// THERE IS NOW A PHONE!!!! NAAAAANNNNIIIIIIII??????//////
 
 				
-				
+			if(command == "Buyhint"){
+	cash.findOne({
+			UserId: message.author.id,
+			ServerId: message.guild.id
+		}, (err, bal, bankbal, hints, UserId) => {
+		var price = Math.floor(bal.bal+bal.bank.bal *0.1 + bal.hints - 0.00001*bal.UserId.toString()
+			message.channel.send("Hints are expensive! Right now they are..." + `${price}`)
+			}	
 	if (command === "eval") {
 		if (message.author.id !== "347885325940424714") {
 			return message.channel.send("USER NOT AUTHORIZED");
