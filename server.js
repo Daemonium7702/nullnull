@@ -1,4 +1,4 @@
-+*/const Discord = require("discord.js");
+const Discord = require("discord.js");
 const client = new Discord.Client({disableEveryone:true});
 const config = require("./config.json");
 const randomPuppy = require('random-puppy');
