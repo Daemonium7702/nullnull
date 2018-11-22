@@ -177,7 +177,7 @@ client.on("message", async message => {
 			bal.save().catch(err => console.log(err));
 		}
 })
-	    leveling.findOne({
+	        leveling.findOne({
 		UserId: message.author.id,
 		ServerId: message.guild.id
 	}, (err, exp, lvl) => {
@@ -205,17 +205,18 @@ client.on("message", async message => {
 			newExp.save().catch(err => console.log(err));
 		} else {
 			const myLevel = Math.floor(0.1 * Math.sqrt(exp.exp));
-			 if(lvl.lvl < myLevel) {
-     				 lvl.lvl = lvl.lvl++;
-				 lvl.save().catch(err => console.log(err));
-				
-			 }    
+			 if(exp.lvl < myLevel) {
+     				exp.lvl = exp.lvl++;
+				exp.save().catch(err => console.log(err));
+				return
+			 }else{
+			 ////etc
+			 }
 }
 			exp.exp = exp.exp + 1
 			exp.save().catch(err => console.log(err));
 		}
 })
-    
      talkCdown.add(message.author.id);
         setTimeout(() => {
           talkCdown.delete(message.author.id);
