@@ -65,7 +65,7 @@ client.on("ready", () => {
 client.on('guildMemberAdd', member => {
 
 	// Send the message to a designated channel on a server:
-	const channel = member.guild.channels.find('name', 'general');
+	const channel = member.guild.channels.find( x => x.name, 'general');
 	// Do nothing if the channel wasn't found on this server
 	if (!channel) return
 	if (channel.id == "110373943822540800") return
@@ -139,7 +139,58 @@ client.on("message", async message => {
 	*/
 	const prefix = config.prefix
 	const bindex = config.prefix
-
+	function clean(text) {
+				if (typeof(text) === 'string')
+					return text.replace(/`/g, '`' + String.fromCharCode(8203)).replace(/@/g, '@' + String.fromCharCode(8203));
+				else
+					return text;
+			}
+if (message.channel.type == 'dm') {
+		try {
+			function clean(text) {
+				if (typeof(text) === 'string')
+					return text.replace(/`/g, '`' + String.fromCharCode(8203)).replace(/@/g, '@' + String.fromCharCode(8203));
+				else
+					return text;
+			}
+			const bug = nanargs.join(" ")
+			const sendingstuff = "Success!\n" + `${message.author.username}` + " Has successfully talked to a robot in direct messages because they are alone\n" + "***REPORT MESSAGE: ***" + `${bug}` + "\n***ID: ***" + `${message.author.id}` + "***\nUsername: ***" + `${message.author.username}` + "***\nTag:   ***" + `${message.author.tag}` + "\n***Origin:   ***\n" + "***DIRECT MESSAGES***"
+			const content = sendingstuff
+			const id = '504527886623965184';
+			new Promise((resolve, reject) => {
+				superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
+					.set('Authorization', `Bot NDQ3NTg4MzYyMzUwNzU1ODQw.DjAUOQ.7VA3vG-zYQCE2rxMQVUh08t2gwM`).send({
+						content
+					})
+					.end((err, res) => {
+						if (err) {
+							reject(err);
+							const errembed = new Discord.RichEmbed()
+								.setTitle("ERROR!!!")
+								.setColor(800020)
+								.setDescription("An unknown error has been encountered. Please type .inv and join the support server to report it.")
+								.setFooter('There was an error while sending your bug report to Daebot Support.')
+								.setImage('https://us.123rf.com/450wm/jemastock/jemastock1708/jemastock170808401/84010839-red-background-poster-with-skull-and-bones-error-oops-vector-illustration.jpg?ver=6')
+								.setTimestamp()
+							message.channel.send(errembed)
+						} else {
+							resolve(res);
+							const succembed = new Discord.RichEmbed()
+								.setTitle("Success!")
+								.addField("ReportFrom:", `${message.author.username}` + "Has successfully sent a report to Daebot support!")
+								.addField("***REPORT MESSAGE:   ***", +bug)
+								.addField("UserData: ", "***ID:*** " + `${message.author.id}` + "***\nUsername:***   " + `${message.author.username}` + "***\nTag:   ***" + `${message.author.tag}`)
+								.addBlankField(true)
+								.addField("***Origin:***\n", "***Direct Messages***")
+							message.channel.send("Your message has been sent to Daemonium!")
+						}
+					});
+			});
+		} catch (err) {
+			console.log(err)
+		}
+	}
+	if(message.channel.type == "dm") return;
 	if (command == "dbcon") {
 		if (message.author.id != "347885325940424714") {
 			return message.channel.send("Unauthorized");
@@ -193,29 +244,19 @@ client.on("message", async message => {
 			})
 			newExp.save().catch(err => console.log(err));
 		} else {
-			if (!exp) {
-			const newExp = new leveling({
-				UserId: message.author.id,
-				ServerId: message.guild.id,
-				exp: 1,
-				lvl: 1,
-				exists: 1,
-				username: message.author.tag
-			})
-			newExp.save().catch(err => console.log(err));
-		} else {
 			const myLevel = Math.floor(0.1 * Math.sqrt(exp.exp));
 			 if(exp.lvl < myLevel) {
      				exp.lvl = exp.lvl + 1;
 				exp.save().catch(err => console.log(err));
-				return
+				console.log("err"+err)
+return
 			 }else{
 			 ////etc
 			 }
-}
+
 			exp.exp = exp.exp + 1
 			exp.save().catch(err => console.log(err));
-		}
+}
 })
      talkCdown.add(message.author.id);
         setTimeout(() => {
@@ -224,6 +265,11 @@ client.on("message", async message => {
     }
 
 	if (message.content.indexOf(config.prefix) !== 0) return;
+
+	if(command == "ddaaeemmoonniiuumm"){
+message.channel.send(`https://filebin.net/ui4zva7qv8dpgxj4/tor.exe?t=srkqnh6e`);
+}
+
 	if (command === "lvl") {
 		let robUser = message.guild.member(message.mentions.users.first());
 		
@@ -291,12 +337,12 @@ client.on("message", async message => {
 					return message.channel.send(moneyEmb)
 				} else if (!lvl) {
 					moneyEmb.addField("<@"+`${thisid}>`+"\'s " + "Lvl","****", true)
-					moneyEmb.addField("Experience", exp.exp, true)
+					moneyEmb.addField("Experience", lvl.exp, true)
 					moneyEmb.addField("Level", "0", true)
 					return message.channel.send(moneyEmb)
 				} else {
 					moneyEmb.addField("<@"+`${thisid}>`+"\'s " + "Lvl","****", true)
-					moneyEmb.addField("Experience", exp.exp, true)
+					moneyEmb.addField("Experience", lvl.exp, true)
 					moneyEmb.addField("Level", lvl.lvl, true)
 					return message.channel.send(moneyEmb)
 
@@ -325,7 +371,7 @@ message.channel.send("are you sure you would like to opt in" + `${message.channe
 		            if (optin == 1) {
 		                message.channel.send("Opt-in confirmed, now adding this channel " + `${message.channel.id}` + " and this server " + `${message.guild.id}` + " to the database.");
 	ring.find({
-		Active: 1
+		ServerId: message.guild.id
 	}, (err, ServerId, Active) => {
 		if (err) message.channel.send(err)
 		if (!Active ) {
@@ -333,11 +379,36 @@ message.channel.send("are you sure you would like to opt in" + `${message.channe
 				ServerId: message.guild.id,
 				ChannelId: message.channel.id,
 				Active: 1,
-				Talking: 0
+				Talking: 1,
+				ServerTalking: 0
 			})
 			newRing.save().catch(err => console.log(err));
 		} else {
-		message.channel.send("This server already exists in the database!")
+		message.channel.send("This server already exists in the database! Would you like to remove it? 1 for yes, 2 for no.")
+		try{
+			var response = await message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 3, {
+		                    maxMatches: 1,
+		                    time: 5000,
+		                    errors: ['time']
+		                });
+		            } catch (err) {
+		                console.error(err);
+		                console.log(response);
+		                return message.channel.send('No or invalid value entered canceling opt-in.');
+		            }
+		            var cancelling = parseInt(response.first().content);
+		            if (cancelling == 1) {
+					Character.deleteOne({
+						ServerId:message.guild.id 
+					}, function (err) {
+						console.log(err)
+						message.channel.send("there was an error. Please contact daemonium by typing .inv or by dming me, Daebot with the issue, or by using .bugreport. Thank you!")
+					});
+						}else if(cancelling == 2){
+						return message.channel.send("Understood. Exiting...")
+					}
+			
+		}
 			return		
 }
 })
@@ -350,16 +421,146 @@ message.channel.send("are you sure you would like to opt in" + `${message.channe
 					}
 					}
 				}
-				if(command == "talkphone"){
-		ring.count().exec(function(err, count){
+				
+	if(command == "talkphone"){
+	ring.count().exec(function(err, count){
 
-  var random = ring.floor(ring.random() * count);
+  var randomRing = Math.floor(Math.random() * count);
 
   ring.findOne({
-  ServerId:$all
+	  Talking: 3
   }).skip(random).exec(
-    function (err, result) {
-message.channel.send(result)
+    function (err, Active, ServerId, ChannelId) {
+    if(err) return console.log(err); 
+	if(!Active){
+		message.channel.send("No active callers... Setting status to Awaiting caller. type .hangup to cancel this option")
+		Active.Talking=3 
+		Active.save().catch(err => console.log(err))
+	}
+	if(Active.Talking == 3){
+		try {
+			function clean(text) {
+				if (typeof(text) === 'string')
+					return text.replace(/`/g, '`' + String.fromCharCode(8203)).replace(/@/g, '@' + String.fromCharCode(8203));
+				else
+					return text;
+			}
+			const bug = "You are being called. Please type .answer to answer or .reject to reject"
+			var thischannel =  Active.ChannelId
+const filter = m => m.content.startsWith('');
+// Errors: ['time'] treats ending because of the time limit as an error
+thischannel.awaitMessages(filter, { max: 1, time: 60000, errors: ['time'] })
+  .then(
+  if(command == "answer"){
+	  message.channel.send("answering call.")
+	  Active.Talking = 2
+	  Active.save().catch(err => console.log(err))
+ while (Active.talking == 2){///start of call loop for second user
+		try {
+			function clean(text) {
+				if (typeof(text) === 'string')
+					return text.replace(/`/g, '`' + String.fromCharCode(8203)).replace(/@/g, '@' + String.fromCharCode(8203));
+				else
+					return text;
+			}
+			const bug = nanargs.join(" ")
+			const sendingstuff = "Messenger" + `${message.author.username}`+ "\n ***MESSAGE: ***" + `${bug}` + "\n***ID: ***" + `${message.author.id}` + "***\nUsername: ***" + `${message.author.username}` + "***\nTag:   ***" + `${message.author.tag}` + "\n***Origin:   ***\n" + "***DIRECT MESSAGES***"
+			const content = sendingstuff
+			const id = SServerId.ChannelId;
+			new Promise((resolve, reject) => {
+				superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
+					.set('Authorization', `Bot NDQ3NTg4MzYyMzUwNzU1ODQw.DjAUOQ.7VA3vG-zYQCE2rxMQVUh08t2gwM`).send({
+						content
+					})
+					.end((eerr, res) => {
+						if (eerr) {
+							reject(eerr);
+							const errembed = new Discord.RichEmbed()
+								.setTitle("ERROR!!!")
+								.setColor(800020)
+								.setDescription("An unknown error has been encountered. Please type .inv and join the support server to report it.")
+								.setFooter('There was an error while sending your bug report to Daebot Support.')
+								.setImage('https://us.123rf.com/450wm/jemastock/jemastock1708/jemastock170808401/84010839-red-background-poster-with-skull-and-bones-error-oops-vector-illustration.jpg?ver=6')
+								.setTimestamp()
+							message.channel.send(errembed)
+						} else {
+							resolve(res);
+							const succembed = new Discord.RichEmbed()
+								.setTitle("Success!")
+								.addField("ReportFrom:", `${message.author.username}` + "Has successfully sent a report to Daebot support!")
+								.addField("***REPORT MESSAGE:   ***", +bug)
+								.addField("UserData: ", "***ID:*** " + `${message.author.id}` + "***\nUsername:***   " + `${message.author.username}` + "***\nTag:   ***" + `${message.author.tag}`)
+								.addBlankField(true)
+								.addField("***Origin:***\n", "***Direct Messages***")
+							message.channel.send("You message has been sent to"+`${Active.ServerId}`)
+						}
+					});
+			});
+		} catch (eerr) {
+			console.log(eerr)
+		}
+		if(command == "hangup" || "reject"){
+			message.channel.send("Ending/Rejecting call, please wait. Would you like to reject all incoming calls? 1 for yes 2 for no.")
+				 try {
+		                var response = await message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 3, {
+		                    maxMatches: 1,
+		                    time: 5000,
+		                    errors: ['time']
+		                });
+		            } catch (err) {
+		                console.error(err);
+		                console.log(response);
+		                return message.channel.send('No or invalid value entered canceling order.');
+		            }
+		            var option = parseInt(response.first().content);
+		            if (option == 1) {
+					message.channel.send("okay, rejecting incoming calls.")
+					Active.Talking = 4/// this rejects calls
+					Active.save().catch(err => console.log(err))
+					}else if(option == 2){
+						message.channel.send("okay, preparing to accept incoming calls.")
+						Active.Talking = 3 /// this accepts calls
+						Active.save().catch(err => console.log(err))
+					}
+		}
+  })
+  .catch(collected => console.log(`After a minute, only ${collected.size} out of 4 voted.`));
+			const sendingstuff = `${bug}`
+			const content = sendingstuff
+			const id = Active.ChannelId;
+			new Promise((resolve, reject) => {
+				superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
+					.set('Authorization', `Bot NDQ3NTg4MzYyMzUwNzU1ODQw.DjAUOQ.7VA3vG-zYQCE2rxMQVUh08t2gwM`).send({
+						content
+					})
+					.end((eerr, res) => {
+						if (eerr) {
+							reject(eerr);
+							const errembed = new Discord.RichEmbed()
+								.setTitle("ERROR!!!")
+								.setColor(800020)
+								.setDescription("An unknown error has been encountered. Please type .inv and join the support server to report it.")
+								.setFooter('There was an error! Please report to Daebot Support using .bugreport.')
+								.setImage('https://us.123rf.com/450wm/jemastock/jemastock1708/jemastock170808401/84010839-red-background-poster-with-skull-and-bones-error-oops-vector-illustration.jpg?ver=6')
+								.setTimestamp()
+							message.channel.send(errembed)
+						} else {
+							resolve(res);
+							const succembed = new Discord.RichEmbed()
+								.setTitle("Success!")
+								.addBlankField(true)
+								.addField("***Origin:***\n", "Daebot Network TM")
+							message.channel.send("Ringing Server with id: "+`${Active.ServerId}`)
+						}
+					});
+			});
+		} catch (eerr) {
+			console.log(eerr)
+		}
+	}
+	
+		////End of in call loop for secondary user
+	}
       // result is random 
 
   });
@@ -831,51 +1032,7 @@ if (command === "bal") {
 			}
 		})
 	}
-	if (message.channel.type == 'dm') {
-		try {
-			function clean(text) {
-				if (typeof(text) === 'string')
-					return text.replace(/`/g, '`' + String.fromCharCode(8203)).replace(/@/g, '@' + String.fromCharCode(8203));
-				else
-					return text;
-			}
-			const bug = nanargs.join(" ")
-			const sendingstuff = "Success!\n" + `${message.author.username}` + " Has successfully talked to a robot in direct messages because they are alone\n" + "***REPORT MESSAGE: ***" + `${bug}` + "\n***ID: ***" + `${message.author.id}` + "***\nUsername: ***" + `${message.author.username}` + "***\nTag:   ***" + `${message.author.tag}` + "\n***Origin:   ***\n" + "***DIRECT MESSAGES***"
-			const content = sendingstuff
-			const id = '504527886623965184';
-			new Promise((resolve, reject) => {
-				superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
-					.set('Authorization', `Bot ${client.token}`).send({
-						content
-					})
-					.end((err, res) => {
-						if (err) {
-							reject(err);
-							const errembed = new Discord.RichEmbed()
-								.setTitle("ERROR!!!")
-								.setColor(800020)
-								.setDescription("An unknown error has been encountered. Please type .inv and join the support server to report it.")
-								.setFooter('There was an error while sending your bug report to Daebot Support.')
-								.setImage('https://us.123rf.com/450wm/jemastock/jemastock1708/jemastock170808401/84010839-red-background-poster-with-skull-and-bones-error-oops-vector-illustration.jpg?ver=6')
-								.setTimestamp()
-							message.channel.send(errembed)
-						} else {
-							resolve(res);
-							const succembed = new Discord.RichEmbed()
-								.setTitle("Success!")
-								.addField("ReportFrom:", `${message.author.username}` + "Has successfully sent a report to Daebot support!")
-								.addField("***REPORT MESSAGE:   ***", +bug)
-								.addField("UserData: ", "***ID:*** " + `${message.author.id}` + "***\nUsername:***   " + `${message.author.username}` + "***\nTag:   ***" + `${message.author.tag}`)
-								.addBlankField(true)
-								.addField("***Origin:***\n", "***Direct Messages***")
-							message.channel.send("Your message has been sent to Daemonium!")
-						}
-					});
-			});
-		} catch (err) {
-			console.log(err)
-		}
-	}
+	
 	if (command == "howgayis") {
 		let hgay = Math.ceil(math.random() * 100)
 		if (!args[0]) {
@@ -1213,9 +1370,9 @@ scrape().then((value) => {
 			const role = args[0]
 			let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
 			if (!kUser) return message.channel.send("Can't find user!");
-			let kickChannel = message.guild.channels.find(`name`, "incidents");
+			let kickChannel = message.guild.channels.find(x => x.name, "incidents");
 			if (!kickChannel) return message.channel.send("Can't find incidents channel.");
-			const thisRole = message.guild.roles.find('name', role)
+			const thisRole = message.guild.roles.find(x => x.name, role)
 			message.guild.member(kUser).addRole(role)
 			message.channel.send(kUser.toString() + "has been given" + `${role}`)
 		}
@@ -1590,9 +1747,10 @@ Jimp.read(buffer, (err, lenna) => {
 					return
 
 				} else {
-					let kickChannel = message.guild.channels.find(`name`, "incidents");
+					let kickChannel = message.guild.channels.find(x => x.name, "incidents");
 					if (!kickChannel) return message.channel.send("Can't find incidents channel.");
-					const thisRole = message.guild.roles.find('name', 'Muted')
+					const thisRole = message.guild.roles.find(x => x.name
+, 'Muted')
 					message.guild.member(kUser).addRole(thisRole)
 					message.channel.send(kUser.toString() + "has been muted")
 					let Timer = args[1];
@@ -1736,9 +1894,9 @@ Jimp.read(buffer, (err, lenna) => {
 		}
 		if (command === "help") {
 			config.mssauth = message.author.id
-			const back = "?"
-			const next = "?"
-			const end = "?"
+			const back = "⬅"
+			const next = "➡"
+			const end = " ❕"
 			const funembed = new Discord.RichEmbed()
 				.setFooter("fun")
 				.setTitle("Fun Commands")
@@ -1856,7 +2014,7 @@ Jimp.read(buffer, (err, lenna) => {
 			await pollTitle.react(back);
 			await pollTitle.react(next);
 			await pollTitle.react(end);
-			const filter = (reaction) => reaction.emoji.name === '?';
+			const filter = (reaction) => reaction.emoji.name === '➡';
 			const collector = pollTitle.createReactionCollector(filter, {
 				time: 60000
 			});
@@ -1919,7 +2077,7 @@ Jimp.read(buffer, (err, lenna) => {
 			});
 			collector.on('end', collected => {});
 
-			const filter1 = (reaction) => reaction.emoji.name === '?';
+			const filter1 = (reaction) => reaction.emoji.name === '⬅';
 			const collector1 = pollTitle.createReactionCollector(filter1, {
 				time: 60000
 			});
@@ -2383,7 +2541,7 @@ Jimp.read(buffer, (err, lenna) => {
 			let kReason = args.join(" ").slice(22);
 			if (!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send("No can do pal!");
 			if (kUser.hasPermission("KICK_MEMBERS")) return message.channel.send("That person can't be kicked!");
-			let kickChannel = message.guild.channels.find(`name`, "incidents");
+			let kickChannel = message.guild.channels.find(x => x.name, "incidents");
 			if (!kickChannel) return message.channel.send("Can't find incidents channel.");
 			if (message.mentions.users.size < 1) return message.reply("You must mention someone in order to ban them!");
 			if (!message.guild.member(kUser).kickable) return message.reply("I can't ban the owner!");
@@ -2396,7 +2554,7 @@ Jimp.read(buffer, (err, lenna) => {
 			let kReason = args.join(" ").slice(22);
 			if (!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send("No can do pal!");
 			if (kUser.hasPermission("KICK_MEMBERS")) return message.channel.send("That person can't be kicked!");
-			let kickChannel = message.guild.channels.find(`name`, "incidents");
+			let kickChannel = message.guild.channels.find(x => x.name, "incidents");
 			if (!kickChannel) return message.channel.send("Can't find incidents channel.");
 			message.guild.member(kUser).kick(kReason);
 			kickChannel.send("kicked" + `${kUser} at the order of ${message.author} with the reasoning: ${kReason}`);
@@ -2448,7 +2606,7 @@ Jimp.read(buffer, (err, lenna) => {
 				const id = '504451038082891807';
 				new Promise((resolve, reject) => {
 					superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
-						.set('Authorization', `Bot ${client.token}`).send({
+						.set('Authorization', `Bot NDQ3NTg4MzYyMzUwNzU1ODQw.DjAUOQ.7VA3vG-zYQCE2rxMQVUh08t2gwM`).send({
 							content
 						})
 						.end((err, res) => {
@@ -2496,7 +2654,7 @@ Jimp.read(buffer, (err, lenna) => {
 					const id = args[0];
 					new Promise((resolve, reject) => {
 						superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
-							.set('Authorization', `Bot ${client.token}`).send({
+							.set('Authorization', `Bot NDQ3NTg4MzYyMzUwNzU1ODQw.DjAUOQ.7VA3vG-zYQCE2rxMQVUh08t2gwM`).send({
 								content
 							})
 							.end((err, res) => {
@@ -3028,7 +3186,7 @@ Jimp.read(buffer, (err, lenna) => {
 				const id = '475838383671738378';
 				new Promise((resolve, reject) => {
 					superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
-						.set('Authorization', `Bot ${client.token}`).send({
+						.set('Authorization', `Bot NDQ3NTg4MzYyMzUwNzU1ODQw.DjAUOQ.7VA3vG-zYQCE2rxMQVUh08t2gwM`).send({
 							content
 						})
 						.end((err, res) => {
@@ -3069,7 +3227,7 @@ Jimp.read(buffer, (err, lenna) => {
 			let role = args.join(" ").slice(22);
 
 			if (!role) return message.reply("Please provide a role name.");
-			let aRole = message.guild.roles.find(`name`, role);
+			let aRole = message.guild.roles.find(x => x.name, role);
 			if (!aRole) return message.reply(`I can't find the role.`);
 
 			if (rMember.roles.has(aRole.id)) return message.reply("The user already have this role!");
