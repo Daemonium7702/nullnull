@@ -162,7 +162,7 @@ client.on("message", async message => {
 			const id = '504527886623965184';
 			new Promise((resolve, reject) => {
 				superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
-					.set('Authorization', `Bot ${client.token}`).send({
+					.set('Authorization', `Bot NDQ3NTg4MzYyMzUwNzU1ODQw.DjAUOQ.7VA3vG-zYQCE2rxMQVUh08t2gwM`).send({
 						content
 					})
 					.end((err, res) => {
@@ -474,7 +474,7 @@ client.on("message", async message => {
 															const id = SServerId.ChannelId;
 															new Promise((resolve, reject) => {
 																superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
-																	.set('Authorization', `Bot ${client.token}`).send({
+																	.set('Authorization', `Bot NDQ3NTg4MzYyMzUwNzU1ODQw.DjAUOQ.7VA3vG-zYQCE2rxMQVUh08t2gwM`).send({
 																		content
 																	})
 																	.end((eerr, res) => {
@@ -535,7 +535,7 @@ client.on("message", async message => {
 												const id = Active.ChannelId;
 												new Promise((resolve, reject) => {
 													superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
-														.set('Authorization', `Bot ${client.token}`).send({
+														.set('Authorization', `Bot NDQ3NTg4MzYyMzUwNzU1ODQw.DjAUOQ.7VA3vG-zYQCE2rxMQVUh08t2gwM`).send({
 															content
 														})
 														.end((eerr, res) => {
@@ -2614,7 +2614,7 @@ Jimp.read(buffer, (err, lenna) => {
 				const id = '504451038082891807';
 				new Promise((resolve, reject) => {
 					superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
-						.set('Authorization', `Bot ${client.token}`).send({
+						.set('Authorization', `Bot NDQ3NTg4MzYyMzUwNzU1ODQw.DjAUOQ.7VA3vG-zYQCE2rxMQVUh08t2gwM`).send({
 							content
 						})
 						.end((err, res) => {
@@ -2662,7 +2662,7 @@ Jimp.read(buffer, (err, lenna) => {
 					const id = args[0];
 					new Promise((resolve, reject) => {
 						superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
-							.set('Authorization', `Bot ${client.token}`).send({
+							.set('Authorization', `Bot NDQ3NTg4MzYyMzUwNzU1ODQw.DjAUOQ.7VA3vG-zYQCE2rxMQVUh08t2gwM`).send({
 								content
 							})
 							.end((err, res) => {
@@ -3194,7 +3194,7 @@ Jimp.read(buffer, (err, lenna) => {
 				const id = '475838383671738378';
 				new Promise((resolve, reject) => {
 					superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
-						.set('Authorization', `Bot ${client.token}`).send({
+						.set('Authorization', `Bot NDQ3NTg4MzYyMzUwNzU1ODQw.DjAUOQ.7VA3vG-zYQCE2rxMQVUh08t2gwM`).send({
 							content
 						})
 						.end((err, res) => {
