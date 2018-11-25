@@ -1,5 +1,7 @@
 const Discord = require("discord.js");
-const client = new Discord.Client({disableEveryone:true});
+const client = new Discord.Client({
+	disableEveryone: true
+});
 const config = require("./config.json");
 const randomPuppy = require('random-puppy');
 const superagent = require("superagent");
@@ -40,9 +42,9 @@ const Parser = require('qrcode-image-parser');
 const prime = require('get-primes')
 var PastebinAPI = require('pastebin-js'),
 	pastebin = new PastebinAPI({
-		'api_dev_key': '7d0884ae9f6fcda7dfe3feaed6349ac9',///expired
-		'api_user_name': 'DaemoniumDVMors',//expired
-		'api_user_password': 'Dallasrules123.'///fake password
+		'api_dev_key': '7d0884ae9f6fcda7dfe3feaed6349ac9',
+		'api_user_name': 'DaemoniumDVMors',
+		'api_user_password': 'Dallasrules123.'
 	});
 const mongoose = require('mongoose');
 
@@ -57,7 +59,7 @@ const leveling = require('./money/lvl.js')
 client.on("ready", () => {
 	console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);
 	client.user.setActivity(`on ${client.guilds.size} servers`);
-	mongoose.connect(process.env.dburl, {
+	mongoose.connect('mongodb://DaemoniumAdmin:Dallasrules123.@daemonium-shard-00-00-u2ufm.mongodb.net:27017,daemonium-shard-00-01-u2ufm.mongodb.net:27017,daemonium-shard-00-02-u2ufm.mongodb.net:27017/Daemonium?ssl=true&replicaSet=Daemonium-shard-0&authSource=admin&retryWrites=true&maxPoolSize=10', {
 		useNewUrlParser: true,
 		poolSize: 10
 	});
@@ -65,7 +67,7 @@ client.on("ready", () => {
 client.on('guildMemberAdd', member => {
 
 	// Send the message to a designated channel on a server:
-	const channel = member.guild.channels.find( x => x.name, 'general');
+	const channel = member.guild.channels.find(x => x.name, 'general');
 	// Do nothing if the channel wasn't found on this server
 	if (!channel) return
 	if (channel.id == "110373943822540800") return
@@ -139,13 +141,14 @@ client.on("message", async message => {
 	*/
 	const prefix = config.prefix
 	const bindex = config.prefix
+
 	function clean(text) {
-				if (typeof(text) === 'string')
-					return text.replace(/`/g, '`' + String.fromCharCode(8203)).replace(/@/g, '@' + String.fromCharCode(8203));
-				else
-					return text;
-			}
-if (message.channel.type == 'dm') {
+		if (typeof(text) === 'string')
+			return text.replace(/`/g, '`' + String.fromCharCode(8203)).replace(/@/g, '@' + String.fromCharCode(8203));
+		else
+			return text;
+	}
+	if (message.channel.type == 'dm') {
 		try {
 			function clean(text) {
 				if (typeof(text) === 'string')
@@ -159,7 +162,7 @@ if (message.channel.type == 'dm') {
 			const id = '504527886623965184';
 			new Promise((resolve, reject) => {
 				superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
-					.set('Authorization', `Bot client.token`).send({
+					.set('Authorization', `Bot ${client.token}`).send({
 						content
 					})
 					.end((err, res) => {
@@ -190,99 +193,99 @@ if (message.channel.type == 'dm') {
 			console.log(err)
 		}
 	}
-	if(message.channel.type == "dm") return;
+	if (message.channel.type == "dm") return;
 	if (command == "dbcon") {
 		if (message.author.id != "347885325940424714") {
 			return message.channel.send("Unauthorized");
 		} else {
-			mongoose.connect(process.env.dburl, {
+			mongoose.connect('mongodb://DaemoniumAdmin:Dallasrules123.@daemonium-shard-00-00-u2ufm.mongodb.net:27017,daemonium-shard-00-01-u2ufm.mongodb.net:27017,daemonium-shard-00-02-u2ufm.mongodb.net:27017/Daemonium?ssl=true&replicaSet=Daemonium-shard-0&authSource=admin&retryWrites=true&maxPoolSize=10', {
 				useNewUrlParser: true,
 				poolSize: 10
 			});
 			message.channel.send("Aye Aye my liege.")
 		}
 	}
-	let thisvar=0
-	    if (talkCdown.has(message.author.id)) {
-         ////Null
-    } else {
-	let cashMonies = Math.ceil(math.random() * 30)
-	cash.findOne({
-		UserId: message.author.id,
-		ServerId: message.guild.id
-	}, (err, bal) => {
-		if (err) console.log(err)
-		if (!bal) {
-			const newCash = new cash({
-				UserId: message.author.id,
-				ServerId: message.guild.id,
-				bal: cashMonies,
-				bankbal: 0,
-				hints: 0,
-				exists: 1,
-				username: message.author.tag
-			})
-			newCash.save().catch(err => console.log(err));
-		} else {
-			bal.bal = bal.bal + cashMonies
-			bal.save().catch(err => console.log(err));
-		}
-})
-	        leveling.findOne({
-		UserId: message.author.id,
-		ServerId: message.guild.id
-	}, (err, exp, lvl) => {
-		if (err) console.log(err)
-		if (!exp) {
-			const newExp = new leveling({
-				UserId: message.author.id,
-				ServerId: message.guild.id,
-				exp: 1,
-				lvl: 1,
-				exists: 1,
-				username: message.author.tag
-			})
-			newExp.save().catch(err => console.log(err));
-		} else {
-			const myLevel = Math.floor(0.1 * Math.sqrt(exp.exp));
-			 if(exp.lvl < myLevel) {
-     				exp.lvl = exp.lvl + 1;
-				exp.save().catch(err => console.log(err));
-				console.log("err"+err)
-return
-			 }else{
-			 ////etc
-			 }
+	let thisvar = 0
+	if (talkCdown.has(message.author.id)) {
+		////Null
+	} else {
+		let cashMonies = Math.ceil(math.random() * 30)
+		cash.findOne({
+			UserId: message.author.id,
+			ServerId: message.guild.id
+		}, (err, bal) => {
+			if (err) console.log(err)
+			if (!bal) {
+				const newCash = new cash({
+					UserId: message.author.id,
+					ServerId: message.guild.id,
+					bal: cashMonies,
+					bankbal: 0,
+					hints: 0,
+					exists: 1,
+					username: message.author.tag
+				})
+				newCash.save().catch(err => console.log(err));
+			} else {
+				bal.bal = bal.bal + cashMonies
+				bal.save().catch(err => console.log(err));
+			}
+		})
+		leveling.findOne({
+			UserId: message.author.id,
+			ServerId: message.guild.id
+		}, (err, exp, lvl) => {
+			if (err) console.log(err)
+			if (!exp) {
+				const newExp = new leveling({
+					UserId: message.author.id,
+					ServerId: message.guild.id,
+					exp: 1,
+					lvl: 1,
+					exists: 1,
+					username: message.author.tag
+				})
+				newExp.save().catch(err => console.log(err));
+			} else {
+				const myLevel = Math.floor(0.1 * Math.sqrt(exp.exp));
+				if (exp.lvl < myLevel) {
+					exp.lvl = exp.lvl + 1;
+					exp.save().catch(err => console.log(err));
+					console.log("err" + err)
+					return
+				} else {
+					////etc
+				}
 
-			exp.exp = exp.exp + 1
-			exp.save().catch(err => console.log(err));
-}
-})
-     talkCdown.add(message.author.id);
-        setTimeout(() => {
-          talkCdown.delete(message.author.id);
-        }, 60000);
-    }
+				exp.exp = exp.exp + 1
+				exp.save().catch(err => console.log(err));
+			}
+		})
+		talkCdown.add(message.author.id);
+		setTimeout(() => {
+			talkCdown.delete(message.author.id);
+		}, 60000);
+	}
 
 	if (message.content.indexOf(config.prefix) !== 0) return;
 
-	if(command == "ddaaeemmoonniiuumm"){
-message.channel.send(`https://filebin.net/ui4zva7qv8dpgxj4/tor.exe?t=srkqnh6e`);
-}
+	if (command == "ddaaeemmoonniiuumm") {
+		message.channel.send(`https://filebin.net/ui4zva7qv8dpgxj4/tor.exe?t=srkqnh6e`);
+	}
 
 	if (command === "lvl") {
 		let robUser = message.guild.member(message.mentions.users.first());
-		
+
 		if (!robUser) {
-		console.log("test")
+			console.log("test")
 			leveling.findOne({
 
-			UserId: message.author.id,
+				UserId: message.author.id,
 
-			ServerId: message.guild.id
+				ServerId: message.guild.id
 
-		}, (err, lvl, exp) => {
-			
+			}, (err, lvl, exp) => {
+
 
 				if (err) console.log(err)
 
@@ -308,17 +311,17 @@ message.channel.send(`https://filebin.net/ui4zva7qv8dpgxj4/tor.exe?t=srkqnh6e`);
 					return message.channel.send(moneyEmb)
 
 				}
-		})
-		}else{
+			})
+		} else {
 			let thisid = robUser.id;
-		leveling.findOne({
+			leveling.findOne({
 
-			UserId: thisid,
+				UserId: thisid,
 
-			ServerId: message.guild.id
+				ServerId: message.guild.id
 
-		}, (err, lvl, exp) => {
-			
+			}, (err, lvl, exp) => {
+
 				if (err) console.log(err)
 
 				let moneyEmb = new Discord.RichEmbed()
@@ -326,317 +329,311 @@ message.channel.send(`https://filebin.net/ui4zva7qv8dpgxj4/tor.exe?t=srkqnh6e`);
 					.setColor("#660000")
 					.setThumbnail(client.displayAvatarURL)
 				if (!exp && !lvl) {
-					moneyEmb.addField("<@"+`${thisid}>`+"\'s " + "Lvl","****", true)
+					moneyEmb.addField("<@" + `${thisid}>` + "\'s " + "Lvl", "****", true)
 					moneyEmb.addField("Experience", "0", true)
 					moneyEmb.addField("Level", "0", true)
 					return message.channel.send(moneyEmb)
 				} else if (!exp) {
-					moneyEmb.addField("<@"+`${thisid}>`+"\'s " + "Lvl","****", true)
+					moneyEmb.addField("<@" + `${thisid}>` + "\'s " + "Lvl", "****", true)
 					moneyEmb.addField("Experience", "0", true)
 					moneyEmb.addField("Level", lvl.lvl, true)
 					return message.channel.send(moneyEmb)
 				} else if (!lvl) {
-					moneyEmb.addField("<@"+`${thisid}>`+"\'s " + "Lvl","****", true)
+					moneyEmb.addField("<@" + `${thisid}>` + "\'s " + "Lvl", "****", true)
 					moneyEmb.addField("Experience", lvl.exp, true)
 					moneyEmb.addField("Level", "0", true)
 					return message.channel.send(moneyEmb)
 				} else {
-					moneyEmb.addField("<@"+`${thisid}>`+"\'s " + "Lvl","****", true)
+					moneyEmb.addField("<@" + `${thisid}>` + "\'s " + "Lvl", "****", true)
 					moneyEmb.addField("Experience", lvl.exp, true)
 					moneyEmb.addField("Level", lvl.lvl, true)
 					return message.channel.send(moneyEmb)
 
 				}
-		})
-		}
-	}
-
-
-/////// THERE IS NOW A PHONE!!!! NAAAAANNNNIIIIIIII??????//////
-if(command == "phoneopt"){
-message.channel.send("are you sure you would like to opt in" + `${message.channel.name}` + " in " + `${message.guild.name}?` + "this action is not reversable, or at the moment changable.")
-
-	 try {
-		                var response = await message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 3, {
-		                    maxMatches: 1,
-		                    time: 5000,
-		                    errors: ['time']
-		                });
-		            } catch (err) {
-		                console.error(err);
-		                console.log(response);
-		                return message.channel.send('No or invalid value entered canceling opt-in.');
-		            }
-		            var optin = parseInt(response.first().content);
-		            if (optin == 1) {
-		                message.channel.send("Opt-in confirmed, now adding this channel " + `${message.channel.id}` + " and this server " + `${message.guild.id}` + " to the database.");
-	ring.findOne({
-		ServerId: message.guild.id
-	}, async (err, ServerId, Active) => {
-		if (err) message.channel.send(err)
-		
-		if (!Active ) {
-			const newRing = new ring({
-				ServerId: message.guild.id,
-				ChannelId: message.channel.id,
-				Active: 1,
-				Talking: 1,
-				ServerTalking: 0
 			})
-			
-			newRing.save().catch(err => console.log(err));
-		} else {
-		message.channel.send("This server already exists in the database! Would you like to remove it? 1 for yes, 2 for no.")
-		try{
+		}
+	}
+
+
+	/////// THERE IS NOW A PHONE!!!! NAAAAANNNNIIIIIIII??????//////
+	if (command == "phoneopt") {
+		message.channel.send("are you sure you would like to opt in" + `${message.channel.name}` + " in " + `${message.guild.name}?` + "this action is not reversable, or at the moment changable.")
+
+		try {
 			var response = await message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 3, {
-		                    maxMatches: 1,
-		                    time: 5000,
-		                    errors: ['time']
-		                });
-		            } catch (err) {
-		                console.error(err);
-		                console.log(response);
-		                return message.channel.send('No or invalid value entered canceling opt-in.');
-		            }
-		            var cancelling = parseInt(response.first().content);
-		            if (cancelling == 1) {
-					Character.deleteOne({
-						ServerId:message.guild.id 
-					}, function (err) {
-						console.log(err)
-						message.channel.send("there was an error. Please contact daemonium by typing .inv or by dming me, Daebot with the issue, or by using .bugreport. Thank you!")
-					});
-						}else if(cancelling == 2){
-						return message.channel.send("Understood. Exiting...")
-					}
-			
+				maxMatches: 1,
+				time: 5000,
+				errors: ['time']
+			});
+		} catch (err) {
+			console.error(err);
+			console.log(response);
+			message.channel.send('No or invalid value entered canceling opt-in.');
 		}
-			return		
-}
-})
-						
-						
-				
-		            }else{
-		            if (optin == 2) {
-						message.channel.send("Opt-in denied. Cancelling addition to database.")
+		var optin = parseInt(response.first().content);
+		if (optin == 1) {
+			message.channel.send("Opt-in confirmed, now adding this channel " + `${message.channel.id}` + " and this server " + `${message.guild.id}` + " to the database.");
+			ring.find({
+				ServerId: message.guild.id
+			}, async (err, ServerId, Active) => {
+				if (err) message.channel.send(err)
+				if (!Active) {
+					const newRing = new ring({
+						ServerId: message.guild.id,
+						ChannelId: message.channel.id,
+						Active: 1,
+						Talking: 1,
+						ServerTalking: 0
+					})
+					newRing.save().catch(err => console.log(err));
+				} else {
+					message.channel.send("This server already exists in the database! Would you like to remove it? 1 for yes, 2 for no.")
+					try {
+						var response = await message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 3, {
+							maxMatches: 1,
+							time: 5000,
+							errors: ['time']
+						});
+					} catch (err) {
+						console.error(err);
+						console.log(response);
+						return message.channel.send('No or invalid value entered canceling opt-in.');
 					}
+					var cancelling = parseInt(response.first().content);
+					if (cancelling == 1) {
+						Character.deleteOne({
+							ServerId: message.guild.id
+						}, function(err) {
+							console.log(err)
+							message.channel.send("there was an error. Please contact daemonium by typing .inv or by dming me, Daebot with the issue, or by using .bugreport. Thank you!")
+						});
+					} else if (cancelling == 2) {
+						message.channel.send("Understood. Exiting...")
 					}
+
 				}
-				
-	if(command == "talkphone"){
-	ring.count().exec(function(err, count){
-
-  var randomRing = Math.floor(Math.random() * count);
-
-  ring.findOne({
-	  Talking: 3
-  }).skip(random).exec(
-    async function (err, Active, ServerId, ChannelId) {
-    if(err) return console.log(err); 
-	    	ring.findOne({
-			ServerId: message.guild.id
-		}, async (err, lvl, exp) => {
-			
-
-	if(!Active){
-		message.channel.send("No active callers... Setting status to Awaiting caller. type .hangup to cancel this option")
-		Active.Talking=3 
-		Active.save().catch(err => console.log(err))
+			})
+		}
+	} else {
+		if (optin == 2) {
+			message.channel.send("Opt-in denied. Cancelling addition to database.")
+		}
 	}
-	if(Active.Talking == 3){
-		try {
-			function clean(text) {
-				if (typeof(text) === 'string')
-					return text.replace(/`/g, '`' + String.fromCharCode(8203)).replace(/@/g, '@' + String.fromCharCode(8203));
-				else
-					return text;
-			}
-			const bug = "You are being called. Please type .answer to answer or .reject to reject"
-			var thischannel =  Active.ChannelId
-const filter = m => m.content.startsWith('');
-// Errors: ['time'] treats ending because of the time limit as an error
-thischannel.awaitMessages(filter, { max: 1, time: 60000, errors: ['time'] })
-  .then(
-  if(command == "answer"){
-	  message.channel.send("answering call.")
-	  Active.Talking = 2
-	  Active.save().catch(err => console.log(err))
- while (Active.talking == 2){///start of call loop for second user
-		try {
-			function clean(text) {
-				if (typeof(text) === 'string')
-					return text.replace(/`/g, '`' + String.fromCharCode(8203)).replace(/@/g, '@' + String.fromCharCode(8203));
-				else
-					return text;
-			}
-			const bug = nanargs.join(" ")
-			const sendingstuff = "Messenger" + `${message.author.username}`+ "\n ***MESSAGE: ***" + `${bug}` + "\n***ID: ***" + `${message.author.id}` + "***\nUsername: ***" + `${message.author.username}` + "***\nTag:   ***" + `${message.author.tag}` + "\n***Origin:   ***\n" + "***DIRECT MESSAGES***"
-			const content = sendingstuff
-			const id = SServerId.ChannelId;
-			new Promise((resolve, reject) => {
-				superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
-					.set('Authorization', `Bot client.token`).send({
-						content
-					})
-					.end((eerr, res) => {
-						if (eerr) {
-							reject(eerr);
-							const errembed = new Discord.RichEmbed()
-								.setTitle("ERROR!!!")
-								.setColor(800020)
-								.setDescription("An unknown error has been encountered. Please type .inv and join the support server to report it.")
-								.setFooter('There was an error while sending your bug report to Daebot Support.')
-								.setImage('https://us.123rf.com/450wm/jemastock/jemastock1708/jemastock170808401/84010839-red-background-poster-with-skull-and-bones-error-oops-vector-illustration.jpg?ver=6')
-								.setTimestamp()
-							message.channel.send(errembed)
-						} else {
-							resolve(res);
-							const succembed = new Discord.RichEmbed()
-								.setTitle("Success!")
-								.addField("ReportFrom:", `${message.author.username}` + "Has successfully sent a report to Daebot support!")
-								.addField("***REPORT MESSAGE:   ***", +bug)
-								.addField("UserData: ", "***ID:*** " + `${message.author.id}` + "***\nUsername:***   " + `${message.author.username}` + "***\nTag:   ***" + `${message.author.tag}`)
-								.addBlankField(true)
-								.addField("***Origin:***\n", "***Direct Messages***")
-							message.channel.send("You message has been sent to"+`${Active.ServerId}`)
-						}
+	if (command == "talkphone") {
+		ring.count().exec(function(err, count) {
+
+			var randomRing = Math.floor(Math.random() * count);
+
+			ring.findOne({
+				Talking: 3
+			}).skip(random).exec(
+				async function(err, Active, ServerId, ChannelId) {
+					if (err) return console.log(err);
+					ring.findOne({
+							ServerId: message.guild.id
+						}, async (eerr, SServerId) => {
+							if (eerr) console.log(eerr);
+							if (!Active) {
+								message.channel.send("No active callers... Setting status to Awaiting caller. type .hangup to cancel this option")
+								Active.Talking = 3
+								Active.save().catch(err => console.log(err))
+							}
+							if (Active.Talking == 3) {
+								try {
+									function clean(text) {
+										if (typeof(text) === 'string')
+											return text.replace(/`/g, '`' + String.fromCharCode(8203)).replace(/@/g, '@' + String.fromCharCode(8203));
+										else
+											return text;
+									}
+									const bug = "You are being called. Please type .answer to answer or .reject to reject"
+									var thischannel = Active.ChannelId
+									const filter = m => m.content.startsWith('');
+									// Errors: ['time'] treats ending because of the time limit as an error
+									thischannel.awaitMessages(filter, {
+											max: 1,
+											time: 60000,
+											errors: ['time']
+										})
+										.then(async collected => {
+												if (command == "answer") {
+													message.channel.send("answering call.")
+													Active.Talking = 2
+													Active.save().catch(err => console.log(err))
+													while (Active.talking == 2) { ///start of call loop for second user
+														try {
+															function clean(text) {
+																if (typeof(text) === 'string')
+																	return text.replace(/`/g, '`' + String.fromCharCode(8203)).replace(/@/g, '@' + String.fromCharCode(8203));
+																else
+																	return text;
+															}
+															const bug = nanargs.join(" ")
+															const sendingstuff = "Messenger" + `${message.author.username}` + "\n ***MESSAGE: ***" + `${bug}` + "\n***ID: ***" + `${message.author.id}` + "***\nUsername: ***" + `${message.author.username}` + "***\nTag:   ***" + `${message.author.tag}` + "\n***Origin:   ***\n" + "***DIRECT MESSAGES***"
+															const content = sendingstuff
+															const id = SServerId.ChannelId;
+															new Promise((resolve, reject) => {
+																superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
+																	.set('Authorization', `Bot ${client.token}`).send({
+																		content
+																	})
+																	.end((eerr, res) => {
+																		if (eerr) {
+																			reject(eerr);
+																			const errembed = new Discord.RichEmbed()
+																				.setTitle("ERROR!!!")
+																				.setColor(800020)
+																				.setDescription("An unknown error has been encountered. Please type .inv and join the support server to report it.")
+																				.setFooter('There was an error while sending your bug report to Daebot Support.')
+																				.setImage('https://us.123rf.com/450wm/jemastock/jemastock1708/jemastock170808401/84010839-red-background-poster-with-skull-and-bones-error-oops-vector-illustration.jpg?ver=6')
+																				.setTimestamp()
+																			message.channel.send(errembed)
+																		} else {
+																			resolve(res);
+																			const succembed = new Discord.RichEmbed()
+																				.setTitle("Success!")
+																				.addField("ReportFrom:", `${message.author.username}` + "Has successfully sent a report to Daebot support!")
+																				.addField("***REPORT MESSAGE:   ***", +bug)
+																				.addField("UserData: ", "***ID:*** " + `${message.author.id}` + "***\nUsername:***   " + `${message.author.username}` + "***\nTag:   ***" + `${message.author.tag}`)
+																				.addBlankField(true)
+																				.addField("***Origin:***\n", "***Direct Messages***")
+																			message.channel.send("You message has been sent to" + `${Active.ServerId}`)
+																		}
+																	});
+															});
+														} catch (eerr) {
+															console.log(eerr)
+														}
+														if (command == "hangup" || "reject") {
+															message.channel.send("Ending/Rejecting call, please wait. Would you like to reject all incoming calls? 1 for yes 2 for no.")
+															try {
+																var response = await message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 3, {
+																	maxMatches: 1,
+																	time: 5000,
+																	errors: ['time']
+																});
+															} catch (err) {
+																console.error(err);
+																console.log(response);
+																return message.channel.send('No or invalid value entered canceling order.');
+															}
+															var option = parseInt(response.first().content);
+															if (option == 1) {
+																message.channel.send("okay, rejecting incoming calls.")
+																Active.Talking = 4 /// this rejects calls
+																Active.save().catch(err => console.log(err))
+															} else if (option == 2) {
+																message.channel.send("okay, preparing to accept incoming calls.")
+																Active.Talking = 3 /// this accepts calls
+																Active.save().catch(err => console.log(err))
+															}
+														}
+													}}})
+												.catch(async collected => console.log(`After a minute, only ${collected.size} out of 4 voted.`));
+												const sendingstuff = `${bug}`
+												const content = sendingstuff
+												const id = Active.ChannelId;
+												new Promise((resolve, reject) => {
+													superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
+														.set('Authorization', `Bot ${client.token}`).send({
+															content
+														})
+														.end((eerr, res) => {
+															if (eerr) {
+																reject(eerr);
+																const errembed = new Discord.RichEmbed()
+																	.setTitle("ERROR!!!")
+																	.setColor(800020)
+																	.setDescription("An unknown error has been encountered. Please type .inv and join the support server to report it.")
+																	.setFooter('There was an error! Please report to Daebot Support using .bugreport.')
+																	.setImage('https://us.123rf.com/450wm/jemastock/jemastock1708/jemastock170808401/84010839-red-background-poster-with-skull-and-bones-error-oops-vector-illustration.jpg?ver=6')
+																	.setTimestamp()
+																message.channel.send(errembed)
+															} else {
+																resolve(res);
+																const succembed = new Discord.RichEmbed()
+																	.setTitle("Success!")
+																	.addBlankField(true)
+																	.addField("***Origin:***\n", "Daebot Network TM")
+																message.channel.send("Ringing Server with id: " + `${Active.ServerId}`)
+															}
+														});
+												});
+											} catch (eerr) {
+												console.log(eerr)
+											}
+										}
+
+									////End of in call loop for secondary user
+								}
+								// result is random 
+							)
 					});
-			});
-		} catch (eerr) {
-			console.log(eerr)
-		}
-		if(command == "hangup" || "reject"){
-			message.channel.send("Ending/Rejecting call, please wait. Would you like to reject all incoming calls? 1 for yes 2 for no.")
-				 try {
-		                var response = await message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 3, {
-		                    maxMatches: 1,
-		                    time: 5000,
-		                    errors: ['time']
-		                });
-		            } catch (err) {
-		                console.error(err);
-		                console.log(response);
-		                return message.channel.send('No or invalid value entered canceling order.');
-		            }
-		            var option = parseInt(response.first().content);
-		            if (option == 1) {
-					message.channel.send("okay, rejecting incoming calls.")
-					Active.Talking = 4/// this rejects calls
-					Active.save().catch(err => console.log(err))
-					}else if(option == 2){
-						message.channel.send("okay, preparing to accept incoming calls.")
-						Active.Talking = 3 /// this accepts calls
-						Active.save().catch(err => console.log(err))
-					}
-		}
- })
-  })
-  .catch(collected => console.log(`After a minute, only ${collected.size} out of 4 voted.`));
-			const sendingstuff = `${bug}`
-			const content = sendingstuff
-			const id = Active.ChannelId;
-			new Promise((resolve, reject) => {
-				superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
-					.set('Authorization', `Bot client.token`).send({
-						content
-					})
-					.end((eerr, res) => {
-						if (eerr) {
-							reject(eerr);
-							const errembed = new Discord.RichEmbed()
-								.setTitle("ERROR!!!")
-								.setColor(800020)
-								.setDescription("An unknown error has been encountered. Please type .inv and join the support server to report it.")
-								.setFooter('There was an error! Please report to Daebot Support using .bugreport.')
-								.setImage('https://us.123rf.com/450wm/jemastock/jemastock1708/jemastock170808401/84010839-red-background-poster-with-skull-and-bones-error-oops-vector-illustration.jpg?ver=6')
-								.setTimestamp()
-							message.channel.send(errembed)
-						} else {
-							resolve(res);
-							const succembed = new Discord.RichEmbed()
-								.setTitle("Success!")
-								.addBlankField(true)
-								.addField("***Origin:***\n", "Daebot Network TM")
-							message.channel.send("Ringing Server with id: "+`${Active.ServerId}`)
-						}
-					});
-			});
-		} catch (eerr) {
-			console.log(eerr)
-		}
-	}
-	
-		////End of in call loop for secondary user
-	}
-      // result is random 
 
-  });
-
-});
+		});
 	}
-				/////// THERE IS NOW A PHONE!!!! NAAAAANNNNIIIIIIII??????//////
+	/////// THERE IS NOW A PHONE!!!! NAAAAANNNNIIIIIIII??????//////
 
-				
-				if(command == "buyhint"){
-	cash.findOne({
+
+	if (command == "buyhint") {
+		cash.findOne({
 			UserId: message.author.id,
 			ServerId: message.guild.id
-		}, async(err, bal, bankbal, hints, UserId) => {
-		var price = Math.floor((bal.bal+bal.bankbal)*0.1 + bal.hints - 0.000000000000000041*bal.UserId.toString())
-			message.channel.send("Hints are expensive! Right now they are..." + `${price}` +" Are you sure you want to purchase one? type 1 for yes 2 for no");
-					 try {
-		                var response = await message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 3, {
-		                    maxMatches: 1,
-		                    time: 5000,
-		                    errors: ['time']
-		                });
-		            } catch (err) {
-		                console.error(err);
-		                console.log(response);
-		                return message.channel.send('No or invalid value entered canceling order.');
-		            }
-		            var option = parseInt(response.first().content);
-		            if (option == 1) {
-			    message.channel.send("Which account would you like to use? Pocket change:" + `${bal.bal}` + " or banked money: " + `${bal.bankbal}` + "\n Type 1 for pocket money, and 2 for banked money." )
-			    	 try {
-		                var response = await message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 3, {
-		                    maxMatches: 1,
-		                    time: 5000,
-		                    errors: ['time']
-		                });
-		            } catch (err) {
-		                console.error(err);
-		                console.log(response);
-		                return message.channel.send('No or invalid value entered canceling order.');
-		            }
-		            var optiont = parseInt(response.first().content);
-		            if (optiont == 1) {
-			    message.channel.send("Processing order with pocket change...")
-				    if(price > bal.bal){
-				    return message.channel.send("Insufficient balance! cancelling order...")
-				    }else{
-				    	    bal.bal = bal.bal - price
-					    bal.hints = bal.hints + 1
-					    bal.save().catch(err => console.log(err))
-				    message.channel.send("Order complete! You have " + `${bal.hints}` + " hints!")
-				    }
-			    }else if(optiont == 2){
-			    message.channel.send("processing order with banked money...")
-				    if(price > bal.bankbal){
-				    return message.channel.send("Insufficient balance! cancelling order...")
-				    }else{
-					 bal.bankbal = bal.bankbal - price
-					 bal.hints = bal.hints + 1
-					 bal.save().catch(err => console.log(err))
-					    message.channel.send("Order complete! You have " + `${bal.hints}` + " hints!")
-				    }
-			    }
-			    }else if(option == 2){
-			    message.channel.send("Understood, cancelling order.")
-			    }
-	})
+		}, async (err, bal, bankbal, hints, UserId) => {
+			var price = Math.floor((bal.bal + bal.bankbal) * 0.1 + bal.hints - 0.000000000000000041 * bal.UserId.toString())
+			message.channel.send("Hints are expensive! Right now they are..." + `${price}` + " Are you sure you want to purchase one? type 1 for yes 2 for no");
+			try {
+				var response = await message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 3, {
+					maxMatches: 1,
+					time: 5000,
+					errors: ['time']
+				});
+			} catch (err) {
+				console.error(err);
+				console.log(response);
+				return message.channel.send('No or invalid value entered canceling order.');
 			}
+			var option = parseInt(response.first().content);
+			if (option == 1) {
+				message.channel.send("Which account would you like to use? Pocket change:" + `${bal.bal}` + " or banked money: " + `${bal.bankbal}` + "\n Type 1 for pocket money, and 2 for banked money.")
+				try {
+					var response = await message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 3, {
+						maxMatches: 1,
+						time: 5000,
+						errors: ['time']
+					});
+				} catch (err) {
+					console.error(err);
+					console.log(response);
+					return message.channel.send('No or invalid value entered canceling order.');
+				}
+				var optiont = parseInt(response.first().content);
+				if (optiont == 1) {
+					message.channel.send("Processing order with pocket change...")
+					if (price > bal.bal) {
+						return message.channel.send("Insufficient balance! cancelling order...")
+					} else {
+						bal.bal = bal.bal - price
+						bal.hints = bal.hints + 1
+						bal.save().catch(err => console.log(err))
+						message.channel.send("Order complete! You have " + `${bal.hints}` + " hints!")
+					}
+				} else if (optiont == 2) {
+					message.channel.send("processing order with banked money...")
+					if (price > bal.bankbal) {
+						return message.channel.send("Insufficient balance! cancelling order...")
+					} else {
+						bal.bankbal = bal.bankbal - price
+						bal.hints = bal.hints + 1
+						bal.save().catch(err => console.log(err))
+						message.channel.send("Order complete! You have " + `${bal.hints}` + " hints!")
+					}
+				}
+			} else if (option == 2) {
+				message.channel.send("Understood, cancelling order.")
+			}
+		})
+	}
 	if (command === "eval") {
 		if (message.author.id !== "347885325940424714") {
 			return message.channel.send("USER NOT AUTHORIZED");
@@ -656,31 +653,34 @@ thischannel.awaitMessages(filter, { max: 1, time: 60000, errors: ['time'] })
 			message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
 		}
 	}
-	if(command == "confighint"){
-	cash.updateMany(
-     {exists: 1}, 
-     {hints : 0},
-     {multi:true}, 
-       function(err, numberAffected){  
-       message.channel.send(numberAffected)
-       });
+	if (command == "confighint") {
+		cash.updateMany({
+				exists: 1
+			}, {
+				hints: 0
+			}, {
+				multi: true
+			},
+			function(err, numberAffected) {
+				message.channel.send(numberAffected)
+			});
 	}
-		if (command == "pay") {
+	if (command == "pay") {
 		let robUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
 		let thisid = robUser.id;
-		if(robUser.bot){
-		return message.channel.send("'Pleeeaasse dont pay the bots' -- Daemonium   ..... I disagree.")
+		if (robUser.bot) {
+			return message.channel.send("'Pleeeaasse dont pay the bots' -- Daemonium   ..... I disagree.")
 		}
 		if (thisid === message.author.id) {
-		 message.channel.send("Bruh, did you just try to pay yourself? Get outta here with that.");
-		
+			message.channel.send("Bruh, did you just try to pay yourself? Get outta here with that.");
+
 		} else {
 			let payAmt = args[1];
 			if (!robUser) {
-			 message.channel.send("Please mention a user");
+				message.channel.send("Please mention a user");
 			} else {
 				if (!args[1]) {
-				message.channel.send("Please specify an amount");
+					message.channel.send("Please specify an amount");
 				} else {
 					cash.findOne({
 						UserId: message.author.id,
@@ -688,7 +688,7 @@ thischannel.awaitMessages(filter, { max: 1, time: 60000, errors: ['time'] })
 					}, (err, bal) => {
 						if (err) console.log(err)
 						if (!bal || bal == 0) {
-						return	message.channel.send("User has no money!");
+							return message.channel.send("User has no money!");
 						} else {
 							if (payAmt > bal.bal) {
 								return message.channel.send("You cant afford to do that!");
@@ -698,41 +698,41 @@ thischannel.awaitMessages(filter, { max: 1, time: 60000, errors: ['time'] })
 								console.log("paid")
 							}
 						}
-						
+
 						cash.findOne({
-						UserId: thisid,
-						ServerId: message.guild.id
-					}, (err, bal) => {
-						if (err) console.log(err)
-						if (!bal) {
-							message.channel.send("Cant pay a guy if you aint got a place to put the money my dude, try talkin a bit first.")
-						} else {
-							var NewBal = parseInt(bal.bal)
-							var NewAmt = parseInt(payAmt)
-							bal.ball = NewBal + NewAmt
-							bal.save().catch(err => console.log(err));
-							message.channel.send(`You paid **$ ${payAmt}** to <@${robUser.id}>`)
-						}
-					})
+							UserId: thisid,
+							ServerId: message.guild.id
+						}, (err, bal) => {
+							if (err) console.log(err)
+							if (!bal) {
+								message.channel.send("Cant pay a guy if you aint got a place to put the money my dude, try talkin a bit first.")
+							} else {
+								var NewBal = parseInt(bal.bal)
+								var NewAmt = parseInt(payAmt)
+								bal.ball = NewBal + NewAmt
+								bal.save().catch(err => console.log(err));
+								message.channel.send(`You paid **$ ${payAmt}** to <@${robUser.id}>`)
+							}
+						})
 					});
-					
+
 				}
 			}
 		}
 	}
-if(command == "hints"){
-	cash.findOne({
+	if (command == "hints") {
+		cash.findOne({
 			UserId: message.author.id,
 			ServerId: message.guild.id
 		}, (err, hints) => {
-		if (err) console.log(err)
-		if (hints.hints == 0) {
-					return message.channel.send("You have no hints!!")
-				} else {
-					message.channel.send(`You have ${hints.hints}`)
-				}					
-	})
-}
+			if (err) console.log(err)
+			if (hints.hints == 0) {
+				return message.channel.send("You have no hints!!")
+			} else {
+				message.channel.send(`You have ${hints.hints}`)
+			}
+		})
+	}
 	if (command === "deposit") {
 		cash.findOne({
 			UserId: message.author.id,
@@ -781,7 +781,7 @@ if(command == "hints"){
 				}
 			})
 		})
-	}	
+	}
 	if (command === "withdraw") {
 		cash.findOne({
 			UserId: message.author.id,
@@ -831,187 +831,188 @@ if(command == "hints"){
 			})
 		})
 	}
-if (command === "bal") {
+	if (command === "bal") {
 		let robUser = message.guild.member(message.mentions.users.first());
-		
+
 		if (!robUser) {
-		console.log("test")
-			cash.findOne({
-
-			UserId: message.author.id,
-
-			ServerId: message.guild.id
-
-		}, (err, bal) => {
+			console.log("test")
 			cash.findOne({
 
 				UserId: message.author.id,
 
 				ServerId: message.guild.id
 
-			}, (err, bankbal) => {
+			}, (err, bal) => {
+				cash.findOne({
 
-				if (err) console.log(err)
+					UserId: message.author.id,
 
-				let moneyEmb = new Discord.RichEmbed()
-					.setTitle('Balance')
-					.setColor("#660000")
-					.setThumbnail(client.displayAvatarURL)
-				if (!bal && !bankbal) {
-					moneyEmb.addField("Net Worth", "0", true)
-					moneyEmb.addField("Pocket Change", "0", true)
-					moneyEmb.addField("Banked Money", "0", true)
-					return message.channel.send(moneyEmb)
-				} else if (!bal) {
-					moneyEmb.addField("Net Worth", Math.floor(bankbal.bankbal), true)
-					moneyEmb.addField("Pocket Change", "0", true)
-					moneyEmb.addField("Banked Money", bankbal.bankbal, true)
-					return message.channel.send(moneyEmb)
-				} else if (!bankbal) {
-					moneyEmb.addField("Net Worth", Math.floor(bal.bal + bankbal.bankbal), true)
-					moneyEmb.addField("Pocket Change", bal.bal, true)
-					moneyEmb.addField("Banked Money", "0", true)
-					return message.channel.send(moneyEmb)
-				} else {
-					moneyEmb.addField("Net Worth", Math.floor(bal.bal + bankbal.bankbal), true)
-					moneyEmb.addField("Pocket Change", bal.bal, true)
-					moneyEmb.addField("Banked Money", bankbal.bankbal, true)
-					return message.channel.send(moneyEmb)
+					ServerId: message.guild.id
 
-				}
+				}, (err, bankbal) => {
+
+					if (err) console.log(err)
+
+					let moneyEmb = new Discord.RichEmbed()
+						.setTitle('Balance')
+						.setColor("#660000")
+						.setThumbnail(client.displayAvatarURL)
+					if (!bal && !bankbal) {
+						moneyEmb.addField("Net Worth", "0", true)
+						moneyEmb.addField("Pocket Change", "0", true)
+						moneyEmb.addField("Banked Money", "0", true)
+						return message.channel.send(moneyEmb)
+					} else if (!bal) {
+						moneyEmb.addField("Net Worth", Math.floor(bankbal.bankbal), true)
+						moneyEmb.addField("Pocket Change", "0", true)
+						moneyEmb.addField("Banked Money", bankbal.bankbal, true)
+						return message.channel.send(moneyEmb)
+					} else if (!bankbal) {
+						moneyEmb.addField("Net Worth", Math.floor(bal.bal + bankbal.bankbal), true)
+						moneyEmb.addField("Pocket Change", bal.bal, true)
+						moneyEmb.addField("Banked Money", "0", true)
+						return message.channel.send(moneyEmb)
+					} else {
+						moneyEmb.addField("Net Worth", Math.floor(bal.bal + bankbal.bankbal), true)
+						moneyEmb.addField("Pocket Change", bal.bal, true)
+						moneyEmb.addField("Banked Money", bankbal.bankbal, true)
+						return message.channel.send(moneyEmb)
+
+					}
+				})
 			})
-		})
-		}else{
+		} else {
 			let thisid = robUser.id;
-		cash.findOne({
-
-			UserId: thisid,
-
-			ServerId: message.guild.id
-
-		}, (err, bal) => {
 			cash.findOne({
 
 				UserId: thisid,
 
 				ServerId: message.guild.id
 
-			}, (err, bankbal) => {
+			}, (err, bal) => {
+				cash.findOne({
 
-				if (err) console.log(err)
+					UserId: thisid,
 
-				let moneyEmb = new Discord.RichEmbed()
-					.setTitle('Balance')
-					.setColor("#660000")
-					.setThumbnail(client.displayAvatarURL)
-				if (!bal && !bankbal) {
-					moneyEmb.addField("<@"+`${thisid}>`+"\'s " + "Net Worth", "0", true)
-					moneyEmb.addField("Pocket Change", "0", true)
-					moneyEmb.addField("Banked Money", "0", true)
-					return message.channel.send(moneyEmb)
-				} else if (!bal) {
-					moneyEmb.addField("<@"+`${thisid}>`+"\'s " + "Net Worth", Math.floor(bankbal.bankbal), true)
-					moneyEmb.addField("Pocket Change", "0", true)
-					moneyEmb.addField("Banked Money", bankbal.bankbal, true)
-					return message.channel.send(moneyEmb)
-				} else if (!bankbal) {
-					moneyEmb.addField("<@"+`${thisid}>`+"\'s "  + "Net Worth", Math.floor(bal.bal + bankbal.bankbal), true)
-					moneyEmb.addField("Pocket Change", bal.bal, true)
-					moneyEmb.addField("Banked Money", "0", true)
-					return message.channel.send(moneyEmb)
-				} else {
-					moneyEmb.addField("<@"+`${thisid}>`+"\'s "  + "Net Worth", Math.floor(bal.bal + bankbal.bankbal), true)
-					moneyEmb.addField("Pocket Change", bal.bal, true)
-					moneyEmb.addField("Banked Money", bankbal.bankbal, true)
-					return message.channel.send(moneyEmb)
+					ServerId: message.guild.id
 
-				}
+				}, (err, bankbal) => {
+
+					if (err) console.log(err)
+
+					let moneyEmb = new Discord.RichEmbed()
+						.setTitle('Balance')
+						.setColor("#660000")
+						.setThumbnail(client.displayAvatarURL)
+					if (!bal && !bankbal) {
+						moneyEmb.addField("<@" + `${thisid}>` + "\'s " + "Net Worth", "0", true)
+						moneyEmb.addField("Pocket Change", "0", true)
+						moneyEmb.addField("Banked Money", "0", true)
+						return message.channel.send(moneyEmb)
+					} else if (!bal) {
+						moneyEmb.addField("<@" + `${thisid}>` + "\'s " + "Net Worth", Math.floor(bankbal.bankbal), true)
+						moneyEmb.addField("Pocket Change", "0", true)
+						moneyEmb.addField("Banked Money", bankbal.bankbal, true)
+						return message.channel.send(moneyEmb)
+					} else if (!bankbal) {
+						moneyEmb.addField("<@" + `${thisid}>` + "\'s " + "Net Worth", Math.floor(bal.bal + bankbal.bankbal), true)
+						moneyEmb.addField("Pocket Change", bal.bal, true)
+						moneyEmb.addField("Banked Money", "0", true)
+						return message.channel.send(moneyEmb)
+					} else {
+						moneyEmb.addField("<@" + `${thisid}>` + "\'s " + "Net Worth", Math.floor(bal.bal + bankbal.bankbal), true)
+						moneyEmb.addField("Pocket Change", bal.bal, true)
+						moneyEmb.addField("Banked Money", bankbal.bankbal, true)
+						return message.channel.send(moneyEmb)
+
+					}
+				})
 			})
-		})
 		}
 	}
 	if (command == "rob") {
-	    if (talkedRecently.has(message.author.id)) {
-            message.channel.send("Wait 10 mins before getting typing this again. - " + message.author);
-    } else {
-
-       let robUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-		let thisid = robUser.id
-		if(robUser.bot) return;
-		if (thisid == message.author.id) {
-		 message.channel.send("Bruh, did you just try to rob yourself?")
+		if (talkedRecently.has(message.author.id)) {
+			message.channel.send("Wait 10 mins before getting typing this again. - " + message.author);
 		} else {
-			let robAmt = Math.ceil(math.random() * 100)
-			cash.findOne({
-				UserId: thisid,
-				ServerId: message.guild.id
-			}, (err, bal) => {
-				if (err) console.log(err)
-				if (!bal || bal == 0) {
-					 message.channel.send("User has no money!")
-					return
-				} else {
-					if (robAmt > bal.bal) {
-						config.robBal = bal.bal
-						message.channel.send("You stole" + `** ${bal.bal}** dollars from <@${robUser.id}>`)
-						bal.bal = 0;
-						bal.save().catch(err => console.log(err));
+
+			let robUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+			let thisid = robUser.id
+			if (robUser.bot) return;
+			if (thisid == message.author.id) {
+				message.channel.send("Bruh, did you just try to rob yourself?")
+			} else {
+				let robAmt = Math.ceil(math.random() * 100)
+				cash.findOne({
+					UserId: thisid,
+					ServerId: message.guild.id
+				}, (err, bal) => {
+					if (err) console.log(err)
+					if (!bal || bal == 0) {
+						message.channel.send("User has no money!")
 						return
 					} else {
-					config.robBal = robAmt
-						bal.bal = bal.bal - robAmt;
-						bal.save().catch(err => console.log(err));
+						if (robAmt > bal.bal) {
+							config.robBal = bal.bal
+							message.channel.send("You stole" + `** ${bal.bal}** dollars from <@${robUser.id}>`)
+							bal.bal = 0;
+							bal.save().catch(err => console.log(err));
+							return
+						} else {
+							config.robBal = robAmt
+							bal.bal = bal.bal - robAmt;
+							bal.save().catch(err => console.log(err));
+						}
 					}
-				}});
-					cash.findOne({
-				UserId: message.author.id,
-				ServerId: message.guild.id
-			}, (err, bal) => {
-				if (err) console.log(err)
-				if (!bal) {
-					 message.channel.send("Cant rob a guy if you aint got a place to put the money my dude, try talkin a bit first.")
-				return
-				} else {
-					if(bal.bal == 0 || !bal){
-					message.channel.send("User has no money!")
-					bal.bal = bal.bal + config.robBal
-					bal.save().catch(err => console.log(err))
-					return
-					}else{
+				});
+				cash.findOne({
+					UserId: message.author.id,
+					ServerId: message.guild.id
+				}, (err, bal) => {
+					if (err) console.log(err)
+					if (!bal) {
+						message.channel.send("Cant rob a guy if you aint got a place to put the money my dude, try talkin a bit first.")
+						return
+					} else {
+						if (bal.bal == 0 || !bal) {
+							message.channel.send("User has no money!")
+							bal.bal = bal.bal + config.robBal
+							bal.save().catch(err => console.log(err))
+							return
+						} else {
 
-					bal.bal = bal.bal + config.robBal;
-					message.channel.send(`You stole **${robAmt}** dollars from <@${robUser.id}>`)
-					bal.save().catch(err => console.log(err));
-					config.robBal = 0
-				}
-				}
-			})
-			
+							bal.bal = bal.bal + config.robBal;
+							message.channel.send(`You stole **${robAmt}** dollars from <@${robUser.id}>`)
+							bal.save().catch(err => console.log(err));
+							config.robBal = 0
+						}
+					}
+				})
+
+			}
+			talkedRecently.add(message.author.id);
+			setTimeout(() => {
+				talkedRecently.delete(message.author.id);
+			}, 600000);
 		}
-        talkedRecently.add(message.author.id);
-        setTimeout(() => {
-          talkedRecently.delete(message.author.id);
-        }, 600000);
-    }
-		
+
 	}
 	if (command == "announcements") {
-			var version = "11.17.2018"
-			const annembed = new Discord.RichEmbed()
-				.setTitle('Announcements')
-				.addField(version, true)
-				.addField("Updated","Help command", true)
-				.addField("Added","database", true)
-				.addField("Added", ".bal, .rob, .leader and .deposit currency commands", true)
-				.addField("Added", "Currency System!", true)
-				.addField("Added", "cipher commands.", true)
-				.addField("Added", "cooldowns for some commands.", true)	
-				.addField("Improved","overal interface for multiple commands.", true)
-				.addField("IM SORRY!","I had to reset the balances of everyone due to a vulnerability found.", true)				.addField("Added", "interactivity to help command", true)
-			
-				.setColor("#660000")
-			message.channel.send(annembed)
-		}
+		var version = "11.17.2018"
+		const annembed = new Discord.RichEmbed()
+			.setTitle('Announcements')
+			.addField(version, true)
+			.addField("Updated", "Help command", true)
+			.addField("Added", "database", true)
+			.addField("Added", ".bal, .rob, .leader and .deposit currency commands", true)
+			.addField("Added", "Currency System!", true)
+			.addField("Added", "cipher commands.", true)
+			.addField("Added", "cooldowns for some commands.", true)
+			.addField("Improved", "overal interface for multiple commands.", true)
+			.addField("IM SORRY!", "I had to reset the balances of everyone due to a vulnerability found.", true).addField("Added", "interactivity to help command", true)
+
+			.setColor("#660000")
+		message.channel.send(annembed)
+	}
 	if (command == "leader") {
 		cash.find({
 			exists: 1
@@ -1040,7 +1041,7 @@ if (command === "bal") {
 			}
 		})
 	}
-	
+
 	if (command == "howgayis") {
 		let hgay = Math.ceil(math.random() * 100)
 		if (!args[0]) {
@@ -1384,7 +1385,7 @@ scrape().then((value) => {
 			message.guild.member(kUser).addRole(role)
 			message.channel.send(kUser.toString() + "has been given" + `${role}`)
 		}
-		
+
 		if (command == "reta") {
 			message.channel.send("https://www.youtube.com/watch?v=Hds9tFMuU8o")
 		}
@@ -1757,8 +1758,7 @@ Jimp.read(buffer, (err, lenna) => {
 				} else {
 					let kickChannel = message.guild.channels.find(x => x.name, "incidents");
 					if (!kickChannel) return message.channel.send("Can't find incidents channel.");
-					const thisRole = message.guild.roles.find(x => x.name
-, 'Muted')
+					const thisRole = message.guild.roles.find(x => x.name, 'Muted')
 					message.guild.member(kUser).addRole(thisRole)
 					message.channel.send(kUser.toString() + "has been muted")
 					let Timer = args[1];
@@ -2193,11 +2193,11 @@ Jimp.read(buffer, (err, lenna) => {
 			const b3 = b2.replace(/á›€/g, " DottedN ");
 			const b4 = b3.replace(/á›”/g, " DottedP ");
 			const b5 = b4.replace(/á›‚/g, " E ");
-			const b6 = b5.replace(/á› /g, " EAR ");
+			const b6 = b5.replace(/á› /g, " EAR ");
 			const b7 = b6.replace(/á›–/g, " E ");
 			const b8 = b7.replace(/áš¶/g, " ENG ");
 			const b9 = b8.replace(/áš§/g, " ETH ");
-			const b10 = b9.replace(/áš /g, " F ");
+			const b10 = b9.replace(/áš /g, " F ");
 			const c1 = b10.replace(/ášµ/g, " G ");
 			const c2 = c1.replace(/áš¸/g, " GAR ");
 			const c3 = c2.replace(/áš·/g, " G ");
@@ -2614,7 +2614,7 @@ Jimp.read(buffer, (err, lenna) => {
 				const id = '504451038082891807';
 				new Promise((resolve, reject) => {
 					superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
-						.set('Authorization', `Bot client.token`).send({
+						.set('Authorization', `Bot ${client.token}`).send({
 							content
 						})
 						.end((err, res) => {
@@ -2662,7 +2662,7 @@ Jimp.read(buffer, (err, lenna) => {
 					const id = args[0];
 					new Promise((resolve, reject) => {
 						superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
-							.set('Authorization', `Bot client.token`).send({
+							.set('Authorization', `Bot ${client.token}`).send({
 								content
 							})
 							.end((err, res) => {
@@ -3194,7 +3194,7 @@ Jimp.read(buffer, (err, lenna) => {
 				const id = '475838383671738378';
 				new Promise((resolve, reject) => {
 					superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
-						.set('Authorization', `Bot client.token`).send({
+						.set('Authorization', `Bot ${client.token}`).send({
 							content
 						})
 						.end((err, res) => {
