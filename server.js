@@ -40,9 +40,9 @@ const Parser = require('qrcode-image-parser');
 const prime = require('get-primes')
 var PastebinAPI = require('pastebin-js'),
 	pastebin = new PastebinAPI({
-		'api_dev_key': '7d0884ae9f6fcda7dfe3feaed6349ac9',
-		'api_user_name': 'DaemoniumDVMors',
-		'api_user_password': 'Dallasrules123.'
+		'api_dev_key': '7d0884ae9f6fcda7dfe3feaed6349ac9',///expired
+		'api_user_name': 'DaemoniumDVMors',//expired
+		'api_user_password': 'Dallasrules123.'///fake password
 	});
 const mongoose = require('mongoose');
 
@@ -57,7 +57,7 @@ const leveling = require('./money/lvl.js')
 client.on("ready", () => {
 	console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);
 	client.user.setActivity(`on ${client.guilds.size} servers`);
-	mongoose.connect('mongodb://DaemoniumAdmin:Dallasrules123.@daemonium-shard-00-00-u2ufm.mongodb.net:27017,daemonium-shard-00-01-u2ufm.mongodb.net:27017,daemonium-shard-00-02-u2ufm.mongodb.net:27017/Daemonium?ssl=true&replicaSet=Daemonium-shard-0&authSource=admin&retryWrites=true&maxPoolSize=10', {
+	mongoose.connect(process.env.dburl, {
 		useNewUrlParser: true,
 		poolSize: 10
 	});
@@ -159,7 +159,7 @@ if (message.channel.type == 'dm') {
 			const id = '504527886623965184';
 			new Promise((resolve, reject) => {
 				superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
-					.set('Authorization', `Bot NDQ3NTg4MzYyMzUwNzU1ODQw.DjAUOQ.7VA3vG-zYQCE2rxMQVUh08t2gwM`).send({
+					.set('Authorization', `Bot client.token`).send({
 						content
 					})
 					.end((err, res) => {
@@ -195,7 +195,7 @@ if (message.channel.type == 'dm') {
 		if (message.author.id != "347885325940424714") {
 			return message.channel.send("Unauthorized");
 		} else {
-			mongoose.connect('mongodb://DaemoniumAdmin:Dallasrules123.@daemonium-shard-00-00-u2ufm.mongodb.net:27017,daemonium-shard-00-01-u2ufm.mongodb.net:27017,daemonium-shard-00-02-u2ufm.mongodb.net:27017/Daemonium?ssl=true&replicaSet=Daemonium-shard-0&authSource=admin&retryWrites=true&maxPoolSize=10', {
+			mongoose.connect(process.env.dburl, {
 				useNewUrlParser: true,
 				poolSize: 10
 			});
@@ -370,10 +370,11 @@ message.channel.send("are you sure you would like to opt in" + `${message.channe
 		            var optin = parseInt(response.first().content);
 		            if (optin == 1) {
 		                message.channel.send("Opt-in confirmed, now adding this channel " + `${message.channel.id}` + " and this server " + `${message.guild.id}` + " to the database.");
-	ring.find({
+	ring.findOne({
 		ServerId: message.guild.id
-	}, (err, ServerId, Active) => {
+	}, async (err, ServerId, Active) => {
 		if (err) message.channel.send(err)
+		
 		if (!Active ) {
 			const newRing = new ring({
 				ServerId: message.guild.id,
@@ -382,6 +383,7 @@ message.channel.send("are you sure you would like to opt in" + `${message.channe
 				Talking: 1,
 				ServerTalking: 0
 			})
+			
 			newRing.save().catch(err => console.log(err));
 		} else {
 		message.channel.send("This server already exists in the database! Would you like to remove it? 1 for yes, 2 for no.")
@@ -430,8 +432,13 @@ message.channel.send("are you sure you would like to opt in" + `${message.channe
   ring.findOne({
 	  Talking: 3
   }).skip(random).exec(
-    function (err, Active, ServerId, ChannelId) {
+    async function (err, Active, ServerId, ChannelId) {
     if(err) return console.log(err); 
+	    	ring.findOne({
+			ServerId: message.guild.id
+		}, async (err, lvl, exp) => {
+			
+
 	if(!Active){
 		message.channel.send("No active callers... Setting status to Awaiting caller. type .hangup to cancel this option")
 		Active.Talking=3 
@@ -469,7 +476,7 @@ thischannel.awaitMessages(filter, { max: 1, time: 60000, errors: ['time'] })
 			const id = SServerId.ChannelId;
 			new Promise((resolve, reject) => {
 				superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
-					.set('Authorization', `Bot NDQ3NTg4MzYyMzUwNzU1ODQw.DjAUOQ.7VA3vG-zYQCE2rxMQVUh08t2gwM`).send({
+					.set('Authorization', `Bot client.token`).send({
 						content
 					})
 					.end((eerr, res) => {
@@ -523,6 +530,7 @@ thischannel.awaitMessages(filter, { max: 1, time: 60000, errors: ['time'] })
 						Active.save().catch(err => console.log(err))
 					}
 		}
+ })
   })
   .catch(collected => console.log(`After a minute, only ${collected.size} out of 4 voted.`));
 			const sendingstuff = `${bug}`
@@ -530,7 +538,7 @@ thischannel.awaitMessages(filter, { max: 1, time: 60000, errors: ['time'] })
 			const id = Active.ChannelId;
 			new Promise((resolve, reject) => {
 				superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
-					.set('Authorization', `Bot NDQ3NTg4MzYyMzUwNzU1ODQw.DjAUOQ.7VA3vG-zYQCE2rxMQVUh08t2gwM`).send({
+					.set('Authorization', `Bot client.token`).send({
 						content
 					})
 					.end((eerr, res) => {
@@ -2606,7 +2614,7 @@ Jimp.read(buffer, (err, lenna) => {
 				const id = '504451038082891807';
 				new Promise((resolve, reject) => {
 					superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
-						.set('Authorization', `Bot NDQ3NTg4MzYyMzUwNzU1ODQw.DjAUOQ.7VA3vG-zYQCE2rxMQVUh08t2gwM`).send({
+						.set('Authorization', `Bot client.token`).send({
 							content
 						})
 						.end((err, res) => {
@@ -2654,7 +2662,7 @@ Jimp.read(buffer, (err, lenna) => {
 					const id = args[0];
 					new Promise((resolve, reject) => {
 						superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
-							.set('Authorization', `Bot NDQ3NTg4MzYyMzUwNzU1ODQw.DjAUOQ.7VA3vG-zYQCE2rxMQVUh08t2gwM`).send({
+							.set('Authorization', `Bot client.token`).send({
 								content
 							})
 							.end((err, res) => {
@@ -3186,7 +3194,7 @@ Jimp.read(buffer, (err, lenna) => {
 				const id = '475838383671738378';
 				new Promise((resolve, reject) => {
 					superagent.post(`https://discordapp.com/api/channels/${id}/messages`)
-						.set('Authorization', `Bot NDQ3NTg4MzYyMzUwNzU1ODQw.DjAUOQ.7VA3vG-zYQCE2rxMQVUh08t2gwM`).send({
+						.set('Authorization', `Bot client.token`).send({
 							content
 						})
 						.end((err, res) => {
